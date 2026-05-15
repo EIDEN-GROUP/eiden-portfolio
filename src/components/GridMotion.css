@@ -1,0 +1,167 @@
+.noscroll {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  filter: blur(3px);
+}
+
+@media (max-width: 639px) {
+  .noscroll {
+    filter: blur(2px);
+  }
+}
+
+.noscroll--sharp {
+  filter: none;
+}
+
+.intro {
+  width: 100%;
+  /* Use 100% instead of 100vh so it fills whatever container it's in
+     (the hero uses absolute inset-0, so 100% = full viewport) */
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: min(250px, 42vw);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.gridMotion-container {
+  flex: none;
+  position: relative;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 100%;
+  transform-origin: center center;
+  z-index: 2;
+  /* Large square canvas   bigger tiles in the same hero clip (section size unchanged) */
+  width: 265vmin;
+  height: 265vmin;
+  gap: clamp(0.45rem, 1.8vw, 0.85rem);
+  transform: rotate(-12deg);
+}
+
+/* Narrow phones */
+@media (max-width: 479px) {
+  .gridMotion-container {
+    width: 285vmin;
+    height: 285vmin;
+    gap: clamp(0.28rem, 2.5vw, 0.45rem);
+    transform: rotate(-10deg);
+  }
+
+  .row {
+    gap: clamp(0.28rem, 2.5vw, 0.45rem);
+  }
+}
+
+/* Large phones / small landscape */
+@media (min-width: 480px) and (max-width: 639px) {
+  .gridMotion-container {
+    width: 275vmin;
+    height: 275vmin;
+    gap: 0.45rem;
+    transform: rotate(-11deg);
+  }
+
+  .row {
+    gap: 0.45rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .gridMotion-container {
+    width: 272vmin;
+    height: 272vmin;
+    gap: 0.75rem;
+    transform: rotate(-13deg);
+  }
+
+  .row {
+    gap: 0.75rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .gridMotion-container {
+    width: 280vmin;
+    height: 280vmin;
+    gap: 1rem;
+    transform: rotate(-15deg);
+  }
+
+  .row {
+    gap: 1rem;
+  }
+}
+
+.row {
+  display: grid;
+  gap: clamp(0.45rem, 1.8vw, 0.85rem);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  will-change: transform;
+}
+
+.row__item {
+  position: relative;
+  min-height: 0;
+}
+
+.row__item-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0;
+  background-color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: clamp(0.65rem, 2.2vw, 1.5rem);
+}
+
+.row__item-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.row__item-content {
+  padding: clamp(0.35rem, 2vw, 1rem);
+  text-align: center;
+  z-index: 1;
+}
+
+.fullview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.fullview .row__item-inner {
+  border-radius: 0px;
+}
