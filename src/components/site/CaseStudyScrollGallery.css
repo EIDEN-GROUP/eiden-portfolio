@@ -116,7 +116,7 @@
     0 41.8px 33.4px rgba(0, 0, 0, 0.48),
     0 100px 80px rgba(0, 0, 0, 0.55);
   width: 100%;
-  border-radius: 2px;
+  border-radius: 0;
   display: block;
   object-fit: cover;
   aspect-ratio: 4 / 5;

@@ -1,11 +1,15 @@
 /** Gallery + project detail: covers, routing slugs, and case-study metadata. */
 import type { CaseStudyResultTileInput } from "@/data/projectCaseStudy";
-import bopassageWeb from "@/assets/bopassage-web.png";
-import educazenkidsWeb from "@/assets/educazenkids-web.png";
-import lunjaWeb from "@/assets/lunja.png";
-import medicalbayWeb from "@/assets/medicalbay.png";
-
-const CDN = "https://cdn.prod.website-files.com/66387c0fa39192a87e403b2a";
+import bopassageCover from "@/assets/bopassage-cover.png";
+import bopassageHero from "@/assets/bopassage-hero.png";
+import dmcCover from "@/assets/dmc-cover.png";
+import dmcHero from "@/assets/dmc-hero.png";
+import educazenkidsCover from "@/assets/educazenkids-cover.png";
+import educazenHero from "@/assets/educazen-hero.png";
+import eidenAcademyCover from "@/assets/eiden-academy-cover.png";
+import eidenHero from "@/assets/eiden-hero.png";
+import lunjaCover from "@/assets/lunja-cover.png";
+import lunjaHero from "@/assets/lunja-hero.png";
 
 /** Optional overrides for the project detail case study body. */
 export type ProjectCaseStudyOverride = {
@@ -31,14 +35,12 @@ export type ProjectCaseStudyOverride = {
     label: string;
   }[];
   finalStatement?: string;
-  /** Optional override for the opening “client voice” block (defaults from project summary + client name). */
   openingReview?: {
     eyebrow?: string;
     quote?: string;
     author?: string;
     role?: string;
   };
-  /** Optional override for the closing review block (defaults from final statement + client name). */
   closingReview?: {
     eyebrow?: string;
     quote?: string;
@@ -49,134 +51,199 @@ export type ProjectCaseStudyOverride = {
 
 export const projects = [
   {
-    slug: "all-accor",
-    title: "All Accor Morocco",
-    cover: `${CDN}/69b2f1fc6db78ce1c7606beb_mischka-mockup.webp`,
-    summary:
-      "Brand and digital elevation for Accor’s Morocco footprint cohesive guest-facing narratives across properties.",
-    tagline: "Hospitality leadership, expressed with regional soul.",
-    category: "Hospitality",
-    year: "2024",
-    index: "01",
-    services: ["Brand architecture", "Digital experience", "Campaign narrative"],
-    website: "https://www.accor.com",
-  },
-  {
     slug: "bopassage",
-    title: "BoPassage",
-    cover: bopassageWeb,
+    title: "Bôpassage",
+    cover: bopassageCover,
+    detailHero: bopassageHero,
     summary:
-      "Retail and placemaking for a signature passage clarity of positioning, visual language, and conversion pathways.",
-    tagline: "A destination corridor that moves people and revenue.",
+      "Website, social content, and paid media for a signature Agadir café — discoverable online, warm on the feed, and built to fill tables.",
+    tagline: "L'endroit où on revient toujours — now with a digital layer to match.",
     category: "Retail & placemaking",
     year: "2024",
-    index: "02",
-    services: ["Positioning", "Visual identity", "Growth ops"],
+    index: "01",
+    services: [
+      "Website design & development",
+      "Social media content",
+      "Media buying & ads",
+    ],
     website: "https://bopassage.com/",
+    caseStudy: {
+      gallery: [bopassageHero, bopassageCover, bopassageHero],
+      challenge:
+        "Bô Passage had the atmosphere and the food — but no site, no consistent social rhythm, and no paid layer to turn discovery into reservations.",
+      goals:
+        "Launch bopassage.com, build an Instagram presence that feels like the room, and run Meta and Google campaigns aimed at brunch habit and table bookings.",
+      context:
+        "Café & restaurant · Founty, Agadir — delivery focused on web, social content, and media buying only.",
+      stats: [
+        { prefix: "+", value: 156, suffix: "%", label: "footfall intent" },
+        { prefix: "+", value: 89, suffix: "%", label: "social reach" },
+        { prefix: "+", value: 64, suffix: "%", label: "brand visibility" },
+      ],
+      closingReview: {
+        eyebrow: "After delivery",
+        quote:
+          "Our site finally feels like the restaurant — warm, clear, easy to book. Social and ads bring people in who actually stay for brunch.",
+        author: "Bôpassage",
+        role: "Café & restaurant",
+      },
+    },
   },
   {
-    slug: "madaef",
-    title: "Madaef",
-    cover: `${CDN}/69b2f37c75035210d7e5b80c_VISIO%20Mockup.png`,
+    slug: "dmc-morocco",
+    title: "DMC",
+    cover: dmcCover,
+    detailHero: dmcHero,
     summary:
-      "Executive-grade storytelling for a Moroccan industrial champion credibility, clarity, and stakeholder alignment.",
-    tagline: "Industrial strength with a credible public voice.",
-    category: "Industry",
+      "Full-funnel luxury travel presence — brand identity, View Morocco website, social storytelling, and performance media for partners and high-intent travelers.",
+    tagline: "Morocco’s luxury journeys, orchestrated from mark to inquiry.",
+    category: "Travel",
     year: "2023",
-    index: "03",
-    services: ["Strategic narrative", "Corporate communication", "Stakeholder design"],
-    website: "https://www.madaef.ma/",
-  },
-  {
-    slug: "anisal",
-    title: "Anisal",
-    cover: `${CDN}/69b2f58ae51cbaee09cd98aa_SM%20Mockup.png`,
-    summary:
-      "Brand systems for a consumer-facing label packaging logic, tone, and shelf presence tuned for growth.",
-    tagline: "Flavor-forward branding built for scale.",
-    category: "Consumer brand",
-    year: "2024",
-    index: "04",
-    services: ["Brand identity", "Packaging systems", "Launch playbook"],
-    website: "https://byanisal.com/",
-  },
-  {
-    slug: "medical-bay",
-    title: "Medical Bay",
-    cover: medicalbayWeb,
-    summary:
-      "Patient-centric digital and brand infrastructure for a clinical operator trust, precision, and accessibility.",
-    tagline: "Clinical excellence, communicated with calm authority.",
-    category: "Health",
-    year: "2024",
-    index: "05",
-    services: ["Service design", "Digital UX", "Compliance-minded content"],
-    website: "https://www.medicalbay.ma/",
+    index: "02",
+    services: [
+      "Website design & development",
+      "Branding",
+      "Social media content",
+      "Media buying & ads",
+    ],
+    website: "https://www.viewmorocco.com/",
+    caseStudy: {
+      gallery: [dmcHero, dmcCover, dmcHero],
+      challenge:
+        "A premium DMC needed one coherent system — brand partners could recognize, a site that converts international intent, and social plus paid that feed the pipeline.",
+      goals:
+        "Unify branding and View Morocco, grow destination storytelling on social, and scale qualified inquiries through Meta and Google.",
+      context:
+        "Luxury travel · Morocco — branding, website, social content, and media buying delivered as one composed funnel.",
+      stats: [
+        { prefix: "+", value: 186, suffix: "%", label: "qualified leads" },
+        { prefix: "+", value: 240, suffix: "%", label: "engagement" },
+        { prefix: "+", value: 95, suffix: "%", label: "partner satisfaction" },
+      ],
+      closingReview: {
+        eyebrow: "After delivery",
+        quote:
+          "Partners recognize us instantly — brand, site, social, and campaigns all speak the same luxury language, and inquiries are sharper.",
+        author: "DMC Morocco",
+        role: "Luxury travel",
+      },
+    },
   },
   {
     slug: "educazen-kids",
     title: "EducazenKids",
-    cover: educazenkidsWeb,
+    cover: educazenkidsCover,
+    detailHero: educazenHero,
     summary:
-      "Learning brand for families warm pedagogy, structured journeys, and digital touchpoints parents rely on.",
-    tagline: "Where childhood curiosity meets structured growth.",
+      "Inclusive education brand online — parent-trusted website, CRM for enrollment teams, reassuring social content, and growth media for Agadir families.",
+    tagline: "L'enseignement sur mesure — with the digital stack to match.",
     category: "Education",
     year: "2023",
-    index: "06",
-    services: ["Brand & narrative", "Parent journeys", "Digital product"],
+    index: "03",
+    services: [
+      "Website design & development",
+      "CRM & dashboard",
+      "Social media content",
+      "Media buying",
+    ],
     website: "https://educazenkids.com/",
+    caseStudy: {
+      gallery: [educazenHero, educazenkidsCover, educazenHero],
+      challenge:
+        "Parents needed a warm, credible digital front door — while the team juggled leads, follow-up, and outreach across tools that did not talk to each other.",
+      goals:
+        "Launch educazenkids.com, centralize enrollment in a CRM dashboard, publish inclusive social content, and drive enrollment leads through paid media.",
+      context:
+        "Centre éducatif & psychosocial · Agadir — website, CRM & dashboard, social content, and media buying.",
+      stats: [
+        { prefix: "+", value: 198, suffix: "%", label: "enrollment leads" },
+        { prefix: "+", value: 67, suffix: "%", label: "admin efficiency" },
+        { prefix: "+", value: 92, suffix: "%", label: "parent satisfaction" },
+      ],
+      closingReview: {
+        eyebrow: "After delivery",
+        quote:
+          "Parents find us online with confidence, our team runs enrollment from one dashboard, and social plus ads bring families who are truly aligned.",
+        author: "EducazenKids",
+        role: "Education",
+      },
+    },
+  },
+  {
+    slug: "eiden-academy",
+    title: "Eiden Academy",
+    cover: eidenAcademyCover,
+    detailHero: eidenHero,
+    summary:
+      "Group edtech platform — brand, public website, learner dashboard, social presence, and a gamified English test system in one product motion.",
+    tagline: "Institutional knowledge, delivered as a platform students return to.",
+    category: "Education & talent",
+    year: "2024",
+    index: "04",
+    services: [
+      "Website design & development",
+      "Dashboard system",
+      "Branding",
+      "Social media content",
+      "English test system",
+    ],
+    website: "https://eiden-group.com/",
+    caseStudy: {
+      gallery: [eidenHero, eidenAcademyCover, eidenHero],
+      challenge:
+        "Eiden Academy needed to scale group expertise beyond slides — a credible brand, public site, internal dashboards, social proof, and assessment learners would actually finish.",
+      goals:
+        "Ship branding and the public platform, build admin and student dashboards, grow professional social content, and launch the English test system.",
+      context:
+        "Education & talent · EIDEN Group — branding, website, dashboard system, social content, and English test system.",
+      stats: [
+        { prefix: "+", value: 210, suffix: "%", label: "student engagement" },
+        { prefix: "+", value: 88, suffix: "%", label: "course completion" },
+        { prefix: "+", value: 74, suffix: "%", label: "completion rate" },
+      ],
+      closingReview: {
+        eyebrow: "After delivery",
+        quote:
+          "Brand, site, dashboards, social, and the English test feel like one product — students engage, and our team runs programs with clarity.",
+        author: "Eiden Academy",
+        role: "Edtech",
+      },
+    },
   },
   {
     slug: "lunja-village",
     title: "Lunja Village",
-    cover: lunjaWeb,
+    cover: lunjaCover,
+    detailHero: lunjaHero,
     summary:
-      "Hospitality positioning for a coastal destination story, visual world, and booking-led experience design.",
-    tagline: "Seaside living, framed as a signature escape.",
+      "Surf & nomad brand for Imi Ouddar — identity, brand board, Atlantic social content, and booking-focused media buying for long-stay guests.",
+    tagline: "Surf & nomad cottages — bold on the feed, warm before arrival.",
     category: "Hospitality",
     year: "2024",
-    index: "07",
-    services: ["Destination brand", "Experience design", "Commercial storytelling"],
+    index: "05",
+    services: ["Branding", "Brand board", "Social media content", "Media buying"],
     website: "https://www.lunjavillage.com/",
-  },
-  {
-    slug: "dmc-morocco",
-    title: "DMC Morocco",
-    cover: `${CDN}/69b2f96cc5a7990d1e6d434b_Lunar%20Luxe.webp`,
-    summary:
-      "Luxury DMC narrative high-touch itineraries, partner-ready collateral, and conversion-focused digital surfaces.",
-    tagline: "Morocco’s luxury journeys, orchestrated end to end.",
-    category: "Travel",
-    year: "2023",
-    index: "08",
-    services: ["Luxury positioning", "Partner enablement", "Performance surfaces"],
-    website: "https://www.viewmorocco.com/",
-  },
-  {
-    slug: "chill-out",
-    title: "Chill Out",
-    cover: `${CDN}/69b2fa6841563eda67506e3c_Mayerfield.webp`,
-    summary:
-      "Lifestyle F&B brand atmosphere, social velocity, and operational clarity for repeat visitation.",
-    tagline: "The room temperature brand everyone talks about.",
-    category: "Lifestyle",
-    year: "2024",
-    index: "09",
-    services: ["Concept & naming", "Brand world", "Retention mechanics"],
-    website: "https://eiden-group.com/",
-  },
-  {
-    slug: "cabinet",
-    title: "Cabinet Conseil",
-    cover: `${CDN}/69b2fb0fe1732bc5367d1838_72bbc9197558093.Y3JvcCwxNTQ0LDEyMDcsMCwz.png`,
-    summary:
-      "Advisory firm identity discretion, senior counsel cues, and proposal-ready brand architecture.",
-    tagline: "Counsel that reads as authority, not noise.",
-    category: "Professional services",
-    year: "2023",
-    index: "10",
-    services: ["Brand platform", "Thought leadership", "BD collateral"],
-    website: "https://eiden-group.com/",
+    caseStudy: {
+      gallery: [lunjaHero, lunjaCover, lunjaHero],
+      challenge:
+        "Lunja needed a distinctive coastal identity and a content engine that could compete with generic surf camps — without a website rebuild in scope.",
+      goals:
+        "Deliver brand and brand board, publish golden-hour social that builds tribe, and run paid media toward booking inquiries from nomads and surfers.",
+      context:
+        "Hospitality · Imi Ouddar, Taghazout — branding, brand board, social media content, and media buying.",
+      stats: [
+        { prefix: "+", value: 142, suffix: "%", label: "booking inquiries" },
+        { prefix: "+", value: 78, suffix: "%", label: "ad engagement" },
+        { prefix: "+", value: 120, suffix: "%", label: "brand warmth" },
+      ],
+      closingReview: {
+        eyebrow: "After delivery",
+        quote:
+          "The brand board keeps every shoot on brief, social feels like the cottages, and ads bring guests who already understand the vibe.",
+        author: "Lunja Village",
+        role: "Hospitality",
+      },
+    },
   },
 ] as const;
 

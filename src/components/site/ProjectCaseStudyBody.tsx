@@ -4,6 +4,7 @@ import type {
   CaseStudyReview,
   CaseStudyStat,
 } from "@/data/projectCaseStudy";
+import { ProjectServicesShowcase } from "@/components/case-study/ProjectServicesShowcase";
 import { CaseStudyScrollGallery } from "@/components/site/CaseStudyScrollGallery";
 import { resolveCaseStudy } from "@/data/projectCaseStudy";
 import type { Project } from "@/data/projects";
@@ -228,9 +229,33 @@ function CapabilitiesScrollDesktop({ items }: { items: CaseStudyExpertiseItem[] 
   );
 }
 
+function CapabilitiesCentered({ items }: { items: CaseStudyExpertiseItem[] }) {
+  return (
+    <div className="relative border-t border-white/[0.1] bg-[#060606] py-10 sm:py-14">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-8%" }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto flex flex-wrap items-stretch justify-center gap-4 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:gap-7 sm:px-10"
+      >
+        {items.map((item, i) => (
+          <CapabilityCard
+            key={`${item.title}-${i}`}
+            item={item}
+            index={i}
+            className="h-[min(52vh,22rem)] w-full max-w-[min(88vw,22rem)] shrink-0 sm:h-[min(58vh,28rem)] sm:w-[min(42vw,24rem)]"
+          />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
 function CapabilitiesScrollFlex({ items }: { items: CaseStudyExpertiseItem[] }) {
   const isCompact = useMediaQuery("(max-width: 639px)");
   if (!items.length) return null;
+  if (items.length < 4) return <CapabilitiesCentered items={items} />;
   if (isCompact) return <CapabilitiesSwiperMobile items={items} />;
   return <CapabilitiesScrollDesktop items={items} />;
 }
@@ -617,6 +642,17 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
           <CapabilitiesScrollFlex items={c.expertise} />
         </div>
 
+        <ProjectServicesShowcase project={project} />
+
+        <section ref={statsRef} aria-label="Outcomes" className="border-t border-white/[0.08]">
+          <BandHeader left="Outcomes" center="Momentum, measured." right="Impact" />
+          <div className="grid grid-cols-1 divide-white/[0.12] sm:grid-cols-3 sm:divide-x">
+            {c.stats.map((s: CaseStudyStat) => (
+              <StatRow key={s.label} stat={s} active={statsInView} />
+            ))}
+          </div>
+        </section>
+
         <section
           aria-label="Deliverables scroll gallery"
           className="relative border-t border-white/[0.08] bg-[#050505] [background-image:radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(45,212,191,0.06),transparent_55%)]"
@@ -628,22 +664,6 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
             centerWide
           />
           <CaseStudyScrollGallery tiles={c.resultTiles} />
-        </section>
-
-        <section ref={statsRef} aria-label="Outcomes" className="border-t border-white/[0.08]">
-          <BandHeader left="Outcomes" center="Momentum, measured." right="Impact" />
-          <div className="grid grid-cols-1 divide-white/[0.12] sm:grid-cols-3 sm:divide-x">
-            {c.stats.map((s: CaseStudyStat) => (
-              <StatRow key={s.label} stat={s} active={statsInView} />
-            ))}
-          </div>
-        </section>
-
-        <section aria-label="Visuals" className="border-t border-white/[0.08]">
-          <BandHeader left="Visual system" center="Cinematic surfaces and depth." right="Frames" />
-          <div className="mx-auto w-full max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-8 lg:px-12">
-            <GalleryScrollCarousel faces={c.galleryFaces} />
-          </div>
         </section>
 
         <section aria-label="Client review   closing" className="border-t border-white/[0.08]">

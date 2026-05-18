@@ -10,35 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProjectsMedicalBayRouteImport } from './routes/projects.medical-bay'
-import { Route as ProjectsMadaefRouteImport } from './routes/projects.madaef'
 import { Route as ProjectsLunjaVillageRouteImport } from './routes/projects.lunja-village'
+import { Route as ProjectsEidenAcademyRouteImport } from './routes/projects.eiden-academy'
 import { Route as ProjectsEducazenKidsRouteImport } from './routes/projects.educazen-kids'
 import { Route as ProjectsDmcMoroccoRouteImport } from './routes/projects.dmc-morocco'
-import { Route as ProjectsChillOutRouteImport } from './routes/projects.chill-out'
-import { Route as ProjectsCabinetRouteImport } from './routes/projects.cabinet'
 import { Route as ProjectsBopassageRouteImport } from './routes/projects.bopassage'
-import { Route as ProjectsAnisalRouteImport } from './routes/projects.anisal'
-import { Route as ProjectsAllAccorRouteImport } from './routes/projects.all-accor'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsMedicalBayRoute = ProjectsMedicalBayRouteImport.update({
-  id: '/projects/medical-bay',
-  path: '/projects/medical-bay',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProjectsMadaefRoute = ProjectsMadaefRouteImport.update({
-  id: '/projects/madaef',
-  path: '/projects/madaef',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProjectsLunjaVillageRoute = ProjectsLunjaVillageRouteImport.update({
   id: '/projects/lunja-village',
   path: '/projects/lunja-village',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsEidenAcademyRoute = ProjectsEidenAcademyRouteImport.update({
+  id: '/projects/eiden-academy',
+  path: '/projects/eiden-academy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsEducazenKidsRoute = ProjectsEducazenKidsRouteImport.update({
@@ -51,126 +41,71 @@ const ProjectsDmcMoroccoRoute = ProjectsDmcMoroccoRouteImport.update({
   path: '/projects/dmc-morocco',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsChillOutRoute = ProjectsChillOutRouteImport.update({
-  id: '/projects/chill-out',
-  path: '/projects/chill-out',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProjectsCabinetRoute = ProjectsCabinetRouteImport.update({
-  id: '/projects/cabinet',
-  path: '/projects/cabinet',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProjectsBopassageRoute = ProjectsBopassageRouteImport.update({
   id: '/projects/bopassage',
   path: '/projects/bopassage',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsAnisalRoute = ProjectsAnisalRouteImport.update({
-  id: '/projects/anisal',
-  path: '/projects/anisal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProjectsAllAccorRoute = ProjectsAllAccorRouteImport.update({
-  id: '/projects/all-accor',
-  path: '/projects/all-accor',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/projects/all-accor': typeof ProjectsAllAccorRoute
-  '/projects/anisal': typeof ProjectsAnisalRoute
   '/projects/bopassage': typeof ProjectsBopassageRoute
-  '/projects/cabinet': typeof ProjectsCabinetRoute
-  '/projects/chill-out': typeof ProjectsChillOutRoute
   '/projects/dmc-morocco': typeof ProjectsDmcMoroccoRoute
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
+  '/projects/eiden-academy': typeof ProjectsEidenAcademyRoute
   '/projects/lunja-village': typeof ProjectsLunjaVillageRoute
-  '/projects/madaef': typeof ProjectsMadaefRoute
-  '/projects/medical-bay': typeof ProjectsMedicalBayRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/projects/all-accor': typeof ProjectsAllAccorRoute
-  '/projects/anisal': typeof ProjectsAnisalRoute
   '/projects/bopassage': typeof ProjectsBopassageRoute
-  '/projects/cabinet': typeof ProjectsCabinetRoute
-  '/projects/chill-out': typeof ProjectsChillOutRoute
   '/projects/dmc-morocco': typeof ProjectsDmcMoroccoRoute
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
+  '/projects/eiden-academy': typeof ProjectsEidenAcademyRoute
   '/projects/lunja-village': typeof ProjectsLunjaVillageRoute
-  '/projects/madaef': typeof ProjectsMadaefRoute
-  '/projects/medical-bay': typeof ProjectsMedicalBayRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/projects/all-accor': typeof ProjectsAllAccorRoute
-  '/projects/anisal': typeof ProjectsAnisalRoute
   '/projects/bopassage': typeof ProjectsBopassageRoute
-  '/projects/cabinet': typeof ProjectsCabinetRoute
-  '/projects/chill-out': typeof ProjectsChillOutRoute
   '/projects/dmc-morocco': typeof ProjectsDmcMoroccoRoute
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
+  '/projects/eiden-academy': typeof ProjectsEidenAcademyRoute
   '/projects/lunja-village': typeof ProjectsLunjaVillageRoute
-  '/projects/madaef': typeof ProjectsMadaefRoute
-  '/projects/medical-bay': typeof ProjectsMedicalBayRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/projects/all-accor'
-    | '/projects/anisal'
     | '/projects/bopassage'
-    | '/projects/cabinet'
-    | '/projects/chill-out'
     | '/projects/dmc-morocco'
     | '/projects/educazen-kids'
+    | '/projects/eiden-academy'
     | '/projects/lunja-village'
-    | '/projects/madaef'
-    | '/projects/medical-bay'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/projects/all-accor'
-    | '/projects/anisal'
     | '/projects/bopassage'
-    | '/projects/cabinet'
-    | '/projects/chill-out'
     | '/projects/dmc-morocco'
     | '/projects/educazen-kids'
+    | '/projects/eiden-academy'
     | '/projects/lunja-village'
-    | '/projects/madaef'
-    | '/projects/medical-bay'
   id:
     | '__root__'
     | '/'
-    | '/projects/all-accor'
-    | '/projects/anisal'
     | '/projects/bopassage'
-    | '/projects/cabinet'
-    | '/projects/chill-out'
     | '/projects/dmc-morocco'
     | '/projects/educazen-kids'
+    | '/projects/eiden-academy'
     | '/projects/lunja-village'
-    | '/projects/madaef'
-    | '/projects/medical-bay'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProjectsAllAccorRoute: typeof ProjectsAllAccorRoute
-  ProjectsAnisalRoute: typeof ProjectsAnisalRoute
   ProjectsBopassageRoute: typeof ProjectsBopassageRoute
-  ProjectsCabinetRoute: typeof ProjectsCabinetRoute
-  ProjectsChillOutRoute: typeof ProjectsChillOutRoute
   ProjectsDmcMoroccoRoute: typeof ProjectsDmcMoroccoRoute
   ProjectsEducazenKidsRoute: typeof ProjectsEducazenKidsRoute
+  ProjectsEidenAcademyRoute: typeof ProjectsEidenAcademyRoute
   ProjectsLunjaVillageRoute: typeof ProjectsLunjaVillageRoute
-  ProjectsMadaefRoute: typeof ProjectsMadaefRoute
-  ProjectsMedicalBayRoute: typeof ProjectsMedicalBayRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -182,25 +117,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/medical-bay': {
-      id: '/projects/medical-bay'
-      path: '/projects/medical-bay'
-      fullPath: '/projects/medical-bay'
-      preLoaderRoute: typeof ProjectsMedicalBayRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/madaef': {
-      id: '/projects/madaef'
-      path: '/projects/madaef'
-      fullPath: '/projects/madaef'
-      preLoaderRoute: typeof ProjectsMadaefRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/projects/lunja-village': {
       id: '/projects/lunja-village'
       path: '/projects/lunja-village'
       fullPath: '/projects/lunja-village'
       preLoaderRoute: typeof ProjectsLunjaVillageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/eiden-academy': {
+      id: '/projects/eiden-academy'
+      path: '/projects/eiden-academy'
+      fullPath: '/projects/eiden-academy'
+      preLoaderRoute: typeof ProjectsEidenAcademyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/educazen-kids': {
@@ -217,20 +145,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsDmcMoroccoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/chill-out': {
-      id: '/projects/chill-out'
-      path: '/projects/chill-out'
-      fullPath: '/projects/chill-out'
-      preLoaderRoute: typeof ProjectsChillOutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/cabinet': {
-      id: '/projects/cabinet'
-      path: '/projects/cabinet'
-      fullPath: '/projects/cabinet'
-      preLoaderRoute: typeof ProjectsCabinetRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/projects/bopassage': {
       id: '/projects/bopassage'
       path: '/projects/bopassage'
@@ -238,35 +152,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsBopassageRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/anisal': {
-      id: '/projects/anisal'
-      path: '/projects/anisal'
-      fullPath: '/projects/anisal'
-      preLoaderRoute: typeof ProjectsAnisalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/all-accor': {
-      id: '/projects/all-accor'
-      path: '/projects/all-accor'
-      fullPath: '/projects/all-accor'
-      preLoaderRoute: typeof ProjectsAllAccorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProjectsAllAccorRoute: ProjectsAllAccorRoute,
-  ProjectsAnisalRoute: ProjectsAnisalRoute,
   ProjectsBopassageRoute: ProjectsBopassageRoute,
-  ProjectsCabinetRoute: ProjectsCabinetRoute,
-  ProjectsChillOutRoute: ProjectsChillOutRoute,
   ProjectsDmcMoroccoRoute: ProjectsDmcMoroccoRoute,
   ProjectsEducazenKidsRoute: ProjectsEducazenKidsRoute,
+  ProjectsEidenAcademyRoute: ProjectsEidenAcademyRoute,
   ProjectsLunjaVillageRoute: ProjectsLunjaVillageRoute,
-  ProjectsMadaefRoute: ProjectsMadaefRoute,
-  ProjectsMedicalBayRoute: ProjectsMedicalBayRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

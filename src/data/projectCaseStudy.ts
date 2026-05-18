@@ -129,10 +129,27 @@ const EXPERTISE_POOL: CaseStudyExpertiseItem[] = [
   { title: "Strategy", blurb: "Commercial clarity   what to build, for whom, and why now." },
 ];
 
+const SERVICE_BLURBS: Record<string, string> = {
+  "Website design & development":
+    "Editorial surfaces, enrollment flows, and performance-first builds tuned to convert.",
+  Branding: "Logo systems, palettes, and voice that partners and guests recognize instantly.",
+  "Brand board": "Mood, texture, and typographic direction composed into one living reference.",
+  "Social media content":
+    "Feed architecture, reels, and captions built for reach — always on-brand, never generic.",
+  "Media buying": "Meta and Google campaigns with creative iteration tied to real business signals.",
+  "Media buying & ads": "Paid social and search tuned for footfall, leads, and measurable ROAS.",
+  "CRM & dashboard":
+    "Pipeline visibility, parent follow-up, and team workflows in one operations console.",
+  "Dashboard system":
+    "Student progress, cohort analytics, and admin tooling designed for daily use.",
+  "English test system":
+    "Gamified assessment, level progression, and results that keep learners motivated.",
+};
+
 function mergeExpertise(project: Project): CaseStudyExpertiseItem[] {
-  return EXPERTISE_POOL.map((item, i) => ({
-    title: item.title,
-    blurb: project.services[i] ?? item.blurb,
+  return project.services.map((service) => ({
+    title: service,
+    blurb: SERVICE_BLURBS[service] ?? EXPERTISE_POOL.find((e) => e.title === service)?.blurb ?? service,
   }));
 }
 

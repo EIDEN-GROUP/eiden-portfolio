@@ -52,7 +52,7 @@ export function projectDetailHead(p: Project | undefined) {
       { name: "description", content: p.summary },
       { property: "og:title", content: `${p.title}   EIDEN Group` },
       { property: "og:description", content: p.summary },
-      { property: "og:image", content: p.cover },
+      { property: "og:image", content: p.detailHero },
     ],
   };
 }
@@ -90,7 +90,7 @@ export function ProjectDetailPage({ project: p }: { project: Project }) {
     <main className="min-w-0 overflow-x-clip" style={{ background: "oklch(0.07 0.012 165)", color: "white" }}>
       <section ref={heroRef} className="relative min-h-[100svh] w-full overflow-hidden supports-[height:100dvh]:min-h-[100dvh]">
         <motion.img
-          src={p.cover}
+          src={p.detailHero}
           alt={p.title}
           initial={{ scale: 1.06, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}

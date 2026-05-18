@@ -6,9 +6,9 @@ import {
 } from "@/components/site/ProjectDetailPage";
 import { getProject } from "@/data/projects";
 
-const SLUG = "medical-bay" as const;
+const SLUG = "eiden-academy" as const;
 
-export const Route = createFileRoute("/projects/medical-bay")({
+export const Route = createFileRoute("/projects/eiden-academy")({
   loader: () => {
     const project = getProject(SLUG);
     if (!project) throw notFound();

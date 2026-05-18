@@ -196,8 +196,6 @@ export function Footer() {
         className="clients-swiper select-none"
       >
         {[...eidenClients, ...eidenClients, ...eidenClients].map((client, i) => {
-          const isCabinet = client.name === "Cabinet";
-
           return (
             <SwiperSlide key={i} className="!w-auto">
               <div className="flex h-18 items-center px-4">
@@ -205,7 +203,7 @@ export function Footer() {
                   src={client.logo}
                   alt={client.name}
                   className="h-12 w-auto object-contain transition-opacity duration-300"
-                  style={isCabinet ? undefined : { filter: "brightness(0) invert(1)" }}
+                  style={{ filter: "brightness(0) invert(1)" }}
                 />
               </div>
             </SwiperSlide>
