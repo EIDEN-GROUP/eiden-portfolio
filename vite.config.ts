@@ -17,9 +17,7 @@ function vendorChunk(id: string): string | undefined {
   if (id.includes("@tanstack")) return "vendor-router";
   // Keep the full React runtime in one chunk (scheduler, etc.) to avoid a circular
   // vendor-misc ↔ vendor-react split that breaks Rollup in production builds.
-  if (
-    /[/\\](react|react-dom|scheduler|react-is|use-sync-external-store)([/\\]|$)/.test(id)
-  ) {
+  if (/[/\\](react|react-dom|scheduler|react-is|use-sync-external-store)([/\\]|$)/.test(id)) {
     return "vendor-react";
   }
   // Let Rollup assign remaining node_modules; a catch-all "vendor-misc" caused cycles.
