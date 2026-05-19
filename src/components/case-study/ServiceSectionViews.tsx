@@ -8,10 +8,10 @@ import {
   FeaturePills,
   HorizontalMediaStrip,
   MediaMasonry,
-  MetricGrid,
   SectionIntro,
   type MediaItem,
 } from "./primitives";
+import { useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
 import { ease } from "./motion";
 
 function mediaFromSection(section: ServiceSection): MediaItem[] {
@@ -32,6 +32,7 @@ export function ServiceSectionView({
   themeAccent: string;
   index: number;
 }) {
+  const theme = useProjectTheme();
   const media = mediaFromSection(section);
   const desktop = media[0];
   const mobile = media[1] ?? media[0];
@@ -45,11 +46,12 @@ export function ServiceSectionView({
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-5%" }}
-      transition={{ duration: 0.6, ease }}
-      className={cn(
-        "border-t border-white/[0.08] py-16 sm:py-24",
-        index % 2 === 1 && "bg-white/[0.02]",
-      )}
+      transition={{ duration: theme.motion.revealDuration * 0.7, ease: theme.motion.ease }}
+      className="border-t py-16 sm:py-24"
+      style={{
+        borderColor: theme.colors.border,
+        background: index % 2 === 1 ? theme.ui.sectionTint : undefined,
+      }}
     >
       <SectionIntro
         eyebrow={section.eyebrow}
@@ -62,8 +64,9 @@ export function ServiceSectionView({
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 1.2, ease }}
-        className="mx-auto mt-10 h-px max-w-xs origin-left bg-gradient-to-r from-gold/40 via-white/20 to-transparent sm:mt-12"
+        transition={{ duration: 1.2, ease: theme.motion.ease }}
+        className="mx-auto mt-10 h-px max-w-xs origin-left sm:mt-12"
+        style={{ background: theme.gradients.divider }}
       />
 
       <motion.div
@@ -97,31 +100,14 @@ export function ServiceSectionView({
           </>
         )}
 
-        {section.type === "social-content" && (
-          <>
-            {media.length > 0 ? <MediaMasonry items={media} /> : null}
-            {section.features?.length ? <FeaturePills features={section.features} /> : null}
-          </>
-        )}
-
-        {section.type === "media-buying" && (
-          <>
-            {media.length > 0 ? <HorizontalMediaStrip items={media} /> : null}
-            {section.metrics?.length ? (
-              <MetricGrid metrics={section.metrics} accentClass={themeAccent} />
-            ) : null}
-          </>
-        )}
+        {section.type === "media-buying" && section.features?.length ? (
+          <FeaturePills features={section.features} />
+        ) : null}
 
         {section.type === "crm-dashboard" && (
           <>
             {media.length > 0 ? <MediaMasonry items={media} /> : null}
             {section.features?.length ? <FeaturePills features={section.features} /> : null}
-            {section.metrics?.length ? (
-              <div className="px-[max(1rem,env(safe-area-inset-left))] sm:px-8">
-                <MetricGrid metrics={section.metrics} accentClass={themeAccent} />
-              </div>
-            ) : null}
           </>
         )}
 
@@ -133,10 +119,15 @@ export function ServiceSectionView({
         )}
 
         {section.type === "impact" && section.beforeAfter ? (
-          <BeforeAfterRow
-            beforeSrc={section.beforeAfter.before}
-            afterSrc={section.beforeAfter.after}
-          />
+          <>
+            <BeforeAfterRow
+              beforeSrc={section.beforeAfter.before}
+              afterSrc={section.beforeAfter.after}
+              beforeLabel={section.beforeAfter.beforeLabel}
+              afterLabel={section.beforeAfter.afterLabel}
+            />
+            {section.features?.length ? <FeaturePills features={section.features} /> : null}
+          </>
         ) : null}
       </motion.div>
     </motion.section>

@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useProjectThemeOptional } from "@/components/case-study/ProjectThemeProvider";
 import { ease, fadeUp, stagger } from "./motion";
 
 export function ServiceBandHeader({
@@ -15,22 +16,37 @@ export function ServiceBandHeader({
   right: string;
   centerWide?: boolean;
 }) {
+  const theme = useProjectThemeOptional();
+  const border = theme?.colors.border ?? "rgba(255,255,255,0.12)";
+  const muted = theme?.colors.textMuted ?? "rgba(255,255,255,0.65)";
+  const text = theme?.colors.text ?? "rgba(255,255,255,0.82)";
+
   return (
-    <div className="flex w-full flex-col gap-6 border-b border-white/[0.12] px-[max(1rem,env(safe-area-inset-left))] py-7 sm:flex-row sm:items-end sm:gap-0 sm:px-8 sm:py-8">
-      <p className="flex-1 font-display text-xs font-normal leading-[150%] tracking-[-0.03em] text-white/[0.65]">
+    <div
+      className="flex w-full flex-col gap-6 border-b px-[max(1rem,env(safe-area-inset-left))] py-7 sm:flex-row sm:items-end sm:gap-0 sm:px-8 sm:py-8"
+      style={{ borderColor: border }}
+    >
+      <p
+        className="flex-1 font-display text-xs font-normal leading-[150%] tracking-[-0.03em]"
+        style={{ color: muted }}
+      >
         {left}
       </p>
       <p
         className={cn(
-          "mx-auto text-center font-display font-normal tracking-[-0.03em] text-white/[0.82]",
+          "mx-auto text-center font-display font-normal tracking-[-0.03em]",
           centerWide
             ? "max-w-[min(100%,40rem)] text-pretty text-[15px] leading-[1.45] sm:max-w-[min(100%,44rem)] sm:text-[17px] sm:leading-[1.5]"
             : "max-w-[min(100%,28rem)] text-xl leading-none tracking-[-0.05em] sm:text-2xl",
         )}
+        style={{ color: text }}
       >
         {center}
       </p>
-      <p className="flex-1 text-left font-display text-xs font-normal leading-[150%] tracking-[-0.03em] text-white/[0.65] sm:text-right">
+      <p
+        className="flex-1 text-left font-display text-xs font-normal leading-[150%] tracking-[-0.03em] sm:text-right"
+        style={{ color: muted }}
+      >
         {right}
       </p>
     </div>
@@ -46,8 +62,11 @@ export function Reveal({
   className?: string;
   delay?: number;
 }) {
+  const theme = useProjectThemeOptional();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-12%" });
+  const motionEase = theme?.motion.ease ?? ease;
+  const motionDuration = theme?.motion.revealDuration ?? 0.9;
 
   return (
     <motion.div
@@ -59,7 +78,7 @@ export function Reveal({
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.9, delay, ease },
+          transition: { duration: motionDuration, delay, ease: motionEase },
         },
       }}
       className={className}
@@ -365,8 +384,13 @@ export function BeforeAfterRow({
         { src: beforeSrc, label: beforeLabel },
         { src: afterSrc, label: afterLabel },
       ].map(({ src, label }) => (
-        <motion.figure key={label} variants={fadeUp} className="relative overflow-hidden border border-white/10">
-          <img src={src} alt={label} className="aspect-[4/3] w-full object-cover" loading="lazy" />
+        <motion.figure key={label} variants={fadeUp} className="relative overflow-hidden border border-white/10 bg-black/20">
+          <img
+            src={src}
+            alt={label}
+            className="aspect-[16/10] w-full object-cover object-top sm:aspect-[4/3]"
+            loading="lazy"
+          />
           <span className="absolute left-4 top-4 border border-white/20 bg-black/50 px-3 py-1 font-label text-[9px] uppercase tracking-[0.36em] text-white/80 backdrop-blur-sm">
             {label}
           </span>

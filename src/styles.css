@@ -157,6 +157,18 @@
     font-family: var(--font-mono);
   }
 
+  /** Scoped typography when inside a project detail theme wrapper */
+  .project-themed .font-display {
+    font-family: var(--project-font-display);
+  }
+  .project-themed .font-editorial {
+    font-family: var(--project-font-editorial);
+  }
+  .project-themed .font-label,
+  .project-themed .font-body {
+    font-family: var(--project-font-label);
+  }
+
   .grain::after {
     content: "";
     position: absolute;

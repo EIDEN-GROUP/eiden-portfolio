@@ -4,6 +4,7 @@ import type {
   CaseStudyReview,
   CaseStudyStat,
 } from "@/data/projectCaseStudy";
+import { useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
 import { ProjectServicesShowcase } from "@/components/case-study/ProjectServicesShowcase";
 import { CaseStudyScrollGallery } from "@/components/site/CaseStudyScrollGallery";
 import { resolveCaseStudy } from "@/data/projectCaseStudy";
@@ -21,8 +22,6 @@ import { Camera, Globe, Music, Users } from "lucide-react";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
-const CANVAS = "#0a0a0a";
 
 /** Client-only viewport query for scroll/carousel layouts (SSR-safe default false). */
 function useMediaQuery(query: string): boolean {
@@ -69,22 +68,33 @@ function BandHeader({
   /** Longer manifesto-style center copy: wider measure + relaxed leading. */
   centerWide?: boolean;
 }) {
+  const theme = useProjectTheme();
   return (
-    <div className="flex w-full flex-col gap-6 border-b border-white/[0.15] px-[max(1rem,env(safe-area-inset-left))] py-7 sm:flex-row sm:items-end sm:gap-0 sm:px-8 sm:py-8">
-      <p className="flex-1 font-display text-xs font-normal leading-[150%] tracking-[-0.03em] text-white/[0.7]">
+    <div
+      className="flex w-full flex-col gap-6 border-b px-[max(1rem,env(safe-area-inset-left))] py-7 sm:flex-row sm:items-end sm:gap-0 sm:px-8 sm:py-8"
+      style={{ borderColor: theme.colors.border }}
+    >
+      <p
+        className="flex-1 font-display text-xs font-normal leading-[150%] tracking-[-0.03em]"
+        style={{ color: theme.colors.textMuted }}
+      >
         {left}
       </p>
       <p
         className={cn(
-          "mx-auto text-center font-display font-normal tracking-[-0.03em] text-white/[0.78]",
+          "mx-auto text-center font-display font-normal tracking-[-0.03em]",
           centerWide
             ? "max-w-[min(100%,40rem)] text-pretty text-[15px] leading-[1.45] sm:max-w-[min(100%,44rem)] sm:text-[17px] sm:leading-[1.5]"
-            : "max-w-[min(100%,26rem)] text-xl leading-none tracking-[-0.05em] text-white/[0.7] sm:text-2xl",
+            : "max-w-[min(100%,26rem)] text-xl leading-none tracking-[-0.05em] sm:text-2xl",
         )}
+        style={{ color: theme.colors.text }}
       >
         {center}
       </p>
-      <p className="flex-1 text-left font-display text-xs font-normal leading-[150%] tracking-[-0.03em] text-white/[0.7] sm:text-right">
+      <p
+        className="flex-1 text-left font-display text-xs font-normal leading-[150%] tracking-[-0.03em] sm:text-right"
+        style={{ color: theme.colors.textMuted }}
+      >
         {right}
       </p>
     </div>
@@ -100,20 +110,32 @@ function CapabilityCard({
   index: number;
   className?: string;
 }) {
+  const theme = useProjectTheme();
   return (
     <article
-      className={cn(
-        "flex flex-col justify-between border border-white/[0.12] bg-white/[0.03] p-5 shadow-[0_20px_60px_-24px_rgba(0,0,0,0.75)] sm:p-8",
-        className,
-      )}
+      className={cn("flex flex-col justify-between border p-5 shadow-[0_20px_60px_-24px_rgba(0,0,0,0.45)] sm:p-8", className)}
+      style={{
+        borderColor: theme.ui.cardBorder,
+        background: theme.ui.cardBackground,
+        borderRadius: theme.ui.cardRadius,
+      }}
     >
-      <span className="font-mono text-[10px] font-medium tabular-nums tracking-[0.24em] text-white/35">
+      <span
+        className="font-mono text-[10px] font-medium tabular-nums tracking-[0.24em]"
+        style={{ color: theme.colors.textMuted }}
+      >
         {String(index + 1).padStart(2, "0")}
       </span>
-      <h3 className="font-display text-xl font-semibold leading-[1.1] tracking-[-0.04em] text-white sm:text-2xl">
+      <h3
+        className="font-display text-xl font-semibold leading-[1.1] tracking-[-0.04em] sm:text-2xl"
+        style={{ color: theme.colors.text }}
+      >
         {item.title}
       </h3>
-      <p className="mt-auto font-editorial text-sm italic leading-relaxed text-white/45 sm:text-[15px]">
+      <p
+        className="mt-auto font-editorial text-sm italic leading-relaxed sm:text-[15px]"
+        style={{ color: theme.colors.textMuted }}
+      >
         {item.blurb}
       </p>
     </article>
@@ -121,8 +143,12 @@ function CapabilityCard({
 }
 
 function CapabilitiesSwiperMobile({ items }: { items: CaseStudyExpertiseItem[] }) {
+  const theme = useProjectTheme();
   return (
-    <div className="relative border-t border-white/[0.1] bg-[#060606] py-8">
+    <div
+      className="relative border-t py-8"
+      style={{ borderColor: theme.colors.border, background: theme.colors.surface }}
+    >
       <Swiper
         slidesPerView={1.34}
         spaceBetween={8}
@@ -140,7 +166,10 @@ function CapabilitiesSwiperMobile({ items }: { items: CaseStudyExpertiseItem[] }
           </SwiperSlide>
         ))}
       </Swiper>
-      <p className="pointer-events-none mt-2 text-center font-label text-[8px] uppercase tracking-[0.42em] text-white/22">
+      <p
+        className="pointer-events-none mt-2 text-center font-label text-[8px] uppercase tracking-[0.42em]"
+        style={{ color: theme.colors.textMuted }}
+      >
         Swipe · capabilities
       </p>
     </div>
@@ -148,6 +177,7 @@ function CapabilitiesSwiperMobile({ items }: { items: CaseStudyExpertiseItem[] }
 }
 
 function CapabilitiesScrollDesktop({ items }: { items: CaseStudyExpertiseItem[] }) {
+  const theme = useProjectTheme();
   const sectionRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -158,11 +188,7 @@ function CapabilitiesScrollDesktop({ items }: { items: CaseStudyExpertiseItem[] 
     offset: ["start start", "end end"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 64,
-    damping: 28,
-    mass: 0.42,
-  });
+  const smoothProgress = useSpring(scrollYProgress, theme.motion.spring);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -maxShift]);
 
@@ -187,16 +213,20 @@ function CapabilitiesScrollDesktop({ items }: { items: CaseStudyExpertiseItem[] 
   const scrollVh = Math.max(Math.round(items.length * 72 + 160), 240);
 
   return (
-    <div ref={sectionRef} className="relative bg-[#060606]" style={{ height: `${scrollVh}vh` }}>
+    <div ref={sectionRef} className="relative" style={{ height: `${scrollVh}vh`, background: theme.colors.surface }}>
       <div
         ref={viewportRef}
-        className="sticky top-16 z-0 flex h-[min(68vh,34rem)] flex-col justify-center overflow-hidden border-t border-white/[0.1] py-6 sm:top-20 sm:h-[min(78vh,40rem)] sm:py-8 md:h-[min(82vh,44rem)] md:py-12"
+        className="sticky top-16 z-0 flex h-[min(68vh,34rem)] flex-col justify-center overflow-hidden border-t py-6 sm:top-20 sm:h-[min(78vh,40rem)] sm:py-8 md:h-[min(82vh,44rem)] md:py-12"
+        style={{ borderColor: theme.colors.border }}
       >
         <div className="pointer-events-none absolute inset-x-0 bottom-6 z-20 flex justify-center sm:bottom-8">
-          <div className="h-px w-44 max-w-[36vw] overflow-hidden rounded-full bg-white/[0.08] sm:w-56">
+          <div
+            className="h-px w-44 max-w-[36vw] overflow-hidden rounded-full sm:w-56"
+            style={{ background: theme.colors.border }}
+          >
             <motion.div
-              className="h-full w-full origin-left bg-gradient-to-r from-teal-light/50 via-white/60 to-gold/45"
-              style={{ scaleX: smoothProgress }}
+              className="h-full w-full origin-left"
+              style={{ scaleX: smoothProgress, background: theme.gradients.progressBar }}
             />
           </div>
         </div>
@@ -221,7 +251,10 @@ function CapabilitiesScrollDesktop({ items }: { items: CaseStudyExpertiseItem[] 
           </motion.div>
         </div>
 
-        <p className="pointer-events-none absolute bottom-12 left-1/2 z-10 -translate-x-1/2 font-label text-[8px] uppercase tracking-[0.42em] text-white/22 sm:bottom-14">
+        <p
+          className="pointer-events-none absolute bottom-12 left-1/2 z-10 -translate-x-1/2 font-label text-[8px] uppercase tracking-[0.42em] sm:bottom-14"
+          style={{ color: theme.colors.textMuted }}
+        >
           Scroll · capabilities
         </p>
       </div>
@@ -230,8 +263,12 @@ function CapabilitiesScrollDesktop({ items }: { items: CaseStudyExpertiseItem[] 
 }
 
 function CapabilitiesCentered({ items }: { items: CaseStudyExpertiseItem[] }) {
+  const theme = useProjectTheme();
   return (
-    <div className="relative border-t border-white/[0.1] bg-[#060606] py-10 sm:py-14">
+    <div
+      className="relative border-t py-10 sm:py-14"
+      style={{ borderColor: theme.colors.border, background: theme.colors.surface }}
+    >
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -517,6 +554,7 @@ function ClientReviewSpotlight({
   /** When the quote contains intentional newlines (e.g. stacked brief paragraphs). */
   preserveQuoteLineBreaks?: boolean;
 }) {
+  const theme = useProjectTheme();
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
 
@@ -551,7 +589,10 @@ function ClientReviewSpotlight({
       className={cn("px-[max(1rem,env(safe-area-inset-left))] py-16 sm:px-8 sm:py-28", className)}
     >
       <div className="mx-auto max-w-[min(100%,72rem)]">
-        <p className="text-center font-label text-[9px] uppercase tracking-[0.48em] text-teal-light/72 sm:text-left">
+        <p
+          className="text-center font-label text-[9px] uppercase tracking-[0.48em] sm:text-left"
+          style={{ color: theme.colors.accent }}
+        >
           {review.eyebrow}
         </p>
 
@@ -559,11 +600,12 @@ function ClientReviewSpotlight({
           <div className="mx-auto [perspective:1400px]" style={{ transformStyle: "preserve-3d" }}>
             <p
               className={cn(
-                "text-pretty text-left font-display font-semibold leading-[1.14] tracking-[-0.055em] text-white before:mr-[0.08em] before:inline-block before:font-serif before:text-white/35 before:content-['\\201C'] [transform-style:preserve-3d] will-change-transform after:ml-[0.06em] after:inline-block after:font-serif after:text-white/35 after:content-['\\201D'] sm:text-justify",
+                "text-pretty text-left font-display font-semibold leading-[1.14] tracking-[-0.055em] before:mr-[0.08em] before:inline-block before:font-serif before:opacity-35 before:content-['\\201C'] [transform-style:preserve-3d] will-change-transform after:ml-[0.06em] after:inline-block after:font-serif after:opacity-35 after:content-['\\201D'] sm:text-justify",
                 preserveQuoteLineBreaks && "whitespace-pre-line",
               )}
               style={{
                 fontSize: "clamp(1.25rem, 4.16vw, 3.5rem)",
+                color: theme.colors.text,
                 transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateZ(0.035em)`,
                 textShadow: shadow3d,
               }}
@@ -572,11 +614,20 @@ function ClientReviewSpotlight({
             </p>
           </div>
 
-          <footer className="mt-10 border-t border-white/[0.1] pt-8 text-center sm:mt-12 sm:text-left">
-            <cite className="block font-display text-lg font-medium not-italic tracking-[-0.03em] text-white/92">
+          <footer
+            className="mt-10 border-t pt-8 text-center sm:mt-12 sm:text-left"
+            style={{ borderColor: theme.colors.border }}
+          >
+            <cite
+              className="block font-display text-lg font-medium not-italic tracking-[-0.03em]"
+              style={{ color: theme.colors.text }}
+            >
               {review.author}
             </cite>
-            <p className="mt-1.5 font-label text-[10px] uppercase tracking-[0.28em] text-white/42">
+            <p
+              className="mt-1.5 font-label text-[10px] uppercase tracking-[0.28em]"
+              style={{ color: theme.colors.textMuted }}
+            >
               {review.role}
             </p>
           </footer>
@@ -587,18 +638,25 @@ function ClientReviewSpotlight({
 }
 
 function StatRow({ stat, active }: { stat: CaseStudyStat; active: boolean }) {
+  const theme = useProjectTheme();
   const n = useCountUp(stat.value, active);
   return (
-    <div className="flex min-h-[10rem] flex-col justify-center border-t border-white/[0.15] px-[max(1rem,env(safe-area-inset-left))] py-10 text-center sm:min-h-[12rem] sm:px-8">
+    <div
+      className="flex min-h-[10rem] flex-col justify-center border-t px-[max(1rem,env(safe-area-inset-left))] py-10 text-center sm:min-h-[12rem] sm:px-8"
+      style={{ borderColor: theme.colors.border }}
+    >
       <p
-        className="font-display font-light tracking-[-0.07em] text-white"
-        style={{ fontSize: "clamp(2.75rem, 12vw, 8rem)" }}
+        className="font-display font-light tracking-[-0.07em]"
+        style={{ fontSize: "clamp(2.75rem, 12vw, 8rem)", color: theme.colors.text }}
       >
-        <span className="text-white/90">{stat.prefix}</span>
+        <span style={{ color: theme.colors.accent }}>{stat.prefix}</span>
         {n}
-        <span className="text-white/90">{stat.suffix}</span>
+        <span style={{ color: theme.colors.accent }}>{stat.suffix}</span>
       </p>
-      <p className="mt-3 font-display text-xs uppercase tracking-[0.28em] text-white/40">
+      <p
+        className="mt-3 font-display text-xs uppercase tracking-[0.28em]"
+        style={{ color: theme.colors.textMuted }}
+      >
         {stat.label}
       </p>
     </div>
@@ -606,6 +664,7 @@ function StatRow({ stat, active }: { stat: CaseStudyStat; active: boolean }) {
 }
 
 export function ProjectCaseStudyBody({ project }: { project: Project }) {
+  const theme = useProjectTheme();
   const c = useMemo(() => resolveCaseStudy(project), [project]);
   const clientProblemReview = useMemo<CaseStudyReview>(
     () => ({
@@ -622,17 +681,29 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
   return (
     <>
       <div
-        className="relative border-t border-white/[0.08] text-white antialiased"
-        style={{ backgroundColor: CANVAS, color: "#fff" }}
+        className="relative border-t antialiased"
+        style={{
+          borderColor: theme.colors.border,
+          backgroundColor: theme.colors.canvas,
+          backgroundImage: theme.gradients.page,
+          color: theme.colors.text,
+        }}
       >
         <BandHeader left="Industry" center={project.summary} right="Timeline" />
         <BandHeader left={c.industry} center={project.tagline} right={c.timeline} />
 
-        <section aria-label="Client problem" className="border-t border-white/[0.08] bg-[#080808]">
+        <section
+          aria-label="Client problem"
+          className="border-t"
+          style={{ borderColor: theme.colors.border, background: theme.colors.surfaceAlt }}
+        >
           <ClientReviewSpotlight review={clientProblemReview} className="pb-6 sm:pb-10" />
         </section>
 
-        <div className="border-t border-white/[0.08] bg-[#060606]">
+        <div
+          className="border-t"
+          style={{ borderColor: theme.colors.border, background: theme.colors.surface }}
+        >
           <BandHeader
             left="Services"
             center="Capabilities deployed on this program."
@@ -644,9 +715,17 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
 
         <ProjectServicesShowcase project={project} />
 
-        <section ref={statsRef} aria-label="Outcomes" className="border-t border-white/[0.08]">
+        <section
+          ref={statsRef}
+          aria-label="Outcomes"
+          className="border-t"
+          style={{ borderColor: theme.colors.border }}
+        >
           <BandHeader left="Outcomes" center="Momentum, measured." right="Impact" />
-          <div className="grid grid-cols-1 divide-white/[0.12] sm:grid-cols-3 sm:divide-x">
+          <div
+            className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x"
+            style={{ borderColor: theme.colors.border }}
+          >
             {c.stats.map((s: CaseStudyStat) => (
               <StatRow key={s.label} stat={s} active={statsInView} />
             ))}
@@ -655,7 +734,12 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
 
         <section
           aria-label="Deliverables scroll gallery"
-          className="relative border-t border-white/[0.08] bg-[#050505] [background-image:radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(45,212,191,0.06),transparent_55%)]"
+          className="relative border-t"
+          style={{
+            borderColor: theme.colors.border,
+            background: theme.colors.background,
+            backgroundImage: theme.gradients.stats,
+          }}
         >
           <BandHeader
             left="Results"
@@ -666,11 +750,18 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
           <CaseStudyScrollGallery tiles={c.resultTiles} />
         </section>
 
-        <section aria-label="Client review   closing" className="border-t border-white/[0.08]">
+        <section
+          aria-label="Client review   closing"
+          className="border-t"
+          style={{ borderColor: theme.colors.border, background: theme.colors.canvas }}
+        >
           <ClientReviewSpotlight review={c.closingReview} className="pb-28 sm:pb-36" />
         </section>
 
-        <div className="pointer-events-none h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        <div
+          className="pointer-events-none h-px w-full"
+          style={{ background: theme.gradients.divider }}
+        />
       </div>
     </>
   );

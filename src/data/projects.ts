@@ -1,7 +1,10 @@
 /** Gallery + project detail: covers, routing slugs, and case-study metadata. */
 import type { CaseStudyResultTileInput } from "@/data/projectCaseStudy";
+import bopassageBrandPalette from "@/assets/bopassage-brand-palette.png";
 import bopassageCover from "@/assets/bopassage-cover.png";
 import bopassageHero from "@/assets/bopassage-hero.png";
+import bopassageSocialInstagram from "@/assets/bopassage-social-instagram.png";
+import bopassageSocialSlowsDown from "@/assets/bopassage-social-slows-down.png";
 import dmcCover from "@/assets/dmc-cover.png";
 import dmcHero from "@/assets/dmc-hero.png";
 import educazenkidsCover from "@/assets/educazenkids-cover.png";
@@ -68,7 +71,13 @@ export const projects = [
     ],
     website: "https://bopassage.com/",
     caseStudy: {
-      gallery: [bopassageHero, bopassageCover, bopassageHero],
+      gallery: [
+        bopassageSocialInstagram,
+        bopassageSocialSlowsDown,
+        bopassageBrandPalette,
+        bopassageHero,
+        bopassageCover,
+      ],
       challenge:
         "Bô Passage had the atmosphere and the food — but no site, no consistent social rhythm, and no paid layer to turn discovery into reservations.",
       goals:

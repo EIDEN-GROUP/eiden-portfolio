@@ -1,27 +1,30 @@
 import { ServiceSectionView } from "@/components/case-study/ServiceSectionViews";
+import { useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
 import { ServiceBandHeader } from "@/components/case-study/primitives";
 import { getProjectServiceConfig } from "@/data/projectServiceSections";
 import type { Project } from "@/data/projects";
 import { motion } from "framer-motion";
-import { ease } from "./motion";
 
 export function ProjectServicesShowcase({ project }: { project: Project }) {
+  const theme = useProjectTheme();
   const config = getProjectServiceConfig(project.slug);
   if (!config) return null;
 
   return (
     <div
-      className="relative border-t border-white/[0.08] text-white antialiased"
+      className="relative border-t antialiased"
       style={{
+        borderColor: theme.colors.border,
         backgroundColor: config.background,
         backgroundImage: config.gradient,
+        color: theme.colors.text,
       }}
     >
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 1, ease }}
+        transition={{ duration: theme.motion.revealDuration, ease: theme.motion.ease }}
       >
         <ServiceBandHeader
           left={config.intro.left}
@@ -42,7 +45,10 @@ export function ProjectServicesShowcase({ project }: { project: Project }) {
         ))}
       </div>
 
-      <div className="pointer-events-none h-px w-full bg-gradient-to-r from-transparent via-white/12 to-transparent" />
+      <div
+        className="pointer-events-none h-px w-full"
+        style={{ background: theme.gradients.divider }}
+      />
     </div>
   );
 }
