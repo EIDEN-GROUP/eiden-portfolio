@@ -44,6 +44,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: dist/server
-          command: deploy --config ../../wrangler.deploy.json
-          packageManager: bun
+          command: deploy dist/server --config wrangler.deploy.json
