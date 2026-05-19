@@ -15,8 +15,15 @@ function vendorChunk(id: string): string | undefined {
   if (id.includes("lenis")) return "vendor-lenis";
   if (id.includes("/ogl/") || id.includes("\\ogl\\")) return "vendor-ogl";
   if (id.includes("@tanstack")) return "vendor-router";
-  if (id.includes("react-dom") || id.includes("/react/")) return "vendor-react";
-  return "vendor-misc";
+  // Keep the full React runtime in one chunk (scheduler, etc.) to avoid a circular
+  // vendor-misc ↔ vendor-react split that breaks Rollup in production builds.
+  if (
+    /[/\\](react|react-dom|scheduler|react-is|use-sync-external-store)([/\\]|$)/.test(id)
+  ) {
+    return "vendor-react";
+  }
+  // Let Rollup assign remaining node_modules; a catch-all "vendor-misc" caused cycles.
+  return undefined;
 }
 
 export default defineConfig({
