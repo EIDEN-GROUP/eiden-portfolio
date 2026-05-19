@@ -280,9 +280,9 @@ function HeroScrollSequence() {
                   Why EIDEN exists
                 </p>
                 <p className="font-editorial text-base italic leading-snug tracking-tight text-white/92 drop-shadow-[0_2px_28px_rgba(0,0,0,0.6)] sm:text-lg md:text-xl">
-                  We found the same fracture pattern in every organization we worked with  
-                  decisions slow, priorities multiply, clarity disappears. EIDEN was built to map
-                  and architect around this pattern.
+                  We found the same fracture pattern in every organization we worked with decisions
+                  slow, priorities multiply, clarity disappears. EIDEN was built to map and
+                  architect around this pattern.
                 </p>
               </div>
             </div>
@@ -300,7 +300,7 @@ function HeroScrollSequence() {
                 Why EIDEN exists
               </p>
               <p className="font-editorial text-[0.95rem] italic leading-snug text-white/88">
-                We found the same fracture pattern in every organisation   decisions slow, clarity
+                We found the same fracture pattern in every organisation decisions slow, clarity
                 disappears. EIDEN was built to architect around it.
               </p>
             </div>

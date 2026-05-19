@@ -200,7 +200,7 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
 
             <div>
               <p className="font-editorial text-base italic leading-snug text-stone-600">
-                Almost there   a few more details
+                Almost there a few more details
               </p>
             </div>
 
@@ -261,8 +261,8 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
               Request received.
             </h3>
             <p className="max-w-[26ch] font-editorial text-sm italic leading-relaxed text-stone-600">
-              We&apos;ll review your brief and reach out within one business day to confirm your Hydra
-              Analysis™ session.
+              We&apos;ll review your brief and reach out within one business day to confirm your
+              Hydra Analysis™ session.
             </p>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
               <button

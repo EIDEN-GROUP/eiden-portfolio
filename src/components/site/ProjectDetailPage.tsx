@@ -3,7 +3,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { ProjectThemeProvider, useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
+import {
+  ProjectThemeProvider,
+  useProjectTheme,
+} from "@/components/case-study/ProjectThemeProvider";
 import { Footer } from "@/components/site/Footer";
 import { ProjectCaseStudyBody } from "@/components/site/ProjectCaseStudyBody";
 import type { Project } from "@/data/projects";
@@ -179,7 +182,10 @@ function ProjectDetailHero({ project: p }: { project: Project }) {
           <ArrowLeft className="h-3 w-3" strokeWidth={1.5} />
           Portfolio
         </Link>
-        <span className="font-label text-[9px] uppercase tracking-[0.38em]" style={{ color: theme.colors.textMuted }}>
+        <span
+          className="font-label text-[9px] uppercase tracking-[0.38em]"
+          style={{ color: theme.colors.textMuted }}
+        >
           {p.year}
         </span>
       </div>
@@ -269,7 +275,10 @@ function ProjectDetailHero({ project: p }: { project: Project }) {
               background: `linear-gradient(to bottom, transparent, ${theme.colors.heroAccent}, transparent)`,
             }}
           />
-          <p className="font-label text-[7px] uppercase tracking-[0.54em]" style={{ color: theme.colors.textMuted }}>
+          <p
+            className="font-label text-[7px] uppercase tracking-[0.54em]"
+            style={{ color: theme.colors.textMuted }}
+          >
             Scroll
           </p>
         </div>
@@ -295,7 +304,10 @@ function ProjectDetailContent({ project: p }: { project: Project }) {
       >
         <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] py-12 pr-[max(1rem,env(safe-area-inset-right))] sm:px-12 sm:py-20">
           <div className="mb-8 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-center sm:justify-between">
-            <p className="font-label text-[8px] uppercase tracking-[0.52em]" style={{ color: theme.colors.textMuted }}>
+            <p
+              className="font-label text-[8px] uppercase tracking-[0.52em]"
+              style={{ color: theme.colors.textMuted }}
+            >
               Next projects
             </p>
             <Link
@@ -321,7 +333,10 @@ function ProjectDetailContent({ project: p }: { project: Project }) {
             >
               {nextProjects.map((q) => (
                 <SwiperSlide key={q.slug} className="!h-auto py-0.5">
-                  <NextProjectCard q={q} className="mx-auto max-w-[min(22rem,calc(100vw-2.5rem))]" />
+                  <NextProjectCard
+                    q={q}
+                    className="mx-auto max-w-[min(22rem,calc(100vw-2.5rem))]"
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>

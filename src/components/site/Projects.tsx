@@ -24,7 +24,11 @@ export function Projects() {
   );
 
   return (
-    <section id="projects" style={{ background: "oklch(0.07 0.012 165)" }} className="relative py-20 sm:py-28">
+    <section
+      id="projects"
+      style={{ background: "oklch(0.07 0.012 165)" }}
+      className="relative py-20 sm:py-28"
+    >
       <div className="mb-10 px-6 sm:px-14">
         <p className="font-label text-[12px] uppercase tracking-[0.5em] text-white/50">
           Selected mandates · {String(projects.length).padStart(2, "0")}

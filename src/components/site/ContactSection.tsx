@@ -141,7 +141,7 @@ export function ContactSection() {
                   Request a session
                 </p>
                 <p className="font-editorial text-sm italic text-stone-600">
-                  Use the form   we reply within one business day.
+                  Use the form we reply within one business day.
                 </p>
               </div>
               <motion.div

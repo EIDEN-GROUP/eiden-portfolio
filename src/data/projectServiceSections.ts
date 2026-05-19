@@ -62,7 +62,9 @@ export type ProjectServiceConfig = {
   sections: ServiceSection[];
 };
 
-function stylesForSlug(slug: string): Pick<ProjectServiceConfig, "accentClass" | "accentColor" | "background" | "gradient"> {
+function stylesForSlug(
+  slug: string,
+): Pick<ProjectServiceConfig, "accentClass" | "accentColor" | "background" | "gradient"> {
   const t = getProjectTheme(slug);
   return {
     accentClass: "text-[var(--project-accent)]",
@@ -120,12 +122,21 @@ const DMC_CONFIG: ProjectServiceConfig = {
       eyebrow: "Website design & development",
       title: "A conversion-led site for hotel owners and operators.",
       description:
+<<<<<<< HEAD
         "dmchm.com as the digital front door — expertise, phased services, team credibility, and contact flows optimized for Marrakech and international discovery.",
       features: [
         "Expertise & team storytelling",
         "Service phases & methodology",
         "Contact & inquiry flows",
         "Performance-first build",
+=======
+        "View Morocco’s digital front door — cinematic scroll, clear inquiry paths, and a build optimized for international discovery.",
+      features: [
+        "Itinerary storytelling",
+        "Inquiry & booking flows",
+        "Performance-first build",
+        "Partner-ready structure",
+>>>>>>> 82c134dd2596db293a6b7c67e936b161944f6e34
       ],
       media: [
         m(dmcHero, "DMC website desktop", "Home"),
@@ -167,7 +178,12 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
       title: "A digital home for menus, reservations, and the Founty experience.",
       description:
         "bopassage.com — warm editorial layout, mobile-first booking paths, and a site that mirrors the botanical calm of the restaurant.",
-      features: ["Menu & brunch showcase", "Reservation flows", "Editorial storytelling", "Mobile-first UX"],
+      features: [
+        "Menu & brunch showcase",
+        "Reservation flows",
+        "Editorial storytelling",
+        "Mobile-first UX",
+      ],
       media: [
         m(bopassageHero, "Bôpassage desktop", "Desktop"),
         m(bopassageCover, "Bôpassage mobile", "Mobile"),
@@ -223,10 +239,7 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
           sampleClass: "font-editorial text-[clamp(1.75rem,4vw,2.75rem)] leading-none opacity-90",
         },
       ],
-      media: [
-        m(lunjaHero, "Lunja logo", "Logo"),
-        m(lunjaCover, "Lunja mockup", "Mockup"),
-      ],
+      media: [m(lunjaHero, "Lunja logo", "Logo"), m(lunjaCover, "Lunja mockup", "Mockup")],
     },
     {
       id: "lunja-board",
@@ -354,7 +367,10 @@ const EIDEN_ACADEMY_CONFIG: ProjectServiceConfig = {
       brandBookUrl: "https://eiden-group.com/brand-books/eiden-academy-brand-guidelines-v2",
       brandColors: ["#122620", "#0c5752", "#d7bb93", "#f5f1e8"],
       colorLabels: ["Vert foncé", "Sarcelle", "Or", "Crème"],
-      media: [m(eidenHero, "Eiden Academy brand", "Brand"), m(eidenAcademyCover, "Eiden guidelines", "Guidelines")],
+      media: [
+        m(eidenHero, "Eiden Academy brand", "Brand"),
+        m(eidenAcademyCover, "Eiden guidelines", "Guidelines"),
+      ],
     },
     {
       id: "ea-web",
