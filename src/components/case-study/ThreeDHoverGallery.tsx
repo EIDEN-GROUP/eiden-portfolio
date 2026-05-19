@@ -1,11 +1,6 @@
 ﻿import type { CinematicGalleryItem } from "@/data/projectCinematicGallery";
 import { cn } from "@/lib/utils";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-  type Transition,
-} from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, type Transition } from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   useCallback,
@@ -243,10 +238,16 @@ function MobileGalleryCard({
             <GalleryCardOverlay item={item} theme={theme} visible layout="overlay" />
           ) : (
             <div className="absolute inset-x-0 bottom-0 p-4">
-              <p className="font-label text-[8px] uppercase tracking-[0.4em]" style={{ color: theme.accent }}>
+              <p
+                className="font-label text-[8px] uppercase tracking-[0.4em]"
+                style={{ color: theme.accent }}
+              >
                 {item.category}
               </p>
-              <p className="mt-1 font-display text-lg font-semibold tracking-[-0.03em]" style={{ color: theme.text }}>
+              <p
+                className="mt-1 font-display text-lg font-semibold tracking-[-0.03em]"
+                style={{ color: theme.text }}
+              >
                 {item.title}
               </p>
             </div>
@@ -390,7 +391,10 @@ export function ThreeDHoverGallery({
                 >
                   <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
                 </button>
-                <span className="hidden font-label text-[8px] uppercase tracking-[0.42em] sm:inline" style={{ color: theme.textMuted }}>
+                <span
+                  className="hidden font-label text-[8px] uppercase tracking-[0.42em] sm:inline"
+                  style={{ color: theme.textMuted }}
+                >
                   <ArrowLeft className="mr-1 inline h-3 w-3 opacity-50" strokeWidth={1.5} />
                   Arrow keys
                   <ArrowRight className="ml-1 inline h-3 w-3 opacity-50" strokeWidth={1.5} />

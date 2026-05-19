@@ -19,7 +19,16 @@ import {
   useTransform,
 } from "framer-motion";
 import { Camera, Globe, Music, Users } from "lucide-react";
-import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 

@@ -55,7 +55,8 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "Bô Passage Instagram",
         category: "Social",
         title: "Feed as invitation",
-        description: "Instagram grids built to feel like sitting down — not scrolling past another café.",
+        description:
+          "Instagram grids built to feel like sitting down — not scrolling past another café.",
       },
       {
         id: "bop-social-slow",
@@ -181,7 +182,8 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "Eiden Academy guidelines",
         category: "Brand",
         title: "Vert foncé & sarcelle",
-        description: "Authority through structure — typography and palette built for executive education.",
+        description:
+          "Authority through structure — typography and palette built for executive education.",
       },
       {
         id: "ea-learn",
@@ -189,7 +191,8 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "Eiden Academy learning",
         category: "Product",
         title: "Learner dashboards",
-        description: "Progress, cohorts, and admin consoles that make delivery repeatable at scale.",
+        description:
+          "Progress, cohorts, and admin consoles that make delivery repeatable at scale.",
       },
     ],
   },
