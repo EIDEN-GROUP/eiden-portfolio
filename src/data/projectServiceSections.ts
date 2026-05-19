@@ -122,21 +122,12 @@ const DMC_CONFIG: ProjectServiceConfig = {
       eyebrow: "Website design & development",
       title: "A conversion-led site for hotel owners and operators.",
       description:
-<<<<<<< HEAD
         "dmchm.com as the digital front door — expertise, phased services, team credibility, and contact flows optimized for Marrakech and international discovery.",
       features: [
         "Expertise & team storytelling",
         "Service phases & methodology",
         "Contact & inquiry flows",
         "Performance-first build",
-=======
-        "View Morocco’s digital front door — cinematic scroll, clear inquiry paths, and a build optimized for international discovery.",
-      features: [
-        "Itinerary storytelling",
-        "Inquiry & booking flows",
-        "Performance-first build",
-        "Partner-ready structure",
->>>>>>> 82c134dd2596db293a6b7c67e936b161944f6e34
       ],
       media: [
         m(dmcHero, "DMC website desktop", "Home"),
