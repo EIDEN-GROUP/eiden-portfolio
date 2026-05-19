@@ -217,11 +217,17 @@ export function Footer() {
           © {new Date().getFullYear()} EIDEN Group · All rights reserved
         </p>
         <div className="flex items-center gap-5">
-          <Link to="/terms-conditions" className="font-mono text-[9px] uppercase tracking-[0.4em] text-white/22 transition-colors hover:text-white/50">
+          <Link
+            to="/terms-conditions"
+            className="font-mono text-[9px] uppercase tracking-[0.4em] text-white/22 transition-colors hover:text-white/50"
+          >
             Terms
           </Link>
           <span className="text-white/15">·</span>
-          <Link to="/privacy-policy" className="font-mono text-[9px] uppercase tracking-[0.4em] text-white/22 transition-colors hover:text-white/50">
+          <Link
+            to="/privacy-policy"
+            className="font-mono text-[9px] uppercase tracking-[0.4em] text-white/22 transition-colors hover:text-white/50"
+          >
             Privacy
           </Link>
           <span className="text-white/15">·</span>

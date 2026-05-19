@@ -101,7 +101,9 @@ export function SectionIntro({
 }) {
   return (
     <Reveal className="mx-auto max-w-3xl px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-8">
-      <p className={cn("font-label text-[10px] uppercase tracking-[0.46em]", accentClass)}>{eyebrow}</p>
+      <p className={cn("font-label text-[10px] uppercase tracking-[0.46em]", accentClass)}>
+        {eyebrow}
+      </p>
       <h2
         className="mt-4 font-display font-semibold leading-[1.05] tracking-[-0.04em] text-white"
         style={{ fontSize: "clamp(1.75rem, 4vw, 3.25rem)" }}
@@ -143,7 +145,13 @@ export type ServiceMetric = {
   label: string;
 };
 
-export function MetricGrid({ metrics, accentClass }: { metrics: ServiceMetric[]; accentClass?: string }) {
+export function MetricGrid({
+  metrics,
+  accentClass,
+}: {
+  metrics: ServiceMetric[];
+  accentClass?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
@@ -185,7 +193,9 @@ function MetricCard({
         {n}
         <span className="text-white/85">{metric.suffix ?? ""}</span>
       </p>
-      <p className="mt-2 font-label text-[10px] uppercase tracking-[0.32em] text-white/40">{metric.label}</p>
+      <p className="mt-2 font-label text-[10px] uppercase tracking-[0.32em] text-white/40">
+        {metric.label}
+      </p>
     </motion.div>
   );
 }
@@ -238,13 +248,21 @@ export function HorizontalMediaStrip({ items }: { items: MediaItem[] }) {
 
   return (
     <motion.div ref={ref} className="overflow-hidden py-4 sm:py-8">
-      <motion.div style={{ x }} className="flex w-max gap-4 px-[max(1rem,env(safe-area-inset-left))] sm:gap-6 sm:px-8">
+      <motion.div
+        style={{ x }}
+        className="flex w-max gap-4 px-[max(1rem,env(safe-area-inset-left))] sm:gap-6 sm:px-8"
+      >
         {items.map((item, i) => (
           <figure
             key={`${item.src}-${i}`}
             className="relative h-[min(52vw,22rem)] w-[min(78vw,34rem)] shrink-0 overflow-hidden border border-white/[0.12] shadow-[0_24px_80px_-32px_rgba(0,0,0,0.85)]"
           >
-            <img src={item.src} alt={item.alt} className="h-full w-full object-cover" loading="lazy" />
+            <img
+              src={item.src}
+              alt={item.alt}
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
             {item.caption ? (
               <figcaption className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-5 font-label text-[9px] uppercase tracking-[0.38em] text-white/75">
                 {item.caption}
@@ -384,7 +402,11 @@ export function BeforeAfterRow({
         { src: beforeSrc, label: beforeLabel },
         { src: afterSrc, label: afterLabel },
       ].map(({ src, label }) => (
-        <motion.figure key={label} variants={fadeUp} className="relative overflow-hidden border border-white/10 bg-black/20">
+        <motion.figure
+          key={label}
+          variants={fadeUp}
+          className="relative overflow-hidden border border-white/10 bg-black/20"
+        >
           <img
             src={src}
             alt={label}

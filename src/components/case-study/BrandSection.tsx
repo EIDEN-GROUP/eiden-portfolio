@@ -25,7 +25,11 @@ function BrandPaletteGrid({
       className="grid grid-cols-2 gap-px bg-white/[0.1] sm:grid-cols-4"
     >
       {colors.map((hex, i) => (
-        <motion.div key={`${hex}-${i}`} variants={fadeUp} className="group flex flex-col bg-[#0a0a0a]">
+        <motion.div
+          key={`${hex}-${i}`}
+          variants={fadeUp}
+          className="group flex flex-col bg-[#0a0a0a]"
+        >
           <motion.div
             className="relative aspect-[5/4] w-full overflow-hidden border-b border-white/[0.06] sm:aspect-[4/5]"
             whileHover={{ scale: 1.02 }}
@@ -50,7 +54,9 @@ function BrandPaletteGrid({
             >
               {labels?.[i] ?? `Swatch ${i + 1}`}
             </span>
-            <span className="font-mono text-[11px] tracking-[0.12em] text-white/40">{hex.toUpperCase()}</span>
+            <span className="font-mono text-[11px] tracking-[0.12em] text-white/40">
+              {hex.toUpperCase()}
+            </span>
           </div>
         </motion.div>
       ))}
@@ -83,7 +89,12 @@ function BrandTypographyGrid({
             <span className="font-mono text-[10px] font-medium tabular-nums tracking-[0.24em] text-white/30">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <span className={cn("font-label text-[9px] uppercase tracking-[0.4em]", accentClass ?? "text-gold/75")}>
+            <span
+              className={cn(
+                "font-label text-[9px] uppercase tracking-[0.4em]",
+                accentClass ?? "text-gold/75",
+              )}
+            >
               {t.label}
             </span>
           </div>
@@ -112,7 +123,12 @@ function BrandBookBand({ href, accentClass }: { href: string; accentClass?: stri
           00
         </span>
         <div className="min-w-0">
-          <p className={cn("font-label text-[9px] uppercase tracking-[0.42em]", accentClass ?? "text-teal-light/80")}>
+          <p
+            className={cn(
+              "font-label text-[9px] uppercase tracking-[0.42em]",
+              accentClass ?? "text-teal-light/80",
+            )}
+          >
             Brand guidelines
           </p>
           <p className="mt-1 font-display text-lg font-semibold tracking-[-0.04em] text-white transition-colors group-hover:text-gold/90 sm:text-xl">
@@ -197,11 +213,23 @@ function BrandMediaGrid({ items }: { items: MediaItem[] }) {
   );
 }
 
-function PanelHeader({ label, title, accentClass }: { label: string; title: string; accentClass: string }) {
+function PanelHeader({
+  label,
+  title,
+  accentClass,
+}: {
+  label: string;
+  title: string;
+  accentClass: string;
+}) {
   return (
     <div className="border-b border-white/[0.08] px-6 py-5 sm:px-8 sm:py-6">
-      <p className={cn("font-label text-[9px] uppercase tracking-[0.42em]", accentClass)}>{label}</p>
-      <p className="mt-1 font-display text-sm font-medium tracking-[-0.03em] text-white/70">{title}</p>
+      <p className={cn("font-label text-[9px] uppercase tracking-[0.42em]", accentClass)}>
+        {label}
+      </p>
+      <p className="mt-1 font-display text-sm font-medium tracking-[-0.03em] text-white/70">
+        {title}
+      </p>
     </div>
   );
 }

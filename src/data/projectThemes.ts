@@ -100,8 +100,7 @@ export const LUNJA_THEME: ProjectTheme = {
     hero: "radial-gradient(ellipse 80% 50% at 70% 20%, rgba(249,102,53,0.1), transparent 50%)",
     heroScrim:
       "linear-gradient(105deg, rgba(26,18,8,0.75) 0%, transparent 55%), linear-gradient(to top, rgba(26,18,8,0.9), transparent 40%)",
-    section:
-      "radial-gradient(ellipse 100% 60% at 50% 0%, rgba(43,186,165,0.1), transparent 55%)",
+    section: "radial-gradient(ellipse 100% 60% at 50% 0%, rgba(43,186,165,0.1), transparent 55%)",
     progressBar:
       "linear-gradient(90deg, rgba(43,186,165,0.6), rgba(255,209,0,0.75), rgba(249,102,53,0.5))",
     divider:
@@ -159,8 +158,7 @@ export const EDUCAZEN_THEME: ProjectTheme = {
     hero: "radial-gradient(ellipse 75% 50% at 15% 85%, rgba(38,166,154,0.12), transparent 55%)",
     heroScrim:
       "linear-gradient(110deg, rgba(10,8,12,0.82) 0%, transparent 52%), linear-gradient(to top, rgba(10,8,12,0.92), transparent 38%)",
-    section:
-      "radial-gradient(ellipse 100% 65% at 50% -8%, rgba(194,24,91,0.1), transparent 55%)",
+    section: "radial-gradient(ellipse 100% 65% at 50% -8%, rgba(194,24,91,0.1), transparent 55%)",
     progressBar:
       "linear-gradient(90deg, rgba(233,30,140,0.65), rgba(156,77,204,0.6), rgba(38,166,154,0.55))",
     divider:
@@ -218,8 +216,7 @@ export const BOPASSAGE_THEME: ProjectTheme = {
     hero: "radial-gradient(ellipse 85% 55% at 30% 70%, rgba(107,140,116,0.12), transparent 55%)",
     heroScrim:
       "linear-gradient(100deg, rgba(24,49,46,0.8) 0%, transparent 52%), linear-gradient(to top, rgba(15,31,28,0.92), transparent 38%)",
-    section:
-      "radial-gradient(ellipse 90% 50% at 80% 20%, rgba(245,235,220,0.05), transparent 50%)",
+    section: "radial-gradient(ellipse 90% 50% at 80% 20%, rgba(245,235,220,0.05), transparent 50%)",
     progressBar:
       "linear-gradient(90deg, rgba(107,140,116,0.5), rgba(212,176,106,0.7), rgba(184,151,58,0.55))",
     divider:
@@ -277,8 +274,7 @@ export const DMC_THEME: ProjectTheme = {
     hero: "radial-gradient(ellipse 90% 50% at 60% 30%, rgba(74,97,83,0.15), transparent 55%)",
     heroScrim:
       "linear-gradient(105deg, rgba(44,56,48,0.82) 0%, transparent 58%), linear-gradient(to top, rgba(6,8,6,0.9), transparent 42%)",
-    section:
-      "radial-gradient(ellipse 100% 60% at 50% 0%, rgba(212,175,95,0.08), transparent 55%)",
+    section: "radial-gradient(ellipse 100% 60% at 50% 0%, rgba(212,175,95,0.08), transparent 55%)",
     progressBar:
       "linear-gradient(90deg, rgba(74,97,83,0.55), rgba(212,184,150,0.75), rgba(184,155,116,0.5))",
     divider:
@@ -335,8 +331,7 @@ export const EIDEN_ACADEMY_THEME: ProjectTheme = {
     hero: "radial-gradient(ellipse 85% 55% at 25% 75%, rgba(215,187,147,0.08), transparent 55%)",
     heroScrim:
       "linear-gradient(110deg, rgba(18,38,32,0.85) 0%, transparent 55%), linear-gradient(to top, rgba(6,10,9,0.92), transparent 40%)",
-    section:
-      "radial-gradient(ellipse 90% 60% at 70% 0%, rgba(12,87,82,0.12), transparent 50%)",
+    section: "radial-gradient(ellipse 90% 60% at 70% 0%, rgba(12,87,82,0.12), transparent 50%)",
     progressBar:
       "linear-gradient(90deg, rgba(12,87,82,0.65), rgba(215,187,147,0.7), rgba(107,107,107,0.35))",
     divider:

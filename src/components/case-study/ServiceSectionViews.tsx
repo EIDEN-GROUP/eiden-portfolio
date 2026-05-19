@@ -90,11 +90,7 @@ export function ServiceSectionView({
 
         {section.type === "website-showcase" && desktop && mobile && (
           <>
-            <DeviceMockupPair
-              desktopSrc={desktop.src}
-              mobileSrc={mobile.src}
-              alt={section.title}
-            />
+            <DeviceMockupPair desktopSrc={desktop.src} mobileSrc={mobile.src} alt={section.title} />
             {section.features?.length ? <FeaturePills features={section.features} /> : null}
             {media.length > 2 ? <HorizontalMediaStrip items={media.slice(2)} /> : null}
           </>

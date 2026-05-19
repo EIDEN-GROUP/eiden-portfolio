@@ -136,7 +136,8 @@ const SERVICE_BLURBS: Record<string, string> = {
   "Brand board": "Mood, texture, and typographic direction composed into one living reference.",
   "Social media content":
     "Feed architecture, reels, and captions built for reach — always on-brand, never generic.",
-  "Media buying": "Meta and Google campaigns with creative iteration tied to real business signals.",
+  "Media buying":
+    "Meta and Google campaigns with creative iteration tied to real business signals.",
   "Media buying & ads": "Paid social and search tuned for footfall, leads, and measurable ROAS.",
   "CRM & dashboard":
     "Pipeline visibility, parent follow-up, and team workflows in one operations console.",
@@ -149,7 +150,8 @@ const SERVICE_BLURBS: Record<string, string> = {
 function mergeExpertise(project: Project): CaseStudyExpertiseItem[] {
   return project.services.map((service) => ({
     title: service,
-    blurb: SERVICE_BLURBS[service] ?? EXPERTISE_POOL.find((e) => e.title === service)?.blurb ?? service,
+    blurb:
+      SERVICE_BLURBS[service] ?? EXPERTISE_POOL.find((e) => e.title === service)?.blurb ?? service,
   }));
 }
 
@@ -230,12 +232,8 @@ export function resolveCaseStudy(project: Project): ResolvedCaseStudy {
 
   const client = o?.client ?? project.title;
 
-  const challenge =
-    o?.challenge ??
-    project.summary;
-  const goals =
-    o?.goals ??
-    `Prove the line in market: ${project.tagline}`;
+  const challenge = o?.challenge ?? project.summary;
+  const goals = o?.goals ?? `Prove the line in market: ${project.tagline}`;
   const context =
     o?.context ??
     `${project.category}: senior judgment, restraint, and launch discipline in one pipeline.`;

@@ -64,11 +64,7 @@ export const projects = [
     category: "Retail & placemaking",
     year: "2024",
     index: "01",
-    services: [
-      "Website design & development",
-      "Social media content",
-      "Media buying & ads",
-    ],
+    services: ["Website design & development", "Social media content", "Media buying & ads"],
     website: "https://bopassage.com/",
     caseStudy: {
       gallery: [

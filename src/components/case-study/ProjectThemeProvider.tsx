@@ -1,8 +1,4 @@
-import {
-  getProjectTheme,
-  projectThemeCssVars,
-  type ProjectTheme,
-} from "@/data/projectThemes";
+import { getProjectTheme, projectThemeCssVars, type ProjectTheme } from "@/data/projectThemes";
 import {
   createContext,
   useContext,

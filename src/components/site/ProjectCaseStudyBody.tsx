@@ -113,7 +113,10 @@ function CapabilityCard({
   const theme = useProjectTheme();
   return (
     <article
-      className={cn("flex flex-col justify-between border p-5 shadow-[0_20px_60px_-24px_rgba(0,0,0,0.45)] sm:p-8", className)}
+      className={cn(
+        "flex flex-col justify-between border p-5 shadow-[0_20px_60px_-24px_rgba(0,0,0,0.45)] sm:p-8",
+        className,
+      )}
       style={{
         borderColor: theme.ui.cardBorder,
         background: theme.ui.cardBackground,
@@ -213,7 +216,11 @@ function CapabilitiesScrollDesktop({ items }: { items: CaseStudyExpertiseItem[] 
   const scrollVh = Math.max(Math.round(items.length * 72 + 160), 240);
 
   return (
-    <div ref={sectionRef} className="relative" style={{ height: `${scrollVh}vh`, background: theme.colors.surface }}>
+    <div
+      ref={sectionRef}
+      className="relative"
+      style={{ height: `${scrollVh}vh`, background: theme.colors.surface }}
+    >
       <div
         ref={viewportRef}
         className="sticky top-16 z-0 flex h-[min(68vh,34rem)] flex-col justify-center overflow-hidden border-t py-6 sm:top-20 sm:h-[min(78vh,40rem)] sm:py-8 md:h-[min(82vh,44rem)] md:py-12"
