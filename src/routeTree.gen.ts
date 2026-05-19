@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsConditionsRouteImport } from './routes/terms-conditions'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsLunjaVillageRouteImport } from './routes/projects.lunja-village'
 import { Route as ProjectsEidenAcademyRouteImport } from './routes/projects.eiden-academy'
@@ -16,6 +18,16 @@ import { Route as ProjectsEducazenKidsRouteImport } from './routes/projects.educ
 import { Route as ProjectsDmcMoroccoRouteImport } from './routes/projects.dmc-morocco'
 import { Route as ProjectsBopassageRouteImport } from './routes/projects.bopassage'
 
+const TermsConditionsRoute = TermsConditionsRouteImport.update({
+  id: '/terms-conditions',
+  path: '/terms-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +61,8 @@ const ProjectsBopassageRoute = ProjectsBopassageRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-conditions': typeof TermsConditionsRoute
   '/projects/bopassage': typeof ProjectsBopassageRoute
   '/projects/dmc-morocco': typeof ProjectsDmcMoroccoRoute
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
@@ -57,6 +71,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-conditions': typeof TermsConditionsRoute
   '/projects/bopassage': typeof ProjectsBopassageRoute
   '/projects/dmc-morocco': typeof ProjectsDmcMoroccoRoute
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
@@ -66,6 +82,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-conditions': typeof TermsConditionsRoute
   '/projects/bopassage': typeof ProjectsBopassageRoute
   '/projects/dmc-morocco': typeof ProjectsDmcMoroccoRoute
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
@@ -76,6 +94,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/privacy-policy'
+    | '/terms-conditions'
     | '/projects/bopassage'
     | '/projects/dmc-morocco'
     | '/projects/educazen-kids'
@@ -84,6 +104,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/privacy-policy'
+    | '/terms-conditions'
     | '/projects/bopassage'
     | '/projects/dmc-morocco'
     | '/projects/educazen-kids'
@@ -92,6 +114,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/privacy-policy'
+    | '/terms-conditions'
     | '/projects/bopassage'
     | '/projects/dmc-morocco'
     | '/projects/educazen-kids'
@@ -101,6 +125,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  TermsConditionsRoute: typeof TermsConditionsRoute
   ProjectsBopassageRoute: typeof ProjectsBopassageRoute
   ProjectsDmcMoroccoRoute: typeof ProjectsDmcMoroccoRoute
   ProjectsEducazenKidsRoute: typeof ProjectsEducazenKidsRoute
@@ -110,6 +136,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms-conditions': {
+      id: '/terms-conditions'
+      path: '/terms-conditions'
+      fullPath: '/terms-conditions'
+      preLoaderRoute: typeof TermsConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -157,6 +197,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  TermsConditionsRoute: TermsConditionsRoute,
   ProjectsBopassageRoute: ProjectsBopassageRoute,
   ProjectsDmcMoroccoRoute: ProjectsDmcMoroccoRoute,
   ProjectsEducazenKidsRoute: ProjectsEducazenKidsRoute,
