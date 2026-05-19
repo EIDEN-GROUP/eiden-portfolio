@@ -104,9 +104,9 @@ export const projects = [
     cover: dmcCover,
     detailHero: dmcHero,
     summary:
-      "Full-funnel luxury travel presence — brand identity, View Morocco website, social storytelling, and performance media for partners and high-intent travelers.",
-    tagline: "Morocco’s luxury journeys, orchestrated from mark to inquiry.",
-    category: "Travel",
+      "Hotel consulting presence in Morocco — brand identity, the DMC Hospitality website, expertise storytelling, and performance media for owners and operators.",
+    tagline: "Authenticité & excellence — hotel expertise from mark to inquiry.",
+    category: "Hospitality",
     year: "2023",
     index: "02",
     services: [
@@ -115,15 +115,15 @@ export const projects = [
       "Social media content",
       "Media buying & ads",
     ],
-    website: "https://www.viewmorocco.com/",
+    website: "https://dmchm.com/",
     caseStudy: {
       gallery: [dmcHero, dmcCover, dmcHero],
       challenge:
-        "A premium DMC needed one coherent system — brand partners could recognize, a site that converts international intent, and social plus paid that feed the pipeline.",
+        "DMC Hospitality needed one coherent system — a mark partners trust, a site that explains pré-ouverture through optimisation with clarity, and social plus paid that bring qualified hotel projects.",
       goals:
-        "Unify branding and View Morocco, grow destination storytelling on social, and scale qualified inquiries through Meta and Google.",
+        "Unify branding and dmchm.com, present team expertise and service phases with confidence, and scale qualified inquiries from owners and operators across Morocco.",
       context:
-        "Luxury travel · Morocco — branding, website, social content, and media buying delivered as one composed funnel.",
+        "Conseil & gestion hôtelière · Maroc — branding, website, social content, and media buying delivered as one composed funnel.",
       stats: [
         { prefix: "+", value: 186, suffix: "%", label: "qualified leads" },
         { prefix: "+", value: 240, suffix: "%", label: "engagement" },
@@ -132,9 +132,9 @@ export const projects = [
       closingReview: {
         eyebrow: "After delivery",
         quote:
-          "Partners recognize us instantly — brand, site, social, and campaigns all speak the same luxury language, and inquiries are sharper.",
-        author: "DMC Morocco",
-        role: "Luxury travel",
+          "Partners recognize us instantly — brand, site, social, and campaigns all speak the same language of hotel excellence, and project inquiries are sharper.",
+        author: "DMC Hospitality",
+        role: "Hotel consulting",
       },
     },
   },

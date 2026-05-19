@@ -290,12 +290,8 @@ function ProjectDetailContent({ project: p }: { project: Project }) {
       <ProjectCaseStudyBody project={p} />
 
       <section
-        className="border-t"
-        style={{
-          borderColor: theme.colors.border,
-          background: theme.colors.background,
-          backgroundImage: theme.gradients.page,
-        }}
+        className="border-t bg-black"
+        style={{ borderColor: theme.colors.border }}
       >
         <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] py-12 pr-[max(1rem,env(safe-area-inset-right))] sm:px-12 sm:py-20">
           <div className="mb-8 flex flex-col gap-3 sm:mb-12 sm:flex-row sm:items-center sm:justify-between">

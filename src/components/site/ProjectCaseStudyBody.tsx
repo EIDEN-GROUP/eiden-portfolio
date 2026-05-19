@@ -5,6 +5,7 @@ import type {
   CaseStudyStat,
 } from "@/data/projectCaseStudy";
 import { useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
+import { ProjectCinematicGallerySection } from "@/components/case-study/ProjectCinematicGallerySection";
 import { ProjectServicesShowcase } from "@/components/case-study/ProjectServicesShowcase";
 import { CaseStudyScrollGallery } from "@/components/site/CaseStudyScrollGallery";
 import { resolveCaseStudy } from "@/data/projectCaseStudy";
@@ -694,8 +695,8 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
 
         <section
           aria-label="Client problem"
-          className="border-t"
-          style={{ borderColor: theme.colors.border, background: theme.colors.surfaceAlt }}
+          className="border-t bg-black"
+          style={{ borderColor: theme.colors.border }}
         >
           <ClientReviewSpotlight review={clientProblemReview} className="pb-6 sm:pb-10" />
         </section>
@@ -714,6 +715,8 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
         </div>
 
         <ProjectServicesShowcase project={project} />
+
+        <ProjectCinematicGallerySection project={project} />
 
         <section
           ref={statsRef}
@@ -752,8 +755,8 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
 
         <section
           aria-label="Client review   closing"
-          className="border-t"
-          style={{ borderColor: theme.colors.border, background: theme.colors.canvas }}
+          className="border-t bg-black"
+          style={{ borderColor: theme.colors.border }}
         >
           <ClientReviewSpotlight review={c.closingReview} className="pb-28 sm:pb-36" />
         </section>

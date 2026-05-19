@@ -80,7 +80,7 @@ const DMC_CONFIG: ProjectServiceConfig = {
   theme: "luxury-dark",
   intro: {
     left: "EIDEN delivery",
-    center: "Brand, website, and paid media — one luxury travel system.",
+    center: "Brand, website, and paid media — one hotel consulting system.",
     right: "DMC",
   },
   ...stylesForSlug("dmc-morocco"),
@@ -89,9 +89,9 @@ const DMC_CONFIG: ProjectServiceConfig = {
       id: "dmc-brand",
       type: "brand-identity",
       eyebrow: "Branding",
-      title: "A partner-ready mark for Morocco’s luxury journeys.",
+      title: "A partner-ready mark for Morocco’s hotel expertise.",
       description:
-        "Identity built for B2B recognition and traveler trust — logo, palette, and editorial type that hold across collateral and digital.",
+        "Identity built for B2B recognition and owner trust — logo, palette, and editorial type that hold across collateral and digital.",
       brandBookUrl: "https://eiden-group.com/brand-books/dmc-brand-book",
       brandColors: ["#2C3830", "#D4B896", "#4A6153", "#E8D5B5"],
       colorLabels: ["Forêt profonde", "Or", "Forêt claire", "Sable"],
@@ -118,24 +118,29 @@ const DMC_CONFIG: ProjectServiceConfig = {
       id: "dmc-web",
       type: "website-showcase",
       eyebrow: "Website design & development",
-      title: "A conversion-led site for travelers and travel partners.",
+      title: "A conversion-led site for hotel owners and operators.",
       description:
-        "View Morocco’s digital front door — cinematic scroll, clear inquiry paths, and a build optimized for international discovery.",
-      features: ["Itinerary storytelling", "Inquiry & booking flows", "Performance-first build", "Partner-ready structure"],
+        "dmchm.com as the digital front door — expertise, phased services, team credibility, and contact flows optimized for Marrakech and international discovery.",
+      features: [
+        "Expertise & team storytelling",
+        "Service phases & methodology",
+        "Contact & inquiry flows",
+        "Performance-first build",
+      ],
       media: [
         m(dmcHero, "DMC website desktop", "Home"),
         m(dmcCover, "DMC website mobile", "Mobile"),
-        m(dmcHero, "DMC booking flow", "Booking"),
-        m(dmcCover, "DMC destination page", "Destinations"),
+        m(dmcHero, "DMC services", "Services"),
+        m(dmcCover, "DMC expertise", "Expertise"),
       ],
     },
     {
       id: "dmc-ads",
       type: "media-buying",
       eyebrow: "Media buying & ads",
-      title: "Paid campaigns that turn luxury intent into qualified inquiries.",
+      title: "Paid campaigns that turn hotel-project intent into qualified inquiries.",
       description:
-        "Meta and Google funnels with creative testing tied to landing engagement and partner-ready lead quality — structured for international discovery and B2B partner conversion.",
+        "Meta and Google funnels with creative testing tied to landing engagement and partner-ready lead quality — structured for owners, operators, and B2B hospitality conversion.",
       features: [
         "Meta & Google acquisition",
         "Creative iteration by market",
