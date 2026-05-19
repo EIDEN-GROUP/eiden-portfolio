@@ -46,3 +46,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: dist/server
           command: deploy
+          packageManager: bun
