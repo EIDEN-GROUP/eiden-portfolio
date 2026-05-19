@@ -11,7 +11,7 @@ import {
   SectionIntro,
   type MediaItem,
 } from "./primitives";
-import { useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
+import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { ease } from "./motion";
 
 function mediaFromSection(section: ServiceSection): MediaItem[] {

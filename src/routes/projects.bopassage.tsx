@@ -1,9 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import {
-  ProjectDetailPage,
-  projectDetailHead,
-  ProjectRouteNotFound,
-} from "@/components/site/ProjectDetailPage";
+import { ProjectDetailPage, ProjectRouteNotFound } from "@/components/site/ProjectDetailPage";
+import { projectDetailHead } from "@/components/site/projectDetailHead";
 import { getProject } from "@/data/projects";
 
 const SLUG = "bopassage" as const;

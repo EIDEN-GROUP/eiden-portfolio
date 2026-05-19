@@ -1,18 +1,10 @@
-import { getProjectTheme, projectThemeCssVars, type ProjectTheme } from "@/data/projectThemes";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  type CSSProperties,
-  type ReactNode,
-} from "react";
-
-const ProjectThemeContext = createContext<ProjectTheme | null>(null);
+import { getProjectTheme, projectThemeCssVars } from "@/data/projectThemes";
+import { ProjectThemeContext } from "@/components/case-study/projectThemeContext";
+import { useEffect, useMemo, type CSSProperties, type ReactNode } from "react";
 
 const loadedFontUrls = new Set<string>();
 
-function useProjectFonts(theme: ProjectTheme) {
+function useProjectFonts(theme: ReturnType<typeof getProjectTheme>) {
   useEffect(() => {
     const href = `https://fonts.googleapis.com/css2?${theme.fonts.googleUrl}`;
     if (loadedFontUrls.has(href)) return;
@@ -55,16 +47,4 @@ export function ProjectThemeProvider({
       </div>
     </ProjectThemeContext.Provider>
   );
-}
-
-export function useProjectTheme(): ProjectTheme {
-  const ctx = useContext(ProjectThemeContext);
-  if (!ctx) {
-    throw new Error("useProjectTheme must be used within ProjectThemeProvider");
-  }
-  return ctx;
-}
-
-export function useProjectThemeOptional(): ProjectTheme | null {
-  return useContext(ProjectThemeContext);
 }

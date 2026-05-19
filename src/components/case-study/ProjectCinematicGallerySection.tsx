@@ -1,5 +1,5 @@
 import { ThreeDHoverGallery } from "@/components/case-study/ThreeDHoverGallery";
-import { useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
+import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { cinematicGalleryFromProject } from "@/data/projectCinematicGallery";
 import type { Project } from "@/data/projects";
 import { motion } from "framer-motion";

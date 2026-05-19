@@ -4,7 +4,7 @@ import type {
   CaseStudyReview,
   CaseStudyStat,
 } from "@/data/projectCaseStudy";
-import { useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
+import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { ProjectCinematicGallerySection } from "@/components/case-study/ProjectCinematicGallerySection";
 import { ProjectServicesShowcase } from "@/components/case-study/ProjectServicesShowcase";
 import { resolveCaseStudy } from "@/data/projectCaseStudy";

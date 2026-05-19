@@ -1,5 +1,5 @@
 import { ServiceSectionView } from "@/components/case-study/ServiceSectionViews";
-import { useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
+import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { ServiceBandHeader } from "@/components/case-study/primitives";
 import { getProjectServiceConfig } from "@/data/projectServiceSections";
 import type { Project } from "@/data/projects";

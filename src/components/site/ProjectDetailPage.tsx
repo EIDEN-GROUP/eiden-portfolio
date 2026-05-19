@@ -3,10 +3,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { lazy, Suspense, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  ProjectThemeProvider,
-  useProjectTheme,
-} from "@/components/case-study/ProjectThemeProvider";
+import { ProjectThemeProvider } from "@/components/case-study/ProjectThemeProvider";
+import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { Footer } from "@/components/site/Footer";
 const ProjectCaseStudyBody = lazy(() =>
   import("@/components/site/ProjectCaseStudyBody").then((m) => ({
@@ -89,19 +87,6 @@ function NextProjectCard({ q, className }: { q: Project; className?: string }) {
       </div>
     </Link>
   );
-}
-
-export function projectDetailHead(p: Project | undefined) {
-  if (!p) return { meta: [{ title: "Project   EIDEN Group" }] };
-  return {
-    meta: [
-      { title: `${p.title}   EIDEN Group` },
-      { name: "description", content: p.summary },
-      { property: "og:title", content: `${p.title}   EIDEN Group` },
-      { property: "og:description", content: p.summary },
-      { property: "og:image", content: p.detailHero },
-    ],
-  };
 }
 
 export function ProjectRouteNotFound() {

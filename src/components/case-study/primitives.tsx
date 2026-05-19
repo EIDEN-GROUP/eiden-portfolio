@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { useProjectThemeOptional } from "@/components/case-study/ProjectThemeProvider";
+import { useProjectThemeOptional } from "@/components/case-study/projectThemeContext";
 import { ease, fadeUp, stagger } from "./motion";
 
 export function ServiceBandHeader({
