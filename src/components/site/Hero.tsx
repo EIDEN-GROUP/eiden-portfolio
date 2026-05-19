@@ -1,8 +1,8 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useLayoutEffect, useRef, useState } from "react";
-import GridMotion from "../GridMotion";
+import { lazy, Suspense, useLayoutEffect, useRef, useState } from "react";
 import { projects } from "@/data/projects";
 
+const GridMotion = lazy(() => import("../GridMotion"));
 const covers = projects.map((p) => p.cover);
 const gridItems: string[] = Array.from({ length: 28 }, (_, i) => covers[i % covers.length]);
 
@@ -23,7 +23,9 @@ function StaticHero() {
   return (
     <div className="relative isolate flex min-h-[100svh] flex-col bg-forest-deep">
       <div className="absolute inset-0 overflow-hidden" aria-hidden>
-        <GridMotion items={gridItems} gradientColor="oklch(0.09 0.014 165)" />
+        <Suspense fallback={null}>
+          <GridMotion items={gridItems} gradientColor="oklch(0.09 0.014 165)" />
+        </Suspense>
         <div className="absolute inset-0 z-[2] bg-gradient-to-b from-black/70 via-black/45 to-black/80" />
       </div>
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-5 pt-24 text-center sm:px-10 sm:pt-28 md:px-16">
@@ -168,7 +170,9 @@ function HeroScrollSequence() {
             style={{ scale: imgScale }}
             aria-hidden
           >
-            <GridMotion items={gridItems} gradientColor="oklch(0.09 0.014 165)" />
+            <Suspense fallback={null}>
+              <GridMotion items={gridItems} gradientColor="oklch(0.09 0.014 165)" />
+            </Suspense>
             <div className="pointer-events-none absolute inset-0 bg-black/55" />
           </motion.span>
         </motion.div>

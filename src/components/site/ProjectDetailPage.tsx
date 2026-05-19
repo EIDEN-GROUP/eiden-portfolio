@@ -1,14 +1,18 @@
 import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { useRef } from "react";
+import { lazy, Suspense, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   ProjectThemeProvider,
   useProjectTheme,
 } from "@/components/case-study/ProjectThemeProvider";
 import { Footer } from "@/components/site/Footer";
-import { ProjectCaseStudyBody } from "@/components/site/ProjectCaseStudyBody";
+const ProjectCaseStudyBody = lazy(() =>
+  import("@/components/site/ProjectCaseStudyBody").then((m) => ({
+    default: m.ProjectCaseStudyBody,
+  })),
+);
 import type { Project } from "@/data/projects";
 import { projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
@@ -296,7 +300,9 @@ function ProjectDetailContent({ project: p }: { project: Project }) {
   return (
     <>
       <ProjectDetailHero project={p} />
-      <ProjectCaseStudyBody project={p} />
+      <Suspense fallback={null}>
+        <ProjectCaseStudyBody project={p} />
+      </Suspense>
 
       <section
         className="border-t bg-black"

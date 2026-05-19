@@ -6,4 +6,27 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig();
+/** Split large runtime deps so no single chunk exceeds Vite's 500 kB warning. */
+function vendorChunk(id: string): string | undefined {
+  if (!id.includes("node_modules")) return;
+  if (id.includes("framer-motion")) return "vendor-motion";
+  if (id.includes("gsap")) return "vendor-gsap";
+  if (id.includes("swiper")) return "vendor-swiper";
+  if (id.includes("lenis")) return "vendor-lenis";
+  if (id.includes("/ogl/") || id.includes("\\ogl\\")) return "vendor-ogl";
+  if (id.includes("@tanstack")) return "vendor-router";
+  if (id.includes("react-dom") || id.includes("/react/")) return "vendor-react";
+  return "vendor-misc";
+}
+
+export default defineConfig({
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: vendorChunk,
+        },
+      },
+    },
+  },
+});

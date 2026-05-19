@@ -1,7 +1,8 @@
 import { useNavigate } from "@tanstack/react-router";
-import { useCallback, useMemo } from "react";
-import CircularGallery from "@/components/CircularGallery";
+import { lazy, Suspense, useCallback, useMemo } from "react";
 import { projectPath, projects } from "@/data/projects";
+
+const CircularGallery = lazy(() => import("@/components/CircularGallery"));
 
 export function Projects() {
   const navigate = useNavigate();
@@ -36,14 +37,16 @@ export function Projects() {
       </div>
 
       <div style={{ height: "600px", position: "relative" }}>
-        <CircularGallery
-          items={galleryItems}
-          onItemNavigate={onItemNavigate}
-          bend={1}
-          textColor="#ffffff"
-          scrollSpeed={2}
-          scrollEase={0.05}
-        />
+        <Suspense fallback={<div className="h-full w-full" aria-hidden />}>
+          <CircularGallery
+            items={galleryItems}
+            onItemNavigate={onItemNavigate}
+            bend={1}
+            textColor="#ffffff"
+            scrollSpeed={2}
+            scrollEase={0.05}
+          />
+        </Suspense>
       </div>
     </section>
   );

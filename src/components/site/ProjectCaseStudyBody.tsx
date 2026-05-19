@@ -7,7 +7,6 @@ import type {
 import { useProjectTheme } from "@/components/case-study/ProjectThemeProvider";
 import { ProjectCinematicGallerySection } from "@/components/case-study/ProjectCinematicGallerySection";
 import { ProjectServicesShowcase } from "@/components/case-study/ProjectServicesShowcase";
-import { CaseStudyScrollGallery } from "@/components/site/CaseStudyScrollGallery";
 import { resolveCaseStudy } from "@/data/projectCaseStudy";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
@@ -20,9 +19,15 @@ import {
   useTransform,
 } from "framer-motion";
 import { Camera, Globe, Music, Users } from "lucide-react";
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+
+const CaseStudyScrollGallery = lazy(() =>
+  import("@/components/site/CaseStudyScrollGallery").then((m) => ({
+    default: m.CaseStudyScrollGallery,
+  })),
+);
 
 /** Client-only viewport query for scroll/carousel layouts (SSR-safe default false). */
 function useMediaQuery(query: string): boolean {
@@ -757,7 +762,9 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
             right="Artifacts"
             centerWide
           />
-          <CaseStudyScrollGallery tiles={c.resultTiles} />
+          <Suspense fallback={<div className="min-h-[50vh]" aria-hidden />}>
+            <CaseStudyScrollGallery tiles={c.resultTiles} />
+          </Suspense>
         </section>
 
         <section
