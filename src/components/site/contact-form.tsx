@@ -117,7 +117,7 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
   const selectedBudget = watch("budget");
 
   return (
-    <div className="flex flex-col gap-8 px-7 py-8 sm:px-9 sm:py-9">
+    <div className="flex flex-col gap-8 px-5 py-7 sm:px-9 sm:py-9">
       <AnimatePresence mode="wait">
         {formStep === "step1" && (
           <motion.div
@@ -205,14 +205,14 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
             </div>
 
             <FormField label="Estimated budget" error={errors.budget?.message} required>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-3">
                 {BUDGET_OPTIONS.map((opt) => (
                   <button
                     key={opt.value}
                     type="button"
                     onClick={() => setValue("budget", opt.value)}
                     className={cn(
-                      "border py-4 font-label text-[10px] uppercase tracking-[0.26em] transition-all duration-200",
+                      "border py-3.5 font-label text-[10px] uppercase tracking-[0.2em] transition-all duration-200 sm:py-4 sm:tracking-[0.26em]",
                       selectedBudget === opt.value
                         ? "border-gold bg-gold/15 text-forest-deep"
                         : "border-stone-200 text-stone-500 hover:border-stone-300 hover:text-stone-800",

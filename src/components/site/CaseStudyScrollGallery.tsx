@@ -1,27 +1,40 @@
 import type { CaseStudyResultTile } from "@/data/projectCaseStudy";
+import { cn } from "@/lib/utils";
 import gsap from "gsap";
-import { useLayoutEffect, useMemo, useRef } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import "./CaseStudyScrollGallery.css";
+
+function useCompactGallery() {
+  const [compact, setCompact] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches,
+  );
+
+  useLayoutEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const onChange = () => setCompact(mq.matches);
+    mq.addEventListener("change", onChange);
+    onChange();
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  return compact;
+}
 
 function splitTilesIntoColumns(
   tiles: CaseStudyResultTile[],
-): [CaseStudyResultTile[], CaseStudyResultTile[], CaseStudyResultTile[]] {
-  const c1: CaseStudyResultTile[] = [];
-  const c2: CaseStudyResultTile[] = [];
-  const c3: CaseStudyResultTile[] = [];
+  columnCount: number,
+): CaseStudyResultTile[][] {
+  const cols = Array.from({ length: columnCount }, () => [] as CaseStudyResultTile[]);
   for (let i = 0; i < tiles.length; i++) {
-    const t = tiles[i]!;
-    if (i % 3 === 0) c1.push(t);
-    else if (i % 3 === 1) c2.push(t);
-    else c3.push(t);
+    cols[i % columnCount]!.push(tiles[i]!);
   }
   const pad = tiles[0];
   if (pad) {
-    if (!c1.length) c1.push(pad);
-    if (!c2.length) c2.push(pad);
-    if (!c3.length) c3.push(pad);
+    for (const col of cols) {
+      if (!col.length) col.push(pad);
+    }
   }
-  return [c1, c2, c3];
+  return cols;
 }
 
 function ScrollColumn({ tiles, name }: { tiles: CaseStudyResultTile[]; name: string }) {
@@ -46,7 +59,9 @@ function ScrollColumn({ tiles, name }: { tiles: CaseStudyResultTile[]; name: str
 export function CaseStudyScrollGallery({ tiles }: { tiles: CaseStudyResultTile[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
-  const [col1, col2, col3] = useMemo(() => splitTilesIntoColumns(tiles), [tiles]);
+  const compact = useCompactGallery();
+  const columnCount = compact ? 2 : 3;
+  const columns = useMemo(() => splitTilesIntoColumns(tiles, columnCount), [tiles, columnCount]);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -56,7 +71,7 @@ export function CaseStudyScrollGallery({ tiles }: { tiles: CaseStudyResultTile[]
     const cols = gsap.utils.toArray<HTMLElement>(".cs-scroll-col", gallery);
     if (!cols.length) return () => {};
 
-    const mobileQuery = window.matchMedia("(max-width: 639px)");
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
     const isMobile = () => mobileQuery.matches;
 
     const colProgress = [0, 0, 0];
@@ -89,16 +104,22 @@ export function CaseStudyScrollGallery({ tiles }: { tiles: CaseStudyResultTile[]
     return () => {
       gsap.ticker.remove(updateOffset);
     };
-  }, [tiles]);
+  }, [tiles, columnCount]);
 
   return (
-    <div ref={containerRef} className="cs-scroll-gallery-container">
+    <div
+      ref={containerRef}
+      className={cn("cs-scroll-gallery-container", compact && "cs-scroll-gallery-container--compact")}
+    >
       <div className="cs-scroll-gallery-sticky">
         <p className="cs-scroll-gallery-title">Scroll gallery</p>
-        <div ref={galleryRef} className="cs-scroll-gallery">
-          <ScrollColumn tiles={col1} name="a" />
-          <ScrollColumn tiles={col2} name="b" />
-          <ScrollColumn tiles={col3} name="c" />
+        <div
+          ref={galleryRef}
+          className={cn("cs-scroll-gallery", compact && "cs-scroll-gallery--compact")}
+        >
+          {columns.map((colTiles, i) => (
+            <ScrollColumn key={i} tiles={colTiles} name={String.fromCharCode(97 + i)} />
+          ))}
         </div>
       </div>
     </div>

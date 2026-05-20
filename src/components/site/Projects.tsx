@@ -30,13 +30,16 @@ export function Projects() {
       style={{ background: "oklch(0.07 0.012 165)" }}
       className="relative py-20 sm:py-28"
     >
-      <div className="mb-10 px-6 sm:px-14">
+      <div className="mb-10 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-14">
         <p className="font-label text-[12px] uppercase tracking-[0.5em] text-white/50">
           Selected mandates · {String(projects.length).padStart(2, "0")}
         </p>
       </div>
 
-      <div style={{ height: "600px", position: "relative" }}>
+      <div
+        className="relative w-full"
+        style={{ height: "clamp(360px, 58svh, 600px)" }}
+      >
         <Suspense fallback={<div className="h-full w-full" aria-hidden />}>
           <CircularGallery
             items={galleryItems}

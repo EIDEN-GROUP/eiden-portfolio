@@ -58,7 +58,7 @@ export function EidenDescription() {
 
         {/* Footnote stats row */}
         <motion.div
-          className="mt-20 grid grid-cols-1 gap-0 divide-x divide-white/[0.06] border-t border-white/[0.06] pt-10 sm:grid-cols-4"
+          className="mt-20 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/[0.06] pt-10 sm:grid-cols-4 sm:gap-x-0 sm:gap-y-0 sm:divide-x sm:divide-white/[0.06]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.25 }}
@@ -77,7 +77,7 @@ export function EidenDescription() {
           ].map((stat) => (
             <motion.div
               key={stat.label}
-              className="px-0 first:pl-0 sm:px-6"
+              className="px-0 sm:border-l sm:border-white/[0.06] sm:px-6 first:sm:border-l-0"
               variants={{
                 hidden: { opacity: 0, y: 22 },
                 visible: {

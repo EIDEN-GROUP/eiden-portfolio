@@ -441,7 +441,6 @@ export function ThreeDHoverGallery({
   const sectionRef = useRef<HTMLElement>(null);
 
   const count = items.length;
-  const activeItem = items[activeIndex] ?? items[0];
 
   const go = useCallback(
     (dir: -1 | 1) => {
@@ -484,7 +483,7 @@ export function ThreeDHoverGallery({
       className={cn("relative outline-none", className)}
     >
       <motion.div
-        className="relative z-10 flex min-h-[min(90svh,52rem)] flex-col justify-center px-[max(1rem,env(safe-area-inset-left))] py-16 pr-[max(1rem,env(safe-area-inset-right))] sm:py-20 lg:min-h-[min(92svh,56rem)] lg:px-12 lg:py-24"
+        className="relative z-10 flex flex-col justify-start px-[max(1rem,env(safe-area-inset-left))] py-8 pr-[max(1rem,env(safe-area-inset-right))] sm:py-10 lg:min-h-[min(92svh,56rem)] lg:justify-center lg:px-12 lg:py-24"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
@@ -583,11 +582,6 @@ export function ThreeDHoverGallery({
                 </motion.div>
               ))}
             </motion.div>
-            {activeItem ? (
-              <div className="mt-8 px-1">
-                <GalleryCardOverlay item={activeItem} theme={theme} visible layout="inline" />
-              </div>
-            ) : null}
           </>
         )}
       </motion.div>

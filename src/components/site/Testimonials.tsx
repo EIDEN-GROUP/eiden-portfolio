@@ -46,7 +46,7 @@ export function Testimonials() {
       aria-label="Client voices"
       style={{ background: "oklch(0.07 0.012 165)" }}
     >
-      <div className="border-b border-white/[0.07] px-7 pb-14 pt-20 sm:px-10 sm:pb-16 sm:pt-24 lg:px-16 lg:pb-20 lg:pt-28 xl:px-20">
+      <div className="border-b border-white/[0.07] px-[max(1rem,env(safe-area-inset-left))] pb-14 pt-20 pr-[max(1rem,env(safe-area-inset-right))] sm:px-10 sm:pb-16 sm:pt-24 lg:px-16 lg:pb-20 lg:pt-28 xl:px-20">
         <motion.div
           initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}

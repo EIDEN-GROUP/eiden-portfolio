@@ -29,7 +29,7 @@ export function ContactSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/55" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6 text-white sm:px-8 lg:px-10">
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-5xl px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] text-white sm:px-8 lg:px-10">
         {/* Mono strip   same rhythm as Testimonials / Signals */}
         <motion.div
           className="mb-10 flex items-center gap-4 sm:mb-12"
@@ -136,7 +136,7 @@ export function ContactSection() {
             </motion.div>
 
             <div className="min-h-0 bg-white">
-              <div className="border-b border-stone-200/80 px-7 pb-2 pt-10 lg:hidden sm:px-9">
+              <div className="border-b border-stone-200/80 px-5 pb-2 pt-8 sm:px-9 sm:pt-10 lg:hidden">
                 <p className="mb-1 font-label text-[9px] uppercase tracking-[0.5em] text-gold-dark/90">
                   Request a session
                 </p>

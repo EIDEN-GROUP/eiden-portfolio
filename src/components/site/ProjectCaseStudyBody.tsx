@@ -220,7 +220,7 @@ function SocialFollowFace({ face }: { face: Extract<CaseStudyGalleryFace, { kind
                   className="h-3.5 w-3.5 shrink-0 opacity-75 transition-opacity group-hover:opacity-100 sm:h-4 sm:w-4"
                   strokeWidth={1.35}
                 />
-                <span className="whitespace-nowrap">{label}</span>
+                <span className="text-pretty sm:whitespace-nowrap">{label}</span>
               </a>
             </li>
           ))}
@@ -554,7 +554,7 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
             right="Artifacts"
             centerWide
           />
-          <Suspense fallback={<div className="min-h-[50vh]" aria-hidden />}>
+          <Suspense fallback={<div className="min-h-[46svh] sm:min-h-[85svh]" aria-hidden />}>
             <CaseStudyScrollGallery tiles={c.resultTiles} />
           </Suspense>
         </section>

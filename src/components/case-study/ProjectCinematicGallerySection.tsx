@@ -126,7 +126,7 @@ export function ProjectCinematicGallerySection({ project }: { project: Project }
       className="relative border-t"
       style={{ borderColor: theme.colors.border }}
     >
-      <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-4 pt-14 pr-[max(1rem,env(safe-area-inset-right))] sm:pb-6 sm:pt-20 lg:px-12">
+      <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-4 pt-10 pr-[max(1rem,env(safe-area-inset-right))] sm:pb-6 sm:pt-14 lg:px-12 lg:pt-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

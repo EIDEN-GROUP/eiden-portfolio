@@ -77,6 +77,37 @@ const socials = [
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+function ClientSwiperLogo({ name, logo }: { name: string; logo: string }) {
+  if (name === "Eiden Academy") {
+    return (
+      <div
+        role="img"
+        aria-label={name}
+        className="h-14 w-[4.25rem] shrink-0 bg-white"
+        style={{
+          maskImage: `url(${logo})`,
+          WebkitMaskImage: `url(${logo})`,
+          maskSize: "contain",
+          WebkitMaskSize: "contain",
+          maskRepeat: "no-repeat",
+          WebkitMaskRepeat: "no-repeat",
+          maskPosition: "center",
+          WebkitMaskPosition: "center",
+        }}
+      />
+    );
+  }
+
+  return (
+    <img
+      src={logo}
+      alt={name}
+      className="h-12 w-auto object-contain transition-opacity duration-300"
+      style={{ filter: "brightness(0) invert(1)" }}
+    />
+  );
+}
+
 export function Footer() {
   const scrollTo = useScrollTo();
 
@@ -94,7 +125,7 @@ export function Footer() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease }}
-        className="flex flex-col gap-12 border-b border-white/[0.07] px-7 py-12 sm:px-12 lg:flex-row lg:items-center lg:justify-between lg:px-20 lg:py-16"
+        className="flex flex-col gap-12 border-b border-white/[0.07] px-[max(1rem,env(safe-area-inset-left))] py-12 pr-[max(1rem,env(safe-area-inset-right))] sm:px-12 lg:flex-row lg:items-center lg:justify-between lg:px-20 lg:py-16"
       >
         {/* Logo + gold dot */}
         <Link
@@ -114,7 +145,7 @@ export function Footer() {
         </Link>
 
         {/* Columns */}
-        <div className="grid grid-cols-2 gap-x-12 gap-y-10 lg:gap-x-20">
+        <div className="grid w-full grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2 lg:max-w-xl lg:grid-cols-3 lg:gap-x-16">
           {/* Navigation */}
           <div>
             <p className="mb-6 font-mono text-[9px] uppercase tracking-[0.5em] text-white/28">
@@ -199,12 +230,7 @@ export function Footer() {
           return (
             <SwiperSlide key={i} className="!w-auto">
               <div className="flex h-18 items-center px-4">
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="h-12 w-auto object-contain transition-opacity duration-300"
-                  style={{ filter: "brightness(0) invert(1)" }}
-                />
+                <ClientSwiperLogo name={client.name} logo={client.logo} />
               </div>
             </SwiperSlide>
           );
@@ -212,11 +238,11 @@ export function Footer() {
       </Swiper>
 
       {/* ── Bottom bar ── */}
-      <div className="flex flex-col gap-3 px-7 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-12 lg:px-20">
-        <p className="font-mono text-[9px] uppercase tracking-[0.5em] text-white/22">
+      <div className="flex flex-col gap-4 px-7 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:px-12 lg:px-20">
+        <p className="font-mono text-[9px] uppercase tracking-[0.38em] text-white/22 sm:tracking-[0.5em]">
           © {new Date().getFullYear()} EIDEN Group · All rights reserved
         </p>
-        <div className="flex items-center gap-5">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <Link
             to="/terms-conditions"
             className="font-mono text-[9px] uppercase tracking-[0.4em] text-white/22 transition-colors hover:text-white/50"

@@ -1,17 +1,18 @@
-/* Full-viewport dark gallery  one screen tall, normal page scroll */
+/* Scroll gallery — shorter on mobile, full viewport on desktop */
 .cs-scroll-gallery-container {
   width: 100%;
   position: relative;
-  min-height: 100svh;
-  min-height: 100dvh;
+  min-height: 85svh;
+  min-height: 85dvh;
   background: #050505;
+  overflow-x: clip;
 }
 
 .cs-scroll-gallery-sticky {
   position: relative;
   top: 0;
-  height: 100svh;
-  height: 100dvh;
+  height: 85svh;
+  height: 85dvh;
   width: 100%;
   overflow: hidden;
   background: #050505;
@@ -54,13 +55,7 @@
 
 @media (max-width: 768px) {
   .cs-scroll-gallery {
-    width: 118%;
-  }
-}
-
-@media (max-width: 480px) {
-  .cs-scroll-gallery {
-    width: 108%;
+    width: 100%;
   }
 }
 
@@ -76,17 +71,13 @@
   align-self: flex-end;
 }
 
-.cs-scroll-image-wrapper {
-  width: 100%;
-  filter: saturate(0.35);
-  padding: 0.65rem;
-  transition: filter 0.35s ease-out;
+.cs-scroll-gallery--compact .cs-scroll-col:nth-child(2) {
+  align-self: flex-end;
 }
 
-@media (max-width: 639px) {
-  .cs-scroll-image-wrapper {
-    padding: 0.45rem;
-  }
+.cs-scroll-image-wrapper {
+  width: 100%;
+  padding: 0.65rem;
 }
 
 @media (min-width: 640px) {
@@ -95,28 +86,61 @@
   }
 }
 
-.cs-scroll-image-wrapper:hover {
-  z-index: 30;
-  filter: saturate(1);
-}
-
 .cs-scroll-image {
-  transition: transform 0.35s ease-out;
-  overflow: hidden;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+  object-fit: contain;
   box-shadow:
     0 2.8px 2.2px rgba(0, 0, 0, 0.2),
     0 6.7px 5.3px rgba(0, 0, 0, 0.28),
-    0 12.5px 10px rgba(0, 0, 0, 0.35),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.42),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.48),
-    0 100px 80px rgba(0, 0, 0, 0.55);
-  width: 100%;
-  border-radius: 0;
-  display: block;
-  object-fit: cover;
-  aspect-ratio: 4 / 5;
+    0 12.5px 10px rgba(0, 0, 0, 0.35);
 }
 
-.cs-scroll-image-wrapper:hover .cs-scroll-image {
-  transform: scale(1.02);
+/* Mobile / compact: shorter section, 2 columns, smaller tiles */
+@media (max-width: 767px) {
+  .cs-scroll-gallery-container,
+  .cs-scroll-gallery-container--compact {
+    min-height: 52svh;
+    min-height: 52dvh;
+  }
+
+  .cs-scroll-gallery-sticky {
+    height: 52svh;
+    height: 52dvh;
+  }
+
+  .cs-scroll-gallery-title {
+    font-size: clamp(1.1rem, 5.5vw, 1.65rem);
+    letter-spacing: -0.03em;
+    padding: 0 0.75rem;
+  }
+
+  .cs-scroll-image-wrapper {
+    padding: 0.35rem;
+  }
+
+  .cs-scroll-image {
+    box-shadow:
+      0 2px 2px rgba(0, 0, 0, 0.2),
+      0 6px 8px rgba(0, 0, 0, 0.28);
+  }
+}
+
+@media (max-width: 479px) {
+  .cs-scroll-gallery-container,
+  .cs-scroll-gallery-container--compact {
+    min-height: 46svh;
+    min-height: 46dvh;
+  }
+
+  .cs-scroll-gallery-sticky {
+    height: 46svh;
+    height: 46dvh;
+  }
+
+  .cs-scroll-image-wrapper {
+    padding: 0.28rem;
+  }
 }

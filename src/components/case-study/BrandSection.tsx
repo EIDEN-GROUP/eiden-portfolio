@@ -22,7 +22,7 @@ function BrandPaletteGrid({
       whileInView="visible"
       viewport={{ once: true, margin: "-8%" }}
       variants={stagger}
-      className="grid grid-cols-2 gap-px bg-white/[0.1] sm:grid-cols-4"
+      className="grid grid-cols-1 gap-px bg-white/[0.1] min-[400px]:grid-cols-2 sm:grid-cols-4"
     >
       {colors.map((hex, i) => (
         <motion.div
@@ -110,39 +110,68 @@ function BrandTypographyGrid({
   );
 }
 
-function BrandBookBand({ href, accentClass }: { href: string; accentClass?: string }) {
-  return (
-    <Reveal>
+function BrandBookLink({
+  href,
+  accentClass,
+  layout = "horizontal",
+}: {
+  href: string;
+  accentClass?: string;
+  layout?: "horizontal" | "panel";
+}) {
+  const labelCls = cn(
+    "font-label text-[9px] uppercase tracking-[0.42em]",
+    accentClass ?? "text-teal-light/80",
+  );
+
+  if (layout === "panel") {
+    return (
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group grid grid-cols-[1fr_auto] items-center gap-6 border border-white/[0.12] bg-white/[0.03] px-6 py-5 transition-colors duration-500 hover:border-white/20 hover:bg-white/[0.05] sm:grid-cols-[auto_1fr_auto] sm:px-8 sm:py-6"
+        className="group flex h-full min-h-[18rem] flex-col justify-between border border-white/[0.12] bg-white/[0.03] px-6 py-7 transition-colors duration-500 hover:border-white/20 hover:bg-white/[0.05] sm:min-h-0 sm:flex-1 sm:px-8 sm:py-9"
       >
-        <span className="hidden font-mono text-[10px] tabular-nums tracking-[0.24em] text-white/30 sm:block">
-          00
-        </span>
         <div className="min-w-0">
-          <p
-            className={cn(
-              "font-label text-[9px] uppercase tracking-[0.42em]",
-              accentClass ?? "text-teal-light/80",
-            )}
-          >
-            Brand guidelines
-          </p>
-          <p className="mt-1 font-display text-lg font-semibold tracking-[-0.04em] text-white transition-colors group-hover:text-gold/90 sm:text-xl">
+          <span className="font-mono text-[10px] tabular-nums tracking-[0.24em] text-white/30">00</span>
+          <p className={cn("mt-6", labelCls)}>Brand guidelines</p>
+          <p className="mt-3 font-display text-xl font-semibold leading-[1.1] tracking-[-0.04em] text-white transition-colors group-hover:text-gold/90 sm:text-2xl">
             View the full brand book
           </p>
-          <p className="mt-1 font-editorial text-sm italic text-white/40">
+          <p className="mt-3 max-w-[28ch] font-editorial text-sm italic leading-relaxed text-white/40">
             Complete identity system on eiden-group.com
           </p>
         </div>
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 transition-all duration-500 group-hover:border-gold group-hover:bg-gold sm:h-12 sm:w-12">
-          <ArrowUpRight className="h-4 w-4 text-white transition-colors group-hover:text-forest-deep sm:h-5 sm:w-5" />
+        <span className="mt-8 grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/15 transition-all duration-500 group-hover:border-gold group-hover:bg-gold">
+          <ArrowUpRight className="h-5 w-5 text-white transition-colors group-hover:text-forest-deep" />
         </span>
       </a>
-    </Reveal>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group grid grid-cols-[1fr_auto] items-center gap-6 border border-white/[0.12] bg-white/[0.03] px-6 py-5 transition-colors duration-500 hover:border-white/20 hover:bg-white/[0.05] sm:grid-cols-[auto_1fr_auto] sm:px-8 sm:py-6"
+    >
+      <span className="hidden font-mono text-[10px] tabular-nums tracking-[0.24em] text-white/30 sm:block">
+        00
+      </span>
+      <div className="min-w-0">
+        <p className={labelCls}>Brand guidelines</p>
+        <p className="mt-1 font-display text-lg font-semibold tracking-[-0.04em] text-white transition-colors group-hover:text-gold/90 sm:text-xl">
+          View the full brand book
+        </p>
+        <p className="mt-1 font-editorial text-sm italic text-white/40">
+          Complete identity system on eiden-group.com
+        </p>
+      </div>
+      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 transition-all duration-500 group-hover:border-gold group-hover:bg-gold sm:h-12 sm:w-12">
+        <ArrowUpRight className="h-4 w-4 text-white transition-colors group-hover:text-forest-deep sm:h-5 sm:w-5" />
+      </span>
+    </a>
   );
 }
 
@@ -250,13 +279,19 @@ export function BrandIdentityShowcase({
 
   const hasPalette = (section.brandColors?.length ?? 0) > 0;
   const hasType = (section.typography?.length ?? 0) > 0;
+  const brandBookBesidePalette = Boolean(section.brandBookUrl && hasPalette && !hasType);
 
   return (
     <div className="mx-[max(1rem,env(safe-area-inset-left))] mr-[max(1rem,env(safe-area-inset-right))] space-y-px bg-white/[0.08] sm:mx-8 sm:mr-8">
       {(hasPalette || hasType) && (
-        <div className="grid grid-cols-1 gap-px bg-white/[0.08] lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-px bg-white/[0.08] lg:grid-cols-12 lg:items-stretch">
           {hasPalette ? (
-            <Reveal className="bg-[#060606] lg:col-span-5">
+            <Reveal
+              className={cn(
+                "bg-[#060606]",
+                hasType || brandBookBesidePalette ? "lg:col-span-5" : "lg:col-span-12",
+              )}
+            >
               <PanelHeader label="Palette" title="Chromatic system" accentClass={themeAccent} />
               <BrandPaletteGrid
                 colors={section.brandColors!}
@@ -272,12 +307,27 @@ export function BrandIdentityShowcase({
               <BrandTypographyGrid items={section.typography!} accentClass={themeAccent} />
             </Reveal>
           ) : null}
+
+          {brandBookBesidePalette ? (
+            <Reveal className="flex flex-col bg-[#060606] lg:col-span-7">
+              <PanelHeader label="Brand book" title="Guidelines & assets" accentClass={themeAccent} />
+              <div className="flex flex-1 flex-col p-6 sm:p-8">
+                <BrandBookLink
+                  href={section.brandBookUrl!}
+                  accentClass={themeAccent}
+                  layout="panel"
+                />
+              </div>
+            </Reveal>
+          ) : null}
         </div>
       )}
 
-      {section.brandBookUrl ? (
+      {section.brandBookUrl && !brandBookBesidePalette ? (
         <div className="bg-[#060606] px-6 py-6 sm:px-8 sm:py-8">
-          <BrandBookBand href={section.brandBookUrl} accentClass={themeAccent} />
+          <Reveal>
+            <BrandBookLink href={section.brandBookUrl} accentClass={themeAccent} layout="horizontal" />
+          </Reveal>
         </div>
       ) : null}
 
@@ -315,11 +365,13 @@ export function BrandBoardShowcase({
     >
       {section.brandBookUrl ? (
         <div className="bg-[#060606] px-6 py-6 sm:px-8 sm:py-8">
-          <BrandBookBand href={section.brandBookUrl} accentClass={themeAccent} />
+          <Reveal>
+            <BrandBookLink href={section.brandBookUrl} accentClass={themeAccent} layout="horizontal" />
+          </Reveal>
         </div>
       ) : null}
 
-      <div className="grid grid-cols-2 gap-px bg-white/[0.1] sm:grid-cols-12">
+      <div className="grid grid-cols-1 gap-px bg-white/[0.1] min-[480px]:grid-cols-2 sm:grid-cols-12">
         {media.map((item, i) => (
           <motion.figure
             key={`${item.src}-${i}`}

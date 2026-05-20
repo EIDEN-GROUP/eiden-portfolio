@@ -82,11 +82,11 @@ export function SiteNav() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
-        className="fixed inset-x-0 top-0 z-50"
+        className="fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)]"
       >
         <div
           className={cn(
-            "mx-auto flex w-full items-center justify-between px-6 py-4 transition-all duration-500 sm:px-10 md:px-14",
+            "mx-auto flex w-full min-w-0 items-center justify-between px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] py-4 transition-all duration-500 sm:px-10 md:px-14",
             scrolled &&
               "bg-forest-deep/90 py-3 shadow-[0_8px_40px_-8px_rgba(0,0,0,0.7)] backdrop-blur-xl",
           )}
@@ -96,7 +96,7 @@ export function SiteNav() {
             <img
               src="/logo-1.png"
               alt="EIDEN Group"
-              className="w-28"
+              className="h-auto w-[clamp(5.5rem,22vw,7rem)]"
               style={{ filter: "brightness(0) invert(1)" }}
             />
           </Link>
@@ -192,7 +192,7 @@ export function SiteNav() {
                     hash={link.hash}
                     label={link.label}
                     onClick={close}
-                    className="block w-full text-left font-display text-[2.2rem] font-semibold leading-none text-white/85 transition-colors hover:text-gold"
+                    className="block w-full text-left font-display text-[clamp(1.75rem,8vw,2.2rem)] font-semibold leading-none text-white/85 transition-colors hover:text-gold"
                   />
                 </motion.div>
               ))}

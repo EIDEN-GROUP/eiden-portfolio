@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useProjectThemeOptional } from "@/components/case-study/projectThemeContext";
 import { ease, fadeUp, stagger } from "./motion";
 
@@ -241,37 +241,94 @@ export function MediaMasonry({ items }: { items: MediaItem[] }) {
   );
 }
 
+const STRIP_SCROLL_START = 0.04;
+const STRIP_SCROLL_RANGE = 0.28;
+
+function scrollLeftForProgress(el: HTMLDivElement, progress: number): number {
+  const max = Math.max(0, el.scrollWidth - el.clientWidth);
+  return max * (STRIP_SCROLL_START + progress * STRIP_SCROLL_RANGE);
+}
+
 export function HorizontalMediaStrip({ items }: { items: MediaItem[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const x = useTransform(scrollYProgress, [0, 1], ["4%", "-28%"]);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const userInteractingRef = useRef(false);
+  const pointerStartRef = useRef({ x: 0, y: 0 });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const applyScrollProgress = useCallback((progress: number) => {
+    const el = scrollerRef.current;
+    if (!el || userInteractingRef.current) return;
+    el.scrollLeft = scrollLeftForProgress(el, progress);
+  }, []);
+
+  useMotionValueEvent(scrollYProgress, "change", applyScrollProgress);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const sync = () => applyScrollProgress(scrollYProgress.get());
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    sync();
+    return () => ro.disconnect();
+  }, [applyScrollProgress, scrollYProgress, items]);
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    pointerStartRef.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (userInteractingRef.current) return;
+    const dx = Math.abs(e.clientX - pointerStartRef.current.x);
+    const dy = Math.abs(e.clientY - pointerStartRef.current.y);
+    if (dx > dy && dx > 10) userInteractingRef.current = true;
+  };
+
+  const endInteraction = () => {
+    userInteractingRef.current = false;
+  };
 
   return (
-    <motion.div ref={ref} className="overflow-hidden py-4 sm:py-8">
-      <motion.div
-        style={{ x }}
-        className="flex w-max gap-4 px-[max(1rem,env(safe-area-inset-left))] sm:gap-6 sm:px-8"
+    <div ref={sectionRef} className="overflow-hidden py-4 sm:py-8">
+      <div
+        ref={scrollerRef}
+        data-lenis-prevent
+        data-lenis-prevent-touch
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endInteraction}
+        onPointerCancel={endInteraction}
+        onPointerLeave={endInteraction}
+        className="w-full cursor-grab overflow-x-auto overscroll-x-contain scrollbar-none [-webkit-overflow-scrolling:touch] [touch-action:pan-x] active:cursor-grabbing"
       >
-        {items.map((item, i) => (
-          <figure
-            key={`${item.src}-${i}`}
-            className="relative h-[min(52vw,22rem)] w-[min(78vw,34rem)] shrink-0 overflow-hidden border border-white/[0.12] shadow-[0_24px_80px_-32px_rgba(0,0,0,0.85)]"
-          >
-            <img
-              src={item.src}
-              alt={item.alt}
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
-            {item.caption ? (
-              <figcaption className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-5 font-label text-[9px] uppercase tracking-[0.38em] text-white/75">
-                {item.caption}
-              </figcaption>
-            ) : null}
-          </figure>
-        ))}
-      </motion.div>
-    </motion.div>
+        <div className="flex w-max gap-4 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:gap-6 sm:px-8">
+          {items.map((item, i) => (
+            <figure
+              key={`${item.src}-${i}`}
+              className="relative h-[min(52vw,22rem)] w-[min(78vw,34rem)] shrink-0 overflow-hidden border border-white/[0.12] shadow-[0_24px_80px_-32px_rgba(0,0,0,0.85)]"
+            >
+              <img
+                src={item.src}
+                alt={item.alt}
+                className="h-full w-full object-cover"
+                loading="lazy"
+                draggable={false}
+              />
+              {item.caption ? (
+                <figcaption className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 to-transparent p-5 font-label text-[9px] uppercase tracking-[0.38em] text-white/75">
+                  {item.caption}
+                </figcaption>
+              ) : null}
+            </figure>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -376,13 +433,19 @@ export function DeviceMockupPair({
   desktopSrc,
   mobileSrc,
   alt,
+  websiteHref,
+  websiteLabel,
 }: {
   desktopSrc: string;
   mobileSrc: string;
   alt: string;
+  websiteHref?: string;
+  websiteLabel?: string;
 }) {
-  return (
-    <Reveal className="relative mx-auto max-w-5xl px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-8">
+  const interactive = Boolean(websiteHref && websiteLabel);
+
+  const content = (
+    <>
       <motion.div
         initial={{ opacity: 0, y: 48 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -390,17 +453,53 @@ export function DeviceMockupPair({
         transition={{ duration: 1.1, ease }}
         className="relative aspect-[16/10] overflow-hidden border border-white/12 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]"
       >
-        <img src={desktopSrc} alt={`${alt} desktop`} className="h-full w-full object-cover" />
+        <img
+          src={desktopSrc}
+          alt={`${alt} desktop`}
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+        />
+        {interactive ? (
+          <div
+            className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/55 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:opacity-0 [@media(hover:none)]:group-active:opacity-100"
+            aria-hidden
+          >
+            <span className="font-label text-[10px] uppercase tracking-[0.42em] text-white/70">
+              Visit live site
+            </span>
+            <span className="flex items-center gap-2 font-display text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl">
+              {websiteLabel}
+              <ArrowUpRight className="h-5 w-5 shrink-0 text-gold" strokeWidth={1.5} />
+            </span>
+          </div>
+        ) : null}
       </motion.div>
       <motion.div
         initial={{ opacity: 0, x: 24, y: 24 }}
         whileInView={{ opacity: 1, x: 0, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 1, delay: 0.2, ease }}
-        className="absolute -bottom-6 right-[max(1.5rem,env(safe-area-inset-right))] w-[28%] max-w-[11rem] overflow-hidden border border-white/15 shadow-2xl sm:-bottom-10 sm:right-12 sm:max-w-[13rem]"
+        className="pointer-events-none absolute -bottom-6 right-[max(1.5rem,env(safe-area-inset-right))] z-10 w-[28%] max-w-[11rem] overflow-hidden border border-white/15 shadow-2xl sm:-bottom-10 sm:right-12 sm:max-w-[13rem]"
       >
         <img src={mobileSrc} alt={`${alt} mobile`} className="aspect-[9/19] w-full object-cover" />
       </motion.div>
+    </>
+  );
+
+  return (
+    <Reveal className="relative mx-auto max-w-5xl px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-8">
+      {interactive ? (
+        <a
+          href={websiteHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block cursor-pointer rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+          aria-label={`Visit ${websiteLabel}`}
+        >
+          {content}
+        </a>
+      ) : (
+        <div className="relative">{content}</div>
+      )}
     </Reveal>
   );
 }

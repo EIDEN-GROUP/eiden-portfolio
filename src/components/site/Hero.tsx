@@ -209,7 +209,7 @@ function HeroScrollSequence() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.3, ease }}
-              className="mb-4 flex items-center gap-3 font-label text-[14px] uppercase tracking-[0.42em] text-gold/80 sm:mb-5 sm:text-[11px]"
+              className="mb-4 flex items-center gap-3 font-label text-[11px] uppercase tracking-[0.38em] text-gold/80 sm:mb-5 sm:tracking-[0.42em]"
             >
               <span className="inline-block bg-gold/60 sm:w-8" />
               MENA's first Business Architecture firm

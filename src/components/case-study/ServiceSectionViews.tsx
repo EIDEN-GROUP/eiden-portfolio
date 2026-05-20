@@ -23,6 +23,18 @@ function mediaFromSection(section: ServiceSection): MediaItem[] {
   }));
 }
 
+function primaryWebsiteLink(section: ServiceSection): { href: string; label: string } | null {
+  const link =
+    section.links?.find((l) => l.label.toLowerCase() === "website") ?? section.links?.[0];
+  if (!link) return null;
+  try {
+    const host = new URL(link.url).hostname.replace(/^www\./, "");
+    return { href: link.url, label: host };
+  } catch {
+    return { href: link.url, label: link.label };
+  }
+}
+
 export function ServiceSectionView({
   section,
   themeAccent,
@@ -36,6 +48,8 @@ export function ServiceSectionView({
   const media = mediaFromSection(section);
   const desktop = media[0];
   const mobile = media[1] ?? media[0];
+  const websiteCta =
+    section.type === "website-showcase" ? primaryWebsiteLink(section) : null;
 
   if (section.type === "impact" && !section.beforeAfter) return null;
 
@@ -90,9 +104,13 @@ export function ServiceSectionView({
 
         {section.type === "website-showcase" && desktop && mobile && (
           <>
-            <DeviceMockupPair desktopSrc={desktop.src} mobileSrc={mobile.src} alt={section.title} />
-            {section.features?.length ? <FeaturePills features={section.features} /> : null}
-            {media.length > 2 ? <HorizontalMediaStrip items={media.slice(2)} /> : null}
+            <DeviceMockupPair
+              desktopSrc={desktop.src}
+              mobileSrc={mobile.src}
+              alt={section.title}
+              websiteHref={websiteCta?.href}
+              websiteLabel={websiteCta?.label}
+            />
           </>
         )}
 

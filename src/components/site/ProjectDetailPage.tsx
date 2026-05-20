@@ -106,7 +106,12 @@ export function ProjectRouteNotFound() {
       style={{ background: "oklch(0.07 0.012 165)" }}
     >
       <div>
-        <div className="mb-4 font-display text-6xl text-gold">404</div>
+        <div
+          className="mb-4 font-display font-bold text-gold"
+          style={{ fontSize: "clamp(3.5rem, 16vw, 6rem)" }}
+        >
+          404
+        </div>
         <p className="mb-6 font-editorial italic text-white/50">This project does not exist.</p>
         <Link
           to="/"

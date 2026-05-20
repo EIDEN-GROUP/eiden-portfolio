@@ -13,10 +13,6 @@ import dmcSocialExcellence from "@/assets/dmc-social-excellence.png";
 import dmcSocialM from "@/assets/dmc-social-m.png";
 import educazenkidsBefore from "@/assets/educazenkids-before.svg";
 import educazenkidsCover from "@/assets/educazenkids-cover.png";
-import educazenkidsScroll1 from "@/assets/educazenkids-scroll-1.png";
-import educazenkidsScroll2 from "@/assets/educazenkids-scroll-2.png";
-import educazenkidsScroll3 from "@/assets/educazenkids-scroll-3.png";
-import educazenkidsWebsiteBanner from "@/assets/educazenkids-website-banner.png";
 import educazenHero from "@/assets/educazen-hero.png";
 import eidenAcademyBrandCarousel from "@/assets/eiden-academy-brand-carousel.png";
 import eidenAcademyCover from "@/assets/eiden-academy-cover.png";
@@ -334,21 +330,8 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       media: [
         m(educazenHero, "EducazenKids desktop", "Desktop"),
         m(educazenkidsCover, "EducazenKids mobile", "Mobile"),
-        m(educazenkidsWebsiteBanner, "EducazenKids homepage", "Homepage"),
-        m(educazenHero, "EducazenKids programs", "Programs"),
-        m(educazenkidsCover, "EducazenKids team & pole", "Team"),
-        m(educazenkidsScroll2, "EducazenKids parent messaging", "Messaging"),
-        m(educazenkidsScroll3, "EducazenKids enrollment", "Enrollment"),
-        m(educazenkidsScroll1, "EducazenKids inclusive learning", "Learning"),
       ],
-      links: [
-        { label: "Website", url: "https://educazenkids.com/" },
-        { label: "Educazenkids Website", url: "https://educazenkids.com/" },
-        {
-          label: "Educazenkids Brand Book",
-          url: "https://eiden-group.com/brand-books/educazenkids-brand-book",
-        },
-      ],
+      links: [{ label: "Website", url: "https://educazenkids.com/" }],
     },
     {
       id: "edu-impact",
