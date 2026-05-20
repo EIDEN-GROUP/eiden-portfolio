@@ -67,8 +67,6 @@ const SERVICE_EXPLANATIONS: Record<string, Record<string, string>> = {
     Photography: "Delivered photography assets for marketing, platform pages, and campaigns.",
     "Video Production":
       "Produced branded video content for storytelling, promotion, and learner engagement.",
-    "English Test System Development":
-      "Built the English testing system with structured levels, tracking, and assessment logic.",
   },
 };
 

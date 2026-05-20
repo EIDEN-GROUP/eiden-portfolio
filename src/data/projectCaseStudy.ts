@@ -143,8 +143,6 @@ const SERVICE_BLURBS: Record<string, string> = {
     "Pipeline visibility, parent follow-up, and team workflows in one operations console.",
   "Dashboard system":
     "Student progress, cohort analytics, and admin tooling designed for daily use.",
-  "English test system":
-    "Gamified assessment, level progression, and results that keep learners motivated.",
 };
 
 function mergeExpertise(project: Project): CaseStudyExpertiseItem[] {

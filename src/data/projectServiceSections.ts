@@ -35,7 +35,6 @@ export type ServiceSectionType =
   | "social-content"
   | "media-buying"
   | "crm-dashboard"
-  | "english-test"
   | "impact";
 
 export type ServiceSectionTheme =
@@ -404,20 +403,6 @@ const EIDEN_ACADEMY_CONFIG: ProjectServiceConfig = {
         m(eidenHero, "Eiden dashboard", "Dashboard"),
         m(eidenAcademyCover, "Eiden admin", "Admin", true),
         m(eidenHero, "Eiden analytics", "Analytics"),
-      ],
-    },
-    {
-      id: "ea-test",
-      type: "english-test",
-      eyebrow: "English Test System Development",
-      title: "Gamified English assessment with levels learners want to complete.",
-      description:
-        "Adaptive quizzes, progress rings, and certification paths   assessment designed as motivation, not a barrier.",
-      features: ["Adaptive quizzes", "Progress rings", "Certification paths", "Leaderboards"],
-      media: [
-        m(eidenAcademyCover, "English test UI", "Quiz"),
-        m(eidenHero, "English test progress", "Progress"),
-        m(eidenAcademyCover, "English test results", "Results"),
       ],
     },
   ],

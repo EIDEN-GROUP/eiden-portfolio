@@ -285,7 +285,7 @@ export const projects = [
     title: "Eiden Academy",
     cover: eidenAcademyCover,
     detailHero: eidenHero,
-    summary: "Learning brand with dashboard and gamified English test.",
+    summary: "Learning brand with dashboard and institutional platform.",
     tagline: "Institutional knowledge, delivered as a platform students return to.",
     category: "Education & talent",
     year: "2024",
@@ -295,7 +295,6 @@ export const projects = [
       "Dashboard system",
       "Branding",
       "Social media content",
-      "English test system",
     ],
     website: "https://eiden-group.com/",
     caseStudy: {
@@ -348,9 +347,9 @@ export const projects = [
       challenge:
         "Eiden Academy needed to scale group expertise beyond slides   a credible brand, public site, internal dashboards, social proof, and assessment learners would actually finish.",
       goals:
-        "Ship branding and the public platform, build admin and student dashboards, grow professional social content, and launch the English test system.",
+        "Ship branding and the public platform, build admin and student dashboards, and grow professional social content.",
       context:
-        "Education & talent · EIDEN Group   branding, website, dashboard system, social content, and English test system.",
+        "Education & talent · EIDEN Group   branding, website, dashboard system, and social content.",
       stats: [
         { prefix: "+", value: 210, suffix: "%", label: "student engagement" },
         { prefix: "+", value: 88, suffix: "%", label: "course completion" },
@@ -359,7 +358,7 @@ export const projects = [
       closingReview: {
         eyebrow: "After delivery",
         quote:
-          "Brand, site, dashboards, social, and the English test feel like one product   students engage, and our team runs programs with clarity.",
+          "Brand, site, dashboards, and social feel like one product   students engage, and our team runs programs with clarity.",
         author: "Eiden Academy",
         role: "Edtech",
       },

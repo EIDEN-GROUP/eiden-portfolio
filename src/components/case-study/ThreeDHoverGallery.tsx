@@ -336,17 +336,15 @@ function MobileGalleryCard({
   item,
   isActive,
   theme,
-  onActivate,
 }: {
   item: CinematicGalleryItem;
   isActive: boolean;
   theme: ThreeDHoverGalleryTheme;
-  onActivate: () => void;
 }) {
   return (
     <article
       className={cn(
-        "snap-center shrink-0 overflow-hidden rounded-lg shadow-[0_24px_60px_-20px_rgba(0,0,0,0.9)] transition-[filter,transform] duration-500",
+        "snap-center shrink-0 overflow-hidden rounded-lg shadow-[0_24px_60px_-20px_rgba(0,0,0,0.9)] transition-[filter,transform] duration-500 [touch-action:pan-x]",
         isActive ? "scale-100" : "scale-[0.97] opacity-80",
       )}
       style={{
@@ -354,24 +352,24 @@ function MobileGalleryCard({
         filter: isActive ? "brightness(1.02)" : "grayscale(0.5) brightness(0.7)",
       }}
     >
-      <button
-        type="button"
-        className="relative block w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-[var(--gallery-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-        style={{ "--gallery-ring": theme.accent } as CSSProperties}
-        onClick={onActivate}
-      >
+      <div className="relative block w-full text-left">
         <div className="relative aspect-[4/5] w-full overflow-hidden">
           <img
             src={item.src}
             alt={item.alt}
             className="h-full w-full object-cover"
             loading="lazy"
+            decoding="async"
+            draggable={false}
           />
-          <motion.div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+          <div
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"
+            aria-hidden
+          />
           {isActive ? (
             <GalleryCardOverlay item={item} theme={theme} visible layout="overlay" />
           ) : (
-            <div className="absolute inset-x-0 bottom-0 p-4">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4">
               <p
                 className="font-label text-[8px] uppercase tracking-[0.4em]"
                 style={{ color: theme.accent }}
@@ -387,7 +385,7 @@ function MobileGalleryCard({
             </div>
           )}
         </div>
-      </button>
+      </div>
     </article>
   );
 }
@@ -404,8 +402,20 @@ export function ThreeDHoverGallery({
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const mobileScrollerRef = useRef<HTMLDivElement>(null);
 
   const count = items.length;
+
+  const syncActiveFromScroll = useCallback(() => {
+    const el = mobileScrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-cinematic-card]");
+    if (!card) return;
+    const gap = 16;
+    const w = card.offsetWidth + gap;
+    const idx = Math.round(el.scrollLeft / w);
+    if (idx >= 0 && idx < count) setActiveIndex(idx);
+  }, [count]);
 
   const go = useCallback(
     (dir: -1 | 1) => {
@@ -525,28 +535,23 @@ export function ThreeDHoverGallery({
           </>
         ) : (
           <>
-            <motion.div
-              className="-mx-[max(1rem,env(safe-area-inset-left))] flex gap-4 overflow-x-auto px-[max(1rem,env(safe-area-inset-left))] pb-4 pr-[max(1rem,env(safe-area-inset-right))] snap-x snap-mandatory scrollbar-none"
-              onScroll={(e) => {
-                const el = e.currentTarget;
-                const card = el.querySelector<HTMLElement>("[data-cinematic-card]");
-                if (!card) return;
-                const w = card.offsetWidth + 16;
-                const idx = Math.round(el.scrollLeft / w);
-                if (idx >= 0 && idx < count) setActiveIndex(idx);
-              }}
+            <div
+              ref={mobileScrollerRef}
+              data-lenis-prevent
+              data-lenis-prevent-touch
+              onScroll={syncActiveFromScroll}
+              className="-mx-[max(1rem,env(safe-area-inset-left))] flex cursor-grab gap-4 overflow-x-auto overscroll-x-contain px-[max(1rem,env(safe-area-inset-left))] pb-4 pr-[max(1rem,env(safe-area-inset-right))] scroll-px-[max(1rem,env(safe-area-inset-left))] snap-x snap-proximity scrollbar-none [-webkit-overflow-scrolling:touch] [touch-action:pan-x] active:cursor-grabbing"
             >
               {items.map((item, i) => (
-                <motion.div key={item.id} data-cinematic-card className="snap-center">
+                <div key={item.id} data-cinematic-card className="snap-center shrink-0">
                   <MobileGalleryCard
                     item={item}
                     isActive={i === activeIndex}
                     theme={theme}
-                    onActivate={() => setActiveIndex(i)}
                   />
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </>
         )}
       </motion.div>

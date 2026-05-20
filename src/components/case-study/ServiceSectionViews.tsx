@@ -131,13 +131,6 @@ export function ServiceSectionView({
           </>
         )}
 
-        {section.type === "english-test" && (
-          <>
-            {media.length > 0 ? <HorizontalMediaStrip items={media} /> : null}
-            {section.features?.length ? <FeaturePills features={section.features} /> : null}
-          </>
-        )}
-
         {section.type === "impact" && section.beforeAfter ? (
           <>
             <BeforeAfterRow
