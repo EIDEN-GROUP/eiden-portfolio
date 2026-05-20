@@ -159,7 +159,8 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "DMC brand campaign",
         category: "Brand",
         title: "L'excellence en hôtellerie",
-        description: "Forest and gold — editorial campaigns built for owners who expect Moroccan authenticity.",
+        description:
+          "Forest and gold — editorial campaigns built for owners who expect Moroccan authenticity.",
       },
       {
         id: "dmc-letter-d",
@@ -175,7 +176,8 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "DMC management",
         category: "Campaign",
         title: "Accompagnement sur mesure",
-        description: "Partnership storytelling — structured services and team credibility in every post.",
+        description:
+          "Partnership storytelling — structured services and team credibility in every post.",
       },
       {
         id: "dmc-letter-c",
@@ -183,7 +185,8 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "DMC consulting",
         category: "Consulting",
         title: "Authenticité & durabilité",
-        description: "Social content that converts curiosity into qualified hotel project inquiries.",
+        description:
+          "Social content that converts curiosity into qualified hotel project inquiries.",
       },
     ],
   },
@@ -269,8 +272,7 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "Eiden Academy AI integration",
         category: "Campaign",
         title: "Intégration IA",
-        description:
-          "Feed-ready formation frames that convert curiosity into program sign-ups.",
+        description: "Feed-ready formation frames that convert curiosity into program sign-ups.",
       },
     ],
   },

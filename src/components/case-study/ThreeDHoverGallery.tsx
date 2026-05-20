@@ -1,13 +1,7 @@
 import type { CinematicGalleryItem } from "@/data/projectCinematicGallery";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion, type Transition } from "framer-motion";
-import {
-  ArrowLeft,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Globe,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Globe } from "lucide-react";
 import {
   useCallback,
   useEffect,
@@ -50,7 +44,14 @@ type SocialEntry = {
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className={className} fill="none" stroke="currentColor" strokeWidth="1.75">
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+    >
       <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" />
@@ -142,10 +143,20 @@ function GalleryCardOverlay({
       }))
     : ([
         item.socialLinks?.instagram
-          ? { id: "instagram", href: item.socialLinks.instagram, label: "Instagram", Icon: InstagramIcon }
+          ? {
+              id: "instagram",
+              href: item.socialLinks.instagram,
+              label: "Instagram",
+              Icon: InstagramIcon,
+            }
           : null,
         item.socialLinks?.facebook
-          ? { id: "facebook", href: item.socialLinks.facebook, label: "Facebook", Icon: FacebookIcon }
+          ? {
+              id: "facebook",
+              href: item.socialLinks.facebook,
+              label: "Facebook",
+              Icon: FacebookIcon,
+            }
           : null,
         item.socialLinks?.tiktok
           ? { id: "tiktok", href: item.socialLinks.tiktok, label: "TikTok", Icon: TikTokIcon }
@@ -248,7 +259,9 @@ function GalleryCardOverlay({
                     borderRadius: socialCard ? "9999px" : "2px",
                   }}
                 >
-                  <Icon className={socialCard ? "h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" : "h-3 w-3"} />
+                  <Icon
+                    className={socialCard ? "h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" : "h-3 w-3"}
+                  />
                   {!socialCard ? label : null}
                 </a>
               ))}

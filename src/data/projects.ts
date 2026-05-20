@@ -81,8 +81,7 @@ export const projects = [
     title: "Bôpassage",
     cover: bopassageCover,
     detailHero: bopassageHero,
-    summary:
-      "Website, social, and paid media to fill tables.",
+    summary: "Website, social, and paid media to fill tables.",
     tagline: "L'endroit où on revient toujours   now with a digital layer to match.",
     category: "Retail & placemaking",
     year: "2024",
@@ -157,8 +156,7 @@ export const projects = [
     title: "DMC",
     cover: dmcCover,
     detailHero: dmcHeroDetail,
-    summary:
-      "Morocco hospitality brand with DMC website and performance media.",
+    summary: "Morocco hospitality brand with DMC website and performance media.",
     tagline: "Authenticité & excellence   hotel expertise from mark to inquiry.",
     category: "Hospitality",
     year: "2023",
@@ -171,14 +169,7 @@ export const projects = [
     ],
     website: "https://dmchm.com/",
     caseStudy: {
-      gallery: [
-        dmcSocialExcellence,
-        dmcSocialD,
-        dmcSocialM,
-        dmcSocialC,
-        dmcHero,
-        dmcCover,
-      ],
+      gallery: [dmcSocialExcellence, dmcSocialD, dmcSocialM, dmcSocialC, dmcHero, dmcCover],
       resultGallery: [
         {
           src: dmcSocialExcellence,
@@ -217,8 +208,7 @@ export const projects = [
     title: "EducazenKids",
     cover: educazenkidsCover,
     detailHero: educazenHero,
-    summary:
-      "Parent-trusted platform with CRM and growth media for Agadir families.",
+    summary: "Parent-trusted platform with CRM and growth media for Agadir families.",
     tagline: "L'enseignement sur mesure   with the digital stack to match.",
     category: "Education",
     year: "2023",
@@ -295,8 +285,7 @@ export const projects = [
     title: "Eiden Academy",
     cover: eidenAcademyCover,
     detailHero: eidenHero,
-    summary:
-      "Learning brand with dashboard and gamified English test.",
+    summary: "Learning brand with dashboard and gamified English test.",
     tagline: "Institutional knowledge, delivered as a platform students return to.",
     category: "Education & talent",
     year: "2024",
@@ -349,7 +338,12 @@ export const projects = [
           variant: "wide",
         },
         { src: eidenHero, alt: "Eiden Academy platform", caption: "Platform", variant: "tall" },
-        { src: eidenAcademyCover, alt: "Eiden Academy guidelines", caption: "Guidelines", variant: "sm" },
+        {
+          src: eidenAcademyCover,
+          alt: "Eiden Academy guidelines",
+          caption: "Guidelines",
+          variant: "sm",
+        },
       ],
       challenge:
         "Eiden Academy needed to scale group expertise beyond slides   a credible brand, public site, internal dashboards, social proof, and assessment learners would actually finish.",
@@ -376,8 +370,7 @@ export const projects = [
     title: "Lunja Village",
     cover: lunjaCover,
     detailHero: lunjaHero,
-    summary:
-      "Imi Ouddar identity with social content and booking media.",
+    summary: "Imi Ouddar identity with social content and booking media.",
     tagline: "Surf & nomad cottages   bold on the feed, warm before arrival.",
     category: "Hospitality",
     year: "2024",
@@ -395,13 +388,43 @@ export const projects = [
         lunjaSocial7,
       ],
       resultGallery: [
-        { src: lunjaSocial1, alt: "Lunja Village  N'attends plus yoga", caption: "Social", variant: "hero" },
+        {
+          src: lunjaSocial1,
+          alt: "Lunja Village  N'attends plus yoga",
+          caption: "Social",
+          variant: "hero",
+        },
         { src: lunjaSocial2, alt: "Lunja Village  Vague en vue", caption: "Surf", variant: "tall" },
-        { src: lunjaSocial3, alt: "Lunja Village  sunset surfboards", caption: "Golden hour", variant: "sm" },
-        { src: lunjaSocial4, alt: "Lunja Village  Taghazout skate park", caption: "Skate", variant: "wide" },
-        { src: lunjaSocial5, alt: "Lunja Village  stay a little longer", caption: "Coast", variant: "tall" },
-        { src: lunjaSocial6, alt: "Lunja Village  summer view Taghazout", caption: "Taghazout", variant: "sm" },
-        { src: lunjaSocial7, alt: "Lunja Village  clear minds", caption: "Wellness", variant: "hero" },
+        {
+          src: lunjaSocial3,
+          alt: "Lunja Village  sunset surfboards",
+          caption: "Golden hour",
+          variant: "sm",
+        },
+        {
+          src: lunjaSocial4,
+          alt: "Lunja Village  Taghazout skate park",
+          caption: "Skate",
+          variant: "wide",
+        },
+        {
+          src: lunjaSocial5,
+          alt: "Lunja Village  stay a little longer",
+          caption: "Coast",
+          variant: "tall",
+        },
+        {
+          src: lunjaSocial6,
+          alt: "Lunja Village  summer view Taghazout",
+          caption: "Taghazout",
+          variant: "sm",
+        },
+        {
+          src: lunjaSocial7,
+          alt: "Lunja Village  clear minds",
+          caption: "Wellness",
+          variant: "hero",
+        },
       ],
       challenge:
         "Lunja needed a distinctive coastal identity and a content engine that could compete with generic surf camps   without a website rebuild in scope.",

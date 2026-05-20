@@ -182,7 +182,12 @@ const DMC_CONFIG: ProjectServiceConfig = {
       title: "Hotel consulting authority on the feed.",
       description:
         "DMC letter-series and excellence campaigns — built for B2B recognition with owners and operators across Morocco.",
-      features: ["LinkedIn carousels", "Brand campaigns", "Expertise frames", "Partner storytelling"],
+      features: [
+        "LinkedIn carousels",
+        "Brand campaigns",
+        "Expertise frames",
+        "Partner storytelling",
+      ],
       media: [
         m(dmcSocialD, "DMC — D", "Expertise"),
         m(dmcSocialM, "DMC — M", "Management"),
@@ -224,7 +229,10 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
       ],
       links: [
         { label: "Website", url: "https://bopassage.com/" },
-        { label: "Bô Passage Brand Book", url: "https://eiden-group.com/brand-books/bopassage-brand-book" },
+        {
+          label: "Bô Passage Brand Book",
+          url: "https://eiden-group.com/brand-books/bopassage-brand-book",
+        },
       ],
     },
     {
@@ -279,7 +287,10 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
       media: [m(lunjaHero, "Lunja logo", "Logo"), m(lunjaCover, "Lunja mockup", "Mockup")],
       links: [
         { label: "Branding", url: "https://www.lunjavillage.com/" },
-        { label: "Lunja Village Brand Book", url: "https://eiden-group.com/brand-books/lunja-brand-book" },
+        {
+          label: "Lunja Village Brand Book",
+          url: "https://eiden-group.com/brand-books/lunja-brand-book",
+        },
       ],
     },
     {
@@ -333,7 +344,10 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       links: [
         { label: "Website", url: "https://educazenkids.com/" },
         { label: "Educazenkids Website", url: "https://educazenkids.com/" },
-        { label: "Educazenkids Brand Book", url: "https://eiden-group.com/brand-books/educazenkids-brand-book" },
+        {
+          label: "Educazenkids Brand Book",
+          url: "https://eiden-group.com/brand-books/educazenkids-brand-book",
+        },
       ],
     },
     {
@@ -427,7 +441,10 @@ const EIDEN_ACADEMY_CONFIG: ProjectServiceConfig = {
       ],
       links: [
         { label: "Branding", url: "https://eiden-group.com/" },
-        { label: "EIDEN Academy Brand Guidelines", url: "https://eiden-group.com/brand-books/eiden-academy-brand-guidelines-v2" },
+        {
+          label: "EIDEN Academy Brand Guidelines",
+          url: "https://eiden-group.com/brand-books/eiden-academy-brand-guidelines-v2",
+        },
       ],
     },
     {

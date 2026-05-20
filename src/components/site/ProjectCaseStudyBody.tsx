@@ -5,9 +5,25 @@ import { ProjectServicesShowcase } from "@/components/case-study/ProjectServices
 import { resolveCaseStudy } from "@/data/projectCaseStudy";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
-import { motion, useInView, useMotionValueEvent, useScroll, useSpring, useTransform,} from "framer-motion";
+import {
+  motion,
+  useInView,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { Camera, Globe, Music, Users } from "lucide-react";
-import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 const CaseStudyScrollGallery = lazy(() =>
   import("@/components/site/CaseStudyScrollGallery").then((m) => ({
     default: m.CaseStudyScrollGallery,
@@ -497,7 +513,11 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
         <BandHeader left="Industry" center={project.summary} right="Timeline" />
         <BandHeader left={c.industry} center={project.tagline} right={c.timeline} />
 
-        <section aria-label="Client problem" className="border-t bg-black" style={{ borderColor: theme.colors.border }}>
+        <section
+          aria-label="Client problem"
+          className="border-t bg-black"
+          style={{ borderColor: theme.colors.border }}
+        >
           <ClientReviewSpotlight review={clientProblemReview} className="pb-6 sm:pb-10" />
         </section>
 
@@ -512,7 +532,10 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
           style={{ borderColor: theme.colors.border }}
         >
           <BandHeader left="Outcomes" center="Momentum, measured." right="Impact" />
-          <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x" style={{ borderColor: theme.colors.border }}>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x"
+            style={{ borderColor: theme.colors.border }}
+          >
             {c.stats.map((s: CaseStudyStat) => (
               <StatRow key={s.label} stat={s} active={statsInView} />
             ))}
@@ -536,11 +559,18 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
           </Suspense>
         </section>
 
-        <section aria-label="Client review   closing" className="border-t bg-black" style={{ borderColor: theme.colors.border }} >
+        <section
+          aria-label="Client review   closing"
+          className="border-t bg-black"
+          style={{ borderColor: theme.colors.border }}
+        >
           <ClientReviewSpotlight review={c.closingReview} className="pb-28 sm:pb-36" />
         </section>
 
-        <div className="pointer-events-none h-px w-full" style={{ background: theme.gradients.divider }} />
+        <div
+          className="pointer-events-none h-px w-full"
+          style={{ background: theme.gradients.divider }}
+        />
       </div>
     </>
   );

@@ -25,8 +25,7 @@ const SERVICE_EXPLANATIONS: Record<string, Record<string, string>> = {
       "Built social content that highlights ambiance, menu moments, and daily rituals.",
     Photography:
       "Delivered lifestyle and product photography for campaigns, website, and organic social.",
-    "Video Production":
-      "Produced short-form videos and reels to increase reach and engagement.",
+    "Video Production": "Produced short-form videos and reels to increase reach and engagement.",
     "Media Buying & Advertising Campaigns":
       "Launched and optimized paid campaigns to drive footfall and reservation intent.",
   },
@@ -100,7 +99,9 @@ export function ProjectCinematicGallerySection({ project }: { project: Project }
       services: item.services ?? servicesWithExplanation,
       cta:
         item.cta ??
-        (project.website ? { label: `Visit ${websiteHost ?? "website"}`, href: project.website } : undefined),
+        (project.website
+          ? { label: `Visit ${websiteHost ?? "website"}`, href: project.website }
+          : undefined),
     }));
   const finalItems = [
     ...items,
@@ -176,8 +177,6 @@ export function ProjectCinematicGallerySection({ project }: { project: Project }
           transition={{ duration: 1.2, ease: theme.motion.ease }}
         />
       </div>
-
-     
     </section>
   );
 }

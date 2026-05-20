@@ -8,7 +8,6 @@ import { ProjectThemeProvider } from "@/components/case-study/ProjectThemeProvid
 import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { Footer } from "@/components/site/Footer";
 
-
 const ProjectCaseStudyBody = lazy(() =>
   import("@/components/site/ProjectCaseStudyBody").then((m) => ({
     default: m.ProjectCaseStudyBody,
