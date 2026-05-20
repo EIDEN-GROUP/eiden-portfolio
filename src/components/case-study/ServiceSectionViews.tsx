@@ -96,6 +96,13 @@ export function ServiceSectionView({
           </>
         )}
 
+        {section.type === "social-content" && (
+          <>
+            {media.length > 0 ? <HorizontalMediaStrip items={media} /> : null}
+            {section.features?.length ? <FeaturePills features={section.features} /> : null}
+          </>
+        )}
+
         {section.type === "media-buying" && section.features?.length ? (
           <FeaturePills features={section.features} />
         ) : null}

@@ -99,7 +99,7 @@ export function Footer() {
         {/* Logo + gold dot */}
         <Link
           to="/"
-          aria-label="EIDEN Group — home"
+          aria-label="EIDEN Group   home"
           className="inline-flex shrink-0 items-end gap-1 self-start sm:gap-1.5"
         >
           <img

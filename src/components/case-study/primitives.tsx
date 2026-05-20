@@ -346,6 +346,32 @@ export function FeaturePills({ features }: { features: string[] }) {
   );
 }
 
+export function LinksPills({ links }: { links: Array<{ label: string; url: string }> }) {
+  return (
+    <motion.ul
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={stagger}
+      className="flex flex-wrap gap-2 px-[max(1rem,env(safe-area-inset-left))] sm:px-8"
+    >
+      {links.map((link) => (
+        <motion.li key={link.url} variants={fadeUp}>
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 border border-white/12 bg-white/[0.04] px-4 py-2 font-label text-[10px] uppercase tracking-[0.28em] text-white/55 transition-all hover:bg-white/[0.08] hover:border-white/25 hover:text-white/75"
+          >
+            {link.label}
+            <ArrowUpRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </motion.li>
+      ))}
+    </motion.ul>
+  );
+}
+
 export function DeviceMockupPair({
   desktopSrc,
   mobileSrc,

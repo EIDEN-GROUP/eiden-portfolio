@@ -1,11 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { lazy, Suspense, useRef } from "react";
+import { useLenis } from "lenis/react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProjectThemeProvider } from "@/components/case-study/ProjectThemeProvider";
 import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { Footer } from "@/components/site/Footer";
+
+
 const ProjectCaseStudyBody = lazy(() =>
   import("@/components/site/ProjectCaseStudyBody").then((m) => ({
     default: m.ProjectCaseStudyBody,
@@ -16,10 +19,18 @@ import { projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import "swiper/css";
 
+function scrollPageToTop(lenis: ReturnType<typeof useLenis>) {
+  if (lenis) lenis.scrollTo(0, { immediate: true });
+  else window.scrollTo(0, 0);
+}
+
 function NextProjectCard({ q, className }: { q: Project; className?: string }) {
+  const lenis = useLenis();
+
   return (
     <Link
       to={`/projects/${q.slug}`}
+      onClick={() => scrollPageToTop(lenis)}
       className={cn(
         "group relative block aspect-[4/5] max-h-[min(78vh,52rem)] min-h-[19rem] w-full overflow-hidden sm:min-h-[22rem] md:aspect-[3/4]",
         className,
@@ -343,6 +354,14 @@ function ProjectDetailContent({ project: p }: { project: Project }) {
 }
 
 export function ProjectDetailPage({ project: p }: { project: Project }) {
+  const lenis = useLenis();
+
+  useEffect(() => {
+    scrollPageToTop(lenis);
+    const id = requestAnimationFrame(() => scrollPageToTop(lenis));
+    return () => cancelAnimationFrame(id);
+  }, [p.slug, lenis]);
+
   return (
     <ProjectThemeProvider slug={p.slug} className="project-themed min-w-0 overflow-x-clip">
       <main className="min-w-0 overflow-x-clip">

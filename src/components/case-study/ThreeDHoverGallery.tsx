@@ -1,7 +1,13 @@
-﻿import type { CinematicGalleryItem } from "@/data/projectCinematicGallery";
+import type { CinematicGalleryItem } from "@/data/projectCinematicGallery";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion, type Transition } from "framer-motion";
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Globe,
+} from "lucide-react";
 import {
   useCallback,
   useEffect,
@@ -9,6 +15,7 @@ import {
   useState,
   type CSSProperties,
   type KeyboardEvent,
+  type ReactElement,
 } from "react";
 
 export type ThreeDHoverGalleryTheme = {
@@ -34,6 +41,39 @@ const springTransition = (spring: ThreeDHoverGalleryTheme["spring"]): Transition
   ...spring,
 });
 
+type SocialEntry = {
+  id: string;
+  href: string;
+  label: string;
+  Icon: (props: { className?: string }) => ReactElement;
+};
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className={className} fill="none" stroke="currentColor" strokeWidth="1.75">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className={className} fill="currentColor">
+      <path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.2-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H8v3.2h2.6V22h2.9z" />
+    </svg>
+  );
+}
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className={className} fill="currentColor">
+      <path d="M14.9 3h2.7c.2 1.8 1.5 3.3 3.2 3.7v2.8c-1.4-.1-2.8-.6-3.9-1.5v6.3a5.5 5.5 0 1 1-5.5-5.5c.2 0 .5 0 .7.1v2.8a2.8 2.8 0 1 0 2.8 2.8V3z" />
+    </svg>
+  );
+}
+
 function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false);
   useEffect(() => {
@@ -45,6 +85,28 @@ function useMediaQuery(query: string): boolean {
     return () => mq.removeEventListener("change", sync);
   }, [query]);
   return matches;
+}
+
+function compactText(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  return `${text.slice(0, maxLength).trimEnd()}...`;
+}
+
+const SOCIAL_FALLBACK_URL: Record<"instagram" | "facebook" | "tiktok", string> = {
+  instagram: "https://www.instagram.com/",
+  facebook: "https://www.facebook.com/",
+  tiktok: "https://www.tiktok.com/",
+};
+
+const SOCIAL_PLATFORMS = [
+  { id: "instagram" as const, label: "Instagram", Icon: InstagramIcon },
+  { id: "facebook" as const, label: "Facebook", Icon: FacebookIcon },
+  { id: "tiktok" as const, label: "TikTok", Icon: TikTokIcon },
+];
+
+function isSocialMediaCard(item: CinematicGalleryItem): boolean {
+  const category = item.category.trim().toLowerCase();
+  return category.includes("social") || item.id.endsWith("-social-links");
 }
 
 function GalleryCardOverlay({
@@ -59,6 +121,39 @@ function GalleryCardOverlay({
   layout?: "overlay" | "inline";
 }) {
   const isOverlay = layout === "overlay";
+  const socialCard = isSocialMediaCard(item);
+  const compactDescription = compactText(item.description, socialCard ? 72 : 105);
+  const compactServices = socialCard
+    ? []
+    : (item.services ?? []).slice(0, 3).map((service) => compactText(service, 84));
+  const hiddenServicesCount = socialCard
+    ? 0
+    : Math.max(0, (item.services?.length ?? 0) - compactServices.length);
+  const hideCta =
+    socialCard ||
+    item.category.trim().toLowerCase() === "hospitality" ||
+    item.category.trim().toLowerCase() === "brand";
+  const socialEntries: SocialEntry[] = socialCard
+    ? SOCIAL_PLATFORMS.map(({ id, label, Icon }) => ({
+        id,
+        label,
+        Icon,
+        href: item.socialLinks?.[id]?.trim() || SOCIAL_FALLBACK_URL[id],
+      }))
+    : ([
+        item.socialLinks?.instagram
+          ? { id: "instagram", href: item.socialLinks.instagram, label: "Instagram", Icon: InstagramIcon }
+          : null,
+        item.socialLinks?.facebook
+          ? { id: "facebook", href: item.socialLinks.facebook, label: "Facebook", Icon: FacebookIcon }
+          : null,
+        item.socialLinks?.tiktok
+          ? { id: "tiktok", href: item.socialLinks.tiktok, label: "TikTok", Icon: TikTokIcon }
+          : null,
+        item.socialLinks?.website
+          ? { id: "website", href: item.socialLinks.website, label: "Website", Icon: Globe }
+          : null,
+      ].filter(Boolean) as SocialEntry[]);
 
   return (
     <AnimatePresence mode="wait">
@@ -77,7 +172,7 @@ function GalleryCardOverlay({
           )}
         >
           <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/10"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/72 to-black/35"
             aria-hidden
           />
           <p
@@ -93,12 +188,73 @@ function GalleryCardOverlay({
             {item.title}
           </h3>
           <p
-            className="relative mt-2 max-w-md font-editorial text-sm leading-relaxed sm:text-[15px]"
-            style={{ color: theme.textMuted }}
+            className="relative mt-2 max-w-md font-editorial text-sm leading-relaxed sm:text-[14px]"
+            style={{ color: theme.text }}
           >
-            {item.description}
+            {compactDescription}
           </p>
-          {item.cta ? (
+          {compactServices.length ? (
+            <div className="relative mt-3 max-w-lg">
+              <p
+                className="font-label text-[8px] uppercase tracking-[0.24em]"
+                style={{ color: theme.textMuted }}
+              >
+                Services provided
+              </p>
+              <ul className="mt-1.5 space-y-1">
+                {compactServices.map((service) => (
+                  <li
+                    key={service}
+                    className="font-editorial text-[12px] leading-snug sm:text-[13px]"
+                    style={{ color: theme.text }}
+                  >
+                    {service}
+                  </li>
+                ))}
+              </ul>
+              {hiddenServicesCount > 0 ? (
+                <p
+                  className="mt-1.5 font-label text-[8px] uppercase tracking-[0.2em]"
+                  style={{ color: theme.textMuted }}
+                >
+                  +{hiddenServicesCount} more services
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+          {socialEntries.length ? (
+            <div
+              className={cn(
+                "relative mt-4 flex flex-wrap gap-2",
+                socialCard && "mt-5 justify-center gap-3 sm:gap-4",
+              )}
+            >
+              {socialEntries.map(({ id, href, label, Icon }) => (
+                <a
+                  key={id}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${label}  ${item.title}`}
+                  className={cn(
+                    "pointer-events-auto transition-opacity hover:opacity-90",
+                    socialCard
+                      ? "grid h-11 w-11 place-items-center rounded-full border sm:h-12 sm:w-12"
+                      : "inline-flex items-center gap-1.5 border px-3 py-1.5 font-label text-[8px] uppercase tracking-[0.24em]",
+                  )}
+                  style={{
+                    borderColor: theme.accent,
+                    color: theme.text,
+                    borderRadius: socialCard ? "9999px" : "2px",
+                  }}
+                >
+                  <Icon className={socialCard ? "h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" : "h-3 w-3"} />
+                  {!socialCard ? label : null}
+                </a>
+              ))}
+            </div>
+          ) : null}
+          {item.cta && !hideCta ? (
             <motion.a
               href={item.cta.href}
               target="_blank"
@@ -161,8 +317,8 @@ function DesktopGalleryCard({
       )}
       style={
         {
-          width: isActive ? "min(22rem, 34vw)" : "min(16rem, 26vw)",
-          height: isActive ? "min(28rem, 58vh)" : "min(22rem, 48vh)",
+          width: isActive ? "min(26rem, 40vw)" : "min(19rem, 30vw)",
+          height: isActive ? "min(33rem, 68vh)" : "min(25rem, 54vh)",
           zIndex: 30 - abs,
           filter: isActive
             ? "brightness(1.05) saturate(1.08)"
@@ -190,8 +346,8 @@ function DesktopGalleryCard({
         draggable={false}
       />
       <motion.div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"
-        animate={{ opacity: isActive ? 0.85 : 1 }}
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/92 via-black/56 to-black/18"
+        animate={{ opacity: isActive ? 1 : 0.86 }}
       />
       <GalleryCardOverlay item={item} theme={theme} visible={isActive} layout="overlay" />
     </motion.button>
@@ -313,19 +469,7 @@ export function ThreeDHoverGallery({
         if (!sectionRef.current?.contains(e.relatedTarget)) setPaused(false);
       }}
       className={cn("relative outline-none", className)}
-      style={{
-        background: theme.background,
-        backgroundImage: theme.gradient,
-      }}
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          background: `radial-gradient(ellipse 70% 50% at 50% 40%, color-mix(in srgb, ${theme.accent} 18%, transparent), transparent 70%)`,
-        }}
-        aria-hidden
-      />
-
       <motion.div
         className="relative z-10 flex min-h-[min(90svh,52rem)] flex-col justify-center px-[max(1rem,env(safe-area-inset-left))] py-16 pr-[max(1rem,env(safe-area-inset-right))] sm:py-20 lg:min-h-[min(92svh,56rem)] lg:px-12 lg:py-24"
         initial={{ opacity: 0, y: 24 }}
@@ -339,7 +483,7 @@ export function ThreeDHoverGallery({
               className="relative mx-auto w-full max-w-6xl [perspective:1400px]"
               style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="relative mx-auto h-[min(62vh,36rem)] w-full max-w-5xl">
+              <div className="relative mx-auto h-[min(72vh,42rem)] w-full max-w-6xl">
                 {items.map((item, i) => (
                   <DesktopGalleryCard
                     key={item.id}

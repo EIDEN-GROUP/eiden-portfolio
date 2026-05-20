@@ -1,37 +1,13 @@
-import type {
-  CaseStudyExpertiseItem,
-  CaseStudyGalleryFace,
-  CaseStudyReview,
-  CaseStudyStat,
-} from "@/data/projectCaseStudy";
+import type { CaseStudyGalleryFace, CaseStudyReview, CaseStudyStat } from "@/data/projectCaseStudy";
 import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { ProjectCinematicGallerySection } from "@/components/case-study/ProjectCinematicGallerySection";
 import { ProjectServicesShowcase } from "@/components/case-study/ProjectServicesShowcase";
 import { resolveCaseStudy } from "@/data/projectCaseStudy";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
-import {
-  motion,
-  useInView,
-  useMotionValueEvent,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useInView, useMotionValueEvent, useScroll, useSpring, useTransform,} from "framer-motion";
 import { Camera, Globe, Music, Users } from "lucide-react";
-import {
-  lazy,
-  Suspense,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, } from "react";
 const CaseStudyScrollGallery = lazy(() =>
   import("@/components/site/CaseStudyScrollGallery").then((m) => ({
     default: m.CaseStudyScrollGallery,
@@ -76,22 +52,32 @@ function BandHeader({
   center,
   right,
   centerWide,
+  dark,
 }: {
   left: string;
   center: string;
   right: string;
   /** Longer manifesto-style center copy: wider measure + relaxed leading. */
   centerWide?: boolean;
+  /** Match scroll gallery / black bands */
+  dark?: boolean;
 }) {
   const theme = useProjectTheme();
+  const borderColor = dark ? "rgba(255,255,255,0.12)" : theme.colors.border;
+  const textColor = dark ? "#f5f1e8" : theme.colors.text;
+  const mutedColor = dark ? "rgba(245,241,232,0.55)" : theme.colors.textMuted;
+
   return (
     <div
       className="flex w-full flex-col gap-6 border-b px-[max(1rem,env(safe-area-inset-left))] py-7 sm:flex-row sm:items-end sm:gap-0 sm:px-8 sm:py-8"
-      style={{ borderColor: theme.colors.border }}
+      style={{
+        borderColor,
+        ...(dark ? { background: "#050505" } : {}),
+      }}
     >
       <p
         className="flex-1 font-display text-xs font-normal leading-[150%] tracking-[-0.03em]"
-        style={{ color: theme.colors.textMuted }}
+        style={{ color: mutedColor }}
       >
         {left}
       </p>
@@ -102,221 +88,18 @@ function BandHeader({
             ? "max-w-[min(100%,40rem)] text-pretty text-[15px] leading-[1.45] sm:max-w-[min(100%,44rem)] sm:text-[17px] sm:leading-[1.5]"
             : "max-w-[min(100%,26rem)] text-xl leading-none tracking-[-0.05em] sm:text-2xl",
         )}
-        style={{ color: theme.colors.text }}
+        style={{ color: textColor }}
       >
         {center}
       </p>
       <p
         className="flex-1 text-left font-display text-xs font-normal leading-[150%] tracking-[-0.03em] sm:text-right"
-        style={{ color: theme.colors.textMuted }}
+        style={{ color: mutedColor }}
       >
         {right}
       </p>
     </div>
   );
-}
-
-function CapabilityCard({
-  item,
-  index,
-  className,
-}: {
-  item: CaseStudyExpertiseItem;
-  index: number;
-  className?: string;
-}) {
-  const theme = useProjectTheme();
-  return (
-    <article
-      className={cn(
-        "flex flex-col justify-between border p-5 shadow-[0_20px_60px_-24px_rgba(0,0,0,0.45)] sm:p-8",
-        className,
-      )}
-      style={{
-        borderColor: theme.ui.cardBorder,
-        background: theme.ui.cardBackground,
-        borderRadius: theme.ui.cardRadius,
-      }}
-    >
-      <span
-        className="font-mono text-[10px] font-medium tabular-nums tracking-[0.24em]"
-        style={{ color: theme.colors.textMuted }}
-      >
-        {String(index + 1).padStart(2, "0")}
-      </span>
-      <h3
-        className="font-display text-xl font-semibold leading-[1.1] tracking-[-0.04em] sm:text-2xl"
-        style={{ color: theme.colors.text }}
-      >
-        {item.title}
-      </h3>
-      <p
-        className="mt-auto font-editorial text-sm italic leading-relaxed sm:text-[15px]"
-        style={{ color: theme.colors.textMuted }}
-      >
-        {item.blurb}
-      </p>
-    </article>
-  );
-}
-
-function CapabilitiesSwiperMobile({ items }: { items: CaseStudyExpertiseItem[] }) {
-  const theme = useProjectTheme();
-  return (
-    <div
-      className="relative border-t py-8"
-      style={{ borderColor: theme.colors.border, background: theme.colors.surface }}
-    >
-      <Swiper
-        slidesPerView={1.34}
-        spaceBetween={8}
-        centeredSlides
-        centeredSlidesBounds
-        className="w-full px-[max(0.5rem,env(safe-area-inset-left))] pr-[max(0.5rem,env(safe-area-inset-right))]"
-      >
-        {items.map((item, i) => (
-          <SwiperSlide key={`${item.title}-${i}`} className="!h-auto py-1">
-            <CapabilityCard
-              item={item}
-              index={i}
-              className="mx-auto min-h-[min(48vh,20rem)] w-full max-w-[min(19.5rem,calc(100vw-4.25rem))]"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-      <p
-        className="pointer-events-none mt-2 text-center font-label text-[8px] uppercase tracking-[0.42em]"
-        style={{ color: theme.colors.textMuted }}
-      >
-        Swipe · capabilities
-      </p>
-    </div>
-  );
-}
-
-function CapabilitiesScrollDesktop({ items }: { items: CaseStudyExpertiseItem[] }) {
-  const theme = useProjectTheme();
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [maxShift, setMaxShift] = useState(0);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, theme.motion.spring);
-
-  const x = useTransform(scrollYProgress, [0, 1], [0, -maxShift]);
-
-  useLayoutEffect(() => {
-    const viewport = viewportRef.current;
-    const track = trackRef.current;
-    if (!viewport || !track) return;
-
-    const measure = () => {
-      const tw = track.scrollWidth;
-      const vw = viewport.clientWidth;
-      setMaxShift(Math.max(0, tw - vw));
-    };
-
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(viewport);
-    ro.observe(track);
-    return () => ro.disconnect();
-  }, [items.length]);
-
-  const scrollVh = Math.max(Math.round(items.length * 72 + 160), 240);
-
-  return (
-    <div
-      ref={sectionRef}
-      className="relative"
-      style={{ height: `${scrollVh}vh`, background: theme.colors.surface }}
-    >
-      <div
-        ref={viewportRef}
-        className="sticky top-16 z-0 flex h-[min(68vh,34rem)] flex-col justify-center overflow-hidden border-t py-6 sm:top-20 sm:h-[min(78vh,40rem)] sm:py-8 md:h-[min(82vh,44rem)] md:py-12"
-        style={{ borderColor: theme.colors.border }}
-      >
-        <div className="pointer-events-none absolute inset-x-0 bottom-6 z-20 flex justify-center sm:bottom-8">
-          <div
-            className="h-px w-44 max-w-[36vw] overflow-hidden rounded-full sm:w-56"
-            style={{ background: theme.colors.border }}
-          >
-            <motion.div
-              className="h-full w-full origin-left"
-              style={{ scaleX: smoothProgress, background: theme.gradients.progressBar }}
-            />
-          </div>
-        </div>
-
-        <div className="relative min-h-0 flex-1">
-          <motion.div
-            ref={trackRef}
-            className={cn(
-              "flex h-full w-max items-stretch gap-4 px-[max(1rem,env(safe-area-inset-left))] sm:gap-7 sm:px-10",
-              maxShift === 0 && "mx-auto",
-            )}
-            style={{ x }}
-          >
-            {items.map((item, i) => (
-              <CapabilityCard
-                key={`${item.title}-${i}`}
-                item={item}
-                index={i}
-                className="h-[min(52vh,22rem)] w-[min(88vw,22rem)] shrink-0 sm:h-[min(58vh,28rem)] sm:w-[min(42vw,24rem)]"
-              />
-            ))}
-          </motion.div>
-        </div>
-
-        <p
-          className="pointer-events-none absolute bottom-12 left-1/2 z-10 -translate-x-1/2 font-label text-[8px] uppercase tracking-[0.42em] sm:bottom-14"
-          style={{ color: theme.colors.textMuted }}
-        >
-          Scroll · capabilities
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function CapabilitiesCentered({ items }: { items: CaseStudyExpertiseItem[] }) {
-  const theme = useProjectTheme();
-  return (
-    <div
-      className="relative border-t py-10 sm:py-14"
-      style={{ borderColor: theme.colors.border, background: theme.colors.surface }}
-    >
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-8%" }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto flex flex-wrap items-stretch justify-center gap-4 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:gap-7 sm:px-10"
-      >
-        {items.map((item, i) => (
-          <CapabilityCard
-            key={`${item.title}-${i}`}
-            item={item}
-            index={i}
-            className="h-[min(52vh,22rem)] w-full max-w-[min(88vw,22rem)] shrink-0 sm:h-[min(58vh,28rem)] sm:w-[min(42vw,24rem)]"
-          />
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-function CapabilitiesScrollFlex({ items }: { items: CaseStudyExpertiseItem[] }) {
-  const isCompact = useMediaQuery("(max-width: 639px)");
-  if (!items.length) return null;
-  if (items.length < 4) return <CapabilitiesCentered items={items} />;
-  if (isCompact) return <CapabilitiesSwiperMobile items={items} />;
-  return <CapabilitiesScrollDesktop items={items} />;
 }
 
 function cylinderRadiusPx(n: number): number {
@@ -714,30 +497,13 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
         <BandHeader left="Industry" center={project.summary} right="Timeline" />
         <BandHeader left={c.industry} center={project.tagline} right={c.timeline} />
 
-        <section
-          aria-label="Client problem"
-          className="border-t bg-black"
-          style={{ borderColor: theme.colors.border }}
-        >
+        <section aria-label="Client problem" className="border-t bg-black" style={{ borderColor: theme.colors.border }}>
           <ClientReviewSpotlight review={clientProblemReview} className="pb-6 sm:pb-10" />
         </section>
 
-        <div
-          className="border-t"
-          style={{ borderColor: theme.colors.border, background: theme.colors.surface }}
-        >
-          <BandHeader
-            left="Services"
-            center="Capabilities deployed on this program."
-            right="EIDEN"
-            centerWide
-          />
-          <CapabilitiesScrollFlex items={c.expertise} />
-        </div>
+        <ProjectCinematicGallerySection project={project} />
 
         <ProjectServicesShowcase project={project} />
-
-        <ProjectCinematicGallerySection project={project} />
 
         <section
           ref={statsRef}
@@ -746,10 +512,7 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
           style={{ borderColor: theme.colors.border }}
         >
           <BandHeader left="Outcomes" center="Momentum, measured." right="Impact" />
-          <div
-            className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x"
-            style={{ borderColor: theme.colors.border }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x" style={{ borderColor: theme.colors.border }}>
             {c.stats.map((s: CaseStudyStat) => (
               <StatRow key={s.label} stat={s} active={statsInView} />
             ))}
@@ -758,14 +521,11 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
 
         <section
           aria-label="Deliverables scroll gallery"
-          className="relative border-t"
-          style={{
-            borderColor: theme.colors.border,
-            background: theme.colors.background,
-            backgroundImage: theme.gradients.stats,
-          }}
+          className="relative border-t bg-[#050505]"
+          style={{ borderColor: theme.colors.border }}
         >
           <BandHeader
+            dark
             left="Results"
             center="Shipped touchpoints across web, dashboards, CRM, and mobile."
             right="Artifacts"
@@ -776,18 +536,11 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
           </Suspense>
         </section>
 
-        <section
-          aria-label="Client review   closing"
-          className="border-t bg-black"
-          style={{ borderColor: theme.colors.border }}
-        >
+        <section aria-label="Client review   closing" className="border-t bg-black" style={{ borderColor: theme.colors.border }} >
           <ClientReviewSpotlight review={c.closingReview} className="pb-28 sm:pb-36" />
         </section>
 
-        <div
-          className="pointer-events-none h-px w-full"
-          style={{ background: theme.gradients.divider }}
-        />
+        <div className="pointer-events-none h-px w-full" style={{ background: theme.gradients.divider }} />
       </div>
     </>
   );

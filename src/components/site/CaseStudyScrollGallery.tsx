@@ -1,6 +1,5 @@
 import type { CaseStudyResultTile } from "@/data/projectCaseStudy";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useMemo, useRef } from "react";
 import "./CaseStudyScrollGallery.css";
 
@@ -54,16 +53,12 @@ export function CaseStudyScrollGallery({ tiles }: { tiles: CaseStudyResultTile[]
     const gallery = galleryRef.current;
     if (!container || !gallery || typeof window === "undefined") return;
 
-    gsap.registerPlugin(ScrollTrigger);
-
     const cols = gsap.utils.toArray<HTMLElement>(".cs-scroll-col", gallery);
     if (!cols.length) return () => {};
 
     const mobileQuery = window.matchMedia("(max-width: 639px)");
     const isMobile = () => mobileQuery.matches;
 
-    const additionalY = { val: 0 };
-    let additionalYAnim: gsap.core.Tween | null = null;
     const colProgress = [0, 0, 0];
 
     const updateOffset = (_time: number, deltaTime: number) => {
@@ -75,7 +70,7 @@ export function CaseStudyScrollGallery({ tiles }: { tiles: CaseStudyResultTile[]
         const speedDenom = isMobile() ? 36 : 20;
         const speedPerSec = halfHeight / speedDenom;
         const direction = i % 2 !== 0 ? 1 : -1;
-        colProgress[i] += direction * speedPerSec * dtSec - direction * additionalY.val;
+        colProgress[i] += direction * speedPerSec * dtSec;
 
         const wrappedY =
           direction === 1
@@ -91,49 +86,8 @@ export function CaseStudyScrollGallery({ tiles }: { tiles: CaseStudyResultTile[]
 
     gsap.ticker.add(updateOffset);
 
-    const st = ScrollTrigger.create({
-      trigger: container,
-      start: "top top",
-      end: "bottom bottom",
-      onUpdate: (self) => {
-        const velocity = self.getVelocity();
-        const m = isMobile();
-        const posDiv = m ? 6200 : 2000;
-        const negDiv = m ? 9000 : 3000;
-        const settleDur = m ? 1.45 : 1.1;
-        if (velocity > 0) {
-          additionalYAnim?.kill();
-          additionalY.val = -velocity / posDiv;
-          additionalYAnim = gsap.to(additionalY, {
-            val: 0,
-            duration: settleDur,
-            ease: "power2.out",
-          });
-        }
-        if (velocity < 0) {
-          additionalYAnim?.kill();
-          additionalY.val = -velocity / negDiv;
-          additionalYAnim = gsap.to(additionalY, {
-            val: 0,
-            duration: settleDur,
-            ease: "power2.out",
-          });
-        }
-      },
-    });
-
-    ScrollTrigger.refresh();
-
-    const onMq = () => {
-      ScrollTrigger.refresh();
-    };
-    mobileQuery.addEventListener("change", onMq);
-
     return () => {
-      mobileQuery.removeEventListener("change", onMq);
       gsap.ticker.remove(updateOffset);
-      st.kill();
-      additionalYAnim?.kill();
     };
   }, [tiles]);
 

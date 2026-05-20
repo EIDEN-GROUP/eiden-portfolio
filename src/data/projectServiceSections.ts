@@ -2,15 +2,42 @@ import type { ServiceMetric } from "@/components/case-study/primitives";
 import { getProjectTheme } from "@/data/projectThemes";
 import bopassageCover from "@/assets/bopassage-cover.png";
 import bopassageHero from "@/assets/bopassage-hero.png";
+import bopassageSocialBalance from "@/assets/bopassage-social-balance.png";
+import bopassageSocialMatcha from "@/assets/bopassage-social-matcha.png";
+import bopassageSocialWaffle from "@/assets/bopassage-social-waffle.png";
 import dmcCover from "@/assets/dmc-cover.png";
 import dmcHero from "@/assets/dmc-hero.png";
+import dmcSocialC from "@/assets/dmc-social-c.png";
+import dmcSocialD from "@/assets/dmc-social-d.png";
+import dmcSocialExcellence from "@/assets/dmc-social-excellence.png";
+import dmcSocialM from "@/assets/dmc-social-m.png";
 import educazenkidsBefore from "@/assets/educazenkids-before.svg";
 import educazenkidsCover from "@/assets/educazenkids-cover.png";
+import educazenkidsScroll1 from "@/assets/educazenkids-scroll-1.png";
+import educazenkidsScroll2 from "@/assets/educazenkids-scroll-2.png";
+import educazenkidsScroll3 from "@/assets/educazenkids-scroll-3.png";
+import educazenkidsWebsiteBanner from "@/assets/educazenkids-website-banner.png";
 import educazenHero from "@/assets/educazen-hero.png";
+import eidenAcademyBrandCarousel from "@/assets/eiden-academy-brand-carousel.png";
 import eidenAcademyCover from "@/assets/eiden-academy-cover.png";
+import eidenAcademySocialAiIntegration from "@/assets/eiden-academy-social-ai-integration.png";
+import eidenAcademySocialAiTools from "@/assets/eiden-academy-social-ai-tools.png";
+import eidenAcademySocialEcommerce from "@/assets/eiden-academy-social-ecommerce.png";
 import eidenHero from "@/assets/eiden-hero.png";
 import lunjaCover from "@/assets/lunja-cover.png";
 import lunjaHero from "@/assets/lunja-hero.png";
+import lunjaSocial1 from "@/assets/lunja-social-1.png";
+import lunjaSocial2 from "@/assets/lunja-social-2.png";
+import lunjaSocial3 from "@/assets/lunja-social-3.png";
+import lunjaSocial4 from "@/assets/lunja-social-4.png";
+import lunjaSocial5 from "@/assets/lunja-social-5.png";
+import lunjaSocial6 from "@/assets/lunja-social-6.png";
+import lunjaSocial7 from "@/assets/lunja-social-7.png";
+
+export type ServiceLink = {
+  label: string;
+  url: string;
+};
 
 export type ServiceSectionType =
   | "brand-identity"
@@ -41,6 +68,7 @@ export type ServiceSection = {
   colorLabels?: string[];
   typography?: { label: string; sample: string; size?: string; sampleClass?: string }[];
   features?: string[];
+  links?: ServiceLink[];
   metrics?: ServiceMetric[];
   beforeAfter?: {
     before: string;
@@ -82,7 +110,7 @@ const DMC_CONFIG: ProjectServiceConfig = {
   theme: "luxury-dark",
   intro: {
     left: "EIDEN delivery",
-    center: "Brand, website, and paid media — one hotel consulting system.",
+    center: "Brand, website, and paid media   one hotel consulting system.",
     right: "DMC",
   },
   ...stylesForSlug("dmc-morocco"),
@@ -93,7 +121,7 @@ const DMC_CONFIG: ProjectServiceConfig = {
       eyebrow: "Branding",
       title: "A partner-ready mark for Morocco’s hotel expertise.",
       description:
-        "Identity built for B2B recognition and owner trust — logo, palette, and editorial type that hold across collateral and digital.",
+        "Identity built for B2B recognition and owner trust   logo, palette, and editorial type that hold across collateral and digital.",
       brandBookUrl: "https://eiden-group.com/brand-books/dmc-brand-book",
       brandColors: ["#2C3830", "#D4B896", "#4A6153", "#E8D5B5"],
       colorLabels: ["Forêt profonde", "Or", "Forêt claire", "Sable"],
@@ -111,9 +139,13 @@ const DMC_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [
+        m(dmcSocialExcellence, "DMC brand campaign", "Excellence"),
         m(dmcHero, "DMC brand mockup", "Brand reveal"),
         m(dmcCover, "DMC collateral", "Partner kit"),
-        m(dmcHero, "DMC stationery", "Print system", true),
+      ],
+      links: [
+        { label: "DMC Brand Book", url: "https://eiden-group.com/brand-books/dmc-brand-book" },
+        { label: "EIDEN Group Website", url: "https://eiden-group.com/" },
       ],
     },
     {
@@ -122,7 +154,7 @@ const DMC_CONFIG: ProjectServiceConfig = {
       eyebrow: "Website design & development",
       title: "A conversion-led site for hotel owners and operators.",
       description:
-        "dmchm.com as the digital front door — expertise, phased services, team credibility, and contact flows optimized for Marrakech and international discovery.",
+        "dmchm.com as the digital front door   expertise, phased services, team credibility, and contact flows optimized for Marrakech and international discovery.",
       features: [
         "Expertise & team storytelling",
         "Service phases & methodology",
@@ -132,22 +164,30 @@ const DMC_CONFIG: ProjectServiceConfig = {
       media: [
         m(dmcHero, "DMC website desktop", "Home"),
         m(dmcCover, "DMC website mobile", "Mobile"),
-        m(dmcHero, "DMC services", "Services"),
-        m(dmcCover, "DMC expertise", "Expertise"),
+        m(dmcSocialExcellence, "DMC hospitality campaign", "Campaign"),
+        m(dmcSocialD, "DMC expertise", "Expertise"),
+        m(dmcSocialM, "DMC partnership", "Partnership"),
+        m(dmcSocialC, "DMC consulting", "Consulting"),
+      ],
+      links: [
+        { label: "Website", url: "https://dmchm.com/" },
+        { label: "DMC Brand Book", url: "https://eiden-group.com/brand-books/dmc-brand-book" },
+        { label: "EIDEN Group Website", url: "https://eiden-group.com/" },
       ],
     },
     {
-      id: "dmc-ads",
-      type: "media-buying",
-      eyebrow: "Media buying & ads",
-      title: "Paid campaigns that turn hotel-project intent into qualified inquiries.",
+      id: "dmc-social",
+      type: "social-content",
+      eyebrow: "Social media content production",
+      title: "Hotel consulting authority on the feed.",
       description:
-        "Meta and Google funnels with creative testing tied to landing engagement and partner-ready lead quality — structured for owners, operators, and B2B hospitality conversion.",
-      features: [
-        "Meta & Google acquisition",
-        "Creative iteration by market",
-        "Retargeting & inquiry funnels",
-        "Landing-page alignment",
+        "DMC letter-series and excellence campaigns — built for B2B recognition with owners and operators across Morocco.",
+      features: ["LinkedIn carousels", "Brand campaigns", "Expertise frames", "Partner storytelling"],
+      media: [
+        m(dmcSocialD, "DMC — D", "Expertise"),
+        m(dmcSocialM, "DMC — M", "Management"),
+        m(dmcSocialC, "DMC — C", "Consulting"),
+        m(dmcSocialExcellence, "DMC — L'excellence en hôtellerie", "Excellence"),
       ],
     },
   ],
@@ -168,7 +208,7 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
       eyebrow: "Website design & development",
       title: "A digital home for menus, reservations, and the Founty experience.",
       description:
-        "bopassage.com — warm editorial layout, mobile-first booking paths, and a site that mirrors the botanical calm of the restaurant.",
+        "bopassage.com   warm editorial layout, mobile-first booking paths, and a site that mirrors the botanical calm of the restaurant.",
       features: [
         "Menu & brunch showcase",
         "Reservation flows",
@@ -178,21 +218,27 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
       media: [
         m(bopassageHero, "Bôpassage desktop", "Desktop"),
         m(bopassageCover, "Bôpassage mobile", "Mobile"),
-        m(bopassageHero, "Bôpassage tenant page", "Tenants"),
+        m(bopassageSocialBalance, "Bô Passage balance campaign", "Balance"),
+        m(bopassageSocialWaffle, "Bô Passage dessert", "Dessert"),
+        m(bopassageSocialMatcha, "Bô Passage matcha", "Matcha"),
+      ],
+      links: [
+        { label: "Website", url: "https://bopassage.com/" },
+        { label: "Bô Passage Brand Book", url: "https://eiden-group.com/brand-books/bopassage-brand-book" },
       ],
     },
     {
-      id: "bop-ads",
-      type: "media-buying",
-      eyebrow: "Media buying & ads",
-      title: "Meta and Google campaigns that fill tables and build habit.",
+      id: "bop-social",
+      type: "social-content",
+      eyebrow: "Social media content production",
+      title: "Warm plates and editorial frames for the Founty feed.",
       description:
-        "Performance campaigns aimed at footfall and reservations — brunch discovery, retargeting, and local intent across Agadir Bay.",
-      features: [
-        "Meta reservation campaigns",
-        "Google local intent",
-        "Brunch & breakfast discovery",
-        "Retargeting for repeat visits",
+        "Food, ambiance, and matcha moments — content built to feel like sitting down, not scrolling past another café.",
+      features: ["Instagram grids", "Food photography", "Reels & stories", "Brunch campaigns"],
+      media: [
+        m(bopassageSocialBalance, "Bô Passage — taste & freshness", "Balance"),
+        m(bopassageSocialWaffle, "Bô Passage — indulge in sweetness", "Dessert"),
+        m(bopassageSocialMatcha, "Bô Passage — matcha moment", "Matcha"),
       ],
     },
   ],
@@ -202,7 +248,7 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
   theme: "warm-organic",
   intro: {
     left: "EIDEN delivery",
-    center: "Brand identity, brand board, and media buying for surf & nomad living.",
+    center: "Brand identity, social content, and media buying for surf & nomad living.",
     right: "Lunja",
   },
   ...stylesForSlug("lunja-village"),
@@ -213,7 +259,7 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
       eyebrow: "Branding",
       title: "Retro-beach identity for Imi Ouddar’s surf & nomad cottages.",
       description:
-        "Full brand system — Keppel teal, film-grain photography direction, and a bold voice built for makers, surfers, and long-stay guests.",
+        "Full brand system   Keppel teal, film-grain photography direction, and a bold voice built for makers, surfers, and long-stay guests.",
       brandBookUrl: "https://eiden-group.com/brand-books/lunja-brand-book",
       brandColors: ["#2BBAA5", "#FDF5D3", "#FFD100", "#F96635"],
       colorLabels: ["Keppel", "Crème douce", "Jo&Joe yellow", "Corail"],
@@ -231,35 +277,27 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [m(lunjaHero, "Lunja logo", "Logo"), m(lunjaCover, "Lunja mockup", "Mockup")],
-    },
-    {
-      id: "lunja-board",
-      type: "brand-board",
-      eyebrow: "Brand board",
-      title: "Mood, texture, and type composed into one coastal reference.",
-      description:
-        "A living board of photography, palette, and typographic pairings — the visual shorthand teams use before every shoot and post.",
-      brandBookUrl: "https://eiden-group.com/brand-books/lunja-brand-book",
-      media: [
-        m(lunjaHero, "Lunja board hero", "Mood"),
-        m(lunjaCover, "Lunja texture", "Texture"),
-        m(lunjaHero, "Lunja type", "Type"),
-        m(lunjaCover, "Lunja palette", "Palette"),
-        m(lunjaHero, "Lunja photography", "Photo", true),
+      links: [
+        { label: "Branding", url: "https://www.lunjavillage.com/" },
+        { label: "Lunja Village Brand Book", url: "https://eiden-group.com/brand-books/lunja-brand-book" },
       ],
     },
     {
-      id: "lunja-ads",
-      type: "media-buying",
-      eyebrow: "Media buying",
-      title: "Paid campaigns targeting nomads, surfers, and booking intent.",
+      id: "lunja-social",
+      type: "social-content",
+      eyebrow: "Social media content production",
+      title: "Atlantic energy on the feed  surf, tribe, and golden hour.",
       description:
-        "Meta and Google growth across UK, France, and Germany — surf camp, coliving, and remote-work keywords aligned with long-stay booking cycles.",
-      features: [
-        "UK · France · Germany markets",
-        "Surf camp & coliving keywords",
-        "Nomad & remote-work targeting",
-        "Inquiry-to-booking funnels",
+        "UGC-forward grids and reels for Taghazout  never a hotel brochure, always the swell, the skate park, and the tribe.",
+      features: ["Instagram grids", "Reels & stories", "Campaign frames", "Booking-focused CTAs"],
+      media: [
+        m(lunjaSocial1, "Lunja  N'attends plus", "Yoga"),
+        m(lunjaSocial2, "Lunja  Vague en vue", "Surf"),
+        m(lunjaSocial3, "Lunja  sunset boards", "Golden hour"),
+        m(lunjaSocial4, "Lunja  Taghazout skate park", "Skate"),
+        m(lunjaSocial5, "Lunja  stay a little longer", "Coast"),
+        m(lunjaSocial6, "Lunja  summer view", "Taghazout"),
+        m(lunjaSocial7, "Lunja  clear minds", "Wellness"),
       ],
     },
   ],
@@ -280,12 +318,22 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       eyebrow: "Website design & development",
       title: "A parent-trusted site for programs, team, and enrollment.",
       description:
-        "educazenkids.com — bright, accessible UI with clear paths to programs, the psychosocial pole, and EducaBlog resources parents rely on.",
+        "educazenkids.com   bright, accessible UI with clear paths to programs, the psychosocial pole, and EducaBlog resources parents rely on.",
       features: ["Program discovery", "Team & pole psychosocial", "EducaBlog", "Enrollment forms"],
       media: [
         m(educazenHero, "EducazenKids desktop", "Desktop"),
         m(educazenkidsCover, "EducazenKids mobile", "Mobile"),
+        m(educazenkidsWebsiteBanner, "EducazenKids homepage", "Homepage"),
         m(educazenHero, "EducazenKids programs", "Programs"),
+        m(educazenkidsCover, "EducazenKids team & pole", "Team"),
+        m(educazenkidsScroll2, "EducazenKids parent messaging", "Messaging"),
+        m(educazenkidsScroll3, "EducazenKids enrollment", "Enrollment"),
+        m(educazenkidsScroll1, "EducazenKids inclusive learning", "Learning"),
+      ],
+      links: [
+        { label: "Website", url: "https://educazenkids.com/" },
+        { label: "Educazenkids Website", url: "https://educazenkids.com/" },
+        { label: "Educazenkids Brand Book", url: "https://eiden-group.com/brand-books/educazenkids-brand-book" },
       ],
     },
     {
@@ -294,7 +342,7 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       eyebrow: "Website redesign",
       title: "From a dated presence to a parent-trusted enrollment platform.",
       description:
-        "The previous site lacked clear program paths, psychosocial positioning, and enrollment flows. We rebuilt educazenkids.com around the brand system — accessible UI, EducaBlog, and forms parents complete with confidence.",
+        "The previous site lacked clear program paths, psychosocial positioning, and enrollment flows. We rebuilt educazenkids.com around the brand system   accessible UI, EducaBlog, and forms parents complete with confidence.",
       beforeAfter: {
         before: educazenkidsBefore,
         after: educazenHero,
@@ -314,7 +362,7 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       eyebrow: "CRM & dashboard",
       title: "One console for leads, parents, and team follow-up.",
       description:
-        "Pipeline visibility, parent communication, and campaign analytics — built so Agadir’s team runs enrollment without scattered tools.",
+        "Pipeline visibility, parent communication, and campaign analytics   built so Agadir’s team runs enrollment without scattered tools.",
       features: ["Lead pipeline", "Parent CRM", "Campaign analytics", "Team workflows"],
       media: [
         m(educazenHero, "EducazenKids dashboard", "Dashboard"),
@@ -323,12 +371,26 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       ],
     },
     {
-      id: "edu-ads",
+      id: "edu-dashboard",
+      type: "crm-dashboard",
+      eyebrow: "Dashboard Design & Development",
+      title: "Student progress and operations visibility.",
+      description:
+        "Admin console and student dashboards for tracking programs, progress, and psychosocial support across all cohorts.",
+      features: [
+        "Student progress tracking",
+        "Admin operations console",
+        "Cohort analytics",
+        "Support ticket management",
+      ],
+    },
+    {
+      id: "edu-media-buying",
       type: "media-buying",
-      eyebrow: "Media buying",
+      eyebrow: "Media Buying",
       title: "Enrollment campaigns across Meta and Google.",
       description:
-        "Lead-focused funnels for Agadir families and expat parents — messaging that explains HPI, TDAH, and DYS with warmth, not alarm.",
+        "Lead-focused funnels for Agadir families and expat parents   messaging that explains HPI, TDAH, and DYS with warmth, not alarm.",
       features: [
         "Meta lead generation",
         "Google search intent",
@@ -359,8 +421,13 @@ const EIDEN_ACADEMY_CONFIG: ProjectServiceConfig = {
       brandColors: ["#122620", "#0c5752", "#d7bb93", "#f5f1e8"],
       colorLabels: ["Vert foncé", "Sarcelle", "Or", "Crème"],
       media: [
-        m(eidenHero, "Eiden Academy brand", "Brand"),
+        m(eidenAcademyBrandCarousel, "Eiden Academy crest", "Brand"),
+        m(eidenHero, "Eiden Academy brand", "Identity"),
         m(eidenAcademyCover, "Eiden guidelines", "Guidelines"),
+      ],
+      links: [
+        { label: "Branding", url: "https://eiden-group.com/" },
+        { label: "EIDEN Academy Brand Guidelines", url: "https://eiden-group.com/brand-books/eiden-academy-brand-guidelines-v2" },
       ],
     },
     {
@@ -369,21 +436,43 @@ const EIDEN_ACADEMY_CONFIG: ProjectServiceConfig = {
       eyebrow: "Website design & development",
       title: "Program storytelling and enrollment on a scroll-native platform.",
       description:
-        "The public face of the academy — catalog, instructors, resources, and flows that make institutional training feel like a product worth returning to.",
+        "The public face of the academy   catalog, instructors, resources, and flows that make institutional training feel like a product worth returning to.",
       features: ["Program catalog", "Instructor profiles", "Enrollment", "Resource hub"],
       media: [
         m(eidenHero, "Eiden Academy web", "Desktop"),
         m(eidenAcademyCover, "Eiden Academy mobile", "Mobile"),
-        m(eidenHero, "Eiden Academy learning", "Learning"),
+        m(eidenAcademySocialAiTools, "Eiden Academy programs", "Programs"),
+        m(eidenAcademySocialAiIntegration, "Eiden Academy AI track", "AI"),
+        m(eidenAcademySocialEcommerce, "Eiden Academy e-commerce", "E-commerce"),
+        m(eidenAcademyBrandCarousel, "Eiden Academy brand", "Brand"),
+      ],
+      links: [
+        { label: "Website", url: "https://eiden-group.com/" },
+        { label: "AIDEN Academy Website", url: "https://eiden-group.com/" },
+      ],
+    },
+    {
+      id: "ea-social",
+      type: "social-content",
+      eyebrow: "Social media content production",
+      title: "Formation campaigns that fill programs with clarity.",
+      description:
+        "Carousel and feed creatives for AI, e-commerce, and institutional programs — built to convert interest into enrollment.",
+      features: ["Program carousels", "Formation posts", "Instagram grids", "Enrollment CTAs"],
+      media: [
+        m(eidenAcademySocialAiTools, "Eiden — Master AI Tools", "AI tools"),
+        m(eidenAcademySocialAiIntegration, "Eiden — AI integration", "AI integration"),
+        m(eidenAcademySocialEcommerce, "Eiden — E-commerce formation", "E-commerce"),
+        m(eidenAcademyBrandCarousel, "Eiden — brand carousel", "Brand"),
       ],
     },
     {
       id: "ea-dashboard",
       type: "crm-dashboard",
-      eyebrow: "Dashboard system",
+      eyebrow: "Dashboard Design & Development",
       title: "Student progress and admin operations in one live console.",
       description:
-        "Cohort analytics, content management, and role-based views — the internal layer that scales curriculum delivery across the group.",
+        "Cohort analytics, content management, and role-based views   the internal layer that scales curriculum delivery across the group.",
       features: ["Student progress", "Admin console", "Cohort analytics", "Content management"],
       media: [
         m(eidenHero, "Eiden dashboard", "Dashboard"),
@@ -394,10 +483,10 @@ const EIDEN_ACADEMY_CONFIG: ProjectServiceConfig = {
     {
       id: "ea-test",
       type: "english-test",
-      eyebrow: "English test system",
+      eyebrow: "English Test System Development",
       title: "Gamified English assessment with levels learners want to complete.",
       description:
-        "Adaptive quizzes, progress rings, and certification paths — assessment designed as motivation, not a barrier.",
+        "Adaptive quizzes, progress rings, and certification paths   assessment designed as motivation, not a barrier.",
       features: ["Adaptive quizzes", "Progress rings", "Certification paths", "Leaderboards"],
       media: [
         m(eidenAcademyCover, "English test UI", "Quiz"),

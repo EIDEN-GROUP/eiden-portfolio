@@ -135,7 +135,7 @@ const SERVICE_BLURBS: Record<string, string> = {
   Branding: "Logo systems, palettes, and voice that partners and guests recognize instantly.",
   "Brand board": "Mood, texture, and typographic direction composed into one living reference.",
   "Social media content":
-    "Feed architecture, reels, and captions built for reach — always on-brand, never generic.",
+    "Feed architecture, reels, and captions built for reach   always on-brand, never generic.",
   "Media buying":
     "Meta and Google campaigns with creative iteration tied to real business signals.",
   "Media buying & ads": "Paid social and search tuned for footfall, leads, and measurable ROAS.",
@@ -197,7 +197,7 @@ function buildResultTiles(
     return override.resultGallery.map((r, i) => ({
       src: r.src,
       alt:
-        r.alt ?? `${project.title} — ${r.caption ?? RESULT_CAPTIONS[i % RESULT_CAPTIONS.length]}`,
+        r.alt ?? `${project.title}   ${r.caption ?? RESULT_CAPTIONS[i % RESULT_CAPTIONS.length]}`,
       caption: r.caption ?? RESULT_CAPTIONS[i % RESULT_CAPTIONS.length],
       variant: r.variant ?? RESULT_VARIANTS[i % RESULT_VARIANTS.length]!,
     }));
@@ -218,7 +218,7 @@ function buildResultTiles(
     const g = pool[i % pool.length]!;
     tiles.push({
       src: g.src,
-      alt: g.alt || `${project.title} — ${RESULT_CAPTIONS[i % RESULT_CAPTIONS.length]}`,
+      alt: g.alt || `${project.title}   ${RESULT_CAPTIONS[i % RESULT_CAPTIONS.length]}`,
       caption: RESULT_CAPTIONS[i % RESULT_CAPTIONS.length],
       variant: RESULT_VARIANTS[i % RESULT_VARIANTS.length]!,
     });
