@@ -544,11 +544,7 @@ export function ThreeDHoverGallery({
             >
               {items.map((item, i) => (
                 <div key={item.id} data-cinematic-card className="snap-center shrink-0">
-                  <MobileGalleryCard
-                    item={item}
-                    isActive={i === activeIndex}
-                    theme={theme}
-                  />
+                  <MobileGalleryCard item={item} isActive={i === activeIndex} theme={theme} />
                 </div>
               ))}
             </div>
