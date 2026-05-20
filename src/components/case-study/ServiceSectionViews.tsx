@@ -48,8 +48,7 @@ export function ServiceSectionView({
   const media = mediaFromSection(section);
   const desktop = media[0];
   const mobile = media[1] ?? media[0];
-  const websiteCta =
-    section.type === "website-showcase" ? primaryWebsiteLink(section) : null;
+  const websiteCta = section.type === "website-showcase" ? primaryWebsiteLink(section) : null;
 
   if (section.type === "impact" && !section.beforeAfter) return null;
 

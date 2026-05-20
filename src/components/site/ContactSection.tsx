@@ -61,7 +61,8 @@ export function ContactSection() {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.8, ease, delay: 0.2 }}
           >
-            A two-hour Hydra Analysis™ session. Structural insights. A blueprint that your organization can build on.
+            A two-hour Hydra Analysis™ session. Structural insights. A blueprint that your
+            organization can build on.
           </motion.p>
         </div>
 
@@ -131,9 +132,7 @@ export function ContactSection() {
                   <p className="mb-2 font-label text-[9px] uppercase tracking-[0.44em] text-white/35">
                     Response time
                   </p>
-                  <p className="font-body text-sm text-white/60">
-                    Within one business day
-                  </p>
+                  <p className="font-body text-sm text-white/60">Within one business day</p>
                 </div>
               </div>
             </motion.div>

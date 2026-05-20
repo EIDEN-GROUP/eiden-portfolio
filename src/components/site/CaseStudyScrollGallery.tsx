@@ -109,7 +109,10 @@ export function CaseStudyScrollGallery({ tiles }: { tiles: CaseStudyResultTile[]
   return (
     <div
       ref={containerRef}
-      className={cn("cs-scroll-gallery-container", compact && "cs-scroll-gallery-container--compact")}
+      className={cn(
+        "cs-scroll-gallery-container",
+        compact && "cs-scroll-gallery-container--compact",
+      )}
     >
       <div className="cs-scroll-gallery-sticky">
         <p className="cs-scroll-gallery-title">Scroll gallery</p>

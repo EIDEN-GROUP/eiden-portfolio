@@ -133,7 +133,9 @@ function BrandBookLink({
         className="group flex h-full min-h-[18rem] flex-col justify-between border border-white/[0.12] bg-white/[0.03] px-6 py-7 transition-colors duration-500 hover:border-white/20 hover:bg-white/[0.05] sm:min-h-0 sm:flex-1 sm:px-8 sm:py-9"
       >
         <div className="min-w-0">
-          <span className="font-mono text-[10px] tabular-nums tracking-[0.24em] text-white/30">00</span>
+          <span className="font-mono text-[10px] tabular-nums tracking-[0.24em] text-white/30">
+            00
+          </span>
           <p className={cn("mt-6", labelCls)}>Brand guidelines</p>
           <p className="mt-3 font-display text-xl font-semibold leading-[1.1] tracking-[-0.04em] text-white transition-colors group-hover:text-gold/90 sm:text-2xl">
             View the full brand book
@@ -310,7 +312,11 @@ export function BrandIdentityShowcase({
 
           {brandBookBesidePalette ? (
             <Reveal className="flex flex-col bg-[#060606] lg:col-span-7">
-              <PanelHeader label="Brand book" title="Guidelines & assets" accentClass={themeAccent} />
+              <PanelHeader
+                label="Brand book"
+                title="Guidelines & assets"
+                accentClass={themeAccent}
+              />
               <div className="flex flex-1 flex-col p-6 sm:p-8">
                 <BrandBookLink
                   href={section.brandBookUrl!}
@@ -326,7 +332,11 @@ export function BrandIdentityShowcase({
       {section.brandBookUrl && !brandBookBesidePalette ? (
         <div className="bg-[#060606] px-6 py-6 sm:px-8 sm:py-8">
           <Reveal>
-            <BrandBookLink href={section.brandBookUrl} accentClass={themeAccent} layout="horizontal" />
+            <BrandBookLink
+              href={section.brandBookUrl}
+              accentClass={themeAccent}
+              layout="horizontal"
+            />
           </Reveal>
         </div>
       ) : null}
@@ -366,7 +376,11 @@ export function BrandBoardShowcase({
       {section.brandBookUrl ? (
         <div className="bg-[#060606] px-6 py-6 sm:px-8 sm:py-8">
           <Reveal>
-            <BrandBookLink href={section.brandBookUrl} accentClass={themeAccent} layout="horizontal" />
+            <BrandBookLink
+              href={section.brandBookUrl}
+              accentClass={themeAccent}
+              layout="horizontal"
+            />
           </Reveal>
         </div>
       ) : null}

@@ -36,10 +36,7 @@ export function Projects() {
         </p>
       </div>
 
-      <div
-        className="relative w-full"
-        style={{ height: "clamp(360px, 58svh, 600px)" }}
-      >
+      <div className="relative w-full" style={{ height: "clamp(360px, 58svh, 600px)" }}>
         <Suspense fallback={<div className="h-full w-full" aria-hidden />}>
           <CircularGallery
             items={galleryItems}
