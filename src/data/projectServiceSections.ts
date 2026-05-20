@@ -11,7 +11,7 @@ import dmcSocialC from "@/assets/dmc-social-c.png";
 import dmcSocialD from "@/assets/dmc-social-d.png";
 import dmcSocialExcellence from "@/assets/dmc-social-excellence.png";
 import dmcSocialM from "@/assets/dmc-social-m.png";
-import educazenkidsBefore from "@/assets/educazenkids-before.svg";
+import educazenkidsBefore from "@/assets/educazenkids-before.png";
 import educazenkidsCover from "@/assets/educazenkids-cover.png";
 import educazenHero from "@/assets/educazen-hero.png";
 import eidenAcademyBrandCarousel from "@/assets/eiden-academy-brand-carousel.png";
@@ -22,13 +22,6 @@ import eidenAcademySocialEcommerce from "@/assets/eiden-academy-social-ecommerce
 import eidenHero from "@/assets/eiden-hero.png";
 import lunjaCover from "@/assets/lunja-cover.png";
 import lunjaHero from "@/assets/lunja-hero.png";
-import lunjaSocial1 from "@/assets/lunja-social-1.png";
-import lunjaSocial2 from "@/assets/lunja-social-2.png";
-import lunjaSocial3 from "@/assets/lunja-social-3.png";
-import lunjaSocial4 from "@/assets/lunja-social-4.png";
-import lunjaSocial5 from "@/assets/lunja-social-5.png";
-import lunjaSocial6 from "@/assets/lunja-social-6.png";
-import lunjaSocial7 from "@/assets/lunja-social-7.png";
 
 export type ServiceLink = {
   label: string;
@@ -171,26 +164,6 @@ const DMC_CONFIG: ProjectServiceConfig = {
         { label: "EIDEN Group Website", url: "https://eiden-group.com/" },
       ],
     },
-    {
-      id: "dmc-social",
-      type: "social-content",
-      eyebrow: "Social media content production",
-      title: "Hotel consulting authority on the feed.",
-      description:
-        "DMC letter-series and excellence campaigns — built for B2B recognition with owners and operators across Morocco.",
-      features: [
-        "LinkedIn carousels",
-        "Brand campaigns",
-        "Expertise frames",
-        "Partner storytelling",
-      ],
-      media: [
-        m(dmcSocialD, "DMC — D", "Expertise"),
-        m(dmcSocialM, "DMC — M", "Management"),
-        m(dmcSocialC, "DMC — C", "Consulting"),
-        m(dmcSocialExcellence, "DMC — L'excellence en hôtellerie", "Excellence"),
-      ],
-    },
   ],
 };
 
@@ -229,20 +202,6 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
           label: "Bô Passage Brand Book",
           url: "https://eiden-group.com/brand-books/bopassage-brand-book",
         },
-      ],
-    },
-    {
-      id: "bop-social",
-      type: "social-content",
-      eyebrow: "Social media content production",
-      title: "Warm plates and editorial frames for the Founty feed.",
-      description:
-        "Food, ambiance, and matcha moments — content built to feel like sitting down, not scrolling past another café.",
-      features: ["Instagram grids", "Food photography", "Reels & stories", "Brunch campaigns"],
-      media: [
-        m(bopassageSocialBalance, "Bô Passage — taste & freshness", "Balance"),
-        m(bopassageSocialWaffle, "Bô Passage — indulge in sweetness", "Dessert"),
-        m(bopassageSocialMatcha, "Bô Passage — matcha moment", "Matcha"),
       ],
     },
   ],
@@ -287,24 +246,6 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
           label: "Lunja Village Brand Book",
           url: "https://eiden-group.com/brand-books/lunja-brand-book",
         },
-      ],
-    },
-    {
-      id: "lunja-social",
-      type: "social-content",
-      eyebrow: "Social media content production",
-      title: "Atlantic energy on the feed  surf, tribe, and golden hour.",
-      description:
-        "UGC-forward grids and reels for Taghazout  never a hotel brochure, always the swell, the skate park, and the tribe.",
-      features: ["Instagram grids", "Reels & stories", "Campaign frames", "Booking-focused CTAs"],
-      media: [
-        m(lunjaSocial1, "Lunja  N'attends plus", "Yoga"),
-        m(lunjaSocial2, "Lunja  Vague en vue", "Surf"),
-        m(lunjaSocial3, "Lunja  sunset boards", "Golden hour"),
-        m(lunjaSocial4, "Lunja  Taghazout skate park", "Skate"),
-        m(lunjaSocial5, "Lunja  stay a little longer", "Coast"),
-        m(lunjaSocial6, "Lunja  summer view", "Taghazout"),
-        m(lunjaSocial7, "Lunja  clear minds", "Wellness"),
       ],
     },
   ],
@@ -449,21 +390,6 @@ const EIDEN_ACADEMY_CONFIG: ProjectServiceConfig = {
       links: [
         { label: "Website", url: "https://eiden-group.com/" },
         { label: "AIDEN Academy Website", url: "https://eiden-group.com/" },
-      ],
-    },
-    {
-      id: "ea-social",
-      type: "social-content",
-      eyebrow: "Social media content production",
-      title: "Formation campaigns that fill programs with clarity.",
-      description:
-        "Carousel and feed creatives for AI, e-commerce, and institutional programs — built to convert interest into enrollment.",
-      features: ["Program carousels", "Formation posts", "Instagram grids", "Enrollment CTAs"],
-      media: [
-        m(eidenAcademySocialAiTools, "Eiden — Master AI Tools", "AI tools"),
-        m(eidenAcademySocialAiIntegration, "Eiden — AI integration", "AI integration"),
-        m(eidenAcademySocialEcommerce, "Eiden — E-commerce formation", "E-commerce"),
-        m(eidenAcademyBrandCarousel, "Eiden — brand carousel", "Brand"),
       ],
     },
     {

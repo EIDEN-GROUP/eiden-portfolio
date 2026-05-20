@@ -124,12 +124,6 @@ function GalleryCardOverlay({
   const isOverlay = layout === "overlay";
   const socialCard = isSocialMediaCard(item);
   const compactDescription = compactText(item.description, socialCard ? 72 : 105);
-  const compactServices = socialCard
-    ? []
-    : (item.services ?? []).slice(0, 3).map((service) => compactText(service, 84));
-  const hiddenServicesCount = socialCard
-    ? 0
-    : Math.max(0, (item.services?.length ?? 0) - compactServices.length);
   const hideCta =
     socialCard ||
     item.category.trim().toLowerCase() === "hospitality" ||
@@ -204,35 +198,6 @@ function GalleryCardOverlay({
           >
             {compactDescription}
           </p>
-          {compactServices.length ? (
-            <div className="relative mt-3 max-w-lg">
-              <p
-                className="font-label text-[8px] uppercase tracking-[0.24em]"
-                style={{ color: theme.textMuted }}
-              >
-                Services provided
-              </p>
-              <ul className="mt-1.5 space-y-1">
-                {compactServices.map((service) => (
-                  <li
-                    key={service}
-                    className="font-editorial text-[12px] leading-snug sm:text-[13px]"
-                    style={{ color: theme.text }}
-                  >
-                    {service}
-                  </li>
-                ))}
-              </ul>
-              {hiddenServicesCount > 0 ? (
-                <p
-                  className="mt-1.5 font-label text-[8px] uppercase tracking-[0.2em]"
-                  style={{ color: theme.textMuted }}
-                >
-                  +{hiddenServicesCount} more services
-                </p>
-              ) : null}
-            </div>
-          ) : null}
           {socialEntries.length ? (
             <div
               className={cn(
