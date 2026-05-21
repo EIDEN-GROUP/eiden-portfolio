@@ -66,7 +66,7 @@ function BandHeader({
       }}
     >
       <p
-        className="flex-1 font-display text-xs font-normal leading-[150%] tracking-[-0.03em]"
+        className=" font-display text-xs font-normal leading-[150%] tracking-[-0.03em]"
         style={{ color: mutedColor }}
       >
         {left}
@@ -75,10 +75,10 @@ function BandHeader({
         className={cn(
           "mx-auto text-center font-display font-normal tracking-[-0.03em]",
           centerWide
-            ? "max-w-[min(100%,40rem)] text-pretty text-[15px] leading-[1.45] sm:max-w-[min(100%,44rem)] sm:text-[17px] sm:leading-[1.5]"
-            : "max-w-[min(100%,26rem)] text-xl leading-none tracking-[-0.05em] sm:text-2xl",
+            ? " text-pretty text-[15px] leading-[1.45] sm:max-w-[min(100%,44rem)] sm:text-[17px] sm:leading-[1.5]"
+            : " text-xl leading-none tracking-[-0.05em] sm:text-2xl",
         )}
-        style={{ color: textColor }}
+        style={{ color: textColor, textAlign: "left" }}
       >
         {center}
       </p>
@@ -457,7 +457,7 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
           color: theme.colors.text,
         }}
       >
-        <BandHeader left="Industry" center={project.summary} right="Timeline" />
+        <BandHeader left="" center={project.summary} right="Summary" />
         {/* <BandHeader left={c.industry} center={project.tagline} right={c.timeline} /> */}
 
         <section
