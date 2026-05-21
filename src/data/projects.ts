@@ -144,14 +144,14 @@ export const projects = [
         eyebrow: "Before delivery",
         quote:
           "Bôpassage had the room, the plates, and the loyalty   but no website, no consistent social rhythm, and no paid layer carrying the brand outside its four walls. The atmosphere stopped at the door.",
-        author: "Bôpassage",
+        // author: "Bôpassage",
         role: "Founty, Agadir",
       },
       closingReview: {
         eyebrow: "After delivery",
         quote:
           "Our site finally feels like the restaurant   warm, clear, easy to book. Social and ads now bring in people who already understand the vibe before they walk in.",
-        author: "Bôpassage",
+        // author: "Bôpassage",
         role: "Café & restaurant",
       },
     },
@@ -218,14 +218,14 @@ export const projects = [
         eyebrow: "Before delivery",
         quote:
           "Three decades of hospitality know-how   but no brand, no website, no voice in the market. The expertise existed; the platform to deploy it didn't.",
-        author: "DMC Hospitality Morocco",
+        // author: "DMC Hospitality Morocco",
         role: "Founding team",
       },
       closingReview: {
         eyebrow: "After delivery",
         quote:
           "We had the expertise. EIDEN built the brand that lets us deploy it. We now show up in the conversations we were excluded from for years.",
-        author: "DMC Hospitality Morocco",
+        // author: "DMC Hospitality Morocco",
         role: "Hotel consulting",
       },
     },
@@ -249,7 +249,7 @@ export const projects = [
       "Meta Ads media buying",
       "Revenue optimisation",
     ],
-    website: "https://educazenkids.com",
+    website: "https://educazenkids.eiden-group.workers.dev/",
     caseStudy: {
       social: {
         instagram: "https://www.instagram.com/educazenkids/",
@@ -297,14 +297,14 @@ export const projects = [
         eyebrow: "Before delivery",
         quote:
           "A centre changing children's lives daily   but discoverability gaps, no CRM, no funnel, and a digital presence that didn't reflect the impact happening inside the walls.",
-        author: "EducazenKids",
+        // author: "EducazenKids",
         role: "Director's brief",
       },
       closingReview: {
         eyebrow: "After delivery",
         quote:
           "We used to spend hours on admin and still missed families. Now the system works for us   and parents find us before we even pitch ourselves.",
-        author: "EducazenKids",
+        // author: "EducazenKids",
         role: "Direction",
       },
     },
@@ -384,7 +384,7 @@ export const projects = [
         eyebrow: "Before delivery",
         quote:
           "Morocco has business schools. It doesn't have a school that teaches operators how to actually build the architecture under their company   the systems, the revenue logic, the team layer. That's the gap Eiden Academy was built to close.",
-        author: "EIDEN Group",
+        // author: "EIDEN Group",
         role: "Founder",
       },
       closingReview: {
@@ -485,14 +485,14 @@ export const projects = [
         eyebrow: "Before delivery",
         quote:
           'Lunja held the location, the spirit, and the audience   but the brand still spoke "resort" while the guests showing up were surfers, digital nomads, and creative groups. The story, the rooms, the operations, and the paid media weren\'t talking to the same person.',
-        author: "Lunja Village",
+        // author: "Lunja Village",
         role: "Direction",
       },
       closingReview: {
         eyebrow: "After delivery",
         quote:
           "The brand finally matches who actually shows up at Lunja. Bookings come in already understanding the village   and the team has a system, not a scramble.",
-        author: "Lunja Village",
+        // author: "Lunja Village",
         role: "Direction",
       },
     },
@@ -571,19 +571,24 @@ export const projects = [
         eyebrow: "Before delivery",
         quote:
           "A medical project with a clear vision but no architecture underneath   no brand, no patient journey, no CRM, no funnel, no marketing logic. The clinical excellence needed an operating system to scale into.",
-        author: "Medical Bay",
+        // author: "Medical Bay",
         role: "Founding team",
       },
       closingReview: {
         eyebrow: "After delivery",
         quote:
           "We didn't open a clinic   we opened a system. Patients feel the difference from the first click, and the team isn't holding the operation together with spreadsheets anymore.",
-        author: "Medical Bay",
+        // author: "Medical Bay",
         role: "Direction",
       },
     },
   },
 ] as const;
+
+/** Slugs excluded from the public portfolio (gallery, hero, next-project nav). */
+export const HIDDEN_PROJECT_SLUGS = new Set<string>(["eiden-academy"]);
+
+export const visibleProjects = projects.filter((p) => !HIDDEN_PROJECT_SLUGS.has(p.slug));
 
 export type Project = (typeof projects)[number] & {
   caseStudy?: ProjectCaseStudyOverride;
@@ -595,5 +600,7 @@ export function projectPath(slug: string) {
 }
 
 export function getProject(slug: string): Project | undefined {
-  return projects.find((p) => p.slug === slug);
+  const project = projects.find((p) => p.slug === slug);
+  if (!project || HIDDEN_PROJECT_SLUGS.has(project.slug)) return undefined;
+  return project;
 }

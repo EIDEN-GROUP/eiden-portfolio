@@ -415,18 +415,7 @@ function ClientReviewSpotlight({
             className="mt-10 border-t pt-8 text-center sm:mt-12 sm:text-left"
             style={{ borderColor: theme.colors.border }}
           >
-            <cite
-              className="block font-display text-lg font-medium not-italic tracking-[-0.03em]"
-              style={{ color: theme.colors.text }}
-            >
-              {review.author}
-            </cite>
-            <p
-              className="mt-1.5 font-label text-[10px] uppercase tracking-[0.28em]"
-              style={{ color: theme.colors.textMuted }}
-            >
-              {review.role}
-            </p>
+            
           </footer>
         </blockquote>
       </div>

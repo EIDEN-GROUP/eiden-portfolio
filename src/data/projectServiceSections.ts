@@ -26,7 +26,7 @@ import eidenAcademySocialAiTools from "@/assets/eiden-academy-social-ai-tools.pn
 import eidenAcademySocialEcommerce from "@/assets/eiden-academy-social-ecommerce.png";
 import eidenHero from "@/assets/eiden-hero.png";
 import lunjaCover from "@/assets/lunja-cover.png";
-import lunjaHero from "@/assets/lunja-hero.png";
+import lunjaLogo from "@/assets/lunja-logo.png";
 
 export type ServiceLink = {
   label: string;
@@ -59,7 +59,14 @@ export type ServiceSection = {
   media?: { src: string; alt: string; caption?: string; tall?: boolean }[];
   brandColors?: string[];
   colorLabels?: string[];
-  typography?: { label: string; sample: string; size?: string; sampleClass?: string }[];
+  typography?: {
+    label: string;
+    sample: string;
+    size?: string;
+    sampleClass?: string;
+    /** Explicit family for type specimens (e.g. Great Vibes) without changing project editorial. */
+    fontFamily?: string;
+  }[];
   features?: string[];
   links?: ServiceLink[];
   metrics?: ServiceMetric[];
@@ -243,10 +250,11 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
         {
           label: "Script · Great Vibes",
           sample: "Imi Ouaddar · Taghazout",
-          sampleClass: "font-editorial text-[clamp(1.75rem,4vw,2.75rem)] leading-none opacity-90",
+          sampleClass: "text-[clamp(1.75rem,4vw,2.75rem)] leading-none opacity-90",
+          fontFamily: '"Great Vibes", cursive',
         },
       ],
-      media: [m(lunjaHero, "Lunja logo", "Logo"), m(lunjaCover, "Lunja mockup", "Mockup")],
+      media: [m(lunjaLogo, "Lunja Village logo", "Logo"), m(lunjaCover, "Lunja mockup", "Mockup")],
       links: [
         { label: "Branding", url: "https://www.lunjavillage.com/" },
         {
@@ -300,7 +308,7 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
           label: "EducazenKids Brand Book",
           url: "https://eiden-group.com/brand-books/educazenkids-brand-book",
         },
-        { label: "Website", url: "https://educazenkids.com/" },
+        { label: "Website", url: "https://educazenkids.eiden-group.workers.dev/" },
       ],
     },
     {
@@ -315,7 +323,7 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
         m(educazenHero, "EducazenKids desktop", "Desktop"),
         m(educazenkidsCover, "EducazenKids mobile", "Mobile"),
       ],
-      links: [{ label: "Website", url: "https://educazenkids.com/" }],
+      links: [{ label: "Website", url: "https://educazenkids.eiden-group.workers.dev/" }],
     },
     {
       id: "edu-impact",
@@ -328,7 +336,7 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
         before: educazenkidsBefore,
         after: educazenHero,
         beforeLabel: "Previous website",
-        afterLabel: "educazenkids.com",
+        afterLabel: "educazenkids.eiden-group.workers.dev",
       },
       features: [
         "Clear programme & psychosocial pole pages",

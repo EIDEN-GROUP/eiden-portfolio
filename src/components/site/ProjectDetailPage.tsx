@@ -14,7 +14,7 @@ const ProjectCaseStudyBody = lazy(() =>
   })),
 );
 import type { Project } from "@/data/projects";
-import { projects } from "@/data/projects";
+import { visibleProjects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import "swiper/css";
 
@@ -293,9 +293,12 @@ function ProjectDetailHero({ project: p }: { project: Project }) {
 
 function ProjectDetailContent({ project: p }: { project: Project }) {
   const theme = useProjectTheme();
-  const idx = projects.findIndex((x) => x.slug === p.slug);
-  const len = projects.length;
-  const nextProjects = [projects[(idx + 1) % len]!, projects[(idx + 2) % len]!] as const;
+  const idx = visibleProjects.findIndex((x) => x.slug === p.slug);
+  const len = visibleProjects.length;
+  const nextProjects = [
+    visibleProjects[(idx + 1) % len]!,
+    visibleProjects[(idx + 2) % len]!,
+  ] as const;
 
   return (
     <>

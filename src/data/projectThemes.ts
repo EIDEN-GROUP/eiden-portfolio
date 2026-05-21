@@ -89,7 +89,7 @@ export const LUNJA_THEME: ProjectTheme = {
   },
   fonts: {
     display: '"Cormorant Garamond", Georgia, serif',
-    editorial: '"Great Vibes", cursive',
+    editorial: '"Lora", Georgia, serif',
     body: '"DM Sans", system-ui, sans-serif',
     label: '"DM Sans", system-ui, sans-serif',
     googleUrl:

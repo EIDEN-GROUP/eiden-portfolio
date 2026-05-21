@@ -1,9 +1,9 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { lazy, Suspense, useLayoutEffect, useRef, useState } from "react";
-import { projects } from "@/data/projects";
+import { visibleProjects } from "@/data/projects";
 
 const GridMotion = lazy(() => import("../GridMotion"));
-const covers = projects.map((p) => p.cover);
+const covers = visibleProjects.map((p) => p.cover);
 const gridItems: string[] = Array.from({ length: 28 }, (_, i) => covers[i % covers.length]);
 
 const ease = [0.22, 1, 0.36, 1] as const;

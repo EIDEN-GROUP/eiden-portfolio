@@ -100,7 +100,10 @@ function BrandTypographyGrid({
           </div>
           <p
             className={cn("mt-6 text-white/90", t.sampleClass)}
-            style={{ fontSize: t.size ?? "clamp(1.5rem, 3.5vw, 2.25rem)" }}
+            style={{
+              fontSize: t.size ?? "clamp(1.5rem, 3.5vw, 2.25rem)",
+              ...(t.fontFamily ? { fontFamily: t.fontFamily } : {}),
+            }}
           >
             {t.sample}
           </p>

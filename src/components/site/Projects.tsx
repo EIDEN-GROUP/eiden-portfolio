@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router";
 import { lazy, Suspense, useCallback, useMemo } from "react";
-import { projectPath, projects } from "@/data/projects";
+import { visibleProjects } from "@/data/projects";
 
 const CircularGallery = lazy(() => import("@/components/CircularGallery"));
 
@@ -9,7 +9,7 @@ export function Projects() {
 
   const galleryItems = useMemo(
     () =>
-      projects.map((p) => ({
+      visibleProjects.map((p) => ({
         image: p.cover,
         text: p.title,
         slug: p.slug,
@@ -32,7 +32,7 @@ export function Projects() {
     >
       <div className="mb-10 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-14">
         <p className="font-label text-[12px] uppercase tracking-[0.5em] text-white/50">
-          Selected mandates · {String(projects.length).padStart(2, "0")}
+          Selected mandates · {String(visibleProjects.length).padStart(2, "0")}
         </p>
       </div>
 

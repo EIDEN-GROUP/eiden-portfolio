@@ -208,7 +208,10 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         title: "A parent-trusted front door",
         description:
           "Clear program discovery, team visibility, and forms parents complete with confidence.",
-        cta: { label: "educazenkids.com", href: "https://educazenkids.com/" },
+        cta: {
+          label: "educazenkids.eiden-group.workers.dev",
+          href: "https://educazenkids.eiden-group.workers.dev/",
+        },
       },
       {
         id: "edu-cover",
