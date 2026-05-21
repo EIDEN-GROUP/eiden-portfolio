@@ -54,12 +54,6 @@ export type ProjectCaseStudyOverride = {
     tiktok?: string;
     website?: string;
   };
-  stats?: readonly {
-    prefix: string;
-    value: number;
-    suffix: string;
-    label: string;
-  }[];
   finalStatement?: string;
   openingReview?: {
     eyebrow?: string;
@@ -137,11 +131,6 @@ export const projects = [
         "Launch bopassage.com, build an Instagram presence that feels like the room, and run Meta and Google campaigns aimed at brunch habit and table bookings.",
       context:
         "Café & restaurant · Founty, Agadir   delivery focused on web, social content, and media buying only.",
-      stats: [
-        { prefix: "+", value: 156, suffix: "%", label: "footfall intent" },
-        { prefix: "+", value: 89, suffix: "%", label: "social reach" },
-        { prefix: "+", value: 64, suffix: "%", label: "brand visibility" },
-      ],
       closingReview: {
         eyebrow: "After delivery",
         quote:
@@ -189,11 +178,6 @@ export const projects = [
         "Unify branding and dmchm.com, present team expertise and service phases with confidence, and scale qualified inquiries from owners and operators across Morocco.",
       context:
         "Conseil & gestion hôtelière · Maroc   branding, website, social content, and media buying delivered as one composed funnel.",
-      stats: [
-        { prefix: "+", value: 186, suffix: "%", label: "qualified leads" },
-        { prefix: "+", value: 240, suffix: "%", label: "engagement" },
-        { prefix: "+", value: 95, suffix: "%", label: "partner satisfaction" },
-      ],
       closingReview: {
         eyebrow: "After delivery",
         quote:
@@ -266,11 +250,6 @@ export const projects = [
         "Launch educazenkids.com, centralize enrollment in a CRM dashboard, publish inclusive social content, and drive enrollment leads through paid media.",
       context:
         "Centre éducatif & psychosocial · Agadir   website, CRM & dashboard, social content, and media buying.",
-      stats: [
-        { prefix: "+", value: 198, suffix: "%", label: "enrollment leads" },
-        { prefix: "+", value: 67, suffix: "%", label: "admin efficiency" },
-        { prefix: "+", value: 92, suffix: "%", label: "parent satisfaction" },
-      ],
       closingReview: {
         eyebrow: "After delivery",
         quote:
@@ -350,11 +329,6 @@ export const projects = [
         "Ship branding and the public platform, build admin and student dashboards, and grow professional social content.",
       context:
         "Education & talent · EIDEN Group   branding, website, dashboard system, and social content.",
-      stats: [
-        { prefix: "+", value: 210, suffix: "%", label: "student engagement" },
-        { prefix: "+", value: 88, suffix: "%", label: "course completion" },
-        { prefix: "+", value: 74, suffix: "%", label: "completion rate" },
-      ],
       closingReview: {
         eyebrow: "After delivery",
         quote:
@@ -431,11 +405,6 @@ export const projects = [
         "Deliver brand identity, publish golden-hour social that builds tribe, and run paid media toward booking inquiries from nomads and surfers.",
       context:
         "Hospitality · Imi Ouddar, Taghazout   branding, social media content, and media buying.",
-      stats: [
-        { prefix: "+", value: 142, suffix: "%", label: "booking inquiries" },
-        { prefix: "+", value: 78, suffix: "%", label: "ad engagement" },
-        { prefix: "+", value: 120, suffix: "%", label: "brand warmth" },
-      ],
       closingReview: {
         eyebrow: "After delivery",
         quote:

@@ -15,12 +15,6 @@ export type CaseStudyGalleryFace =
       backgroundAlt?: string;
     };
 export type CaseStudyProcessStep = { n: string; title: string; desc: string };
-export type CaseStudyStat = {
-  prefix: string;
-  value: number;
-  suffix: string;
-  label: string;
-};
 
 /** Framed client / owner voice for the case study spotlight sections. */
 export type CaseStudyReview = {
@@ -56,7 +50,6 @@ export type ResolvedCaseStudy = {
   gallery: CaseStudyGalleryItem[];
   galleryFaces: CaseStudyGalleryFace[];
   process: CaseStudyProcessStep[];
-  stats: CaseStudyStat[];
   finalStatement: string;
   openingReview: CaseStudyReview;
   closingReview: CaseStudyReview;
@@ -112,12 +105,6 @@ const RESULT_VARIANTS: CaseStudyResultTile["variant"][] = [
   "tall",
   "wide",
   "sm",
-];
-
-const DEFAULT_STATS: CaseStudyStat[] = [
-  { prefix: "+", value: 240, suffix: "%", label: "engagement" },
-  { prefix: "+", value: 180, suffix: "%", label: "conversions" },
-  { prefix: "+", value: 95, suffix: "%", label: "satisfaction" },
 ];
 
 const EXPERTISE_POOL: CaseStudyExpertiseItem[] = [
@@ -281,7 +268,6 @@ export function resolveCaseStudy(project: Project): ResolvedCaseStudy {
     context,
     expertise: mergeExpertise(project),
     process: PROCESS,
-    stats: o?.stats ? [...o.stats] : DEFAULT_STATS,
     finalStatement,
     openingReview,
     closingReview,

@@ -16,7 +16,9 @@ const step1Schema = z.object({
 });
 
 const step2Schema = z.object({
-  budget: z.enum(["3-5k", "5-10k", "10k+"], { required_error: "Please select a budget range" }),
+  headcount: z.enum(["0-10", "10-50", "50-200", "200+"], {
+    required_error: "Please select a company headcount range",
+  }),
   idea: z.string().min(15, "Please tell us a bit more (min 15 characters)"),
 });
 
@@ -24,10 +26,11 @@ const fullSchema = step1Schema.merge(step2Schema);
 type FormValues = z.infer<typeof fullSchema>;
 type FormStep = "step1" | "step2" | "success";
 
-const BUDGET_OPTIONS = [
-  { value: "3-5k", label: "$3k – $5k" },
-  { value: "5-10k", label: "$5k – $10k" },
-  { value: "10k+", label: "$10k +" },
+const HEADCOUNT_OPTIONS = [
+  { value: "0-10", label: "0-10" },
+  { value: "10-50", label: "10-50" },
+  { value: "50-200", label: "50-200" },
+  { value: "200+", label: "+200" },
 ] as const;
 
 /* ── Input styles ──────────────────────────────────────────── */
@@ -97,7 +100,7 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
       if (!res.ok) throw new Error("Server error");
     } catch {
       const body = encodeURIComponent(
-        `Name: ${data.name}\nEmail: ${data.email}\nCompany: ${data.company ?? "N/A"}\nBudget: ${data.budget}\n\n${data.idea}`,
+        `Name: ${data.name}\nEmail: ${data.email}\nCompany: ${data.company ?? "N/A"}\nHeadcount: ${data.headcount}\n\n${data.idea}`,
       );
       window.open(
         `mailto:contact@eiden-group.com?subject=Hydra Scan™ Inquiry   ${data.name}&body=${body}`,
@@ -114,7 +117,7 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
     setFormStep("step1");
   }
 
-  const selectedBudget = watch("budget");
+  const selectedHeadcount = watch("headcount");
 
   return (
     <div className="flex flex-col gap-8 px-5 py-7 sm:px-9 sm:py-9">
@@ -204,23 +207,30 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
               </p>
             </div>
 
-            <FormField label="Estimated budget" error={errors.budget?.message} required>
-              <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-3">
-                {BUDGET_OPTIONS.map((opt) => (
-                  <button
-                    key={opt.value}
-                    type="button"
-                    onClick={() => setValue("budget", opt.value)}
-                    className={cn(
-                      "border py-3.5 font-label text-[10px] uppercase tracking-[0.2em] transition-all duration-200 sm:py-4 sm:tracking-[0.26em]",
-                      selectedBudget === opt.value
-                        ? "border-gold bg-gold/15 text-forest-deep"
-                        : "border-stone-200 text-stone-500 hover:border-stone-300 hover:text-stone-800",
-                    )}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
+            <FormField label="Company headcount" error={errors.headcount?.message} required >
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {HEADCOUNT_OPTIONS.map(({ value, label }) => {
+                  const selected = selectedHeadcount === value;
+
+                  return (
+                    <button
+                      key={value}
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() =>
+                        setValue("headcount", value, { shouldValidate: true })
+                      }
+                      className={cn(
+                        "flex h-10 items-center justify-center rounded-sm border-2 px-2 text-xs font-display font-semibold transition-all duration-200 sm:h-11 sm:text-sm",
+                        selected
+                          ? "border-gold bg-gold text-forest-deep ring-2 ring-gold"
+                          : "border-white/15 bg-white/[0.03] text-white/40 hover:border-white/30 hover:bg-white/[0.06] hover:text-white/65"
+                      )}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
               </div>
             </FormField>
 

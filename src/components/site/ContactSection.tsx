@@ -125,14 +125,8 @@ export function ContactSection() {
                     Location
                   </p>
                   <p className="font-body text-sm text-white/60">
-                    Agadir Bay, Morocco · Operating globally
+                    Agadir Bay, Technopole 1 Bloc B, Agadir 80000, Morocco
                   </p>
-                </div>
-                <div>
-                  <p className="mb-2 font-label text-[9px] uppercase tracking-[0.44em] text-white/35">
-                    Response time
-                  </p>
-                  <p className="font-body text-sm text-white/60">Within one business day</p>
                 </div>
               </div>
             </motion.div>

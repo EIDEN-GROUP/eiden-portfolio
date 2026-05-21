@@ -1,4 +1,4 @@
-import type { CaseStudyGalleryFace, CaseStudyReview, CaseStudyStat } from "@/data/projectCaseStudy";
+import type { CaseStudyGalleryFace, CaseStudyReview } from "@/data/projectCaseStudy";
 import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { ProjectCinematicGallerySection } from "@/components/case-study/ProjectCinematicGallerySection";
 import { ProjectServicesShowcase } from "@/components/case-study/ProjectServicesShowcase";
@@ -7,7 +7,6 @@ import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
 import {
   motion,
-  useInView,
   useMotionValueEvent,
   useScroll,
   useSpring,
@@ -42,25 +41,6 @@ function useMediaQuery(query: string): boolean {
     return () => media.removeEventListener("change", sync);
   }, [query]);
   return matches;
-}
-
-function useCountUp(target: number, active: boolean, durationMs = 2200) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!active) return;
-    setValue(0);
-    let raf = 0;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const t = Math.min((now - start) / durationMs, 1);
-      const eased = 1 - (1 - t) ** 3;
-      setValue(Math.round(target * eased));
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [active, target, durationMs]);
-  return value;
 }
 
 function BandHeader({
@@ -458,32 +438,6 @@ function ClientReviewSpotlight({
   );
 }
 
-function StatRow({ stat, active }: { stat: CaseStudyStat; active: boolean }) {
-  const theme = useProjectTheme();
-  const n = useCountUp(stat.value, active);
-  return (
-    <div
-      className="flex min-h-[10rem] flex-col justify-center border-t px-[max(1rem,env(safe-area-inset-left))] py-10 text-center sm:min-h-[12rem] sm:px-8"
-      style={{ borderColor: theme.colors.border }}
-    >
-      <p
-        className="font-display font-light tracking-[-0.07em]"
-        style={{ fontSize: "clamp(2.75rem, 12vw, 8rem)", color: theme.colors.text }}
-      >
-        <span style={{ color: theme.colors.accent }}>{stat.prefix}</span>
-        {n}
-        <span style={{ color: theme.colors.accent }}>{stat.suffix}</span>
-      </p>
-      <p
-        className="mt-3 font-display text-xs uppercase tracking-[0.28em]"
-        style={{ color: theme.colors.textMuted }}
-      >
-        {stat.label}
-      </p>
-    </div>
-  );
-}
-
 export function ProjectCaseStudyBody({ project }: { project: Project }) {
   const theme = useProjectTheme();
   const c = useMemo(() => resolveCaseStudy(project), [project]);
@@ -496,9 +450,6 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
     }),
     [c.challenge, c.client, c.location],
   );
-  const statsRef = useRef<HTMLDivElement>(null);
-  const statsInView = useInView(statsRef, { once: true, margin: "-15%" });
-
   return (
     <>
       <div
@@ -524,23 +475,6 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
         <ProjectCinematicGallerySection project={project} />
 
         <ProjectServicesShowcase project={project} />
-
-        <section
-          ref={statsRef}
-          aria-label="Outcomes"
-          className="border-t"
-          style={{ borderColor: theme.colors.border }}
-        >
-          <BandHeader left="Outcomes" center="Momentum, measured." right="Impact" />
-          <div
-            className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x"
-            style={{ borderColor: theme.colors.border }}
-          >
-            {c.stats.map((s: CaseStudyStat) => (
-              <StatRow key={s.label} stat={s} active={statsInView} />
-            ))}
-          </div>
-        </section>
 
         <section
           aria-label="Deliverables scroll gallery"

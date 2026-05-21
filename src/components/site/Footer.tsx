@@ -139,9 +139,6 @@ export function Footer() {
             className="h-[clamp(4rem,min(18vw,15rem),11rem)] w-auto max-w-[min(96vw,34rem)] object-contain object-left-bottom"
             style={{ filter: "brightness(0) invert(1)" }}
           />
-          <span className="font-hero translate-y-[0.06em] text-[clamp(2.75rem,min(12vw,9rem),9rem)] font-bold leading-none text-gold">
-            .
-          </span>
         </Link>
 
         {/* Columns */}
