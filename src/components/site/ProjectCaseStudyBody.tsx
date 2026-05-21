@@ -414,9 +414,7 @@ function ClientReviewSpotlight({
           <footer
             className="mt-10 border-t pt-8 text-center sm:mt-12 sm:text-left"
             style={{ borderColor: theme.colors.border }}
-          >
-            
-          </footer>
+          ></footer>
         </blockquote>
       </div>
     </div>
