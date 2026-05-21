@@ -15,7 +15,6 @@ import educazenkidsBefore from "@/assets/educazenkids-before.png";
 import educazenkidsCover from "@/assets/educazenkids-cover.png";
 import educazenkidsScroll1 from "@/assets/educazenkids-scroll-1.png";
 import educazenkidsScroll2 from "@/assets/educazenkids-scroll-2.png";
-import educazenkidsWebsiteBanner from "@/assets/educazenkids-website-banner.png";
 import educazenHero from "@/assets/educazen-hero.png";
 import medicalBayLobby from "@/assets/medical-bay-lobby.png";
 import medicalBayOffice from "@/assets/medical-bay-office.png";
@@ -295,7 +294,6 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
         m(educazenkidsCover, "EducazenKids brand", "Brand"),
         m(educazenkidsScroll1, "EducazenKids social campaign", "Campaign"),
         m(educazenkidsScroll2, "EducazenKids brand application", "Application"),
-        m(educazenkidsWebsiteBanner, "EducazenKids website", "Website"),
       ],
       links: [
         {

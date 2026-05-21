@@ -19,7 +19,6 @@ import educazenkidsCover from "@/assets/educazenkids-cover.png";
 import educazenkidsScroll1 from "@/assets/educazenkids-scroll-1.png";
 import educazenkidsScroll2 from "@/assets/educazenkids-scroll-2.png";
 import educazenkidsScroll3 from "@/assets/educazenkids-scroll-3.png";
-import educazenkidsWebsiteBanner from "@/assets/educazenkids-website-banner.png";
 import educazenHero from "@/assets/educazen-hero.png";
 import eidenAcademyBrandCarousel from "@/assets/eiden-academy-brand-carousel.png";
 import eidenAcademyCover from "@/assets/eiden-academy-cover.png";
@@ -258,12 +257,6 @@ export const projects = [
       },
       gallery: [educazenHero, educazenkidsCover, educazenHero],
       resultGallery: [
-        {
-          src: educazenkidsWebsiteBanner,
-          alt: "EducazenKids website homepage",
-          caption: "Website",
-          variant: "hero",
-        },
         {
           src: educazenHero,
           alt: "EducazenKids website desktop",
