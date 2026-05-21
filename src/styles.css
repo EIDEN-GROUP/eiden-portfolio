@@ -164,9 +164,11 @@
   .project-themed .font-editorial {
     font-family: var(--project-font-editorial);
   }
-  .project-themed .font-label,
-  .project-themed .font-body {
+  .project-themed .font-label {
     font-family: var(--project-font-label);
+  }
+  .project-themed .font-body {
+    font-family: var(--project-font-body);
   }
 
   .grain::after {

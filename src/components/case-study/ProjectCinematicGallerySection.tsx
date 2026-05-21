@@ -55,6 +55,16 @@ const SERVICE_EXPLANATIONS: Record<string, Record<string, string>> = {
     "Media Buying & Ads Management":
       "Managed performance campaigns to generate enrollment leads at sustainable costs.",
   },
+  "medical-bay": {
+    "Website Design & Development":
+      "Built medicalbay.ma as a patient funnel with clear service paths and appointment logic.",
+    "Branding & Visual Identity":
+      "Created a clinical-yet-warm identity system across space, digital, and patient touchpoints.",
+    "CRM System Development":
+      "Implemented CRM for appointments, follow-ups, and operational visibility.",
+    "Media Buying & Ads Management":
+      "Launched community-targeted campaigns with healthcare-appropriate tone and attribution.",
+  },
   "eiden-academy": {
     "Website Design & Development":
       "Designed and developed the public academy platform for programs and enrollment.",
@@ -74,6 +84,23 @@ const SERVICE_EXPLANATIONS: Record<string, Record<string, string>> = {
 function isDuplicateSocialStoryItem(item: { category: string }) {
   const category = item.category.trim().toLowerCase();
   return category === "social" || category === "social media";
+}
+
+function socialFollowDescription(social: {
+  linkedin?: string;
+  instagram?: string;
+  facebook?: string;
+  tiktok?: string;
+}): string {
+  const platforms: string[] = [];
+  if (social.linkedin?.trim()) platforms.push("LinkedIn");
+  if (social.instagram?.trim()) platforms.push("Instagram");
+  if (social.facebook?.trim()) platforms.push("Facebook");
+  if (social.tiktok?.trim()) platforms.push("TikTok");
+  if (!platforms.length) return "Follow us online.";
+  if (platforms.length === 1) return `Follow on ${platforms[0]}.`;
+  if (platforms.length === 2) return `Follow on ${platforms[0]} and ${platforms[1]}.`;
+  return `Follow on ${platforms.slice(0, -1).join(", ")}, and ${platforms.at(-1)}.`;
 }
 
 export function ProjectCinematicGallerySection({ project }: { project: Project }) {
@@ -109,8 +136,9 @@ export function ProjectCinematicGallerySection({ project }: { project: Project }
       alt: `${project.title} social media links`,
       category: "Social media",
       title: `${project.title} on social`,
-      description: "Follow on Instagram, Facebook, and TikTok.",
+      description: socialFollowDescription(socialLinks),
       socialLinks: {
+        linkedin: socialLinks.linkedin,
         instagram: socialLinks.instagram,
         facebook: socialLinks.facebook,
         tiktok: socialLinks.tiktok,

@@ -75,6 +75,16 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
 function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false);
   useEffect(() => {
@@ -93,17 +103,26 @@ function compactText(text: string, maxLength: number): string {
   return `${text.slice(0, maxLength).trimEnd()}...`;
 }
 
-const SOCIAL_FALLBACK_URL: Record<"instagram" | "facebook" | "tiktok", string> = {
-  instagram: "https://www.instagram.com/",
-  facebook: "https://www.facebook.com/",
-  tiktok: "https://www.tiktok.com/",
-};
-
-const SOCIAL_PLATFORMS = [
-  { id: "instagram" as const, label: "Instagram", Icon: InstagramIcon },
-  { id: "facebook" as const, label: "Facebook", Icon: FacebookIcon },
-  { id: "tiktok" as const, label: "TikTok", Icon: TikTokIcon },
-];
+function socialEntriesFromLinks(links: CinematicGalleryItem["socialLinks"]): SocialEntry[] {
+  if (!links) return [];
+  return [
+    links.linkedin?.trim()
+      ? { id: "linkedin", href: links.linkedin.trim(), label: "LinkedIn", Icon: LinkedInIcon }
+      : null,
+    links.instagram?.trim()
+      ? { id: "instagram", href: links.instagram.trim(), label: "Instagram", Icon: InstagramIcon }
+      : null,
+    links.facebook?.trim()
+      ? { id: "facebook", href: links.facebook.trim(), label: "Facebook", Icon: FacebookIcon }
+      : null,
+    links.tiktok?.trim()
+      ? { id: "tiktok", href: links.tiktok.trim(), label: "TikTok", Icon: TikTokIcon }
+      : null,
+    links.website?.trim()
+      ? { id: "website", href: links.website.trim(), label: "Website", Icon: Globe }
+      : null,
+  ].filter(Boolean) as SocialEntry[];
+}
 
 function isSocialMediaCard(item: CinematicGalleryItem): boolean {
   const category = item.category.trim().toLowerCase();
@@ -128,37 +147,7 @@ function GalleryCardOverlay({
     socialCard ||
     item.category.trim().toLowerCase() === "hospitality" ||
     item.category.trim().toLowerCase() === "brand";
-  const socialEntries: SocialEntry[] = socialCard
-    ? SOCIAL_PLATFORMS.map(({ id, label, Icon }) => ({
-        id,
-        label,
-        Icon,
-        href: item.socialLinks?.[id]?.trim() || SOCIAL_FALLBACK_URL[id],
-      }))
-    : ([
-        item.socialLinks?.instagram
-          ? {
-              id: "instagram",
-              href: item.socialLinks.instagram,
-              label: "Instagram",
-              Icon: InstagramIcon,
-            }
-          : null,
-        item.socialLinks?.facebook
-          ? {
-              id: "facebook",
-              href: item.socialLinks.facebook,
-              label: "Facebook",
-              Icon: FacebookIcon,
-            }
-          : null,
-        item.socialLinks?.tiktok
-          ? { id: "tiktok", href: item.socialLinks.tiktok, label: "TikTok", Icon: TikTokIcon }
-          : null,
-        item.socialLinks?.website
-          ? { id: "website", href: item.socialLinks.website, label: "Website", Icon: Globe }
-          : null,
-      ].filter(Boolean) as SocialEntry[]);
+  const socialEntries = socialEntriesFromLinks(item.socialLinks);
 
   return (
     <AnimatePresence mode="wait">

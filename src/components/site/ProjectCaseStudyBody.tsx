@@ -100,11 +100,21 @@ function cylinderRadiusPx(n: number): number {
   return 320;
 }
 
-const SOCIAL_FALLBACK_URL: Record<"instagram" | "facebook" | "tiktok", string> = {
-  instagram: "https://www.instagram.com/",
-  facebook: "https://www.facebook.com/",
-  tiktok: "https://www.tiktok.com/",
-};
+function LinkedInIcon({
+  className,
+  strokeWidth: _sw,
+}: {
+  className?: string;
+  strokeWidth?: number;
+}) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
 
 function SocialFollowFace({ face }: { face: Extract<CaseStudyGalleryFace, { kind: "social" }> }) {
   const row: Array<{
@@ -113,35 +123,27 @@ function SocialFollowFace({ face }: { face: Extract<CaseStudyGalleryFace, { kind
     href: string;
     Icon: typeof Camera;
   }> = [
-    {
-      key: "instagram",
-      label: "Instagram",
-      href: face.instagram?.trim() || SOCIAL_FALLBACK_URL.instagram,
-      Icon: Camera,
-    },
-    {
-      key: "facebook",
-      label: "Facebook",
-      href: face.facebook?.trim() || SOCIAL_FALLBACK_URL.facebook,
-      Icon: Users,
-    },
-    {
-      key: "tiktok",
-      label: "TikTok",
-      href: face.tiktok?.trim() || SOCIAL_FALLBACK_URL.tiktok,
-      Icon: Music,
-    },
-  ];
-
-  const site = face.website?.trim();
-  if (site) {
-    row.push({
-      key: "website",
-      label: "Website",
-      href: site,
-      Icon: Globe,
-    });
-  }
+    face.linkedin?.trim()
+      ? { key: "linkedin", label: "LinkedIn", href: face.linkedin.trim(), Icon: LinkedInIcon }
+      : null,
+    face.instagram?.trim()
+      ? { key: "instagram", label: "Instagram", href: face.instagram.trim(), Icon: Camera }
+      : null,
+    face.facebook?.trim()
+      ? { key: "facebook", label: "Facebook", href: face.facebook.trim(), Icon: Users }
+      : null,
+    face.tiktok?.trim()
+      ? { key: "tiktok", label: "TikTok", href: face.tiktok.trim(), Icon: Music }
+      : null,
+    face.website?.trim()
+      ? { key: "website", label: "Website", href: face.website.trim(), Icon: Globe }
+      : null,
+  ].filter(Boolean) as Array<{
+    key: string;
+    label: string;
+    href: string;
+    Icon: typeof Camera;
+  }>;
 
   const linkCls =
     "group relative z-10 inline-flex min-h-[40px] cursor-pointer items-center justify-center gap-1.5 rounded-sm px-1.5 py-0.5 font-label uppercase text-white/85 transition-colors hover:text-gold active:text-gold/90 sm:min-h-0 sm:gap-1.5 sm:px-0 sm:py-0";
@@ -399,7 +401,7 @@ function ClientReviewSpotlight({
                 preserveQuoteLineBreaks && "whitespace-pre-line",
               )}
               style={{
-                fontSize: "clamp(1.25rem, 4.16vw, 3.5rem)",
+                fontSize: "clamp(0.9rem, 3.5vw, 2rem)",
                 color: theme.colors.text,
                 transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateZ(0.035em)`,
                 textShadow: shadow3d,
@@ -456,7 +458,7 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
         }}
       >
         <BandHeader left="Industry" center={project.summary} right="Timeline" />
-        <BandHeader left={c.industry} center={project.tagline} right={c.timeline} />
+        {/* <BandHeader left={c.industry} center={project.tagline} right={c.timeline} /> */}
 
         <section
           aria-label="Client problem"

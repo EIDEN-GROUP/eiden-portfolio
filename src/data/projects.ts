@@ -36,6 +36,9 @@ import lunjaSocial4 from "@/assets/lunja-social-4.png";
 import lunjaSocial5 from "@/assets/lunja-social-5.png";
 import lunjaSocial6 from "@/assets/lunja-social-6.png";
 import lunjaSocial7 from "@/assets/lunja-social-7.png";
+import medicalBayLobby from "@/assets/medical-bay-lobby.png";
+import medicalBayOffice from "@/assets/medical-bay-office.png";
+import medicalBayReception from "@/assets/medical-bay-reception.png";
 
 /** Optional overrides for the project detail case study body. */
 export type ProjectCaseStudyOverride = {
@@ -49,6 +52,7 @@ export type ProjectCaseStudyOverride = {
   context?: string;
   gallery?: readonly string[];
   social?: {
+    linkedin?: string;
     instagram?: string;
     facebook?: string;
     tiktok?: string;
@@ -75,13 +79,20 @@ export const projects = [
     title: "Bôpassage",
     cover: bopassageCover,
     detailHero: bopassageHero,
-    summary: "Website, social, and paid media to fill tables.",
-    tagline: "L'endroit où on revient toujours   now with a digital layer to match.",
-    category: "Retail & placemaking",
+    summary:
+      "A Founty café-restaurant rebuilt online   website, voice, and paid media engineered to turn discovery into reservations.",
+    tagline: "The place you always come back to now with the digital layer to match.",
+    category: "Hospitality",
     year: "2024",
     index: "01",
-    services: ["Website design & development", "Social media content", "Media buying & ads"],
-    website: "https://bopassage.com/",
+    services: [
+      "Brand voice & messaging",
+      "Website design & development",
+      "Marketing strategy",
+      "Google Ads & media buying",
+      "Revenue optimisation",
+    ],
+    website: "https://bopassage.com",
     caseStudy: {
       social: {
         instagram: "https://www.instagram.com/bo.passage/",
@@ -100,19 +111,19 @@ export const projects = [
       resultGallery: [
         {
           src: bopassageSocialBalance,
-          alt: "Bô Passage — A perfect balance of taste & freshness",
+          alt: "Bô Passage   A perfect balance of taste & freshness",
           caption: "Balance",
           variant: "hero",
         },
         {
           src: bopassageSocialWaffle,
-          alt: "Bô Passage — Indulge in sweetness",
+          alt: "Bô Passage   Indulge in sweetness",
           caption: "Dessert",
           variant: "tall",
         },
         {
           src: bopassageSocialMatcha,
-          alt: "Bô Passage — Matcha moment",
+          alt: "Bô Passage   Matcha moment",
           caption: "Matcha",
           variant: "sm",
         },
@@ -126,15 +137,21 @@ export const projects = [
         { src: bopassageCover, alt: "Bô Passage brand", caption: "Brand", variant: "sm" },
       ],
       challenge:
-        "Bô Passage had the atmosphere and the food   but no site, no consistent social rhythm, and no paid layer to turn discovery into reservations.",
+        "Bôpassage had the room, the plates, and the loyalty   but no website, no consistent social rhythm, and no paid layer carrying the brand outside its four walls. The atmosphere stopped at the door.",
       goals:
-        "Launch bopassage.com, build an Instagram presence that feels like the room, and run Meta and Google campaigns aimed at brunch habit and table bookings.",
-      context:
-        "Café & restaurant · Founty, Agadir   delivery focused on web, social content, and media buying only.",
+        "Launch bopassage.com, build a social presence and editorial voice that feels like the room, and run Google Ads campaigns aimed at brunch habit and table bookings.",
+      context: "2024 · ongoing engagement   Agadir, Morocco · hybrid delivery",
+      openingReview: {
+        eyebrow: "Before delivery",
+        quote:
+          "Bôpassage had the room, the plates, and the loyalty   but no website, no consistent social rhythm, and no paid layer carrying the brand outside its four walls. The atmosphere stopped at the door.",
+        author: "Bôpassage",
+        role: "Founty, Agadir",
+      },
       closingReview: {
         eyebrow: "After delivery",
         quote:
-          "Our site finally feels like the restaurant   warm, clear, easy to book. Social and ads bring people in who actually stay for brunch.",
+          "Our site finally feels like the restaurant   warm, clear, easy to book. Social and ads now bring in people who already understand the vibe before they walk in.",
         author: "Bôpassage",
         role: "Café & restaurant",
       },
@@ -142,47 +159,74 @@ export const projects = [
   },
   {
     slug: "dmc-morocco",
-    title: "DMC",
+    title: "DMC Hospitality Morocco",
     cover: dmcCover,
     detailHero: dmcHeroDetail,
-    summary: "Morocco hospitality brand with DMC website and performance media.",
-    tagline: "Authenticité & excellence   hotel expertise from mark to inquiry.",
+    summary:
+      "A 30-year hospitality expertise turned into a brand full launch from blank page to live presence in the Moroccan tourism ecosystem.",
+    tagline: "Authenticity & excellence hotel expertise translated from mark to inquiry.",
     category: "Hospitality",
-    year: "2023",
+    year: "2024",
     index: "02",
     services: [
+      "Brand creation",
+      "Naming & identity",
       "Website design & development",
-      "Branding",
-      "Social media content",
-      "Media buying & ads",
+      "LinkedIn content strategy",
+      "Lead generation",
+      "Positioning",
     ],
-    website: "https://dmchm.com/",
+    website: "https://dmchm.com",
     caseStudy: {
+      social: {
+        linkedin: "https://www.linkedin.com/company/dmchm/",
+      },
       gallery: [dmcSocialExcellence, dmcSocialD, dmcSocialM, dmcSocialC, dmcHero, dmcCover],
       resultGallery: [
         {
           src: dmcSocialExcellence,
-          alt: "DMC Hospitality — L'excellence en hôtellerie depuis 2012",
+          alt: "DMC Hospitality   Excellence in hospitality",
           caption: "Brand campaign",
           variant: "hero",
         },
-        { src: dmcSocialD, alt: "DMC Hospitality — D", caption: "Expertise", variant: "tall" },
-        { src: dmcSocialM, alt: "DMC Hospitality — M", caption: "Management", variant: "sm" },
-        { src: dmcSocialC, alt: "DMC Hospitality — C", caption: "Consulting", variant: "wide" },
+        {
+          src: dmcSocialD,
+          alt: "DMC Hospitality   International expertise",
+          caption: "Expertise",
+          variant: "tall",
+        },
+        {
+          src: dmcSocialM,
+          alt: "DMC Hospitality   Tailored support",
+          caption: "Management",
+          variant: "sm",
+        },
+        {
+          src: dmcSocialC,
+          alt: "DMC Hospitality   Authenticity & sustainability",
+          caption: "Consulting",
+          variant: "wide",
+        },
         { src: dmcHero, alt: "DMC Hospitality website", caption: "Website", variant: "tall" },
         { src: dmcCover, alt: "DMC Hospitality collateral", caption: "Collateral", variant: "sm" },
       ],
       challenge:
-        "DMC Hospitality needed one coherent system   a mark partners trust, a site that explains pré-ouverture through optimisation with clarity, and social plus paid that bring qualified hotel projects.",
+        "Three decades of hospitality know-how   but no brand, no website, no voice in the market. The expertise existed; the platform to deploy it didn't.",
       goals:
-        "Unify branding and dmchm.com, present team expertise and service phases with confidence, and scale qualified inquiries from owners and operators across Morocco.",
-      context:
-        "Conseil & gestion hôtelière · Maroc   branding, website, social content, and media buying delivered as one composed funnel.",
+        "Build the brand from scratch: name, identity, website, and LinkedIn content engine that opens doors with hoteliers, investors, and international travel operators.",
+      context: "2024 · founding engagement   Casablanca / Marrakech / Agadir · hybrid delivery",
+      openingReview: {
+        eyebrow: "Before delivery",
+        quote:
+          "Three decades of hospitality know-how   but no brand, no website, no voice in the market. The expertise existed; the platform to deploy it didn't.",
+        author: "DMC Hospitality Morocco",
+        role: "Founding team",
+      },
       closingReview: {
         eyebrow: "After delivery",
         quote:
-          "Partners recognize us instantly   brand, site, social, and campaigns all speak the same language of hotel excellence, and project inquiries are sharper.",
-        author: "DMC Hospitality",
+          "We had the expertise. EIDEN built the brand that lets us deploy it. We now show up in the conversations we were excluded from for years.",
+        author: "DMC Hospitality Morocco",
         role: "Hotel consulting",
       },
     },
@@ -192,19 +236,26 @@ export const projects = [
     title: "EducazenKids",
     cover: educazenkidsCover,
     detailHero: educazenHero,
-    summary: "Parent-trusted platform with CRM and growth media for Agadir families.",
-    tagline: "L'enseignement sur mesure   with the digital stack to match.",
+    summary:
+      "Complete makeover for an Agadir inclusive education centre   website, CRM, marketing engine, and paid media built around children with neuro-specific needs and the families behind them.",
+    tagline: "Tailored education with the digital and operational stack to match.",
     category: "Education",
-    year: "2023",
+    year: "2024",
     index: "03",
     services: [
-      "Website design & development",
-      "CRM & dashboard",
-      "Social media content",
-      "Media buying",
+      "Brand refresh",
+      "Website rebuild",
+      "CRM integration",
+      "Marketing strategy",
+      "Meta Ads media buying",
+      "Revenue optimisation",
     ],
-    website: "https://educazenkids.com/",
+    website: "https://educazenkids.com",
     caseStudy: {
+      social: {
+        instagram: "https://www.instagram.com/educazenkids/",
+        facebook: "https://www.facebook.com/people/Educazen-Kids/61563794544686/?locale=ru_RU#",
+      },
       gallery: [educazenHero, educazenkidsCover, educazenHero],
       resultGallery: [
         {
@@ -227,35 +278,41 @@ export const projects = [
         },
         {
           src: educazenkidsScroll1,
-          alt: "EducazenKids social  travailler ensemble pour des apprentissages épanouis",
+          alt: "EducazenKids social   working together for fulfilled learning",
           caption: "Social content",
           variant: "wide",
         },
         {
           src: educazenkidsScroll2,
-          alt: "EducazenKids social  grandir avec un esprit serein et un corps épanoui",
+          alt: "EducazenKids social   growing with a calm mind and fulfilled body",
           caption: "Brand campaign",
           variant: "tall",
         },
         {
           src: educazenkidsScroll3,
-          alt: "EducazenKids social  curiosité, grandir à son rythme",
+          alt: "EducazenKids social   curiosity, growing at your own pace",
           caption: "Social creative",
           variant: "sm",
         },
       ],
       challenge:
-        "Parents needed a warm, credible digital front door   while the team juggled leads, follow-up, and outreach across tools that did not talk to each other.",
+        "A centre changing children's lives daily   but discoverability gaps, no CRM, no funnel, and a digital presence that didn't reflect the impact happening inside the walls.",
       goals:
-        "Launch educazenkids.com, centralize enrollment in a CRM dashboard, publish inclusive social content, and drive enrollment leads through paid media.",
-      context:
-        "Centre éducatif & psychosocial · Agadir   website, CRM & dashboard, social content, and media buying.",
+        "Launch a new educazenkids.com built as a real enrolment funnel, deploy a CRM for parent and payment management, and run Meta Ads reaching families of children with ADHD, autism, and dyslexia.",
+      context: "2024–2025 · ongoing engagement   Agadir, Morocco · full-stack delivery",
+      openingReview: {
+        eyebrow: "Before delivery",
+        quote:
+          "A centre changing children's lives daily   but discoverability gaps, no CRM, no funnel, and a digital presence that didn't reflect the impact happening inside the walls.",
+        author: "EducazenKids",
+        role: "Director's brief",
+      },
       closingReview: {
         eyebrow: "After delivery",
         quote:
-          "Parents find us online with confidence, our team runs enrollment from one dashboard, and social plus ads bring families who are truly aligned.",
+          "We used to spend hours on admin and still missed families. Now the system works for us   and parents find us before we even pitch ourselves.",
         author: "EducazenKids",
-        role: "Education",
+        role: "Direction",
       },
     },
   },
@@ -264,23 +321,25 @@ export const projects = [
     title: "Eiden Academy",
     cover: eidenAcademyCover,
     detailHero: eidenHero,
-    summary: "Learning brand with dashboard and institutional platform.",
-    tagline: "Institutional knowledge, delivered as a platform students return to.",
+    summary:
+      "Eiden Academy didn't exist. There was no brand, no structure, no funnel, no positioning. Eiden Group built it from zero and turned it into MENA's most deliberately engineered professional training platform.",
+    tagline: "What happens when an architecture firm builds its own school.",
     category: "Education & talent",
-    year: "2024",
+    year: "2025",
     index: "04",
     services: [
+      "Brand creation",
+      "Curriculum architecture",
       "Website design & development",
-      "Dashboard system",
-      "Branding",
-      "Social media content",
+      "Enrolment funnel",
+      "MICE & corporate training",
+      "Launch strategy",
     ],
-    website: "https://eiden-group.com/",
+    website: "https://eiden-group.com/academy",
     caseStudy: {
       social: {
-        instagram: "https://www.instagram.com/eiden.group/",
-        facebook: "https://www.facebook.com/eiden.group/",
-        tiktok: "https://www.tiktok.com/@eiden.group",
+        instagram: "https://www.instagram.com/eiden.academy/",
+        facebook: "https://www.facebook.com/p/Eiden-Academy-61576064859002/",
       },
       gallery: [
         eidenAcademyBrandCarousel,
@@ -293,25 +352,25 @@ export const projects = [
       resultGallery: [
         {
           src: eidenAcademyBrandCarousel,
-          alt: "Eiden Academy — De la connaissance aux compétences réelles",
+          alt: "Eiden Academy   From knowledge to real skills",
           caption: "Brand",
           variant: "hero",
         },
         {
           src: eidenAcademySocialAiTools,
-          alt: "Eiden Academy — Master AI Tools & Applications",
+          alt: "Eiden Academy   Master AI Tools & Applications",
           caption: "AI formation",
           variant: "tall",
         },
         {
           src: eidenAcademySocialAiIntegration,
-          alt: "Eiden Academy — Formation intégration IA",
+          alt: "Eiden Academy   AI Integration",
           caption: "AI integration",
           variant: "sm",
         },
         {
           src: eidenAcademySocialEcommerce,
-          alt: "Eiden Academy — Formation E-Commerce & Marketplace",
+          alt: "Eiden Academy   E-Commerce & Marketplace",
           caption: "E-commerce",
           variant: "wide",
         },
@@ -324,17 +383,23 @@ export const projects = [
         },
       ],
       challenge:
-        "Eiden Academy needed to scale group expertise beyond slides   a credible brand, public site, internal dashboards, social proof, and assessment learners would actually finish.",
+        "The market was supply-led, not demand-led. Training programmes were built around what was easy to teach, not around what professionals actually needed to deploy on Monday morning. We didn't build Eiden Academy to compete with existing training providers we built it to make them irrelevant.",
       goals:
-        "Ship branding and the public platform, build admin and student dashboards, and grow professional social content.",
-      context:
-        "Education & talent · EIDEN Group   branding, website, dashboard system, and social content.",
+        "Launch Eiden Academy as a credible sub-brand: identity, website, four flagship workshops, registration flow, and a launch programme for the first cohorts.",
+      context: "2025 · founding engagement   Agadir, Morocco · scaling nationally",
+      openingReview: {
+        eyebrow: "Before delivery",
+        quote:
+          "Morocco has business schools. It doesn't have a school that teaches operators how to actually build the architecture under their company   the systems, the revenue logic, the team layer. That's the gap Eiden Academy was built to close.",
+        author: "EIDEN Group",
+        role: "Founder",
+      },
       closingReview: {
         eyebrow: "After delivery",
         quote:
-          "Brand, site, dashboards, and social feel like one product   students engage, and our team runs programs with clarity.",
-        author: "Eiden Academy",
-        role: "Edtech",
+          "Where there was nothing, there is now a fully operational education brand with a live course catalogue, a converting website, a structured enrolment funnel, and a corporate offer. Eiden Academy launched as a complete institution not a pilot, not a landing page with a waiting list, but a running system. 500+ professionals already moving through its programmes. The architecture is built to scale without breaking.",
+        // author: "Emilia R. · AlK Networks",
+        // role: "Programme lead",
       },
     },
   },
@@ -343,14 +408,27 @@ export const projects = [
     title: "Lunja Village",
     cover: lunjaCover,
     detailHero: lunjaHero,
-    summary: "Imi Ouddar identity with social content and booking media.",
-    tagline: "Surf & nomad cottages   bold on the feed, warm before arrival.",
+    summary:
+      "Full transformation of an Imi Ouaddar resort into a community-led coastal village repositioning, brand, marketing engine, operations, paid media, and reputation system rebuilt end to end.",
+    tagline: "Surf, nomad, community a coastal village brand rebuilt for who's actually arriving.",
     category: "Hospitality",
     year: "2024",
     index: "05",
-    services: ["Branding", "Social media content", "Media buying"],
-    website: "https://www.lunjavillage.com/",
+    services: [
+      "Full rebrand & repositioning",
+      "Marketing strategy",
+      "Revenue optimisation",
+      "Media buying",
+      "Reputation building",
+      "Client experience",
+    ],
+    website: "https://www.lunjavillage.com",
     caseStudy: {
+      social: {
+        instagram: "https://www.instagram.com/lunjavillage.officiel/",
+        facebook: "https://www.facebook.com/LunjaVillage/",
+        tiktok: "https://www.tiktok.com/@lunja_villageaga",
+      },
       gallery: [
         lunjaHero,
         lunjaCover,
@@ -363,54 +441,152 @@ export const projects = [
       resultGallery: [
         {
           src: lunjaSocial1,
-          alt: "Lunja Village  N'attends plus yoga",
+          alt: "Lunja Village social",
           caption: "Social",
           variant: "hero",
         },
-        { src: lunjaSocial2, alt: "Lunja Village  Vague en vue", caption: "Surf", variant: "tall" },
+        {
+          src: lunjaSocial2,
+          alt: "Lunja Village   Wave incoming",
+          caption: "Surf",
+          variant: "tall",
+        },
         {
           src: lunjaSocial3,
-          alt: "Lunja Village  sunset surfboards",
+          alt: "Lunja Village sunset surfboards",
           caption: "Golden hour",
           variant: "sm",
         },
         {
           src: lunjaSocial4,
-          alt: "Lunja Village  Taghazout skate park",
+          alt: "Lunja Village Taghazout skate park",
           caption: "Skate",
           variant: "wide",
         },
         {
           src: lunjaSocial5,
-          alt: "Lunja Village  stay a little longer",
+          alt: "Lunja Village   Stay a little longer",
           caption: "Coast",
           variant: "tall",
         },
         {
           src: lunjaSocial6,
-          alt: "Lunja Village  summer view Taghazout",
+          alt: "Lunja Village   Summer view Taghazout",
           caption: "Taghazout",
           variant: "sm",
         },
         {
           src: lunjaSocial7,
-          alt: "Lunja Village  clear minds",
+          alt: "Lunja Village coastal",
           caption: "Wellness",
           variant: "hero",
         },
       ],
       challenge:
-        "Lunja needed a distinctive coastal identity and a content engine that could compete with generic surf camps   without a website rebuild in scope.",
+        "Lunja held the location, the spirit, and the audience but the brand still spoke 'resort' while the guests showing up were surfers, digital nomads, and creative groups. The story, the rooms, the operations, and the paid media weren't talking to the same person.",
       goals:
-        "Deliver brand identity, publish golden-hour social that builds tribe, and run paid media toward booking inquiries from nomads and surfers.",
+        "Reposition Lunja from resort to community village: new brand system, marketing architecture across Instagram, TikTok, WhatsApp, and paid media, plus a reputation system across Google and booking platforms.",
       context:
-        "Hospitality · Imi Ouddar, Taghazout   branding, social media content, and media buying.",
+        "2024–2025 · ongoing engagement   Imi Ouaddar / Taghazout coastline · full-stack delivery",
+      openingReview: {
+        eyebrow: "Before delivery",
+        quote:
+          'Lunja held the location, the spirit, and the audience   but the brand still spoke "resort" while the guests showing up were surfers, digital nomads, and creative groups. The story, the rooms, the operations, and the paid media weren\'t talking to the same person.',
+        author: "Lunja Village",
+        role: "Direction",
+      },
       closingReview: {
         eyebrow: "After delivery",
         quote:
-          "The brand keeps every shoot on brief, social feels like the cottages, and ads bring guests who already understand the vibe.",
+          "The brand finally matches who actually shows up at Lunja. Bookings come in already understanding the village   and the team has a system, not a scramble.",
         author: "Lunja Village",
-        role: "Hospitality",
+        role: "Direction",
+      },
+    },
+  },
+  {
+    slug: "medical-bay",
+    title: "Medical Bay",
+    cover: medicalBayReception,
+    detailHero: medicalBayLobby,
+    summary:
+      "End-to-end build of a modern medical centre brand and operating system architecture, identity, digital infrastructure, marketing, and patient experience designed as one layered system.",
+    tagline: "A medical centre, architected from patient experience to revenue logic.",
+    category: "Healthcare",
+    year: "2026",
+    index: "06",
+    services: [
+      "Full business architecture",
+      "Brand creation",
+      "Website",
+      "CRM & operational systems",
+      "Marketing strategy",
+      "Revenue optimisation",
+    ],
+    website: "https://medicalbay.ma",
+    caseStudy: {
+      social: {
+        instagram: "https://www.instagram.com/medicalbay.maroc/",
+        facebook: "https://www.facebook.com/p/Medical-Bay-100085861093531/",
+        linkedin: "https://www.linkedin.com/company/medical-bay-agadir/"
+      },
+      gallery: [medicalBayLobby, medicalBayReception, medicalBayOffice, medicalBayLobby],
+      resultGallery: [
+        {
+          src: medicalBayReception,
+          alt: "Medical Bay reception",
+          caption: "Patient experience",
+          variant: "hero",
+        },
+        {
+          src: medicalBayLobby,
+          alt: "Medical Bay lobby and brand environment",
+          caption: "Brand environment",
+          variant: "tall",
+        },
+        {
+          src: medicalBayOffice,
+          alt: "Medical Bay consultation office",
+          caption: "Consultation",
+          variant: "sm",
+        },
+        {
+          src: medicalBayLobby,
+          alt: "Medical Bay identity in space",
+          caption: "Identity",
+          variant: "wide",
+        },
+        {
+          src: medicalBayReception,
+          alt: "Medical Bay front desk",
+          caption: "Operations",
+          variant: "tall",
+        },
+        {
+          src: medicalBayOffice,
+          alt: "Medical Bay clinical workspace",
+          caption: "Workspace",
+          variant: "sm",
+        },
+      ],
+      challenge:
+        "A medical project with a clear vision but no architecture underneath   no brand, no patient journey, no CRM, no funnel, no marketing logic. The clinical excellence needed an operating system to scale into.",
+      goals:
+        "Build Medical Bay end to end: brand, website engineered as a patient funnel, CRM covering appointments and follow-ups, and a marketing engine that reaches the right communities in the right tone.",
+      context: "2026 · founding engagement   Morocco · full-stack delivery",
+      openingReview: {
+        eyebrow: "Before delivery",
+        quote:
+          "A medical project with a clear vision but no architecture underneath   no brand, no patient journey, no CRM, no funnel, no marketing logic. The clinical excellence needed an operating system to scale into.",
+        author: "Medical Bay",
+        role: "Founding team",
+      },
+      closingReview: {
+        eyebrow: "After delivery",
+        quote:
+          "We didn't open a clinic   we opened a system. Patients feel the difference from the first click, and the team isn't holding the operation together with spreadsheets anymore.",
+        author: "Medical Bay",
+        role: "Direction",
       },
     },
   },

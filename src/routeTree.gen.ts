@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsConditionsRouteImport } from './routes/terms-conditions'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsMedicalBayRouteImport } from './routes/projects.medical-bay'
 import { Route as ProjectsLunjaVillageRouteImport } from './routes/projects.lunja-village'
 import { Route as ProjectsEidenAcademyRouteImport } from './routes/projects.eiden-academy'
 import { Route as ProjectsEducazenKidsRouteImport } from './routes/projects.educazen-kids'
@@ -31,6 +32,11 @@ const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsMedicalBayRoute = ProjectsMedicalBayRouteImport.update({
+  id: '/projects/medical-bay',
+  path: '/projects/medical-bay',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsLunjaVillageRoute = ProjectsLunjaVillageRouteImport.update({
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
   '/projects/eiden-academy': typeof ProjectsEidenAcademyRoute
   '/projects/lunja-village': typeof ProjectsLunjaVillageRoute
+  '/projects/medical-bay': typeof ProjectsMedicalBayRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
   '/projects/eiden-academy': typeof ProjectsEidenAcademyRoute
   '/projects/lunja-village': typeof ProjectsLunjaVillageRoute
+  '/projects/medical-bay': typeof ProjectsMedicalBayRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
   '/projects/eiden-academy': typeof ProjectsEidenAcademyRoute
   '/projects/lunja-village': typeof ProjectsLunjaVillageRoute
+  '/projects/medical-bay': typeof ProjectsMedicalBayRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/projects/educazen-kids'
     | '/projects/eiden-academy'
     | '/projects/lunja-village'
+    | '/projects/medical-bay'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/projects/educazen-kids'
     | '/projects/eiden-academy'
     | '/projects/lunja-village'
+    | '/projects/medical-bay'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/projects/educazen-kids'
     | '/projects/eiden-academy'
     | '/projects/lunja-village'
+    | '/projects/medical-bay'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   ProjectsEducazenKidsRoute: typeof ProjectsEducazenKidsRoute
   ProjectsEidenAcademyRoute: typeof ProjectsEidenAcademyRoute
   ProjectsLunjaVillageRoute: typeof ProjectsLunjaVillageRoute
+  ProjectsMedicalBayRoute: typeof ProjectsMedicalBayRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/medical-bay': {
+      id: '/projects/medical-bay'
+      path: '/projects/medical-bay'
+      fullPath: '/projects/medical-bay'
+      preLoaderRoute: typeof ProjectsMedicalBayRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/lunja-village': {
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsEducazenKidsRoute: ProjectsEducazenKidsRoute,
   ProjectsEidenAcademyRoute: ProjectsEidenAcademyRoute,
   ProjectsLunjaVillageRoute: ProjectsLunjaVillageRoute,
+  ProjectsMedicalBayRoute: ProjectsMedicalBayRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

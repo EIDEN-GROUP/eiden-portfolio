@@ -11,7 +11,7 @@ export type Client = {
 
 export const eidenClients: Client[] = [
   { name: "Bôpassage", logo: bopassage },
-  { name: "DMC", logo: dmc },
+  { name: "DMC Hospitality Morocco", logo: dmc },
   { name: "EducazenKids", logo: educazenKids },
   { name: "Eiden Academy", logo: eidenAcademyLogo },
   { name: "Lunja Village", logo: lunjaVillage },

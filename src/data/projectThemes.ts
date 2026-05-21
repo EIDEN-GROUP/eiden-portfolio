@@ -298,6 +298,64 @@ export const DMC_THEME: ProjectTheme = {
   },
 };
 
+export const MEDICAL_BAY_THEME: ProjectTheme = {
+  slug: "medical-bay",
+  mood: "corporate",
+  brandBookUrl: "https://medicalbay.ma",
+  colors: {
+    primary: "#0F2A4A",
+    secondary: "#4AA6A2",
+    accent: "#4AA6A2",
+    accentAlt: "#D89A6A",
+    background: "#060c14",
+    canvas: "#081018",
+    surface: "#0F2A4A",
+    surfaceAlt: "#163a5c",
+    text: "#F7F8FA",
+    textMuted: "rgba(247, 248, 250, 0.55)",
+    border: "rgba(74, 166, 162, 0.2)",
+    heroOverlay:
+      "linear-gradient(to top, rgba(15,42,74,0.96) 0%, rgba(15,42,74,0.42) 48%, rgba(74,166,162,0.1) 100%)",
+    heroEyebrow: "rgba(74, 166, 162, 0.92)",
+    heroAccent: "#D89A6A",
+  },
+  fonts: {
+    display: '"Playfair Display", Georgia, serif',
+    editorial: '"Playfair Display", Georgia, serif',
+    body: '"Outfit", "Inter", system-ui, sans-serif',
+    label: '"Inter", system-ui, sans-serif',
+    googleUrl:
+      "family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap",
+  },
+  gradients: {
+    page: "radial-gradient(ellipse 90% 55% at 75% 0%, rgba(74,166,162,0.12), transparent 52%)",
+    hero: "radial-gradient(ellipse 80% 50% at 20% 80%, rgba(216,154,106,0.08), transparent 55%)",
+    heroScrim:
+      "linear-gradient(110deg, rgba(15,42,74,0.88) 0%, transparent 52%), linear-gradient(to top, rgba(6,12,20,0.92), transparent 38%)",
+    section: "radial-gradient(ellipse 100% 65% at 50% -8%, rgba(74,166,162,0.1), transparent 55%)",
+    progressBar:
+      "linear-gradient(90deg, rgba(74,166,162,0.65), rgba(216,154,106,0.6), rgba(15,42,74,0.5))",
+    divider:
+      "linear-gradient(90deg, transparent, rgba(74,166,162,0.35), rgba(216,154,106,0.35), transparent)",
+    stats: "radial-gradient(ellipse 120% 80% at 50% -20%, rgba(74,166,162,0.08), transparent 55%)",
+  },
+  motion: {
+    ease: easeCrisp,
+    revealDuration: 0.9,
+    heroParallax: ["0%", "18%"],
+    stagger: 0.07,
+    spring: { stiffness: 72, damping: 28, mass: 0.42 },
+  },
+  ui: {
+    cardRadius: "0.25rem",
+    cardBorder: "rgba(74, 166, 162, 0.22)",
+    cardBackground: "rgba(15, 42, 74, 0.45)",
+    sectionTint: "rgba(74, 166, 162, 0.04)",
+    grainOpacity: 0.025,
+    heroFilmGrain: false,
+  },
+};
+
 export const EIDEN_ACADEMY_THEME: ProjectTheme = {
   slug: "eiden-academy",
   mood: "edtech",
@@ -361,6 +419,7 @@ const THEME_BY_SLUG: Record<string, ProjectTheme> = {
   bopassage: BOPASSAGE_THEME,
   "dmc-morocco": DMC_THEME,
   "eiden-academy": EIDEN_ACADEMY_THEME,
+  "medical-bay": MEDICAL_BAY_THEME,
 };
 
 /** Fallback when slug has no dedicated theme (should not happen for portfolio projects). */

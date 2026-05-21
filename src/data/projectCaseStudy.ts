@@ -7,6 +7,7 @@ export type CaseStudyGalleryFace =
   | {
       kind: "social";
       projectTitle: string;
+      linkedin?: string;
       instagram?: string;
       facebook?: string;
       tiktok?: string;
@@ -118,18 +119,43 @@ const EXPERTISE_POOL: CaseStudyExpertiseItem[] = [
 
 const SERVICE_BLURBS: Record<string, string> = {
   "Website design & development":
-    "Editorial surfaces, enrollment flows, and performance-first builds tuned to convert.",
+    "Editorial surfaces, enrolment flows, and performance-first builds tuned to convert.",
+  Website: "Public platform, catalogue, and registration flows built for credibility and conversion.",
+  "Website rebuild": "Parent-trusted enrolment platform with clear programme and psychosocial paths.",
   Branding: "Logo systems, palettes, and voice that partners and guests recognize instantly.",
+  "Brand creation": "Name, identity, and voice built to deploy decades of expertise in market.",
+  "Brand refresh": "Inclusive visual system and voice aligned with the impact inside the centre.",
+  "Brand sub-system": "Institutional credibility with a forward-looking training signal.",
+  "Brand voice & messaging": "Editorial voice that carries the room beyond four walls.",
   "Brand board": "Mood, texture, and typographic direction composed into one living reference.",
+  "Naming & identity": "Partner-ready mark and system for B2B recognition and owner trust.",
   "Social media content":
     "Feed architecture, reels, and captions built for reach   always on-brand, never generic.",
+  "LinkedIn content strategy": "B2B content engine that opens doors with hoteliers and operators.",
+  "Marketing strategy": "Architecture across channels that turns discovery into qualified demand.",
   "Media buying":
     "Meta and Google campaigns with creative iteration tied to real business signals.",
   "Media buying & ads": "Paid social and search tuned for footfall, leads, and measurable ROAS.",
+  "Google Ads & media buying": "Campaigns aimed at brunch habit, table bookings, and footfall.",
+  "Meta Ads media buying": "Lead-focused funnels for families   warmth, not alarm.",
   "CRM & dashboard":
     "Pipeline visibility, parent follow-up, and team workflows in one operations console.",
+  "CRM integration": "Parent and payment management without scattered tools.",
   "Dashboard system":
     "Student progress, cohort analytics, and admin tooling designed for daily use.",
+  "Revenue optimisation": "Funnel and offer logic tuned to bookings, enrolment, and LTV.",
+  "Lead generation": "Qualified inquiries from owners, investors, and travel operators.",
+  Positioning: "Market narrative that deploys expertise where conversations happen.",
+  "Curriculum design": "Flagship workshops and programmes built for operator outcomes.",
+  "Workshop programming": "Intensive formats that convert curiosity into cohort sign-ups.",
+  "Corporate training architecture": "Scalable delivery for teams and enterprise partners.",
+  "Launch strategy": "Founding programme and registration flow for first cohorts.",
+  "Full rebrand & repositioning": "Village brand rebuilt for surfers, nomads, and creative groups.",
+  "Reputation building": "Google and booking platforms aligned with who actually arrives.",
+  "Client experience": "Operations and touchpoints that match the repositioned story.",
+  "Full business architecture": "Brand, funnel, CRM, and marketing as one operating system.",
+  "CRM & operational systems":
+    "Appointments, follow-ups, and team workflows in one patient operations layer.",
 };
 
 function mergeExpertise(project: Project): CaseStudyExpertiseItem[] {
@@ -143,13 +169,20 @@ function mergeExpertise(project: Project): CaseStudyExpertiseItem[] {
 function buildGalleryFaces(
   gallery: CaseStudyGalleryItem[],
   projectTitle: string,
-  social?: { instagram?: string; facebook?: string; tiktok?: string; website?: string },
+  social?: {
+    linkedin?: string;
+    instagram?: string;
+    facebook?: string;
+    tiktok?: string;
+    website?: string;
+  },
 ): CaseStudyGalleryFace[] {
   const lastVisual = gallery.length ? gallery[gallery.length - 1] : undefined;
 
   const socialFace: CaseStudyGalleryFace = {
     kind: "social",
     projectTitle,
+    linkedin: social?.linkedin,
     instagram: social?.instagram,
     facebook: social?.facebook,
     tiktok: social?.tiktok,

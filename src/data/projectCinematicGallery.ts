@@ -28,6 +28,9 @@ import lunjaHero from "@/assets/lunja-hero.png";
 import lunjaSocial2 from "@/assets/lunja-social-2.png";
 import lunjaSocial5 from "@/assets/lunja-social-5.png";
 import lunjaSocial6 from "@/assets/lunja-social-6.png";
+import medicalBayLobby from "@/assets/medical-bay-lobby.png";
+import medicalBayOffice from "@/assets/medical-bay-office.png";
+import medicalBayReception from "@/assets/medical-bay-reception.png";
 
 export type CinematicGalleryItem = {
   id: string;
@@ -38,6 +41,7 @@ export type CinematicGalleryItem = {
   description: string;
   services?: readonly string[];
   socialLinks?: {
+    linkedin?: string;
     instagram?: string;
     facebook?: string;
     tiktok?: string;
@@ -56,7 +60,7 @@ export type CinematicGalleryStory = {
 const STORIES: Record<string, CinematicGalleryStory> = {
   bopassage: {
     eyebrow: "Visual story",
-    headline: "L'endroit qu'on revient toujours.",
+    headline: "The place you always come back to.",
     subhead:
       "Botanical warmth, golden-hour plates, and editorial social   one hospitality world from Founty to feed.",
     items: [
@@ -92,7 +96,7 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         src: bopassageBrandPalette,
         alt: "Bô Passage brand palette",
         category: "Brand",
-        title: "Forêt & or",
+        title: "Forest & gold",
         description: "Forest green and café gold   the duo that holds every touchpoint together.",
       },
       {
@@ -101,7 +105,7 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "Bô Passage balance",
         category: "Content",
         title: "Taste & freshness",
-        description: "A perfect balance of plate and place — editorial food meets the Founty room.",
+        description: "A perfect balance of plate and place   editorial food meets the Founty room.",
       },
       {
         id: "bop-waffle",
@@ -139,9 +143,9 @@ const STORIES: Record<string, CinematicGalleryStory> = {
   },
   "dmc-morocco": {
     eyebrow: "Visual story",
-    headline: "Morocco’s hotel expertise, composed with intent.",
+    headline: "Hotel expertise, finally with a voice.",
     subhead:
-      "Partner-ready identity, operational storytelling, and a digital front door built for owners and operators.",
+      "Partner-ready identity, operational storytelling, and a B2B digital presence built for hotel owners and international operators.",
     items: [
       {
         id: "dmc-hero",
@@ -158,16 +162,16 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         src: dmcSocialExcellence,
         alt: "DMC brand campaign",
         category: "Brand",
-        title: "L'excellence en hôtellerie",
+        title: "Excellence in hospitality",
         description:
-          "Forest and gold — editorial campaigns built for owners who expect Moroccan authenticity.",
+          "Forest and gold   editorial campaigns built for owners who expect Moroccan authenticity.",
       },
       {
         id: "dmc-letter-d",
         src: dmcSocialD,
         alt: "DMC expertise",
         category: "Expertise",
-        title: "Expertise internationale",
+        title: "International expertise",
         description: "B2B frames that signal high-touch consulting for hotel owners and operators.",
       },
       {
@@ -175,16 +179,16 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         src: dmcSocialM,
         alt: "DMC management",
         category: "Campaign",
-        title: "Accompagnement sur mesure",
+        title: "Tailored support",
         description:
-          "Partnership storytelling — structured services and team credibility in every post.",
+          "Partnership storytelling   structured services and team credibility in every post.",
       },
       {
         id: "dmc-letter-c",
         src: dmcSocialC,
         alt: "DMC consulting",
         category: "Consulting",
-        title: "Authenticité & durabilité",
+        title: "Authenticity & sustainability",
         description:
           "Social content that converts curiosity into qualified hotel project inquiries.",
       },
@@ -194,7 +198,7 @@ const STORIES: Record<string, CinematicGalleryStory> = {
     eyebrow: "Visual story",
     headline: "Inclusive education, made visible.",
     subhead:
-      "Warm digital presence for parents   programs, psychosocial care, and enrollment paths that build trust.",
+      "Warm digital presence for parents   programmes, psychosocial care, and enrolment paths that build trust.",
     items: [
       {
         id: "edu-hero",
@@ -219,60 +223,59 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         src: educazenHero,
         alt: "EducazenKids platform",
         category: "Product",
-        title: "Enrollment, centralized",
-        description: "CRM and dashboard so Agadir's team runs outreach without scattered tools.",
+        title: "Enrolment, centralised",
+        description: "CRM and dashboard so the team runs outreach without scattered tools.",
       },
     ],
   },
   "eiden-academy": {
     eyebrow: "Visual story",
-    headline: "The architecture of savoir.",
+    headline: "Where operators learn what schools don't teach.",
     subhead:
-      "Institutional credibility meets product-grade edtech   brand, platform, and assessment in one motion.",
+      "Digital skills training built for professionals and teams in Morocco marketing, AI, e-commerce, and leadership, delivered in-person, online, and on-site for corporate groups.",
     items: [
       {
         id: "ea-hero",
         src: eidenHero,
         alt: "Eiden Academy",
         category: "Edtech",
-        title: "Programs that scale",
+        title: "Skills you deploy the next day",
         description:
-          "Public platform for catalog, instructors, and enrollment   serious enough for partners, human for learners.",
+          "Marketing, AI, e-commerce, leadership practical courses for professionals and teams who can't afford to just sit on theory.",
       },
       {
         id: "ea-brand",
         src: eidenAcademyBrandCarousel,
         alt: "Eiden Academy brand",
         category: "Brand",
-        title: "De la connaissance aux compétences",
+        title: "From knowledge to real skills",
         description:
-          "Institutional crest and campaign system — authority through structure and executive education.",
+          "Institutional crest and campaign system authority through structure and executive education.",
       },
       {
         id: "ea-ai",
         src: eidenAcademySocialAiTools,
-        alt: "Eiden Academy AI formation",
+        alt: "Master AI Tools",
         category: "Programs",
         title: "Master AI Tools",
         description:
-          "3-day intensive program creatives — practical, actionable, built for enrollment.",
+          "3-day AI workshop 15+ tools, 100% practical, built for immediate application.",
       },
       {
         id: "ea-ecommerce",
         src: eidenAcademySocialEcommerce,
-        alt: "Eiden Academy e-commerce formation",
+        alt: "E-Commerce & Marketplace",
         category: "Programs",
         title: "E-Commerce & Marketplace",
-        description:
-          "Formation campaigns for digital sales — SEO, social, and marketplace expertise.",
+        description: "Training for digital sales SEO, social, and marketplace expertise. ",
       },
       {
         id: "ea-learn",
         src: eidenAcademySocialAiIntegration,
-        alt: "Eiden Academy AI integration",
+        alt: "AI Integration",
         category: "Campaign",
-        title: "Intégration IA",
-        description: "Feed-ready formation frames that convert curiosity into program sign-ups.",
+        title: "AI Integration",
+        description: "Feed-ready training frames that convert curiosity into programme sign-ups.",
       },
     ],
   },
@@ -287,7 +290,7 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         src: lunjaHero,
         alt: "Lunja Village",
         category: "Hospitality",
-        title: "Imi Ouddar, alive",
+        title: "Imi Ouaddar, alive",
         description:
           "Keppel teal, film grain, and golden hour   a brand built for makers, surfers, and long stays.",
         cta: { label: "lunjavillage.com", href: "https://www.lunjavillage.com/" },
@@ -298,14 +301,14 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "Lunja brand",
         category: "Brand",
         title: "Coastal identity",
-        description: "Keppel, coral, and film grain  the visual system behind every post.",
+        description: "Keppel, coral, and film grain   the visual system behind every post.",
       },
       {
         id: "lunja-surf",
         src: lunjaSocial2,
         alt: "Lunja surf social",
         category: "Content",
-        title: "Vague en vue",
+        title: "Wave incoming",
         description: "Surf culture frames that feel like the Atlantic, not a generic resort ad.",
       },
       {
@@ -322,7 +325,52 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         alt: "Lunja Taghazout social",
         category: "Campaign",
         title: "Summer view",
-        description: "Taghazout beach energy  authentic, bright, and built for the feed.",
+        description: "Taghazout beach energy   authentic, bright, and built for the feed.",
+      },
+    ],
+  },
+  "medical-bay": {
+    eyebrow: "Visual story",
+    headline: "A medical centre, architected.",
+    subhead:
+      "Brand environment, patient experience, and digital infrastructure designed as one operating system   from first click to follow-up.",
+    items: [
+      {
+        id: "mb-hero",
+        src: medicalBayLobby,
+        alt: "Medical Bay lobby",
+        category: "Healthcare",
+        title: "Medical Bay",
+        description:
+          "A conversion-led presence for patients and partners   services, trust, and clear paths to care.",
+        cta: { label: "Visit medicalbay.ma", href: "https://medicalbay.ma/" },
+      },
+      {
+        id: "mb-reception",
+        src: medicalBayReception,
+        alt: "Medical Bay reception",
+        category: "Patient experience",
+        title: "Front desk, designed",
+        description:
+          "Reception and wayfinding that signal clinical excellence and human warmth from the first step inside.",
+      },
+      {
+        id: "mb-office",
+        src: medicalBayOffice,
+        alt: "Medical Bay consultation office",
+        category: "Brand",
+        title: "Trust in the room",
+        description:
+          "Consultation spaces and brand voice aligned with WHO-grade care standards and Moroccan patient expectations.",
+      },
+      {
+        id: "mb-lobby",
+        src: medicalBayLobby,
+        alt: "Medical Bay brand environment",
+        category: "Identity",
+        title: "Identity in space",
+        description:
+          "Logo, wood, glass, and teal   environmental branding that carries the system into every touchpoint.",
       },
     ],
   },
