@@ -5,13 +5,7 @@ import { ProjectServicesShowcase } from "@/components/case-study/ProjectServices
 import { resolveCaseStudy } from "@/data/projectCaseStudy";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
-import {
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from "framer-motion";
 import { Camera, Globe, Music, Users } from "lucide-react";
 import {
   lazy,

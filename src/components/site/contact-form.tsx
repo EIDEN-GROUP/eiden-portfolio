@@ -207,7 +207,7 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
               </p>
             </div>
 
-            <FormField label="Company headcount" error={errors.headcount?.message} required >
+            <FormField label="Company headcount" error={errors.headcount?.message} required>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {HEADCOUNT_OPTIONS.map(({ value, label }) => {
                   const selected = selectedHeadcount === value;
@@ -217,14 +217,12 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
                       key={value}
                       type="button"
                       aria-pressed={selected}
-                      onClick={() =>
-                        setValue("headcount", value, { shouldValidate: true })
-                      }
+                      onClick={() => setValue("headcount", value, { shouldValidate: true })}
                       className={cn(
                         "flex h-10 items-center justify-center rounded-sm border-2 px-2 text-xs font-display font-semibold transition-all duration-200 sm:h-11 sm:text-sm",
                         selected
                           ? "border-gold bg-gold text-forest-deep ring-2 ring-gold"
-                          : "border-white/15 bg-white/[0.03] text-white/40 hover:border-white/30 hover:bg-white/[0.06] hover:text-white/65"
+                          : "border-white/15 bg-white/[0.03] text-white/40 hover:border-white/30 hover:bg-white/[0.06] hover:text-white/65",
                       )}
                     >
                       {label}
