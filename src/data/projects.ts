@@ -528,7 +528,7 @@ export const projects = [
       social: {
         instagram: "https://www.instagram.com/medicalbay.maroc/",
         facebook: "https://www.facebook.com/p/Medical-Bay-100085861093531/",
-        linkedin: "https://www.linkedin.com/company/medical-bay-agadir/"
+        linkedin: "https://www.linkedin.com/company/medical-bay-agadir/",
       },
       gallery: [medicalBayLobby, medicalBayReception, medicalBayOffice, medicalBayLobby],
       resultGallery: [

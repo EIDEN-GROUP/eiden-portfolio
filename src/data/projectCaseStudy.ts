@@ -120,8 +120,10 @@ const EXPERTISE_POOL: CaseStudyExpertiseItem[] = [
 const SERVICE_BLURBS: Record<string, string> = {
   "Website design & development":
     "Editorial surfaces, enrolment flows, and performance-first builds tuned to convert.",
-  Website: "Public platform, catalogue, and registration flows built for credibility and conversion.",
-  "Website rebuild": "Parent-trusted enrolment platform with clear programme and psychosocial paths.",
+  Website:
+    "Public platform, catalogue, and registration flows built for credibility and conversion.",
+  "Website rebuild":
+    "Parent-trusted enrolment platform with clear programme and psychosocial paths.",
   Branding: "Logo systems, palettes, and voice that partners and guests recognize instantly.",
   "Brand creation": "Name, identity, and voice built to deploy decades of expertise in market.",
   "Brand refresh": "Inclusive visual system and voice aligned with the impact inside the centre.",
