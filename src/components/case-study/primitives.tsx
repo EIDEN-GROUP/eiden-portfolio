@@ -231,9 +231,7 @@ export function MediaPanelGrid({ items }: { items: MediaItem[] }) {
           <div
             className={cn(
               "aspect-[4/3] sm:aspect-auto",
-              items.length <= 2
-                ? "sm:min-h-[min(48vh,28rem)]"
-                : "sm:min-h-[min(40vh,22rem)]",
+              items.length <= 2 ? "sm:min-h-[min(48vh,28rem)]" : "sm:min-h-[min(40vh,22rem)]",
               item.tall && "sm:min-h-[min(52vh,32rem)]",
             )}
           >

@@ -208,10 +208,7 @@ function BrandMediaFigure({
   aspectClass?: string;
 }) {
   return (
-    <motion.figure
-      variants={fadeUp}
-      className="group relative overflow-hidden bg-[#0a0a0a]"
-    >
+    <motion.figure variants={fadeUp} className="group relative overflow-hidden bg-[#0a0a0a]">
       <div className={aspectClass}>
         <img
           src={item.src}
@@ -440,10 +437,7 @@ export function BrandIdentityShowcase({
       {media.length > 0 ? (
         <Reveal className="bg-[#060606]">
           <PanelHeader label="Applications" title="Identity in context" accentClass={themeAccent} />
-          <BrandMediaGrid
-            items={media}
-            layout={section.brandMediaLayout ?? "mosaic"}
-          />
+          <BrandMediaGrid items={media} layout={section.brandMediaLayout ?? "mosaic"} />
         </Reveal>
       ) : null}
     </div>

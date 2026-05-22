@@ -58,7 +58,10 @@ for (const book of BOOKS) {
         console.warn(`  missing relative asset: ${file}`);
         continue;
       }
-      const dest = path.join(ASSETS, `${book.assetPrefix}-${file.toLowerCase().replace(/\.png$/i, "")}.png`);
+      const dest = path.join(
+        ASSETS,
+        `${book.assetPrefix}-${file.toLowerCase().replace(/\.png$/i, "")}.png`,
+      );
       fs.copyFileSync(src, dest);
       console.log(`  copied ${file} -> ${path.basename(dest)}`);
     }
