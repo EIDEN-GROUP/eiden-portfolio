@@ -69,7 +69,7 @@ const easeCrisp = [0.25, 0.46, 0.45, 0.94] as const;
 export const LUNJA_THEME: ProjectTheme = {
   slug: "lunja-village",
   mood: "lifestyle",
-  brandBookUrl: "https://eiden-group.com/brand-books/lunja-brand-book",
+  brandBookUrl: "/brand-books/lunja-brand-book.html",
   colors: {
     primary: "#2BBAA5",
     secondary: "#93D3AE",
@@ -93,7 +93,7 @@ export const LUNJA_THEME: ProjectTheme = {
     body: '"DM Sans", system-ui, sans-serif',
     label: '"DM Sans", system-ui, sans-serif',
     googleUrl:
-      "family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Great+Vibes&family=Lora:ital,wght@0,400;1,400&display=swap",
+      "family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Great+Vibes&family=Lora:ital,wght@0,400;1,400&family=Pacifico&display=swap",
   },
   gradients: {
     page: "radial-gradient(ellipse 90% 55% at 15% 25%, rgba(43,186,165,0.14), transparent 55%)",
@@ -127,7 +127,7 @@ export const LUNJA_THEME: ProjectTheme = {
 export const EDUCAZEN_THEME: ProjectTheme = {
   slug: "educazen-kids",
   mood: "education",
-  brandBookUrl: "https://eiden-group.com/brand-books/educazenkids-brand-book",
+  brandBookUrl: "/brand-books/educazenkids-brand-book.html",
   colors: {
     primary: "#E91E8C",
     secondary: "#9C4DCC",
@@ -185,7 +185,7 @@ export const EDUCAZEN_THEME: ProjectTheme = {
 export const BOPASSAGE_THEME: ProjectTheme = {
   slug: "bopassage",
   mood: "lifestyle",
-  brandBookUrl: "https://eiden-group.com/brand-books/bopassage-brand-book",
+  brandBookUrl: "/brand-books/bopassage-brand-book.html",
   colors: {
     primary: "#18312e",
     secondary: "#6b8c74",
@@ -243,7 +243,7 @@ export const BOPASSAGE_THEME: ProjectTheme = {
 export const DMC_THEME: ProjectTheme = {
   slug: "dmc-morocco",
   mood: "luxury",
-  brandBookUrl: "https://eiden-group.com/brand-books/dmc-brand-book",
+  brandBookUrl: "/brand-books/dmc-brand-book.html",
   colors: {
     primary: "#2C3830",
     secondary: "#4A6153",
@@ -301,43 +301,43 @@ export const DMC_THEME: ProjectTheme = {
 export const MEDICAL_BAY_THEME: ProjectTheme = {
   slug: "medical-bay",
   mood: "corporate",
-  brandBookUrl: "https://medicalbay.ma",
+  brandBookUrl: "/brand-books/medical-bay-brand-guidelines.html",
   colors: {
-    primary: "#0F2A4A",
-    secondary: "#4AA6A2",
-    accent: "#4AA6A2",
-    accentAlt: "#D89A6A",
-    background: "#060c14",
-    canvas: "#081018",
-    surface: "#0F2A4A",
-    surfaceAlt: "#163a5c",
-    text: "#F7F8FA",
-    textMuted: "rgba(247, 248, 250, 0.55)",
-    border: "rgba(74, 166, 162, 0.2)",
+    primary: "#0D1A18",
+    secondary: "#2BBAA5",
+    accent: "#2BBAA5",
+    accentAlt: "#4DCFBB",
+    background: "#060c10",
+    canvas: "#081210",
+    surface: "#0D1A18",
+    surfaceAlt: "#1F9187",
+    text: "#FAFDF8",
+    textMuted: "rgba(250, 253, 248, 0.55)",
+    border: "rgba(43, 186, 165, 0.22)",
     heroOverlay:
-      "linear-gradient(to top, rgba(15,42,74,0.96) 0%, rgba(15,42,74,0.42) 48%, rgba(74,166,162,0.1) 100%)",
-    heroEyebrow: "rgba(74, 166, 162, 0.92)",
-    heroAccent: "#D89A6A",
+      "linear-gradient(to top, rgba(13,26,24,0.96) 0%, rgba(13,26,24,0.42) 48%, rgba(43,186,165,0.12) 100%)",
+    heroEyebrow: "rgba(43, 186, 165, 0.92)",
+    heroAccent: "#4DCFBB",
   },
   fonts: {
-    display: '"Playfair Display", Georgia, serif',
-    editorial: '"Playfair Display", Georgia, serif',
-    body: '"Outfit", "Inter", system-ui, sans-serif',
-    label: '"Inter", system-ui, sans-serif',
+    display: '"Montserrat", system-ui, sans-serif',
+    editorial: '"Cormorant Garamond", Georgia, serif',
+    body: '"DM Sans", "Inter", system-ui, sans-serif',
+    label: '"Montserrat", system-ui, sans-serif',
     googleUrl:
-      "family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap",
+      "family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Montserrat:wght@500;600;700;800&display=swap",
   },
   gradients: {
-    page: "radial-gradient(ellipse 90% 55% at 75% 0%, rgba(74,166,162,0.12), transparent 52%)",
-    hero: "radial-gradient(ellipse 80% 50% at 20% 80%, rgba(216,154,106,0.08), transparent 55%)",
+    page: "radial-gradient(ellipse 90% 55% at 75% 0%, rgba(43,186,165,0.14), transparent 52%)",
+    hero: "radial-gradient(ellipse 80% 50% at 20% 80%, rgba(77,207,187,0.08), transparent 55%)",
     heroScrim:
-      "linear-gradient(110deg, rgba(15,42,74,0.88) 0%, transparent 52%), linear-gradient(to top, rgba(6,12,20,0.92), transparent 38%)",
-    section: "radial-gradient(ellipse 100% 65% at 50% -8%, rgba(74,166,162,0.1), transparent 55%)",
+      "linear-gradient(110deg, rgba(13,26,24,0.88) 0%, transparent 52%), linear-gradient(to top, rgba(6,12,16,0.92), transparent 38%)",
+    section: "radial-gradient(ellipse 100% 65% at 50% -8%, rgba(43,186,165,0.1), transparent 55%)",
     progressBar:
-      "linear-gradient(90deg, rgba(74,166,162,0.65), rgba(216,154,106,0.6), rgba(15,42,74,0.5))",
+      "linear-gradient(90deg, rgba(43,186,165,0.65), rgba(77,207,187,0.55), rgba(13,26,24,0.5))",
     divider:
-      "linear-gradient(90deg, transparent, rgba(74,166,162,0.35), rgba(216,154,106,0.35), transparent)",
-    stats: "radial-gradient(ellipse 120% 80% at 50% -20%, rgba(74,166,162,0.08), transparent 55%)",
+      "linear-gradient(90deg, transparent, rgba(43,186,165,0.35), rgba(77,207,187,0.35), transparent)",
+    stats: "radial-gradient(ellipse 120% 80% at 50% -20%, rgba(43,186,165,0.08), transparent 55%)",
   },
   motion: {
     ease: easeCrisp,

@@ -8,6 +8,7 @@ import {
   FeaturePills,
   HorizontalMediaStrip,
   MediaMasonry,
+  MediaPanelGrid,
   SectionIntro,
   type MediaItem,
 } from "./primitives";
@@ -126,7 +127,7 @@ export function ServiceSectionView({
 
         {section.type === "crm-dashboard" && (
           <>
-            {media.length > 0 ? <MediaMasonry items={media} /> : null}
+            {media.length > 0 ? <MediaPanelGrid items={media} /> : null}
             {section.features?.length ? <FeaturePills features={section.features} /> : null}
           </>
         )}

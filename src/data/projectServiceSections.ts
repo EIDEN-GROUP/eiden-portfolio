@@ -1,5 +1,6 @@
 import type { ServiceMetric } from "@/components/case-study/primitives";
 import { getProjectTheme } from "@/data/projectThemes";
+import bopassageBrandPalette from "@/assets/bopassage-brand-palette.png";
 import bopassageCover from "@/assets/bopassage-cover.png";
 import bopassageHero from "@/assets/bopassage-hero.png";
 import bopassageSocialBalance from "@/assets/bopassage-social-balance.png";
@@ -13,9 +14,13 @@ import dmcSocialExcellence from "@/assets/dmc-social-excellence.png";
 import dmcSocialM from "@/assets/dmc-social-m.png";
 import educazenkidsBefore from "@/assets/educazenkids-before.png";
 import educazenkidsCover from "@/assets/educazenkids-cover.png";
+import educazenkidsLogo from "@/assets/educazenkids-logo.png";
 import educazenkidsScroll1 from "@/assets/educazenkids-scroll-1.png";
 import educazenkidsScroll2 from "@/assets/educazenkids-scroll-2.png";
 import educazenHero from "@/assets/educazen-hero.png";
+import medicalBayBrandLogo1 from "@/assets/medical-bay-brand-logo-1.jpg";
+import medicalBayBrandLogo2 from "@/assets/medical-bay-brand-logo-2.png";
+import medicalBayBrandLogo3 from "@/assets/medical-bay-brand-logo-3.png";
 import medicalBayLobby from "@/assets/medical-bay-lobby.png";
 import medicalBayOffice from "@/assets/medical-bay-office.png";
 import medicalBayReception from "@/assets/medical-bay-reception.png";
@@ -26,6 +31,7 @@ import eidenAcademySocialAiTools from "@/assets/eiden-academy-social-ai-tools.pn
 import eidenAcademySocialEcommerce from "@/assets/eiden-academy-social-ecommerce.png";
 import eidenHero from "@/assets/eiden-hero.png";
 import lunjaCover from "@/assets/lunja-cover.png";
+import lunjaHero from "@/assets/lunja-hero.png";
 import lunjaLogo from "@/assets/lunja-logo.png";
 
 export type ServiceLink = {
@@ -77,6 +83,8 @@ export type ServiceSection = {
     afterLabel?: string;
   };
   achievements?: string[];
+  /** Brand identity media grid only — default is mosaic (tall left + stacked right). */
+  brandMediaLayout?: "mosaic" | "featured-row";
 };
 
 export type ProjectServiceConfig = {
@@ -120,33 +128,41 @@ const DMC_CONFIG: ProjectServiceConfig = {
       id: "dmc-brand",
       type: "brand-identity",
       eyebrow: "Branding",
-      title: "A partner-ready mark for Morocco’s hotel expertise.",
+      title: "Authenticité & excellence — hospitality consultancy identity for Morocco.",
       description:
-        "Identity built for B2B recognition and owner trust   logo, palette, and editorial type that hold across collateral and digital.",
-      brandBookUrl: "https://eiden-group.com/brand-books/dmc-brand-book",
-      brandColors: ["#2C3830", "#D4B896", "#4A6153", "#E8D5B5"],
-      colorLabels: ["Deep Forest", "Gold", "Light Forest", "Sand"],
+        "Charte graphique DMC Hospitality Morocco: forêt profonde et or ancien, Playfair + Cormorant + Source Sans 3. Plus de 20 ans d'expertise hôtelière au Maroc, traduits en un système B2B partenaire-ready.",
+      brandBookUrl: "/brand-books/dmc-brand-book.html",
+      brandColors: ["#2C3830", "#D4B896", "#4A6153", "#FAF5EE"],
+      colorLabels: ["Forêt Profonde", "Or", "Forêt Claire", "Crème"],
       typography: [
         {
-          label: "Display · Playfair",
+          label: "Display · Playfair Display",
           sample: "DMC Hospitality",
           size: "clamp(2rem, 5vw, 3.5rem)",
-          sampleClass: "font-display font-semibold tracking-[-0.03em]",
+          sampleClass: "font-semibold tracking-[-0.03em]",
+          fontFamily: '"Playfair Display", serif',
         },
         {
-          label: "Editorial · Cormorant",
-          sample: "Authenticity & Excellence",
-          sampleClass: "font-editorial italic opacity-80",
+          label: "Editorial · Cormorant Garamond",
+          sample: "Authenticité & Excellence",
+          sampleClass: "italic opacity-90",
+          fontFamily: '"Cormorant Garamond", serif',
+        },
+        {
+          label: "Body · Source Sans 3",
+          sample: "Notre passion au service de votre projet hôtelier",
+          sampleClass: "font-medium tracking-[0.01em] opacity-85",
+          fontFamily: '"Source Sans 3", sans-serif',
         },
       ],
       media: [
-        m(dmcSocialExcellence, "DMC brand campaign", "Excellence"),
-        m(dmcHero, "DMC brand mockup", "Brand reveal"),
-        m(dmcCover, "DMC collateral", "Partner kit"),
+        m(dmcCover, "DMC Hospitality brand guidelines", "Guidelines"),
+        m(dmcHero, "DMC Hospitality brand", "Brand"),
+        m(dmcSocialExcellence, "DMC brand application", "Application"),
       ],
       links: [
-        { label: "DMC Brand Book", url: "https://eiden-group.com/brand-books/dmc-brand-book" },
-        { label: "EIDEN Group Website", url: "https://eiden-group.com/" },
+        { label: "DMC Brand Book", url: "/brand-books/dmc-brand-book.html" },
+        { label: "Website", url: "https://dmchm.com/" },
       ],
     },
     {
@@ -172,8 +188,8 @@ const DMC_CONFIG: ProjectServiceConfig = {
       ],
       links: [
         { label: "Website", url: "https://dmchm.com/" },
-        { label: "DMC Brand Book", url: "https://eiden-group.com/brand-books/dmc-brand-book" },
-        { label: "EIDEN Group Website", url: "https://eiden-group.com/" },
+        { label: "DMC Brand Book", url: "/brand-books/dmc-brand-book.html" },
+        { label: "Website", url: "https://dmchm.com/" },
       ],
     },
   ],
@@ -189,6 +205,49 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
   },
   ...stylesForSlug("bopassage"),
   sections: [
+    {
+      id: "bop-brand",
+      type: "brand-identity",
+      eyebrow: "Branding",
+      title: "Forêt & or — identity for Agadir's signature café corridor.",
+      description:
+        "Charte 2025: Playfair + Cormorant + Montserrat, palette forêt (#18312e) et or café (#b8973a). Bô Passage n'est pas un restaurant de plus — c'est un endroit.",
+      brandBookUrl: "/brand-books/bopassage-brand-book.html",
+      brandColors: ["#18312e", "#b8973a", "#f5eedf", "#6b8c74"],
+      colorLabels: ["Forêt", "Or du Café", "Ivoire", "Sauge"],
+      typography: [
+        {
+          label: "Display · Playfair Display",
+          sample: "Bô Passage",
+          size: "clamp(2rem, 5vw, 3.5rem)",
+          sampleClass: "italic opacity-95",
+          fontFamily: '"Playfair Display", serif',
+        },
+        {
+          label: "Editorial · Cormorant Garamond",
+          sample: "L'endroit qu'on aime.",
+          sampleClass: "italic opacity-90",
+          fontFamily: '"Cormorant Garamond", serif',
+        },
+        {
+          label: "UI · Montserrat",
+          sample: "Café & Restaurant · Agadir",
+          sampleClass: "font-semibold uppercase tracking-[0.18em] opacity-85",
+          fontFamily: '"Montserrat", sans-serif',
+          size: "clamp(1rem, 2.5vw, 1.35rem)",
+        },
+      ],
+      brandMediaLayout: "featured-row",
+      media: [
+        m(bopassageBrandPalette, "Bô Passage logo and palette", "Logo · Palette"),
+        m(bopassageHero, "Bô Passage brand", "Brand"),
+        m(bopassageCover, "Bô Passage identity", "Identity"),
+      ],
+      links: [
+        { label: "Bô Passage Brand Book", url: "/brand-books/bopassage-brand-book.html" },
+        { label: "Website", url: "https://bopassage.com/" },
+      ],
+    },
     {
       id: "bop-web",
       type: "website-showcase",
@@ -213,7 +272,7 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
         { label: "Website", url: "https://bopassage.com/" },
         {
           label: "Bô Passage Brand Book",
-          url: "https://eiden-group.com/brand-books/bopassage-brand-book",
+          url: "/brand-books/bopassage-brand-book.html",
         },
       ],
     },
@@ -236,31 +295,39 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
       eyebrow: "Branding",
       title: "Retro-beach identity for Imi Ouaddar's surf & nomad village.",
       description:
-        "Full brand system   Keppel teal, film-grain photography direction, and a bold voice built for makers, surfers, and long-stay guests.",
-      brandBookUrl: "https://eiden-group.com/brand-books/lunja-brand-book",
-      brandColors: ["#2BBAA5", "#FDF5D3", "#FFD100", "#F96635"],
-      colorLabels: ["Keppel", "Soft Cream", "Jo&Joe Yellow", "Coral"],
+        "Charte Lunja Village: Keppel, coral et amber sur vanilla — Qaiken, Pacifico, Great Vibes et DM Sans. Une voix solaire pour makers, surfers et long-stay guests.",
+      brandBookUrl: "/brand-books/lunja-brand-book.html",
+      brandColors: ["#2BBAA5", "#F96635", "#FFD100", "#FDF5D3"],
+      colorLabels: ["Keppel", "Coral", "Amber", "Vanilla"],
       typography: [
         {
-          label: "Display · Cormorant",
-          sample: "Surf & Nomad Cottages",
-          size: "clamp(2rem, 5vw, 3.5rem)",
-          sampleClass: "font-display font-semibold tracking-[-0.04em]",
+          label: "Wordmark · Pacifico",
+          sample: "Lunja Village",
+          size: "clamp(2rem, 5vw, 3.25rem)",
+          sampleClass: "leading-none opacity-95",
+          fontFamily: '"Pacifico", cursive',
         },
         {
           label: "Script · Great Vibes",
-          sample: "Imi Ouaddar · Taghazout",
+          sample: "Surf & Nomad Cottages",
           sampleClass: "text-[clamp(1.75rem,4vw,2.75rem)] leading-none opacity-90",
           fontFamily: '"Great Vibes", cursive',
         },
-      ],
-      media: [m(lunjaLogo, "Lunja Village logo", "Logo"), m(lunjaCover, "Lunja mockup", "Mockup")],
-      links: [
-        { label: "Branding", url: "https://www.lunjavillage.com/" },
         {
-          label: "Lunja Village Brand Book",
-          url: "https://eiden-group.com/brand-books/lunja-brand-book",
+          label: "Body · DM Sans",
+          sample: "Imi Ouaddar · Taghazout",
+          sampleClass: "font-medium tracking-[0.02em] opacity-85",
+          fontFamily: '"DM Sans", sans-serif',
         },
+      ],
+      media: [
+        m(lunjaLogo, "Lunja Village logo", "Logo"),
+        m(lunjaCover, "Lunja Village brand", "Brand"),
+        m(lunjaHero, "Lunja Village identity", "Identity"),
+      ],
+      links: [
+        { label: "Website", url: "https://www.lunjavillage.com/" },
+        { label: "Lunja Village Brand Book", url: "/brand-books/lunja-brand-book.html" },
       ],
     },
   ],
@@ -279,35 +346,41 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
     {
       id: "edu-brand",
       type: "brand-identity",
-      eyebrow: "Brand positioning",
+      eyebrow: "Branding",
       title: "Warm, inclusive identity parents trust at first glance.",
       description:
-        "Magenta and purple signal care and individuality; teal and gold add calm and optimism   a chromatic system built for families navigating neuro-specific education.",
-      brandBookUrl: "https://eiden-group.com/brand-books/educazenkids-brand-book",
+        "Charte EducazenKids: quatre couleurs puzzle (magenta, violet, teal, or) — Nunito, Playfair et Quicksand. Centre éducatif & psychosocial à Agadir, moderne et inclusif.",
+      brandBookUrl: "/brand-books/educazenkids-brand-book.html",
       brandColors: ["#C2185B", "#7B1FA2", "#00897B", "#F9A825"],
-      colorLabels: ["Magenta", "Purple", "Teal", "Gold"],
+      colorLabels: ["Magenta", "Violet", "Teal", "Or"],
       typography: [
+        {
+          label: "Display · Nunito",
+          sample: "EducazenKids",
+          size: "clamp(2rem, 5vw, 3.5rem)",
+          sampleClass: "font-extrabold tracking-[-0.02em]",
+          fontFamily: '"Nunito", sans-serif',
+        },
         {
           label: "Editorial · Playfair Display",
           sample: "L'enseignement sur mesure",
-          sampleClass: "font-editorial italic opacity-90",
+          sampleClass: "italic opacity-90",
+          fontFamily: '"Playfair Display", serif',
         },
         {
           label: "Body · Quicksand",
-          sample: "Inclusive education for every child",
-          sampleClass: "font-body font-medium tracking-[0.01em] opacity-85",
+          sample: "Centre éducatif & psychosocial · Agadir",
+          sampleClass: "font-medium tracking-[0.01em] opacity-85",
+          fontFamily: '"Quicksand", sans-serif',
         },
       ],
       media: [
-        m(educazenkidsCover, "EducazenKids brand", "Brand"),
-        m(educazenkidsScroll1, "EducazenKids social campaign", "Campaign"),
-        m(educazenkidsScroll2, "EducazenKids brand application", "Application"),
+        m(educazenkidsLogo, "EducazenKids logo", "Logo"),
+        m(educazenkidsScroll1, "EducazenKids brand", "Brand"),
+        m(educazenkidsScroll2, "EducazenKids application", "Application"),
       ],
       links: [
-        {
-          label: "EducazenKids Brand Book",
-          url: "https://eiden-group.com/brand-books/educazenkids-brand-book",
-        },
+        { label: "EducazenKids Brand Book", url: "/brand-books/educazenkids-brand-book.html" },
         { label: "Website", url: "https://educazenkids.eiden-group.workers.dev/" },
       ],
     },
@@ -355,8 +428,7 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       features: ["Lead pipeline", "Parent CRM", "Campaign analytics", "Team workflows"],
       media: [
         m(educazenHero, "EducazenKids dashboard", "Dashboard"),
-        m(educazenkidsCover, "EducazenKids analytics", "Analytics", true),
-        m(educazenHero, "EducazenKids CRM", "CRM"),
+        m(educazenkidsScroll1, "EducazenKids CRM", "CRM"),
       ],
     },
     {
@@ -470,31 +542,46 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
     {
       id: "mb-brand",
       type: "brand-identity",
-      eyebrow: "Brand positioning",
-      title: "Clinical clarity with warmth patients feel before they arrive.",
+      eyebrow: "Branding",
+      title: "Votre partenaire de santé — identity built for medical tourism in Agadir.",
       description:
-        "Navy and teal signal trust and care; warm accent and soft white keep the environment human   a system built for modern Moroccan healthcare.",
-      brandColors: ["#0F2A4A", "#F7F8FA", "#4AA6A2", "#D89A6A"],
-      colorLabels: ["Clinical Navy", "Soft White", "Calm Teal", "Warm Accent"],
+        "Charte graphique 2026: teal médical (#2BBAA5), neutrals Mist & Cream, et une voix chaleureuse trilingue. Medical Bay n'est pas une clinique — c'est le pont entre le patient et l'excellence des soins.",
+      brandBookUrl: "/brand-books/medical-bay-brand-guidelines.html",
+      brandColors: ["#2BBAA5", "#0D1A18", "#E8F5F3", "#FAFDF8"],
+      colorLabels: ["Teal Primaire", "Ink", "Mist", "Cream"],
       typography: [
         {
-          label: "Display · Playfair Display",
-          sample: "Medical Bay",
+          label: "Display · Montserrat",
+          sample: "MEDICAL BAY",
           size: "clamp(2rem, 5vw, 3.5rem)",
-          sampleClass: "font-display font-semibold tracking-[-0.03em]",
+          sampleClass: "font-semibold uppercase tracking-[-0.03em]",
+          fontFamily: '"Montserrat", sans-serif',
         },
         {
-          label: "Editorial · Playfair Display",
-          sample: "Votre partenaire de santé",
-          sampleClass: "font-editorial italic opacity-90",
+          label: "Editorial · Cormorant Garamond",
+          sample: "Votre santé, notre priorité.",
+          sampleClass: "italic opacity-90",
+          fontFamily: '"Cormorant Garamond", serif',
+        },
+        {
+          label: "Body · DM Sans",
+          sample: "Tourisme médical & soins d'excellence",
+          sampleClass: "font-medium tracking-[0.02em] opacity-85",
+          fontFamily: '"DM Sans", sans-serif',
         },
       ],
       media: [
-        m(medicalBayReception, "Medical Bay reception", "Reception"),
-        m(medicalBayLobby, "Medical Bay lobby", "Lobby"),
-        m(medicalBayOffice, "Medical Bay consultation office", "Consultation"),
+        m(medicalBayBrandLogo1, "Medical Bay logo on teal", "Logo · Teal"),
+        m(medicalBayBrandLogo2, "Medical Bay logo on ink", "Logo · Ink"),
+        m(medicalBayBrandLogo3, "Medical Bay logo on mist", "Logo · Mist"),
       ],
-      links: [{ label: "Website", url: "https://medicalbay.ma/" }],
+      links: [
+        {
+          label: "Medical Bay Brand Guidelines",
+          url: "/brand-books/medical-bay-brand-guidelines.html",
+        },
+        { label: "Website", url: "https://medicalbay.vercel.app/" },
+      ],
     },
     {
       id: "mb-web",

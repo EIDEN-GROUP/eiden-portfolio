@@ -42,6 +42,7 @@ function BandHeader({
   center,
   right,
   centerWide,
+  centerAlign = "left",
   dark,
 }: {
   left: string;
@@ -49,6 +50,8 @@ function BandHeader({
   right: string;
   /** Longer manifesto-style center copy: wider measure + relaxed leading. */
   centerWide?: boolean;
+  /** Center column alignment — Summary band keeps left; Results band uses center. */
+  centerAlign?: "left" | "center";
   /** Match scroll gallery / black bands */
   dark?: boolean;
 }) {
@@ -66,19 +69,25 @@ function BandHeader({
       }}
     >
       <p
-        className=" font-display text-xs font-normal leading-[150%] tracking-[-0.03em]"
+        className={cn(
+          "font-display text-xs font-normal leading-[150%] tracking-[-0.03em]",
+          centerAlign === "center" && "flex-1",
+        )}
         style={{ color: mutedColor }}
       >
         {left}
       </p>
       <p
         className={cn(
-          "mx-auto text-center font-display font-normal tracking-[-0.03em]",
+          "font-display font-normal tracking-[-0.03em]",
+          centerAlign === "center"
+            ? "mx-auto max-w-[min(100%,44rem)] flex-[2] text-center text-pretty"
+            : "mx-auto text-center",
           centerWide
-            ? " text-pretty text-[15px] leading-[1.45] sm:max-w-[min(100%,44rem)] sm:text-[17px] sm:leading-[1.5]"
-            : " text-xl leading-none tracking-[-0.05em] sm:text-2xl",
+            ? "text-[15px] leading-[1.45] sm:max-w-[min(100%,44rem)] sm:text-[17px] sm:leading-[1.5]"
+            : "text-xl leading-none tracking-[-0.05em] sm:text-2xl",
         )}
-        style={{ color: textColor, textAlign: "left" }}
+        style={{ color: textColor, textAlign: centerAlign }}
       >
         {center}
       </p>
@@ -470,6 +479,7 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
             center="Shipped touchpoints across web, dashboards, CRM, and mobile."
             right="Artifacts"
             centerWide
+            centerAlign="center"
           />
           <Suspense fallback={<div className="min-h-[46svh] sm:min-h-[85svh]" aria-hidden />}>
             <CaseStudyScrollGallery tiles={c.resultTiles} />

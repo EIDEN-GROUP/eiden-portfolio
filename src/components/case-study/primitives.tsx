@@ -202,6 +202,60 @@ function MetricCard({
 
 export type MediaItem = { src: string; alt: string; caption?: string; tall?: boolean };
 
+/** Full-width editorial cells — matches brand identity / application cards. */
+export function MediaPanelGrid({ items }: { items: MediaItem[] }) {
+  const gridCols =
+    items.length <= 1
+      ? "sm:grid-cols-1"
+      : items.length === 2
+        ? "sm:grid-cols-2"
+        : "sm:grid-cols-2 lg:grid-cols-3";
+
+  return (
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-8%" }}
+      variants={stagger}
+      className={cn(
+        "mx-[max(1rem,env(safe-area-inset-left))] mr-[max(1rem,env(safe-area-inset-right))] grid grid-cols-1 gap-px bg-white/[0.08] sm:mx-8 sm:mr-8",
+        gridCols,
+      )}
+    >
+      {items.map((item, i) => (
+        <motion.figure
+          key={`${item.src}-${i}`}
+          variants={fadeUp}
+          className="group relative overflow-hidden bg-[#0a0a0a]"
+        >
+          <div
+            className={cn(
+              "aspect-[4/3] sm:aspect-auto",
+              items.length <= 2
+                ? "sm:min-h-[min(48vh,28rem)]"
+                : "sm:min-h-[min(40vh,22rem)]",
+              item.tall && "sm:min-h-[min(52vh,32rem)]",
+            )}
+          >
+            <img
+              src={item.src}
+              alt={item.alt}
+              className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+          </div>
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
+          {item.caption ? (
+            <figcaption className="absolute bottom-0 left-0 right-0 border-t border-white/[0.08] bg-black/40 px-5 py-4 font-label text-[9px] uppercase tracking-[0.38em] text-white/75 backdrop-blur-sm">
+              {item.caption}
+            </figcaption>
+          ) : null}
+        </motion.figure>
+      ))}
+    </motion.div>
+  );
+}
+
 export function MediaMasonry({ items }: { items: MediaItem[] }) {
   return (
     <motion.div

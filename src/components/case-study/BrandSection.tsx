@@ -11,10 +11,12 @@ function BrandPaletteGrid({
   colors,
   labels,
   accentClass,
+  fillHeight = false,
 }: {
   colors: string[];
   labels?: string[];
   accentClass?: string;
+  fillHeight?: boolean;
 }) {
   return (
     <motion.div
@@ -22,16 +24,22 @@ function BrandPaletteGrid({
       whileInView="visible"
       viewport={{ once: true, margin: "-8%" }}
       variants={stagger}
-      className="grid grid-cols-1 gap-px bg-white/[0.1] min-[400px]:grid-cols-2 sm:grid-cols-4"
+      className={cn(
+        "grid grid-cols-1 gap-px bg-white/[0.1] min-[400px]:grid-cols-2 sm:grid-cols-4",
+        fillHeight && "h-full min-h-0 flex-1",
+      )}
     >
       {colors.map((hex, i) => (
         <motion.div
           key={`${hex}-${i}`}
           variants={fadeUp}
-          className="group flex flex-col bg-[#0a0a0a]"
+          className={cn("group flex flex-col bg-[#0a0a0a]", fillHeight && "h-full min-h-0")}
         >
           <motion.div
-            className="relative aspect-[5/4] w-full overflow-hidden border-b border-white/[0.06] sm:aspect-[4/5]"
+            className={cn(
+              "relative w-full overflow-hidden border-b border-white/[0.06]",
+              fillHeight ? "min-h-[5rem] flex-1" : "aspect-[5/4] sm:aspect-[4/5]",
+            )}
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.5, ease }}
           >
@@ -67,23 +75,35 @@ function BrandPaletteGrid({
 function BrandTypographyGrid({
   items,
   accentClass,
+  fillHeight = false,
 }: {
   items: NonNullable<ServiceSection["typography"]>;
   accentClass?: string;
+  fillHeight?: boolean;
 }) {
+  const heroRow = items.length >= 3;
+
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-8%" }}
       variants={stagger}
-      className="grid grid-cols-1 gap-px bg-white/[0.1] lg:grid-cols-2"
+      className={cn(
+        "grid grid-cols-1 gap-px bg-white/[0.1] lg:grid-cols-2",
+        fillHeight && "h-full min-h-0 flex-1",
+        fillHeight && heroRow && "lg:grid-rows-2",
+      )}
     >
       {items.map((t, i) => (
         <motion.article
           key={t.label}
           variants={fadeUp}
-          className="flex min-h-[12rem] flex-col justify-between bg-[#0a0a0a] p-6 sm:min-h-[14rem] sm:p-8"
+          className={cn(
+            "flex flex-col justify-between bg-[#0a0a0a] p-6 sm:p-8",
+            fillHeight ? "h-full min-h-0" : "min-h-[12rem] sm:min-h-[14rem]",
+            heroRow && i === 0 && "lg:col-span-2",
+          )}
         >
           <div className="flex items-start justify-between gap-4">
             <span className="font-mono text-[10px] font-medium tabular-nums tracking-[0.24em] text-white/30">
@@ -180,8 +200,64 @@ function BrandBookLink({
   );
 }
 
-function BrandMediaGrid({ items }: { items: MediaItem[] }) {
+function BrandMediaFigure({
+  item,
+  aspectClass = "aspect-[4/3]",
+}: {
+  item: MediaItem;
+  aspectClass?: string;
+}) {
+  return (
+    <motion.figure
+      variants={fadeUp}
+      className="group relative overflow-hidden bg-[#0a0a0a]"
+    >
+      <div className={aspectClass}>
+        <img
+          src={item.src}
+          alt={item.alt}
+          className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]"
+          loading="lazy"
+        />
+      </div>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
+      {item.caption ? (
+        <figcaption className="absolute bottom-0 left-0 right-0 border-t border-white/[0.08] bg-black/40 px-5 py-4 font-label text-[9px] uppercase tracking-[0.38em] text-white/75 backdrop-blur-sm">
+          {item.caption}
+        </figcaption>
+      ) : null}
+    </motion.figure>
+  );
+}
+
+function BrandMediaGrid({
+  items,
+  layout = "mosaic",
+}: {
+  items: MediaItem[];
+  layout?: "mosaic" | "featured-row";
+}) {
   if (!items.length) return null;
+
+  if (layout === "featured-row" && items.length >= 3) {
+    const [featured, ...pair] = items;
+    return (
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-8%" }}
+        variants={stagger}
+        className="grid grid-cols-1 gap-px bg-white/[0.1] sm:grid-cols-2"
+      >
+        <div className="sm:col-span-2">
+          <BrandMediaFigure item={featured} aspectClass="aspect-[21/9] sm:aspect-[2.4/1]" />
+        </div>
+        {pair.slice(0, 2).map((item) => (
+          <BrandMediaFigure key={item.src} item={item} />
+        ))}
+      </motion.div>
+    );
+  }
 
   const [hero, ...rest] = items;
 
@@ -285,6 +361,7 @@ export function BrandIdentityShowcase({
   const hasPalette = (section.brandColors?.length ?? 0) > 0;
   const hasType = (section.typography?.length ?? 0) > 0;
   const brandBookBesidePalette = Boolean(section.brandBookUrl && hasPalette && !hasType);
+  const balancedColumns = hasPalette && hasType;
 
   return (
     <div className="mx-[max(1rem,env(safe-area-inset-left))] mr-[max(1rem,env(safe-area-inset-right))] space-y-px bg-white/[0.08] sm:mx-8 sm:mr-8">
@@ -293,23 +370,39 @@ export function BrandIdentityShowcase({
           {hasPalette ? (
             <Reveal
               className={cn(
-                "bg-[#060606]",
+                "flex flex-col bg-[#060606]",
+                balancedColumns && "h-full min-h-0",
                 hasType || brandBookBesidePalette ? "lg:col-span-5" : "lg:col-span-12",
               )}
             >
               <PanelHeader label="Palette" title="Chromatic system" accentClass={themeAccent} />
-              <BrandPaletteGrid
-                colors={section.brandColors!}
-                labels={section.colorLabels}
-                accentClass={themeAccent}
-              />
+              <div className={cn(balancedColumns && "flex min-h-0 flex-1 flex-col")}>
+                <BrandPaletteGrid
+                  colors={section.brandColors!}
+                  labels={section.colorLabels}
+                  accentClass={themeAccent}
+                  fillHeight={balancedColumns}
+                />
+              </div>
             </Reveal>
           ) : null}
 
           {hasType ? (
-            <Reveal className={cn("bg-[#060606]", hasPalette ? "lg:col-span-7" : "lg:col-span-12")}>
+            <Reveal
+              className={cn(
+                "flex flex-col bg-[#060606]",
+                balancedColumns && "h-full min-h-0",
+                hasPalette ? "lg:col-span-7" : "lg:col-span-12",
+              )}
+            >
               <PanelHeader label="Typography" title="Type hierarchy" accentClass={themeAccent} />
-              <BrandTypographyGrid items={section.typography!} accentClass={themeAccent} />
+              <div className={cn(balancedColumns && "flex min-h-0 flex-1 flex-col")}>
+                <BrandTypographyGrid
+                  items={section.typography!}
+                  accentClass={themeAccent}
+                  fillHeight={balancedColumns}
+                />
+              </div>
             </Reveal>
           ) : null}
 
@@ -347,7 +440,10 @@ export function BrandIdentityShowcase({
       {media.length > 0 ? (
         <Reveal className="bg-[#060606]">
           <PanelHeader label="Applications" title="Identity in context" accentClass={themeAccent} />
-          <BrandMediaGrid items={media} />
+          <BrandMediaGrid
+            items={media}
+            layout={section.brandMediaLayout ?? "mosaic"}
+          />
         </Reveal>
       ) : null}
     </div>
