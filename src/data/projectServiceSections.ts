@@ -534,7 +534,7 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
   intro: {
     left: "EIDEN delivery",
     center:
-      "Brand, patient funnel, CRM, and marketing architecture for a modern medical centre operating as one system.",
+      "Architecture, brand, website, CRM, marketing, and patient experience for a new-generation medical centre.",
     right: "Medical Bay",
   },
   ...stylesForSlug("medical-bay"),
@@ -543,7 +543,7 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
       id: "mb-brand",
       type: "brand-identity",
       eyebrow: "Branding",
-      title: "Votre partenaire de santé — identity built for medical tourism in Agadir.",
+      title: "Six layers, one medical brand.",
       description:
         "Charte graphique 2026: teal médical (#2BBAA5), neutrals Mist & Cream, et une voix chaleureuse trilingue. Medical Bay n'est pas une clinique — c'est le pont entre le patient et l'excellence des soins.",
       brandBookUrl: "/brand-books/medical-bay-brand-guidelines.html",
