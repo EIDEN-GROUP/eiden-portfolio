@@ -543,9 +543,9 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
       id: "mb-brand",
       type: "brand-identity",
       eyebrow: "Branding",
-      title: "Six layers, one medical brand.",
+      title: "From clinical excellence to a structured brand.",
       description:
-        "Charte graphique 2026: teal médical (#2BBAA5), neutrals Mist & Cream, et une voix chaleureuse trilingue. Medical Bay n'est pas une clinique — c'est le pont entre le patient et l'excellence des soins.",
+        "Medical Bay is built from the ground up as a layered system. The brand carries the calm and authority a patient needs to trust the first click. The website is engineered as a real patient funnel service clarity, practitioner credibility, frictionless booking. The CRM holds the patient journey across appointments, reminders, files, and follow-ups. The marketing engine reaches the right communities in the right tone. Every layer talks to every other.",
       brandBookUrl: "/brand-books/medical-bay-brand-guidelines.html",
       brandColors: ["#2BBAA5", "#0D1A18", "#E8F5F3", "#FAFDF8"],
       colorLabels: ["Teal Primaire", "Ink", "Mist", "Cream"],
