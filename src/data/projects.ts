@@ -516,7 +516,7 @@ export const projects = [
       "Marketing strategy",
       "Revenue optimisation",
     ],
-    website: "https://medicalbay.ma",
+    website: "https://medicalbay.vercel.app/",
     caseStudy: {
       social: {
         instagram: "https://www.instagram.com/medicalbay.maroc/",

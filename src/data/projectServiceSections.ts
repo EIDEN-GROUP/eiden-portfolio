@@ -589,7 +589,7 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
       eyebrow: "Website",
       title: "A patient funnel, not a brochure.",
       description:
-        "medicalbay.ma   clear service paths, appointment logic, and trust signals so discovery converts into booked consultations without friction.",
+        "medicalbay clear service paths, appointment logic, and trust signals so discovery converts into booked consultations without friction.",
       features: [
         "Service & specialty discovery",
         "Appointment inquiry flows",
@@ -601,7 +601,7 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
         m(medicalBayReception, "Medical Bay website mobile", "Mobile"),
         m(medicalBayOffice, "Medical Bay patient journey", "Journey"),
       ],
-      links: [{ label: "Website", url: "https://medicalbay.ma/" }],
+      links: [{ label: "Website", url: "https://medicalbay.vercel.app/" }],
     },
     {
       id: "mb-crm",

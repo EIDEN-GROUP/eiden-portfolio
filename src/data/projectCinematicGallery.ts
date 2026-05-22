@@ -346,7 +346,7 @@ const STORIES: Record<string, CinematicGalleryStory> = {
         title: "Medical Bay",
         description:
           "A conversion-led presence for patients and partners   services, trust, and clear paths to care.",
-        cta: { label: "Visit medicalbay.ma", href: "https://medicalbay.ma/" },
+        cta: { label: "Visit website", href: "https://medicalbay.vercel.app/" },
       },
       {
         id: "mb-reception",

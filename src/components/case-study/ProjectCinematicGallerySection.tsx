@@ -57,7 +57,7 @@ const SERVICE_EXPLANATIONS: Record<string, Record<string, string>> = {
   },
   "medical-bay": {
     "Website Design & Development":
-      "Built medicalbay.ma as a patient funnel with clear service paths and appointment logic.",
+      "Built medicalbay as a patient funnel with clear service paths and appointment logic.",
     "Branding & Visual Identity":
       "Created a clinical-yet-warm identity system across space, digital, and patient touchpoints.",
     "CRM System Development":
