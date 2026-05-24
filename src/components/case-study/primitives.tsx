@@ -487,12 +487,17 @@ export function DeviceMockupPair({
   alt,
   websiteHref,
   websiteLabel,
+  precomposed = false,
+  precomposedDesktopBg = "#3d8f7a",
 }: {
   desktopSrc: string;
   mobileSrc: string;
   alt: string;
   websiteHref?: string;
   websiteLabel?: string;
+  /** Pre-rendered monitor + phone mockups (full asset), not raw UI crops. */
+  precomposed?: boolean;
+  precomposedDesktopBg?: string;
 }) {
   const interactive = Boolean(websiteHref && websiteLabel);
 
@@ -503,12 +508,21 @@ export function DeviceMockupPair({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 1.1, ease }}
-        className="relative aspect-[16/10] overflow-hidden border border-white/12 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]"
+        className={cn(
+          "relative overflow-hidden shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]",
+          precomposed
+            ? "aspect-[16/11]"
+            : "aspect-[16/10] border border-white/12",
+        )}
+        style={precomposed ? { backgroundColor: precomposedDesktopBg } : undefined}
       >
         <img
           src={desktopSrc}
           alt={`${alt} desktop`}
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+          className={cn(
+            "h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]",
+            precomposed ? "object-cover" : "object-cover",
+          )}
         />
         {interactive ? (
           <div
@@ -530,9 +544,21 @@ export function DeviceMockupPair({
         whileInView={{ opacity: 1, x: 0, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 1, delay: 0.2, ease }}
-        className="pointer-events-none absolute -bottom-6 right-[max(1.5rem,env(safe-area-inset-right))] z-10 w-[28%] max-w-[11rem] overflow-hidden border border-white/15 shadow-2xl sm:-bottom-10 sm:right-12 sm:max-w-[13rem]"
+        className={cn(
+          "pointer-events-none absolute z-10 shadow-2xl",
+          precomposed
+            ? "-bottom-4 right-[max(1rem,env(safe-area-inset-right))] w-[32%] max-w-[9.5rem] sm:-bottom-8 sm:right-10 sm:max-w-[11rem]"
+            : "-bottom-6 right-[max(1.5rem,env(safe-area-inset-right))] w-[28%] max-w-[11rem] overflow-hidden border border-white/15 sm:-bottom-10 sm:right-12 sm:max-w-[13rem]",
+        )}
       >
-        <img src={mobileSrc} alt={`${alt} mobile`} className="aspect-[9/19] w-full object-cover" />
+        <img
+          src={mobileSrc}
+          alt={`${alt} mobile`}
+          className={cn(
+            "w-full",
+            precomposed ? "object-contain" : "aspect-[9/19] object-cover",
+          )}
+        />
       </motion.div>
     </>
   );

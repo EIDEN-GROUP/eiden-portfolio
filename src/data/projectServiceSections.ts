@@ -3,20 +3,19 @@ import { getProjectTheme } from "@/data/projectThemes";
 import bopassageBrandPalette from "@/assets/bopassage-brand-palette.png";
 import bopassageCover from "@/assets/bopassage-cover.png";
 import bopassageHero from "@/assets/bopassage-hero.png";
-import bopassageSocialBalance from "@/assets/bopassage-social-balance.png";
-import bopassageSocialMatcha from "@/assets/bopassage-social-matcha.png";
-import bopassageSocialWaffle from "@/assets/bopassage-social-waffle.png";
+import bopassageWebDesktop from "@/assets/bopassage-web-desktop.png";
+import bopassageWebMobile from "@/assets/bopassage-web-mobile.png";
 import dmcCover from "@/assets/dmc-cover.png";
 import dmcHero from "@/assets/dmc-hero.png";
-import dmcSocialC from "@/assets/dmc-social-c.png";
-import dmcSocialD from "@/assets/dmc-social-d.png";
 import dmcSocialExcellence from "@/assets/dmc-social-excellence.png";
-import dmcSocialM from "@/assets/dmc-social-m.png";
+import dmcWebDesktop from "@/assets/dmc-web-desktop.png";
+import dmcWebMobile from "@/assets/dmc-web-mobile.png";
 import educazenkidsBefore from "@/assets/educazenkids-before.png";
-import educazenkidsCover from "@/assets/educazenkids-cover.png";
 import educazenkidsLogo from "@/assets/educazenkids-logo.png";
 import educazenkidsScroll1 from "@/assets/educazenkids-scroll-1.png";
 import educazenkidsScroll2 from "@/assets/educazenkids-scroll-2.png";
+import educazenkidsWebDesktop from "@/assets/educazenkids-web-desktop.png";
+import educazenkidsWebMobile from "@/assets/educazenkids-web-mobile.png";
 import educazenHero from "@/assets/educazen-hero.png";
 import medicalBayBrandLogo1 from "@/assets/medical-bay-brand-logo-1.jpg";
 import medicalBayBrandLogo2 from "@/assets/medical-bay-brand-logo-2.png";
@@ -24,6 +23,8 @@ import medicalBayBrandLogo3 from "@/assets/medical-bay-brand-logo-3.png";
 import medicalBayLobby from "@/assets/medical-bay-lobby.png";
 import medicalBayOffice from "@/assets/medical-bay-office.png";
 import medicalBayReception from "@/assets/medical-bay-reception.png";
+import medicalBayWebDesktop from "@/assets/medical-bay-web-desktop.png";
+import medicalBayWebMobile from "@/assets/medical-bay-web-mobile.png";
 import eidenAcademyBrandCarousel from "@/assets/eiden-academy-brand-carousel.png";
 import eidenAcademyCover from "@/assets/eiden-academy-cover.png";
 import eidenAcademySocialAiIntegration from "@/assets/eiden-academy-social-ai-integration.png";
@@ -75,6 +76,10 @@ export type ServiceSection = {
   }[];
   features?: string[];
   links?: ServiceLink[];
+  /** Full device mockup PNGs (monitor + phone) instead of raw UI screenshots. */
+  precomposedDeviceMockups?: boolean;
+  /** Desktop frame background when `precomposedDeviceMockups` is set. */
+  precomposedDesktopBg?: string;
   metrics?: ServiceMetric[];
   beforeAfter?: {
     before: string;
@@ -178,13 +183,11 @@ const DMC_CONFIG: ProjectServiceConfig = {
         "Contact & inquiry flows",
         "Performance-first build",
       ],
+      precomposedDeviceMockups: true,
+      precomposedDesktopBg: "#2C3830",
       media: [
-        m(dmcHero, "DMC website desktop", "Home"),
-        m(dmcCover, "DMC website mobile", "Mobile"),
-        m(dmcSocialExcellence, "DMC hospitality campaign", "Campaign"),
-        m(dmcSocialD, "DMC expertise", "Expertise"),
-        m(dmcSocialM, "DMC partnership", "Partnership"),
-        m(dmcSocialC, "DMC consulting", "Consulting"),
+        m(dmcWebDesktop, "DMC website on desktop", "Desktop"),
+        m(dmcWebMobile, "DMC website on mobile", "Mobile"),
       ],
       links: [
         { label: "Website", url: "https://dmchm.com/" },
@@ -261,12 +264,10 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
         "Editorial storytelling",
         "Mobile-first UX",
       ],
+      precomposedDeviceMockups: true,
       media: [
-        m(bopassageHero, "Bôpassage desktop", "Desktop"),
-        m(bopassageCover, "Bôpassage mobile", "Mobile"),
-        m(bopassageSocialBalance, "Bô Passage balance campaign", "Balance"),
-        m(bopassageSocialWaffle, "Bô Passage dessert", "Dessert"),
-        m(bopassageSocialMatcha, "Bô Passage matcha", "Matcha"),
+        m(bopassageWebDesktop, "Bô Passage website on desktop", "Desktop"),
+        m(bopassageWebMobile, "Bô Passage website on mobile", "Mobile"),
       ],
       links: [
         { label: "Website", url: "https://bopassage.com/" },
@@ -392,9 +393,11 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       description:
         "educazenkids.com   bright, accessible UI with clear paths to programmes, the psychosocial pole, and EducaBlog resources parents rely on.",
       features: ["Programme discovery", "Team & psychosocial pole", "EducaBlog", "Enrolment forms"],
+      precomposedDeviceMockups: true,
+      precomposedDesktopBg: "#fdf2f8",
       media: [
-        m(educazenHero, "EducazenKids desktop", "Desktop"),
-        m(educazenkidsCover, "EducazenKids mobile", "Mobile"),
+        m(educazenkidsWebDesktop, "EducazenKids website on desktop", "Desktop"),
+        m(educazenkidsWebMobile, "EducazenKids website on mobile", "Mobile"),
       ],
       links: [{ label: "Website", url: "https://educazenkids.eiden-group.workers.dev/" }],
     },
@@ -596,10 +599,11 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
         "Team & facility credibility",
         "Performance-first build",
       ],
+      precomposedDeviceMockups: true,
+      precomposedDesktopBg: "#0D1A18",
       media: [
-        m(medicalBayLobby, "Medical Bay website desktop", "Desktop"),
-        m(medicalBayReception, "Medical Bay website mobile", "Mobile"),
-        m(medicalBayOffice, "Medical Bay patient journey", "Journey"),
+        m(medicalBayWebDesktop, "Medical Bay website on desktop", "Desktop"),
+        m(medicalBayWebMobile, "Medical Bay website on mobile", "Mobile"),
       ],
       links: [{ label: "Website", url: "https://medicalbay.vercel.app/" }],
     },

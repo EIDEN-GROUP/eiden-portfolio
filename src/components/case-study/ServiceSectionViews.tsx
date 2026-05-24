@@ -110,6 +110,8 @@ export function ServiceSectionView({
               alt={section.title}
               websiteHref={websiteCta?.href}
               websiteLabel={websiteCta?.label}
+              precomposed={section.precomposedDeviceMockups}
+              precomposedDesktopBg={section.precomposedDesktopBg}
             />
           </>
         )}
