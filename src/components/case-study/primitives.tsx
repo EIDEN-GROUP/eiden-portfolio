@@ -510,19 +510,14 @@ export function DeviceMockupPair({
         transition={{ duration: 1.1, ease }}
         className={cn(
           "relative overflow-hidden shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]",
-          precomposed
-            ? "aspect-[16/11]"
-            : "aspect-[16/10] border border-white/12",
+          precomposed ? "aspect-[16/11]" : "aspect-[16/10] border border-white/12",
         )}
         style={precomposed ? { backgroundColor: precomposedDesktopBg } : undefined}
       >
         <img
           src={desktopSrc}
           alt={`${alt} desktop`}
-          className={cn(
-            "h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.02]",
-            precomposed ? "object-cover" : "object-cover",
-          )}
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
         />
         {interactive ? (
           <div
@@ -554,10 +549,7 @@ export function DeviceMockupPair({
         <img
           src={mobileSrc}
           alt={`${alt} mobile`}
-          className={cn(
-            "w-full",
-            precomposed ? "object-contain" : "aspect-[9/19] object-cover",
-          )}
+          className={cn("w-full", precomposed ? "object-contain" : "aspect-[9/19] object-cover")}
         />
       </motion.div>
     </>
