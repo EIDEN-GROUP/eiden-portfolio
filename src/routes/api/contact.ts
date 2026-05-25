@@ -1,35 +1,36 @@
-import { json } from "@tanstack/react-start";
-import { createAPIFileRoute } from "@tanstack/react-start/api";
+import { createServerFn } from "@tanstack/react-start";
 import { Resend } from "resend";
+import { z } from "zod";
 
-export const APIRoute = createAPIFileRoute("/api/contact")({
-  POST: async ({ request }) => {
-    const data = await request.json();
-    const { name, email, company, headcount, idea } = data as {
-      name: string;
-      email: string;
-      company?: string;
-      headcount: string;
-      idea: string;
-    };
+const contactSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  company: z.string().optional(),
+  headcount: z.string(),
+  idea: z.string(),
+});
 
+type ContactData = z.infer<typeof contactSchema>;
+
+export const sendContactEmail = createServerFn({ method: "POST" })
+  .inputValidator((data: ContactData) => contactSchema.parse(data))
+  .handler(async ({ data }) => {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     await resend.emails.send({
       from: "Eiden Group <contact@eiden-group.com>",
       to: "contact@eiden-group.com",
-      replyTo: email,
-      subject: `New inquiry from ${name}`,
+      replyTo: data.email,
+      subject: `New inquiry from ${data.name}`,
       text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Company: ${company ?? "N/A"}`,
-        `Headcount: ${headcount}`,
+        `Name: ${data.name}`,
+        `Email: ${data.email}`,
+        `Company: ${data.company ?? "N/A"}`,
+        `Headcount: ${data.headcount}`,
         "",
-        idea,
+        data.idea,
       ].join("\n"),
     });
 
-    return json({ ok: true });
-  },
-});
+    return { ok: true };
+  });

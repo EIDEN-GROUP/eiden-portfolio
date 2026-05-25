@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
+import { sendContactEmail } from "@/routes/api/contact";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -92,12 +93,7 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
   async function onSubmit(data: FormValues) {
     setSubmitting(true);
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("Server error");
+      await sendContactEmail({ data });
     } catch {
       const body = encodeURIComponent(
         `Name: ${data.name}\nEmail: ${data.email}\nCompany: ${data.company ?? "N/A"}\nHeadcount: ${data.headcount}\n\n${data.idea}`,
