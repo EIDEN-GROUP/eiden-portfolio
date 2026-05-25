@@ -70,6 +70,7 @@ function FormField({
 export function ContactForm({ onClose }: { onClose?: () => void }) {
   const [formStep, setFormStep] = useState<FormStep>("step1");
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     register,
@@ -92,13 +93,14 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
 
   async function onSubmit(data: FormValues) {
     setSubmitting(true);
+    setError(null);
     try {
       await sendContactEmail({ data });
-    } catch {
-      // mailto fallback disabled
+      setFormStep("success");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
-      setFormStep("success");
     }
   }
 
@@ -231,6 +233,11 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
               />
             </FormField>
 
+            {error && (
+              <p className="rounded-sm border border-red-300/60 bg-red-50/80 px-4 py-3 font-body text-xs text-red-600">
+                {error}
+              </p>
+            )}
             <button
               type="submit"
               disabled={submitting}
