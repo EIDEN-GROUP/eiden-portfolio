@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
+import { sendContactEmail } from "@/routes/api/contact";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -69,6 +70,7 @@ function FormField({
 export function ContactForm({ onClose }: { onClose?: () => void }) {
   const [formStep, setFormStep] = useState<FormStep>("step1");
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     register,
@@ -91,24 +93,14 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
 
   async function onSubmit(data: FormValues) {
     setSubmitting(true);
+    setError(null);
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("Server error");
-    } catch {
-      const body = encodeURIComponent(
-        `Name: ${data.name}\nEmail: ${data.email}\nCompany: ${data.company ?? "N/A"}\nHeadcount: ${data.headcount}\n\n${data.idea}`,
-      );
-      window.open(
-        `mailto:contact@eiden-group.com?subject=Hydra Scan™ Inquiry   ${data.name}&body=${body}`,
-        "_blank",
-      );
+      await sendContactEmail({ data });
+      setFormStep("success");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
-      setFormStep("success");
     }
   }
 
@@ -241,6 +233,11 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
               />
             </FormField>
 
+            {error && (
+              <p className="rounded-sm border border-red-300/60 bg-red-50/80 px-4 py-3 font-body text-xs text-red-600">
+                {error}
+              </p>
+            )}
             <button
               type="submit"
               disabled={submitting}
