@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bô Passage — Brand Book 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,600&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Greens */
+  --forest: #18312e;
+  --forest-deep: #102220;
+  --forest-mid: #1e3b37;
+  --forest-light: #2a534d;
+  --forest-pale: #3d6b63;
+  /* Golds */
+  --gold: #b8973a;
+  --gold-mid: #d4b06a;
+  --gold-light: #e8cc90;
+  --gold-deep: #8a6e25;
+  /* Neutrals */
+  --ivory: #faf6ee;
+  --cream: #f2ece0;
+  --sand: #e6dece;
+  --warm-text: #f5eedf;
+  --sage: #6b8c74;
+  --ink: #0f1f1d;
+  /* Fonts */
+  --disp: 'Playfair Display', serif;
+  --serif: 'Cormorant Garamond', serif;
+  --sans: 'Montserrat', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); font-weight: 300; background: var(--ivory); color: var(--ink); overflow-x: hidden; cursor: none; }
+
+/* CURSOR */
+#cur { width:10px; height:10px; background:var(--gold); border-radius:50%; position:fixed; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .18s,height .18s; top:0; left:0; }
+#cur.big { width:32px; height:32px; background:transparent; border:1.5px solid var(--gold); }
+
+/* PROGRESS */
+#bar { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-light)); transform-origin:left; transform:scaleX(0); z-index:400; right:0; transition:transform .05s; }
+
+/* NAV */
+nav { position:fixed; top:0; left:0; right:0; z-index:200; height:58px; padding:0 52px; display:flex; align-items:center; justify-content:space-between; background:rgba(16,34,32,.95); backdrop-filter:blur(18px); border-bottom:1px solid rgba(184,151,58,.12); }
+.nav-logo { font-family:var(--disp); font-size:18px; font-style:italic; color:var(--warm-text); }
+.nav-logo em { color:var(--gold); font-style:normal; }
+.nav-dots { display:flex; gap:6px; }
+.dot { width:5px; height:5px; border-radius:50%; background:rgba(184,151,58,.2); border:1px solid rgba(184,151,58,.35); cursor:pointer; transition:all .2s; }
+.dot.on { background:var(--gold); transform:scale(1.6); }
+.nav-tag { font-size:9px; letter-spacing:4px; color:rgba(184,151,58,.45); text-transform:uppercase; }
+
+/* SCROLL REVEAL */
+.rv { opacity:0; transform:translateY(20px); transition:opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1); }
+.rv.on { opacity:1; transform:none; }
+.d1{transition-delay:.1s} .d2{transition-delay:.22s} .d3{transition-delay:.34s} .d4{transition-delay:.46s}
+
+/* SHARED LABELS */
+.eyebrow { font-size:9px; letter-spacing:5px; text-transform:uppercase; display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.eyebrow::before { content:''; width:22px; height:1px; }
+.eyebrow.gold { color:var(--gold); } .eyebrow.gold::before { background:var(--gold); }
+.eyebrow.green { color:var(--forest); } .eyebrow.green::before { background:var(--forest); }
+.eyebrow.soft { color:rgba(16,31,29,.4); } .eyebrow.soft::before { background:rgba(16,31,29,.25); }
+
+/* BIG HEADING */
+.headline { font-family:var(--disp); font-size:clamp(44px,6.5vw,92px); line-height:.88; font-weight:400; margin-bottom:44px; }
+.headline em { font-style:italic; color:var(--gold); }
+.headline.light { color:var(--warm-text); }
+.headline.dark { color:var(--forest); }
+
+/* ═══════════════════════ COVER ═══════════════════════ */
+#cover { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:58px; }
+
+.cover-left {
+  background:var(--forest-deep);
+  padding:72px 52px;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.cover-left::before {
+  content:''; position:absolute;
+  width:480px; height:480px; border-radius:50%;
+  border:1px solid rgba(184,151,58,.07);
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.cover-left::after {
+  content:''; position:absolute;
+  width:300px; height:300px; border-radius:50%;
+  border:1px solid rgba(184,151,58,.04);
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.cover-glow {
+  position:absolute; width:400px; height:400px; border-radius:50%;
+  background:radial-gradient(circle,rgba(184,151,58,.07) 0%,transparent 70%);
+  top:20%; left:-100px; pointer-events:none;
+}
+.brand-name { font-family:var(--disp); font-size:clamp(64px,9vw,110px); font-style:italic; font-weight:400; line-height:.92; color:var(--warm-text); margin-bottom:6px; }
+.brand-name em { color:var(--gold); font-style:normal; }
+.brand-sub { font-size:9px; font-weight:600; letter-spacing:8px; text-transform:uppercase; color:var(--gold); margin-bottom:32px; }
+.cover-divider { width:40px; height:1px; background:var(--gold); opacity:.5; margin-bottom:28px; }
+.cover-desc { font-family:var(--serif); font-style:italic; font-size:19px; color:rgba(245,238,223,.58); line-height:1.85; max-width:380px; margin-bottom:40px; }
+.cover-pills { display:flex; flex-wrap:wrap; gap:8px; }
+.pill { padding:7px 16px; border:1px solid rgba(184,151,58,.3); font-size:10px; font-weight:500; letter-spacing:2px; text-transform:uppercase; color:var(--gold-mid); }
+
+.cover-right { position:relative; overflow:hidden; }
+.cover-right img { width:100%; height:100%; object-fit:cover; display:block; }
+.cover-stamp {
+  position:absolute; bottom:32px; right:32px;
+  width:92px; height:92px;
+  border:1px solid rgba(184,151,58,.5); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  animation:spin 20s linear infinite;
+}
+.cover-stamp-inner { animation:spin 20s linear infinite reverse; text-align:center; }
+.cover-stamp-inner span { display:block; font-family:var(--disp); font-size:22px; font-style:italic; color:var(--gold); }
+.cover-stamp-inner small { font-size:8px; letter-spacing:3px; color:rgba(184,151,58,.6); }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ═══════════════════════ MANIFESTO ═══════════════════════ */
+#manifesto { background:var(--cream); padding:110px 52px; position:relative; overflow:hidden; }
+.manifesto-bg-word {
+  position:absolute; font-family:var(--disp); font-size:22vw; font-style:italic;
+  color:rgba(24,49,46,.05); bottom:-40px; left:-10px; line-height:1;
+  pointer-events:none; user-select:none; white-space:nowrap;
+}
+.manifesto-inner { max-width:800px; margin:0 auto; text-align:center; position:relative; z-index:2; }
+.manifesto-eyebar { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:24px; }
+.manifesto-eyebar span { font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--forest); }
+.manifesto-eyebar::before, .manifesto-eyebar::after { content:''; flex:1; max-width:50px; height:1px; background:rgba(24,49,46,.2); }
+.manifesto-title { font-family:var(--disp); font-size:clamp(30px,4.5vw,56px); color:var(--forest); font-weight:400; line-height:1.12; margin-bottom:36px; }
+.manifesto-title em { font-style:italic; color:var(--gold); }
+.manifesto-body { font-family:var(--serif); font-style:italic; font-size:20px; color:rgba(24,49,46,.62); line-height:1.95; margin-bottom:14px; }
+.manifesto-bold { font-family:var(--sans); font-size:12px; font-weight:700; letter-spacing:2px; color:var(--forest); margin:24px 0; text-transform:uppercase; }
+.manifesto-cta { display:inline-block; margin-top:36px; background:var(--forest); color:var(--warm-text); font-size:10px; font-weight:600; letter-spacing:3px; padding:13px 38px; text-decoration:none; text-transform:uppercase; transition:background .2s; }
+.manifesto-cta:hover { background:var(--ink); }
+
+/* wave divider */
+.wave { overflow:hidden; line-height:0; display:block; }
+.wave svg { display:block; }
+
+/* ═══════════════════════ POSITIONING ═══════════════════════ */
+#positioning { background:var(--ivory); padding:110px 52px; }
+.pos-grid { display:grid; grid-template-columns:1.25fr 1fr; gap:60px; margin-top:52px; }
+.pos-quote { background:var(--forest); border-left:3px solid var(--gold); padding:36px; margin-bottom:3px; }
+.pos-quote p { font-family:var(--serif); font-style:italic; font-size:21px; color:var(--warm-text); line-height:1.65; }
+.pillar { display:flex; gap:16px; padding:20px 0; border-bottom:1px solid rgba(24,49,46,.08); cursor:default; transition:padding-left .2s, background .2s; }
+.pillar:hover { padding-left:8px; background:rgba(24,49,46,.03); }
+.pillar-num { font-family:var(--disp); font-size:40px; color:rgba(24,49,46,.08); line-height:1; min-width:48px; font-style:italic; flex-shrink:0; }
+.pillar-title { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--forest); margin-bottom:5px; }
+.pillar-text { font-size:13px; color:rgba(24,49,46,.5); line-height:1.7; }
+.stat-stack { display:flex; flex-direction:column; gap:2px; }
+.stat-block { padding:28px; min-height:115px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; }
+.stat-block:nth-child(1) { background:var(--gold); }
+.stat-block:nth-child(2) { background:var(--forest-light); }
+.stat-block:nth-child(3) { background:var(--forest-mid); }
+.stat-block:nth-child(4) { background:var(--sage); }
+.stat-ico { position:absolute; top:14px; right:14px; font-size:22px; opacity:.15; }
+.stat-num { font-family:var(--disp); font-size:42px; line-height:1; color:rgba(245,238,223,.9); font-weight:400; }
+.stat-block:nth-child(1) .stat-num { color:var(--ink); }
+.stat-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:rgba(245,238,223,.5); margin-top:3px; }
+.stat-block:nth-child(1) .stat-label { color:rgba(10,16,15,.5); }
+
+/* ═══════════════════════ COLORS ═══════════════════════ */
+#colors { background:var(--cream); padding:110px 52px; }
+.palette-swatches { display:grid; grid-template-columns:repeat(5,1fr); gap:3px; height:260px; margin-top:52px; margin-bottom:3px; }
+.swatch { display:flex; flex-direction:column; justify-content:flex-end; padding:14px; cursor:pointer; transition:flex .42s cubic-bezier(.22,1,.36,1); }
+.swatch:hover { flex:2.5; }
+.swatch-name { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:3px; }
+.swatch-hex { font-family:var(--serif); font-size:17px; font-style:italic; }
+.swatch.light .swatch-name, .swatch.light .swatch-hex { color:var(--ink); }
+.swatch.dark .swatch-name, .swatch.dark .swatch-hex { color:rgba(245,238,223,.85); }
+.color-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:3px; }
+.color-card { padding:30px; background:var(--forest); }
+.color-card:nth-child(1) { border-top:3px solid var(--gold); }
+.color-card:nth-child(2) { border-top:3px solid var(--gold-light); }
+.color-card-label { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgba(245,238,223,.3); margin-bottom:10px; }
+.color-card-title { font-family:var(--disp); font-size:18px; color:var(--warm-text); margin-bottom:10px; font-weight:400; }
+.color-card-text { font-size:12px; color:rgba(245,238,223,.42); line-height:1.75; }
+.color-bar { display:flex; height:40px; gap:2px; margin-top:3px; }
+.color-bar-seg { display:flex; align-items:center; padding:0 14px; }
+.color-bar-seg span { font-size:9px; letter-spacing:2px; font-family:var(--sans); font-weight:500; }
+
+/* ═══════════════════════ TYPOGRAPHY ═══════════════════════ */
+#typography { background:var(--forest-deep); padding:110px 52px; }
+.font-showcase { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:52px; }
+.font-card { padding:52px 44px; border:1px solid rgba(184,151,58,.1); transition:border-color .3s; }
+.font-card:hover { border-color:rgba(184,151,58,.35); }
+.font-card-label { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:rgba(184,151,58,.4); margin-bottom:20px; }
+.font-card-use { font-size:11px; color:rgba(245,238,223,.25); border-top:1px solid rgba(255,255,255,.06); padding-top:12px; margin-top:14px; line-height:1.6; }
+.font-card.gold-bg { background:var(--gold); border-color:var(--gold); }
+.marquee-track { overflow:hidden; white-space:nowrap; background:var(--forest-mid); padding:14px 0; margin-top:3px; border:1px solid rgba(184,151,58,.12); }
+.marquee-text { display:inline-block; font-family:var(--disp); font-size:clamp(28px,5vw,56px); font-style:italic; color:var(--gold); animation:march 22s linear infinite; }
+@keyframes march { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+.type-scale { background:rgba(245,238,223,.02); border:1px solid rgba(184,151,58,.08); padding:40px; margin-top:3px; }
+.scale-row { display:flex; align-items:baseline; gap:20px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,.04); }
+.scale-row:last-child { border:none; }
+.scale-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:rgba(245,238,223,.18); min-width:85px; flex-shrink:0; }
+
+/* ═══════════════════════ LOGO ═══════════════════════ */
+#logo { background:var(--ivory); padding:110px 52px; }
+.logo-versions { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin-top:52px; }
+.logo-version { padding:52px 36px; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:240px; transition:transform .3s; }
+.logo-version:hover { transform:scale(1.02); }
+.logo-tag { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-top:22px; text-align:center; }
+.logo-rules { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:3px; }
+.rule-card { padding:36px; }
+.rule-title { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; margin-bottom:20px; }
+.rule-list { list-style:none; display:flex; flex-direction:column; gap:9px; }
+.rule-list li { font-size:13px; line-height:1.6; padding-left:20px; position:relative; }
+.rule-do li { color:rgba(245,238,223,.72); }
+.rule-do li::before { content:'✓'; position:absolute; left:0; color:var(--sage); font-weight:700; }
+.rule-dont li { color:rgba(24,49,46,.5); }
+.rule-dont li::before { content:'×'; position:absolute; left:0; color:rgba(24,49,46,.35); font-weight:700; }
+
+/* ═══════════════════════ MOODBOARD ═══════════════════════ */
+#moodboard { background:var(--cream); padding:110px 52px; }
+.mood-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin-top:52px; }
+.mood-img { position:relative; overflow:hidden; cursor:pointer; }
+.mood-img img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.78); transition:transform .55s cubic-bezier(.22,1,.36,1), filter .3s; }
+.mood-img:hover img { transform:scale(1.06); filter:saturate(1.08); }
+.mood-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(12,24,22,.75),transparent 55%); opacity:0; transition:opacity .3s; display:flex; align-items:flex-end; padding:14px; }
+.mood-img:hover .mood-overlay { opacity:1; }
+.mood-overlay span { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); }
+.mood-img.tall img { height:340px; }
+.mood-img.wide { grid-column:span 2; }
+.mood-img.wide img { height:255px; }
+.mood-card { background:var(--forest); padding:32px 28px; display:flex; flex-direction:column; justify-content:center; }
+.mood-card h3 { font-family:var(--disp); font-size:22px; font-style:italic; color:var(--warm-text); margin-bottom:10px; font-weight:400; }
+.mood-card p { font-size:13px; color:rgba(245,238,223,.5); line-height:1.75; }
+.mood-color-strip { display:flex; height:70px; margin-top:3px; gap:3px; }
+.mood-color-strip div { flex:1; display:flex; align-items:flex-end; padding:10px 14px; }
+.mood-color-strip div span { font-size:9px; letter-spacing:2px; font-weight:600; }
+
+/* ═══════════════════════ VOICE ═══════════════════════ */
+#voice { background:var(--ivory); padding:110px 52px; }
+.voice-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin-top:52px; }
+.voice-card { padding:36px 30px; background:rgba(24,49,46,.04); border:1px solid rgba(24,49,46,.08); transition:all .3s; }
+.voice-card:hover { background:rgba(24,49,46,.07); border-color:var(--gold); }
+.voice-ico { font-size:28px; display:block; margin-bottom:14px; }
+.voice-name { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--forest); margin-bottom:10px; }
+.voice-desc { font-size:13px; color:rgba(24,49,46,.52); line-height:1.72; margin-bottom:14px; }
+.voice-ex { font-family:var(--serif); font-style:italic; font-size:17px; color:var(--forest); border-left:2px solid var(--gold); padding-left:12px; line-height:1.5; opacity:.75; }
+.dodont { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:3px; }
+.dd-card { padding:36px; }
+.dd-title { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; margin-bottom:20px; }
+.dd-row { display:flex; gap:10px; padding:9px 0; border-bottom:1px solid rgba(24,49,46,.06); }
+.dd-icon { font-size:14px; flex-shrink:0; }
+.dd-text { font-size:13px; line-height:1.55; }
+
+/* ═══════════════════════ PERSONAS ═══════════════════════ */
+#personas { background:var(--sand); padding:110px 52px; }
+.persona-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin-top:52px; }
+.persona { position:relative; overflow:hidden; cursor:pointer; }
+.persona img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block; filter:saturate(.7); transition:transform .5s, filter .3s; }
+.persona:hover img { transform:scale(1.05); filter:saturate(.95); }
+.persona-info { position:absolute; bottom:0; left:0; right:0; padding:28px 22px 20px; background:linear-gradient(to top,rgba(10,20,18,.93),transparent 80%); transform:translateY(6px); transition:transform .3s; }
+.persona:hover .persona-info { transform:none; }
+.persona-num { font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:7px; }
+.persona-name { font-family:var(--disp); font-size:21px; font-style:italic; color:var(--warm-text); margin-bottom:5px; font-weight:400; }
+.persona-age { font-size:11px; color:rgba(245,238,223,.45); margin-bottom:10px; }
+.persona-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.ptag { background:rgba(184,151,58,.18); border:1px solid rgba(184,151,58,.3); color:var(--gold-mid); font-size:9px; letter-spacing:2px; padding:3px 9px; text-transform:uppercase; }
+
+/* ═══════════════════════ DIGITAL ═══════════════════════ */
+#digital { background:var(--cream); padding:110px 52px; }
+.digital-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin-top:52px; }
+.digital-card { padding:36px 30px; background:rgba(24,49,46,.04); border:1px solid rgba(24,49,46,.08); transition:border-color .3s; }
+.digital-card:hover { border-color:var(--gold); }
+.digital-ico { font-size:28px; margin-bottom:12px; display:block; }
+.digital-name { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--forest); margin-bottom:8px; }
+.digital-text { font-size:13px; color:rgba(24,49,46,.52); line-height:1.72; }
+.content-split { display:grid; grid-template-columns:repeat(5,1fr); gap:3px; margin-top:3px; }
+.split-block { padding:24px 16px; text-align:center; }
+.split-block:nth-child(1) { background:var(--forest); }
+.split-block:nth-child(2) { background:var(--gold); }
+.split-block:nth-child(3) { background:var(--forest-light); }
+.split-block:nth-child(4) { background:var(--forest-mid); }
+.split-block:nth-child(5) { background:var(--sage); }
+.split-ico { font-size:22px; display:block; margin-bottom:8px; }
+.split-name { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(245,238,223,.85); margin-bottom:4px; }
+.split-block:nth-child(2) .split-name { color:var(--ink); }
+.split-pct { font-family:var(--disp); font-size:26px; font-style:italic; color:rgba(255,255,255,.2); }
+.split-block:nth-child(2) .split-pct { color:rgba(0,0,0,.12); }
+.hashtags { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+.htag { background:rgba(24,49,46,.05); border:1px solid rgba(24,49,46,.12); color:rgba(24,49,46,.55); font-size:12px; padding:6px 14px; transition:all .2s; cursor:default; }
+.htag:hover { background:var(--gold); color:var(--ink); border-color:var(--gold); }
+.htag.main { background:rgba(184,151,58,.15); color:var(--gold); border-color:rgba(184,151,58,.35); }
+
+/* ═══════════════════════ COPY ═══════════════════════ */
+#copy { background:var(--ivory); padding:110px 52px; }
+.copy-hero { background:var(--forest); padding:68px 56px; text-align:center; margin-top:52px; position:relative; overflow:hidden; margin-bottom:3px; }
+.copy-hero::before { content:'"'; font-family:var(--disp); font-size:180px; position:absolute; top:-30px; left:16px; color:rgba(184,151,58,.07); line-height:1; }
+.copy-hero-label { font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.copy-hero-title { font-family:var(--disp); font-size:clamp(28px,4.5vw,54px); color:var(--warm-text); line-height:1.15; font-weight:400; position:relative; z-index:1; }
+.copy-hero-title em { font-style:italic; color:var(--gold); }
+.copy-alts { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:28px; position:relative; z-index:1; }
+.copy-alt { padding:9px 20px; border:1px solid rgba(184,151,58,.25); font-family:var(--serif); font-style:italic; font-size:16px; color:rgba(245,238,223,.55); transition:all .3s; cursor:default; }
+.copy-alt:hover { border-color:var(--gold); color:var(--gold-mid); }
+.copy-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
+.copy-card { background:var(--cream); border:1px solid rgba(24,49,46,.08); padding:40px; }
+.copy-card-label { font-size:9px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; display:flex; align-items:center; gap:12px; }
+.copy-card-label::after { content:''; flex:1; height:1px; background:rgba(24,49,46,.1); }
+.copy-card-text { font-family:var(--serif); font-style:italic; font-size:18px; color:rgba(24,49,46,.72); line-height:1.85; }
+.copy-card-text strong { font-weight:600; font-style:normal; color:var(--forest); }
+
+/* ═══════════════════════ GUIDELINES ═══════════════════════ */
+#guidelines { background:var(--sand); padding:110px 52px; }
+.guideline-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-top:52px; }
+.guideline-block { padding:36px; }
+.guideline-block:nth-child(odd) { background:var(--forest); }
+.guideline-block:nth-child(even) { background:var(--ivory); border:1px solid rgba(24,49,46,.08); }
+.guideline-title { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.guideline-block:nth-child(even) .guideline-title { color:var(--forest); }
+.guide-list { list-style:none; display:flex; flex-direction:column; gap:9px; }
+.guide-list.do li { font-size:13px; color:rgb(0, 0, 0); line-height:1.6; padding-left:20px; position:relative; }
+.guide-list.do-re li { font-size:13px; color:rgb(255, 255, 255); line-height:1.6; padding-left:20px; position:relative; }
+.guide-list.do-re li::before { content:'✓'; position:absolute; left:0; color:var(--sage); font-weight:700; }
+.guide-list.do li::before { content:'✓'; position:absolute; left:0; color:var(--sage); font-weight:700; }
+.guide-list.no li { font-size:13px; color:rgba(24,49,46,.55); line-height:1.6; padding-left:20px; position:relative; }
+.guide-list.no-re li { font-size:13px; color:rgb(0, 0, 0); line-height:1.6; padding-left:20px; position:relative; }
+.guide-list.no li::before { content:'×'; position:absolute; left:0; color:rgba(24,49,46,.3); font-weight:700; }
+.guide-list.no-re li::before { content:'×'; position:absolute; left:0; color:rgba(24,49,46,.3); font-weight:700; }
+
+/* ═══════════════════════ COPYRIGHT ═══════════════════════ */
+#copyright { background:var(--forest-deep); padding:100px 52px; }
+.copyright-box { background:var(--forest-mid); border-left:3px solid var(--gold); padding:48px; margin-top:52px; margin-bottom:3px; }
+.copyright-year { font-size:9px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin-bottom:20px; }
+.copyright-text { font-family:var(--serif); font-style:italic; font-size:18px; color:rgba(245,238,223,.6); line-height:1.85; margin-bottom:14px; }
+.copyright-text strong { font-style:normal; color:var(--warm-text); }
+.copyright-variants { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; }
+.copyright-var { background:var(--forest); padding:32px; }
+.copyright-var-label { font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+.copyright-var-text { font-family:var(--serif); font-size:15px; font-weight:300; color:rgb(255, 255, 255); line-height:1.75; }
+
+/* ═══════════════════════ OUTRO ═══════════════════════ */
+#outro { background:var(--forest-deep); min-height:75vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 52px; position:relative; overflow:hidden; }
+.outro-rings { position:absolute; inset:0; pointer-events:none; }
+.outro-ring { position:absolute; border-radius:50%; border:1px solid rgba(184,151,58,.06); top:50%; left:50%; transform:translate(-50%,-50%); animation:pulse 7s ease infinite; }
+.outro-ring:nth-child(1) { width:220px; height:220px; }
+.outro-ring:nth-child(2) { width:440px; height:440px; animation-delay:2.5s; }
+.outro-ring:nth-child(3) { width:660px; height:660px; animation-delay:5s; }
+@keyframes pulse { 0%,100%{opacity:.28;} 50%{opacity:.06;} }
+.outro-logo { font-family:var(--disp); font-size:40px; font-style:italic; color:var(--gold); position:relative; z-index:2; margin-bottom:4px; font-weight:400; }
+.outro-line { width:44px; height:1px; background:var(--gold); margin:0 auto 28px; opacity:.45; position:relative; z-index:2; }
+.outro-title { font-family:var(--disp); font-size:clamp(36px,6vw,78px); color:var(--warm-text); line-height:1.1; margin-bottom:20px; font-weight:400; position:relative; z-index:2; }
+.outro-title em { font-style:italic; color:var(--gold); }
+.outro-sub { font-family:var(--serif); font-style:italic; font-size:18px; color:rgba(245,238,223,.4); margin-bottom:20px; position:relative; z-index:2; }
+.outro-meta { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:rgb(255, 255, 255); position:relative; z-index:2; line-height:2.4; }
+
+/* ═══════════════════════ RESPONSIVE ═══════════════════════ */
+@media(max-width:1024px) {
+  nav { padding:0 18px; } .nav-dots { display:none; }
+  #cover { grid-template-columns:1fr; }
+  .cover-right { min-height:300px; }
+  .pos-grid, .font-showcase, .logo-rules, .dodont, .copy-grid, .guideline-grid, .copyright-variants { grid-template-columns:1fr; }
+  .palette-swatches { grid-template-columns:repeat(3,1fr); height:auto; }
+  .swatch { min-height:100px; }
+  .mood-grid, .voice-grid, .persona-grid, .digital-grid, .logo-versions, .color-cards, .content-split { grid-template-columns:1fr; }
+  .mood-img.wide { grid-column:span 1; }
+  section { padding:64px 20px !important; }
+  .cover-left { padding:52px 20px; }
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Bô <em>Passage</em></div>
+  <div class="nav-dots" id="ndots">
+    <div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="nav-tag">Brand Book 2025</div>
+</nav>
+
+<!-- ══════════ COVER ══════════ -->
+<section id="cover">
+  <div class="cover-left">
+    <div class="cover-glow"></div>
+    <div class="eyebrow gold rv">Brand Book · 2025</div>
+    <div class="brand-name rv d1">Bô<br><em>Passage</em></div>
+    <div class="brand-sub rv d2">Café & Restaurant · Agadir Bay</div>
+    <div class="cover-divider rv d2"></div>
+    <div class="cover-desc rv d3">L'endroit où le café du matin vaut la peine qu'on s'assoie vraiment. Depuis Founty, Agadir.</div>
+    <div class="cover-pills rv d4">
+      <span class="pill">Petit Déjeuner</span>
+      <span class="pill">Brunch</span>
+      <span class="pill">Café Spécialité</span>
+      <span class="pill">Fait Maison</span>
+    </div>
+  </div>
+  <div class="cover-right">
+    <img src="https://bopassage.com/wp-content/uploads/2024/08/IMG_9397-copie.jpg-1920x1440.jpeg" alt="Bô Passage intérieur">
+    <div class="cover-stamp">
+      <div class="cover-stamp-inner">
+        <span>Bô</span>
+        <small>Passage</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MANIFESTO ══════════ -->
+<section id="manifesto">
+  <div class="manifesto-bg-word">Passage</div>
+  <div class="manifesto-inner">
+    <div class="manifesto-eyebar rv"><span>Le Manifeste</span></div>
+    <h2 class="manifesto-title rv d1">On n'a pas ouvert un restaurant.<br>On a ouvert <em>un endroit.</em></h2>
+    <div class="rv d2">
+      <p class="manifesto-body">Il y a des tables où on mange. Et des tables où on <em>vit</em>. Chez Bô Passage, tout a été pensé pour que vous ayez envie de rester.</p>
+      <div class="manifesto-bold">La journée commence vraiment bien — ou elle ne commence pas.</div>
+      <p class="manifesto-body">Du café de spécialité dès 8h, des brunchs faits maison, des plats qui voyagent entre tradition marocaine et inspirations du monde. Dans un cadre qui donne envie d'y revenir.</p>
+    </div>
+    <a href="#positioning" class="manifesto-cta rv d3">Découvrir la Marque →</a>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--cream);">
+  <svg viewBox="0 0 1440 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:52px;width:100%;"><path d="M0,0 C480,52 960,0 1440,36 L1440,52 L0,52 Z" fill="#faf6ee"/></svg>
+</div>
+
+<!-- ══════════ POSITIONING ══════════ -->
+<section id="positioning">
+  <div class="eyebrow gold rv">01 — Positionnement</div>
+  <div class="headline dark rv d1">CE QU'ON<br><em>EST</em></div>
+  <div class="pos-grid rv d2">
+    <div>
+      <div class="pos-quote">
+        <p>"Bô Passage, c'est l'adresse de Founty que les gens gardent pour eux — et qu'ils finissent toujours par partager."</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">01</span>
+        <div><div class="pillar-title">L'idée de départ</div><p class="pillar-text">Agadir méritait un endroit où le petit déjeuner devient une expérience. Installé à Technopole 1, Bô Passage s'est imposé comme l'adresse de ceux qui cherchent bien plus qu'une assiette.</p></div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">02</span>
+        <div><div class="pillar-title">Pour qui</div><p class="pillar-text">Les habitués de Founty qui ont leur table favorite. Les visiteurs qui veulent une vraie expérience locale. Ceux qui choisissent un endroit pour ce qu'il dégage.</p></div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">03</span>
+        <div><div class="pillar-title">Ce qui nous différencie</div><p class="pillar-text">Le cadre botanique, la lumière douce, les plats faits maison chaque matin — et un accueil qui fait sentir chaque client comme un invité. Pas un restaurant de plus. Un endroit.</p></div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">04</span>
+        <div><div class="pillar-title">Notre territoire</div><p class="pillar-text">Marocain et moderne. Ancré à Agadir, ouvert sur le monde. Une adresse dont on parle partout où on aime bien commencer la journée.</p></div>
+      </div>
+    </div>
+    <div class="stat-stack">
+      <div class="stat-block"><span class="stat-ico">☕</span><div class="stat-num">8h</div><div class="stat-label">Ouvert dès 8h — 7 jours/7</div></div>
+      <div class="stat-block"><span class="stat-ico">🌿</span><div class="stat-num">Founty</div><div class="stat-label">Technopole 1 · Quartier Founty</div></div>
+      <div class="stat-block"><span class="stat-ico">🍽</span><div class="stat-num">Top 5</div><div class="stat-label">Meilleures adresses café Agadir</div></div>
+      <div class="stat-block"><span class="stat-ico">❤</span><div class="stat-num">Fait</div><div class="stat-label">Maison · ingrédients frais chaque matin</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--ivory);">
+  <svg viewBox="0 0 1440 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:52px;width:100%;"><path d="M0,36 C360,0 1080,52 1440,16 L1440,52 L0,52 Z" fill="#f2ece0"/></svg>
+</div>
+
+<!-- ══════════ COLORS ══════════ -->
+<section id="colors">
+  <div class="eyebrow gold rv">02 — Couleurs</div>
+  <div class="headline dark rv d1">LA PALETTE<br><em>DE LA MARQUE</em></div>
+  <div class="palette-swatches rv d2">
+    <div class="swatch dark" style="background:#18312e;"><div class="swatch-name">Forêt</div><div class="swatch-hex">#18312e</div></div>
+    <div class="swatch dark" style="background:#1e3b37;"><div class="swatch-name">Mousse</div><div class="swatch-hex">#1e3b37</div></div>
+    <div class="swatch dark" style="background:#b8973a;"><div class="swatch-name">Or du Café</div><div class="swatch-hex">#b8973a</div></div>
+    <div class="swatch light" style="background:#d4b06a;"><div class="swatch-name">Or Doux</div><div class="swatch-hex">#d4b06a</div></div>
+    <div class="swatch light" style="background:#f5eedf;border:1px solid rgba(0,0,0,.06);"><div class="swatch-name">Ivoire</div><div class="swatch-hex">#f5eedf</div></div>
+  </div>
+  <div class="color-cards rv d3">
+    <div class="color-card">
+      <div class="color-card-label">Couleurs Primaires</div>
+      <div class="color-card-title">Forêt + Or du Café</div>
+      <div class="color-card-text">Le duo signature de Bô Passage. Le vert forêt (#18312e) installe l'ambiance — profonde, naturelle, vivante. L'or (#b8973a) donne le caractère. Ces deux couleurs suffisent à reconnaître la marque partout.</div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-label">Couleurs d'Accent & Support</div>
+      <div class="color-card-title">Or Doux + Ivoire + Sauge</div>
+      <div class="color-card-text">Or Doux (#d4b06a) pour les textes et légendes. Ivoire (#f5eedf) pour les fonds clairs, menus et supports print. Sauge (#6b8c74) pour les touches botaniques, toujours avec retenue.</div>
+    </div>
+  </div>
+  <div class="color-bar rv d4">
+    <div class="color-bar-seg" style="flex:3;background:#18312e;"><span style="font-family:var(--sans);font-size:9px;letter-spacing:2px;color:rgba(184,151,58,.6);">FORÊT — fond principal</span></div>
+    <div class="color-bar-seg" style="flex:2;background:#b8973a;"><span style="font-family:var(--sans);font-size:9px;letter-spacing:2px;color:rgba(10,16,15,.6);">OR — identité</span></div>
+    <div class="color-bar-seg" style="flex:1.5;background:#d4b06a;"><span style="font-family:var(--sans);font-size:9px;letter-spacing:2px;color:rgba(10,16,15,.5);">OR DOUX</span></div>
+    <div class="color-bar-seg" style="flex:1.5;background:#f5eedf;border:1px solid rgba(10,16,15,.08);"><span style="font-family:var(--sans);font-size:9px;letter-spacing:2px;color:rgba(10,16,15,.5);">IVOIRE</span></div>
+    <div class="color-bar-seg" style="flex:1;background:#6b8c74;"><span style="font-family:var(--sans);font-size:9px;letter-spacing:2px;color:rgba(245,238,223,.7);">SAUGE</span></div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--cream);">
+  <svg viewBox="0 0 1440 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:52px;width:100%;"><path d="M0,0 C600,52 840,0 1440,40 L1440,52 L0,52 Z" fill="#102220"/></svg>
+</div>
+
+<!-- ══════════ TYPOGRAPHY ══════════ -->
+<section id="typography">
+  <div class="eyebrow gold rv">03 — Typographie</div>
+  <div class="headline light rv d1">LES MOTS<br><em>PRENNENT FORME</em></div>
+  <div class="font-showcase rv d2">
+    <div class="font-card" style="background:rgba(30,59,55,.5);">
+      <div class="font-card-label">P1 · Pour les titres</div>
+      <div style="font-family:'Playfair Display',serif;font-size:clamp(36px,5.5vw,68px);color:var(--warm-text);line-height:.92;font-weight:400;">Bô<br>Passage</div>
+      <div style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,34px);color:var(--gold);font-style:italic;margin-top:10px;font-weight:400;">L'endroit qu'on aime.</div>
+      <div class="font-card-use">Playfair Display · Regular & Italic<br>Titres · Logo · Menus · Affiches · Panneaux</div>
+    </div>
+    <div class="font-card" style="background:rgba(15,34,32,.6);">
+      <div class="font-card-label">P2 · Pour les mots qui touchent</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.2vw,42px);color:var(--gold-light);font-style:italic;font-weight:300;line-height:1.2;">Un café, une lumière douce,<br>et quelqu'un qu'on aime.</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(245,238,223,.38);font-style:italic;margin-top:12px;line-height:1.75;">C'est tout ce qu'il faut pour que le moment compte.</div>
+      <div class="font-card-use">Cormorant Garamond · Light Italic<br>Corps de texte · Citations · Descriptions · Sous-titres</div>
+    </div>
+    <div class="font-card" style="background:rgba(24,49,46,.3);">
+      <div class="font-card-label">S1 · Pour guider et orienter</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:var(--gold);line-height:2.8;">RÉSERVER UNE TABLE<br>DÉCOUVRIR LE MENU<br>CAFÉ & RESTAURANT<br>AGADIR FOUNTY · 8H</div>
+      <div class="font-card-use">Montserrat · Light à Bold<br>Navigation · Boutons · Labels · Tags · Légendes</div>
+    </div>
+    <div class="font-card gold-bg">
+      <div class="font-card-label" style="color:rgba(10,16,15,.4);">Combinaison Signature</div>
+      <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,36px);color:var(--ink);font-weight:400;line-height:1.05;">L'endroit où</div>
+      <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,36px);color:var(--forest-deep);font-style:italic;font-weight:400;line-height:1.2;margin-bottom:14px;">on revient toujours.</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(10,16,15,.4);">BÔ PASSAGE · AGADIR</div>
+      <div class="font-card-use" style="color:rgba(10,16,15,.32);border-color:rgba(10,16,15,.1);">Playfair + Montserrat — La signature visuelle officielle</div>
+    </div>
+  </div>
+  <div class="marquee-track rv d3">
+    <div class="marquee-text">Bô Passage &nbsp;·&nbsp; Café & Restaurant &nbsp;·&nbsp; Brunch Gourmand &nbsp;·&nbsp; Petit Déjeuner &nbsp;·&nbsp; Fait Maison &nbsp;·&nbsp; Agadir Founty &nbsp;·&nbsp; L'endroit qu'on revient toujours &nbsp;·&nbsp; Bô Passage &nbsp;·&nbsp; Café & Restaurant &nbsp;·&nbsp; Brunch Gourmand &nbsp;·&nbsp; Petit Déjeuner &nbsp;·&nbsp; Fait Maison &nbsp;·&nbsp; Agadir Founty &nbsp;·&nbsp;</div>
+  </div>
+  <div class="type-scale rv d4">
+    <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(245,238,223,.15);margin-bottom:18px;font-family:var(--sans);">Échelle typographique</div>
+    <div class="scale-row"><span class="scale-label">H1 · 80px</span><span style="font-family:'Playfair Display',serif;font-size:clamp(32px,5.5vw,74px);color:var(--warm-text);line-height:1;font-weight:400;">Bô Passage</span></div>
+    <div class="scale-row"><span class="scale-label">H2 · 48px</span><span style="font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,46px);color:var(--gold);font-style:italic;font-weight:400;">L'endroit qu'on aime</span></div>
+    <div class="scale-row"><span class="scale-label">H3 · 28px</span><span style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.5vw,28px);color:var(--warm-text);font-style:italic;font-weight:300;">Un brunch qui mérite d'être attendu</span></div>
+    <div class="scale-row"><span class="scale-label">Body · 18px</span><span style="font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(245,238,223,.45);font-style:italic;line-height:1.7;">Fait maison, ingrédients frais, chaque matin.</span></div>
+    <div class="scale-row"><span class="scale-label">Label · 9px</span><span style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold);">CAFÉ & RESTAURANT · AGADIR</span></div>
+  </div>
+</section>
+
+<!-- ══════════ LOGO ══════════ -->
+<section id="logo">
+  <div class="eyebrow gold rv">04 — Logo</div>
+  <div class="headline dark rv d1">COMMENT LE<br><em>RESPECTER</em></div>
+  <p class="rv d2" style="font-family:var(--serif);font-style:italic;font-size:18px;color:rgba(24,49,46,.5);max-width:560px;line-height:1.8;margin-bottom:52px;">Le logo Bô Passage reste tel qu'il est — sa forme, ses couleurs, son caractère. Voici les déclinaisons officielles et les règles simples.</p>
+
+  <div class="logo-versions rv d2">
+    <div class="logo-version" style="background:var(--forest);">
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:34px;font-style:italic;color:var(--warm-text);font-weight:400;letter-spacing:2px;">Bô Passage</div>
+        <div style="width:72px;height:1px;background:var(--gold);margin:10px auto;opacity:.5;"></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:var(--gold);">Café & More</div>
+      </div>
+      <div class="logo-tag">Version Principale · Fond Vert</div>
+    </div>
+    <div class="logo-version" style="background:var(--gold);">
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:34px;font-style:italic;color:var(--ink);font-weight:400;letter-spacing:2px;">Bô Passage</div>
+        <div style="width:72px;height:1px;background:var(--forest-deep);margin:10px auto;opacity:.25;"></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:var(--forest-deep);">Café & More</div>
+      </div>
+      <div class="logo-tag" style="background:var(--forest-deep);padding:10px 20px;margin-top:22px;">Version Or · Fond Doré</div>
+    </div>
+    <div class="logo-version" style="background:var(--ivory);border:1px solid rgba(24,49,46,.08);">
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:34px;font-style:italic;color:var(--forest);font-weight:400;letter-spacing:2px;">Bô Passage</div>
+        <div style="width:72px;height:1px;background:var(--gold-deep);margin:10px auto;opacity:.45;"></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:9px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:var(--gold-deep);">Café & More</div>
+      </div>
+      <div class="logo-tag" style="background:var(--forest);padding:10px 20px;margin-top:22px;">Version Claire · Fond Ivoire</div>
+    </div>
+  </div>
+
+  <div class="logo-rules rv d3">
+    <div class="rule-card" style="background:var(--forest);">
+      <div class="rule-title" style="color:var(--sage);">✓ Ce qu'on peut faire</div>
+      <ul class="rule-list rule-do">
+        <li>Logo complet sur fond vert officiel</li>
+        <li>Version or sur fond ivoire ou crème</li>
+        <li>Version verte sur fond clair</li>
+        <li>Laisser de l'air — minimum 2× la hauteur du logo</li>
+        <li>Taille minimum 80px digital · 15mm print</li>
+        <li>Toujours utiliser les fichiers vectoriels fournis</li>
+      </ul>
+    </div>
+    <div class="rule-card" style="background:var(--ivory);border:1px solid rgba(24,49,46,.08);">
+      <div class="rule-title" style="color:rgba(24,49,46,.4);">× Ce qu'on ne fait jamais</div>
+      <ul class="rule-list rule-dont">
+        <li>Déformer, étirer ou compresser le logo</li>
+        <li>Changer les couleurs hors palette officielle</li>
+        <li>Poser sur un fond non validé</li>
+        <li>Séparer "Bô" de "Passage"</li>
+        <li>Ajouter effets : ombre, brillance, 3D, glow</li>
+        <li>Utiliser une image pixelisée ou floue</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--ivory);">
+  <svg viewBox="0 0 1440 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:52px;width:100%;"><path d="M0,0 C720,52 1080,0 1440,28 L1440,52 L0,52 Z" fill="#f2ece0"/></svg>
+</div>
+
+<!-- ══════════ MOODBOARD ══════════ -->
+<section id="moodboard">
+  <div class="eyebrow gold rv">05 — Univers Visuel</div>
+  <div class="headline dark rv d1">L'AMBIANCE<br><em>EN IMAGES</em></div>
+  <p class="rv d2" style="font-family:var(--serif);font-style:italic;font-size:18px;color:rgba(24,49,46,.48);max-width:520px;line-height:1.8;margin-bottom:52px;">Naturel, chaud, vivant. Voici le regard de Bô Passage — la lumière, les textures, les moments vrais.</p>
+
+  <div class="mood-grid rv d2">
+    <div class="mood-img tall">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=85" alt="Ambiance restaurant">
+      <div class="mood-overlay"><span>Ambiance intérieure</span></div>
+    </div>
+    <div class="mood-img">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=85" alt="Café latte" style="height:218px;">
+      <div class="mood-overlay"><span>Café de spécialité</span></div>
+    </div>
+    <div class="mood-img">
+      <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=85" alt="Plat brunch" style="height:218px;">
+      <div class="mood-overlay"><span>Brunch fait maison</span></div>
+    </div>
+    <div class="mood-img wide">
+      <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=900&q=85" alt="Table dressée">
+      <div class="mood-overlay"><span>Art de la table</span></div>
+    </div>
+    <div class="mood-card">
+      <h3>Le regard<br>de la marque</h3>
+      <p>Toujours à la lumière chaude. Tons verts, dorés, crème. Jamais de flash. Jamais de filtres agressifs. Le lieu parle pour lui-même.</p>
+    </div>
+    <div class="mood-img">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=85" alt="Pause café">
+      <div class="mood-overlay"><span>La pause café</span></div>
+    </div>
+    <div class="mood-img">
+      <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=600&q=85" alt="Lumière dorée">
+      <div class="mood-overlay"><span>Lumière & matières</span></div>
+    </div>
+    <div class="mood-img">
+      <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=85" alt="Boissons">
+      <div class="mood-overlay"><span>Boissons & bar</span></div>
+    </div>
+  </div>
+
+  <div class="mood-color-strip rv d3">
+    <div style="background:#18312e;"><span style="color:rgba(184,151,58,.5);font-family:var(--sans);font-size:9px;letter-spacing:2px;">Nuit végétale</span></div>
+    <div style="background:#2a534d;"><span style="color:rgba(184,151,58,.4);font-family:var(--sans);font-size:9px;letter-spacing:2px;">Verdure profonde</span></div>
+    <div style="background:#b8973a;"><span style="color:rgba(10,16,15,.55);font-family:var(--sans);font-size:9px;letter-spacing:2px;">Or du soir</span></div>
+    <div style="background:#d4b06a;"><span style="color:rgba(10,16,15,.45);font-family:var(--sans);font-size:9px;letter-spacing:2px;">Lumière chaude</span></div>
+    <div style="background:#f5eedf;border-right:1px solid rgba(0,0,0,.05);"><span style="color:rgba(10,16,15,.45);font-family:var(--sans);font-size:9px;letter-spacing:2px;">Ivoire doux</span></div>
+  </div>
+</section>
+
+<!-- ══════════ VOICE ══════════ -->
+<section id="voice">
+  <div class="eyebrow gold rv">06 — Voix de Marque</div>
+  <div class="headline dark rv d1">COMMENT<br><em>ON PARLE</em></div>
+
+  <div class="voice-grid rv d2">
+    <div class="voice-card"><span class="voice-ico">☕</span><div class="voice-name">Chaleureux</div><div class="voice-desc">On parle comme un ami qui connaît un bon endroit et veut que vous le découvriez. Pas de distance, pas de jargon.</div><div class="voice-ex">"On vous attendait. Entrez."</div></div>
+    <div class="voice-card"><span class="voice-ico">🌿</span><div class="voice-name">Simple</div><div class="voice-desc">Des phrases courtes. Des mots vrais. On n'essaie pas d'impressionner — on essaie de toucher. La simplicité est notre élégance.</div><div class="voice-ex">"On mange bien. On se sent mieux."</div></div>
+    <div class="voice-card"><span class="voice-ico">✦</span><div class="voice-name">Évocateur</div><div class="voice-desc">Chaque mot crée une image, une odeur, un souvenir. On écrit pour que le lecteur ait envie avant même d'avoir vu la carte.</div><div class="voice-ex">"Il y a des repas qu'on n'oublie pas."</div></div>
+    <div class="voice-card"><span class="voice-ico">🕯</span><div class="voice-name">Intimiste</div><div class="voice-desc">On parle à une personne, pas à une foule. Celle qui cherche un bon moment pour elle ou quelqu'un qu'elle aime.</div><div class="voice-ex">"Ce soir, posez votre téléphone."</div></div>
+    <div class="voice-card"><span class="voice-ico">🌍</span><div class="voice-name">Ancré à Agadir</div><div class="voice-desc">On est fiers d'être à Founty. L'identité marocaine contemporaine — créative, ouverte, fière — est dans chaque mot.</div><div class="voice-ex">"Agadir a son adresse de cœur."</div></div>
+    <div class="voice-card"><span class="voice-ico">🤲</span><div class="voice-name">Généreux</div><div class="voice-desc">La générosité de l'accueil marocain dans chaque phrase. On donne envie, on invite, on remercie. Jamais froid.</div><div class="voice-ex">"Venez pour manger. Restez pour le reste."</div></div>
+  </div>
+
+  <div class="dodont rv d3">
+    <div class="dd-card" style="background:var(--forest);">
+      <div class="dd-title" style="color:var(--sage);">✓ ON ÉCRIT COMME ÇA</div>
+      <div class="dd-row" style="border-color:rgba(245,238,223,.07);"><span class="dd-icon" style="color:var(--sage);">✓</span><span class="dd-text" style="color:rgba(245,238,223,.7);">"Ce soir, posez votre téléphone. On s'occupe du reste." — direct, humain</span></div>
+      <div class="dd-row" style="border-color:rgba(245,238,223,.07);"><span class="dd-icon" style="color:var(--sage);">✓</span><span class="dd-text" style="color:rgba(245,238,223,.7);">"Il y a des repas qu'on oublie. Et ceux-là." — évocateur, mystérieux</span></div>
+      <div class="dd-row" style="border-color:rgba(245,238,223,.07);"><span class="dd-icon" style="color:var(--sage);">✓</span><span class="dd-text" style="color:rgba(245,238,223,.7);">"Fait maison. Chaque matin. Depuis Founty." — concret, fier</span></div>
+      <div class="dd-row" style="border-color:rgba(245,238,223,.07);border-bottom:none;"><span class="dd-icon" style="color:var(--sage);">✓</span><span class="dd-text" style="color:rgba(245,238,223,.7);">"Votre table est là. On s'occupe du reste." — simple, rassurant</span></div>
+    </div>
+    <div class="dd-card" style="background:var(--cream);border:1px solid rgba(24,49,46,.08);">
+      <div class="dd-title" style="color:rgba(24,49,46,.4);">× ON N'ÉCRIT PAS COMME ÇA</div>
+      <div class="dd-row"><span class="dd-icon" style="color:rgba(24,49,46,.3);">×</span><span class="dd-text" style="color:rgba(24,49,46,.45);">"Profitez de nos offres exceptionnelles !" — promotionnel, sans âme</span></div>
+      <div class="dd-row"><span class="dd-icon" style="color:rgba(24,49,46,.3);">×</span><span class="dd-text" style="color:rgba(24,49,46,.45);">"Notre établissement propose une expérience..." — formel, distant</span></div>
+      <div class="dd-row"><span class="dd-icon" style="color:rgba(24,49,46,.3);">×</span><span class="dd-text" style="color:rgba(24,49,46,.45);">"Réservez et bénéficiez de 20% ce weekend !!!" — bradé, agressif</span></div>
+      <div class="dd-row" style="border-bottom:none;"><span class="dd-icon" style="color:rgba(24,49,46,.3);">×</span><span class="dd-text" style="color:rgba(24,49,46,.45);">"Cuisine raffinée dans un cadre exceptionnel" — vide, générique</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--ivory);">
+  <svg viewBox="0 0 1440 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:52px;width:100%;"><path d="M0,40 C360,0 1080,52 1440,12 L1440,52 L0,52 Z" fill="#e6dece"/></svg>
+</div>
+
+<!-- ══════════ PERSONAS ══════════ -->
+<section id="personas">
+  <div class="eyebrow gold rv">07 — Nos Clients</div>
+  <div class="headline dark rv d1">CEUX QUI<br><em>VIENNENT</em></div>
+  <div class="persona-grid rv d2">
+    <div class="persona">
+      <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=700&q=85&fit=crop&crop=top" alt="Habitués Founty">
+      <div class="persona-info">
+        <div class="persona-num">PROFIL 01 · Cœur de Cible</div>
+        <div class="persona-name">L'Habitué de Founty</div>
+        <div class="persona-age">25–45 ans · Vient plusieurs fois par mois</div>
+        <div class="persona-tags"><span class="ptag">Brunch</span><span class="ptag">Sa table</span><span class="ptag">Fidèle</span><span class="ptag">Bouche-à-oreille</span></div>
+      </div>
+    </div>
+    <div class="persona">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=85&fit=crop&crop=center" alt="Couple">
+      <div class="persona-info">
+        <div class="persona-num">PROFIL 02 · Cœur de Cible</div>
+        <div class="persona-name">Le Couple Gourmand</div>
+        <div class="persona-age">28–50 ans · Repas en duo · Occasions</div>
+        <div class="persona-tags"><span class="ptag">Dîner</span><span class="ptag">Anniversaire</span><span class="ptag">Qualité</span><span class="ptag">Ambiance</span></div>
+      </div>
+    </div>
+    <div class="persona">
+      <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=700&q=85&fit=crop&crop=top" alt="Visiteur">
+      <div class="persona-info">
+        <div class="persona-num">PROFIL 03 · Secondaire</div>
+        <div class="persona-name">Le Visiteur Curieux</div>
+        <div class="persona-age">22–55 ans · Touriste · Cherche l'adresse locale</div>
+        <div class="persona-tags"><span class="ptag">Découverte</span><span class="ptag">Instagram</span><span class="ptag">Google</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DIGITAL ══════════ -->
+<section id="digital">
+  <div class="eyebrow gold rv">08 — Digital & Réseaux</div>
+  <div class="headline dark rv d1">LA MARQUE<br><em>EN LIGNE</em></div>
+  <div class="digital-grid rv d2">
+    <div class="digital-card"><span class="digital-ico">📸</span><div class="digital-name">Instagram @bo.passage</div><div class="digital-text">Canal principal. Photos chaudes, textes courts et évocateurs. Stories pour l'humain, feed pour la marque. Chaque post doit donner envie de venir.</div></div>
+    <div class="digital-card"><span class="digital-ico">🌐</span><div class="digital-name">bopassage.com</div><div class="digital-text">La vitrine officielle. Menu, réservation, galerie, à propos. Vert forêt, or, ivoire — le site reflète exactement l'ambiance du lieu.</div></div>
+    <div class="digital-card"><span class="digital-ico">⭐</span><div class="digital-name">Google & TripAdvisor</div><div class="digital-text">Les avis sont notre réputation. Répondre chaleureusement à chaque commentaire. Remercier les positifs, transformer les négatifs en dialogue.</div></div>
+    <div class="digital-card"><span class="digital-ico">🎵</span><div class="digital-name">TikTok</div><div class="digital-text">Ambiance et coulisses. Plats en préparation, café du matin, moments du service. Authentique — pas de production lourde.</div></div>
+    <div class="digital-card"><span class="digital-ico">📘</span><div class="digital-name">Facebook</div><div class="digital-text">Canal secondaire. Événements, horaires, offres. Audience locale — ton légèrement plus informatif, toujours chaleureux.</div></div>
+    <div class="digital-card"><span class="digital-ico">💬</span><div class="digital-name">WhatsApp +212 6 64 57 71 22</div><div class="digital-text">Canal direct de réservation. Réponse rapide, message court. Même voix que la marque — jamais formel, toujours accueillant.</div></div>
+  </div>
+  <div class="content-split rv d3">
+    <div class="split-block"><span class="split-ico">🍽</span><div class="split-name">Plats & Menu</div><div class="split-pct">30%</div></div>
+    <div class="split-block"><span class="split-ico">☕</span><div class="split-name">Café & Brunch</div><div class="split-pct">25%</div></div>
+    <div class="split-block"><span class="split-ico">🌿</span><div class="split-name">Ambiance</div><div class="split-pct">20%</div></div>
+    <div class="split-block"><span class="split-ico">👥</span><div class="split-name">Coulisses</div><div class="split-pct">15%</div></div>
+    <div class="split-block"><span class="split-ico">📅</span><div class="split-name">Événements</div><div class="split-pct">10%</div></div>
+  </div>
+  <div class="hashtags rv d4">
+    <span class="htag main">#BoPassage</span>
+    <span class="htag main">#CafeAgadir</span>
+    <span class="htag">#BrunchAgadir</span>
+    <span class="htag">#RestaurantAgadir</span>
+    <span class="htag">#Founty</span>
+    <span class="htag">#PetitDejeunerAgadir</span>
+    <span class="htag">#CafeMorocco</span>
+    <span class="htag">#AgadirBay</span>
+    <span class="htag">#FaitMaison</span>
+    <span class="htag">#AgadirFood</span>
+    <span class="htag">#BoPassageCafe</span>
+  </div>
+</section>
+
+<!-- ══════════ COPY ══════════ -->
+<section id="copy">
+  <div class="eyebrow gold rv">09 — Les Mots</div>
+  <div class="headline dark rv d1">TEXTES<br><em>PRÊTS À L'EMPLOI</em></div>
+
+  <div class="copy-hero rv d2">
+    <div class="copy-hero-label">Tagline Principale — Recommandée</div>
+    <div class="copy-hero-title">L'endroit où <em>on revient</em> toujours.</div>
+    <div class="copy-alts">
+      <div class="copy-alt">Ici, le temps passe autrement.</div>
+      <div class="copy-alt">On mange bien. On se sent mieux.</div>
+      <div class="copy-alt">La table qu'on aime retrouver.</div>
+      <div class="copy-alt">Agadir a son adresse de cœur.</div>
+      <div class="copy-alt">Venez pour manger. Restez pour le reste.</div>
+    </div>
+  </div>
+
+  <div class="copy-grid rv d3">
+    <div class="copy-card">
+      <div class="copy-card-label">Bio courte — Instagram & Google</div>
+      <div class="copy-card-text"><strong>Bô Passage</strong> — Café & Restaurant à Agadir. Brunch fait maison, café de spécialité. <strong>On vous attend dès 8h.</strong> Founty, Technopole 1.</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-card-label">À propos — Site Web</div>
+      <div class="copy-card-text">Bô Passage est né d'une conviction simple : <strong>Agadir méritait un endroit où le petit déjeuner devient une expérience.</strong> Tout est fait maison, chaque matin. Venez une fois — revenez souvent.</div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-card-label">Invitation — Prise de Contact</div>
+      <div class="copy-card-text"><strong>Votre table est là.</strong> Choisissez votre moment — on s'occupe du reste. Du café du matin au dîner qu'on n'oublie pas, <strong>Bô Passage est prêt.</strong></div>
+    </div>
+    <div class="copy-card">
+      <div class="copy-card-label">Captions Instagram — 3 exemples</div>
+      <div class="copy-card-text">✦ <em>Ce matin, tout commence ici.</em><br><br>✦ <em>Il y a des brunchs qu'on oublie. Et ceux-là.</em><br><br>✦ <em>Fait maison. Chaque matin. Depuis Founty.</em></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--ivory);">
+  <svg viewBox="0 0 1440 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:52px;width:100%;"><path d="M0,0 C480,52 960,0 1440,40 L1440,52 L0,52 Z" fill="#e6dece"/></svg>
+</div>
+
+<!-- ══════════ GUIDELINES ══════════ -->
+<section id="guidelines">
+  <div class="eyebrow gold rv">10 — Bonnes Pratiques</div>
+  <div class="headline dark rv d1">COMMENT<br><em>BIEN FAIRE</em></div>
+  <div class="guideline-grid rv d2">
+    <div class="guideline-block">
+      <div class="guideline-title">Les photos qu'on publie</div>
+      <ul class="guide-list do-re">
+        <li>Lumière naturelle ou tamisée — jamais flash direct</li>
+        <li>Tons chauds : vert, or, crème — cohérents avec la palette</li>
+        <li>Plats bien présentés, cadrage soigné et intentionnel</li>
+        <li>Ambiance capturée : plantes, textures, lumière du lieu</li>
+        <li>Personnes en situation naturelle — pas posées</li>
+        <li>Retouche sobre — jamais de filtres agressifs</li>
+      </ul>
+    </div>
+    <div class="guideline-block">
+      <div class="guideline-title">Les photos qu'on évite</div>
+      <ul class="guide-list no-re">
+        <li>Photos floues, surexposées ou pixelisées</li>
+        <li>Tons froids, bleutés ou trop saturés</li>
+        <li>Plats à moitié mangés ou mal présentés</li>
+        <li>Images téléchargées sans rapport avec le lieu</li>
+        <li>Filtres agressifs ou retouche excessive</li>
+        <li>Photos de qualité téléphone bas de gamme</li>
+      </ul>
+    </div>
+    <div class="guideline-block">
+      <div class="guideline-title">Répondre aux avis positifs</div>
+      <ul class="guide-list do-re">
+        <li>Remercier chaleureusement, nommer si possible</li>
+        <li>Mentionner un détail du commentaire</li>
+        <li>Inviter à revenir avec une touche personnelle</li>
+        <li>Signer du prénom d'un membre de l'équipe</li>
+        <li>Répondre dans les 24–48h maximum</li>
+      </ul>
+    </div>
+    <div class="guideline-block">
+      <div class="guideline-title">Répondre aux avis négatifs</div>
+      <ul class="guide-list do">
+        <li>Rester calme et empathique — toujours</li>
+        <li>Reconnaître l'expérience sans se justifier d'abord</li>
+        <li>Proposer de reprendre contact en privé</li>
+        <li>Ne jamais supprimer — répondre dignement</li>
+        <li>Chaque critique est une chance de s'améliorer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COPYRIGHT ══════════ -->
+<section id="copyright">
+  <div class="eyebrow gold rv">11 — Propriété</div>
+  <div class="headline light rv d1">CE QUI NOUS<br><em>APPARTIENT</em></div>
+  <div class="copyright-box rv d2">
+    <div class="copyright-year">© Bô Passage Restaurant & Café — Tous droits réservés · 2025</div>
+    <div class="copyright-text">L'identité de Bô Passage — son logo, ses couleurs, ses textes, ses visuels, cette charte dans son ensemble — est la propriété exclusive de <strong>Bô Passage Restaurant & Café</strong>. Elle a été construite avec soin et mérite d'être respectée.</div>
+    <div class="copyright-text">Utiliser, copier ou reproduire ces éléments sans autorisation écrite est interdit. Si vous travaillez avec nous dans le cadre d'une mission, vous êtes autorisé à utiliser ces ressources uniquement pour ce que nous vous avons demandé. En cas de doute : <strong>demandez avant de faire.</strong></div>
+  </div>
+  <div class="copyright-variants rv d3">
+    <div class="copyright-var">
+      <div class="copyright-var-label">Footer site web</div>
+      <div class="copyright-var-text">© 2025 Bô Passage Restaurant & Café.<br>Tous droits réservés.</div>
+    </div>
+    <div class="copyright-var">
+      <div class="copyright-var-label">Réseaux sociaux</div>
+      <div class="copyright-var-text">© Bô Passage 2025<br>Reproduction des photos et contenus interdite sans accord écrit.</div>
+    </div>
+    <div class="copyright-var">
+      <div class="copyright-var-label">Menus & supports print</div>
+      <div class="copyright-var-text">© Bô Passage · Agadir Founty · 2025<br>Tous droits réservés. Reproduction interdite.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ OUTRO ══════════ -->
+<section id="outro">
+  <div class="outro-rings">
+    <div class="outro-ring"></div>
+    <div class="outro-ring"></div>
+    <div class="outro-ring"></div>
+  </div>
+  <div class="outro-logo rv">Bô Passage</div>
+  <div class="outro-line rv d1"></div>
+  <div class="outro-title rv d2">L'endroit où<br>on revient <em>toujours.</em></div>
+  <div class="outro-sub rv d3">Café & Restaurant · Agadir Founty · Ouvert dès 8h</div>
+  <div class="outro-meta rv d4">
+    © 2025 Bô Passage Restaurant & Café · Tous droits réservés<br>
+    Immeuble Technopole 1, Magasin CM07 118, Quartier Founty, Agadir<br>
+    contact@bopassage.com · +212 6 64 57 71 22 · @bo.passage<br>
+    Brand Book confidentiel — Cette identité a été construite avec soin. Merci de la respecter.
+  </div>
+</section>
+
+<script>
+// Custom cursor
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => { cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px'; });
+document.querySelectorAll('a, button, .swatch, .logo-version, .persona, .mood-img, .voice-card, .pillar, .htag, .dot, .copy-alt, .digital-card').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('big'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+});
+
+// Scroll progress
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  document.getElementById('bar').style.transform = `scaleX(${pct})`;
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// Nav dot tracking
+const sections = ['cover','manifesto','positioning','colors','typography','logo','moodboard','voice','personas','digital','copy','guidelines'];
+const dots = document.querySelectorAll('.dot');
+window.addEventListener('scroll', () => {
+  let current = 0;
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 220) current = i;
+  });
+  dots.forEach((d, i) => d.classList.toggle('on', i === current));
+});
+dots.forEach((d, i) => d.addEventListener('click', () => {
+  const el = document.getElementById(sections[i]);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}));
+</script>
+</body>
+</html>

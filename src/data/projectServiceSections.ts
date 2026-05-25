@@ -5,24 +5,24 @@ import bopassageCover from "@/assets/bopassage-cover.png";
 import bopassageHero from "@/assets/bopassage-hero.png";
 import bopassageWebDesktop from "@/assets/bopassage-web-desktop.png";
 import bopassageWebMobile from "@/assets/bopassage-web-mobile.png";
-import dmcCover from "@/assets/dmc-cover.png";
-import dmcHero from "@/assets/dmc-hero.png";
-import dmcSocialExcellence from "@/assets/dmc-social-excellence.png";
+import dmcBrandCard from "@/assets/dmc-brand-card.png";
+import dmcBrandLogo from "@/assets/dmc-brand-logo.png";
+import dmcGuidelines from "@/assets/dmc-guidelines.png";
 import dmcWebDesktop from "@/assets/dmc-web-desktop.png";
 import dmcWebMobile from "@/assets/dmc-web-mobile.png";
 import educazenkidsBefore from "@/assets/educazenkids-before.png";
 import educazenkidsLogo from "@/assets/educazenkids-logo.png";
 import educazenkidsScroll1 from "@/assets/educazenkids-scroll-1.png";
 import educazenkidsScroll2 from "@/assets/educazenkids-scroll-2.png";
+import educazenkidsDashboard from "@/assets/educazenkids-dashboard.png";
+import educazenkidsCrm from "@/assets/educazenkids-crm.png";
 import educazenkidsWebDesktop from "@/assets/educazenkids-web-desktop.png";
 import educazenkidsWebMobile from "@/assets/educazenkids-web-mobile.png";
 import educazenHero from "@/assets/educazen-hero.png";
 import medicalBayBrandLogo1 from "@/assets/medical-bay-brand-logo-1.jpg";
 import medicalBayBrandLogo2 from "@/assets/medical-bay-brand-logo-2.png";
 import medicalBayBrandLogo3 from "@/assets/medical-bay-brand-logo-3.png";
-import medicalBayLobby from "@/assets/medical-bay-lobby.png";
-import medicalBayOffice from "@/assets/medical-bay-office.png";
-import medicalBayReception from "@/assets/medical-bay-reception.png";
+import medicalBayDashboard from "@/assets/medical-bay-dashboard.png";
 import medicalBayWebDesktop from "@/assets/medical-bay-web-desktop.png";
 import medicalBayWebMobile from "@/assets/medical-bay-web-mobile.png";
 import eidenAcademyBrandCarousel from "@/assets/eiden-academy-brand-carousel.png";
@@ -63,7 +63,13 @@ export type ServiceSection = {
   title: string;
   description?: string;
   brandBookUrl?: string;
-  media?: { src: string; alt: string; caption?: string; tall?: boolean }[];
+  media?: {
+    src: string;
+    alt: string;
+    caption?: string;
+    tall?: boolean;
+    objectFit?: "contain" | "cover";
+  }[];
   brandColors?: string[];
   colorLabels?: string[];
   typography?: {
@@ -90,6 +96,11 @@ export type ServiceSection = {
   achievements?: string[];
   /** Brand identity media grid only — default is mosaic (tall left + stacked right). */
   brandMediaLayout?: "mosaic" | "featured-row";
+  /** CRM / dashboard panels — fixed aspect instead of tall viewport min-heights. */
+  compactMedia?: boolean;
+  /** Single deliverable at website mockup scale (max-w-5xl, 16/11). */
+  websiteScaleMedia?: boolean;
+  websiteScaleBg?: string;
 };
 
 export type ProjectServiceConfig = {
@@ -115,8 +126,14 @@ function stylesForSlug(
   };
 }
 
-function m(src: string, alt: string, caption?: string, tall?: boolean) {
-  return { src, alt, caption, tall };
+function m(
+  src: string,
+  alt: string,
+  caption?: string,
+  tall?: boolean,
+  objectFit?: "contain" | "cover",
+) {
+  return { src, alt, caption, tall, objectFit };
 }
 
 const DMC_CONFIG: ProjectServiceConfig = {
@@ -133,9 +150,9 @@ const DMC_CONFIG: ProjectServiceConfig = {
       id: "dmc-brand",
       type: "brand-identity",
       eyebrow: "Branding",
-      title: "Authenticité & excellence — hospitality consultancy identity for Morocco.",
+      title: "A partner-ready mark for Morocco's hotel expertise.",
       description:
-        "Charte graphique DMC Hospitality Morocco: forêt profonde et or ancien, Playfair + Cormorant + Source Sans 3. Plus de 20 ans d'expertise hôtelière au Maroc, traduits en un système B2B partenaire-ready.",
+        "Identity built for B2B recognition and owner trust logo, palette, and editorial type that hold across collateral and digital.",
       brandBookUrl: "/brand-books/dmc-brand-book.html",
       brandColors: ["#2C3830", "#D4B896", "#4A6153", "#FAF5EE"],
       colorLabels: ["Forêt Profonde", "Or", "Forêt Claire", "Crème"],
@@ -161,9 +178,15 @@ const DMC_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [
-        m(dmcCover, "DMC Hospitality brand guidelines", "Guidelines"),
-        m(dmcHero, "DMC Hospitality brand", "Brand"),
-        m(dmcSocialExcellence, "DMC brand application", "Application"),
+        m(
+          dmcGuidelines,
+          "DMC Hospitality logo construction and guidelines",
+          "Guidelines",
+          undefined,
+          "contain",
+        ),
+        m(dmcBrandCard, "DMC Hospitality Morocco brand guidelines overview", "Brand"),
+        m(dmcBrandLogo, "DMC Hospitality Morocco logo on door hanger", "Logo"),
       ],
       links: [
         { label: "DMC Brand Book", url: "/brand-books/dmc-brand-book.html" },
@@ -212,9 +235,9 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
       id: "bop-brand",
       type: "brand-identity",
       eyebrow: "Branding",
-      title: "Forêt & or — identity for Agadir's signature café corridor.",
+      title: "Brand Architecture: Forêt & Or",
       description:
-        "Charte 2025: Playfair + Cormorant + Montserrat, palette forêt (#18312e) et or café (#b8973a). Bô Passage n'est pas un restaurant de plus — c'est un endroit.",
+        "A complete identity system that extends the botanical warmth and golden-hour aesthetic of Bôpassage beyond its physical space.",
       brandBookUrl: "/brand-books/bopassage-brand-book.html",
       brandColors: ["#18312e", "#b8973a", "#f5eedf", "#6b8c74"],
       colorLabels: ["Forêt", "Or du Café", "Ivoire", "Sauge"],
@@ -296,7 +319,7 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
       eyebrow: "Branding",
       title: "Retro-beach identity for Imi Ouaddar's surf & nomad village.",
       description:
-        "Charte Lunja Village: Keppel, coral et amber sur vanilla — Qaiken, Pacifico, Great Vibes et DM Sans. Une voix solaire pour makers, surfers et long-stay guests.",
+        "Full brand system Keppel teal, film-grain photography direction, and a bold voice built for makers, surfers, and long-stay guests.",
       brandBookUrl: "/brand-books/lunja-brand-book.html",
       brandColors: ["#2BBAA5", "#F96635", "#FFD100", "#FDF5D3"],
       colorLabels: ["Keppel", "Coral", "Amber", "Vanilla"],
@@ -350,7 +373,7 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       eyebrow: "Branding",
       title: "Warm, inclusive identity parents trust at first glance.",
       description:
-        "Charte EducazenKids: quatre couleurs puzzle (magenta, violet, teal, or) — Nunito, Playfair et Quicksand. Centre éducatif & psychosocial à Agadir, moderne et inclusif.",
+        "EducazenKids Charter: Four Puzzle Colors (Magenta, Violet, Teal, Gold) Nunito, Playfair, and Quicksand. Educational & Psychosocial Center in Agadir, Modern and Inclusive.",
       brandBookUrl: "/brand-books/educazenkids-brand-book.html",
       brandColors: ["#C2185B", "#7B1FA2", "#00897B", "#F9A825"],
       colorLabels: ["Magenta", "Violet", "Teal", "Or"],
@@ -429,9 +452,10 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       description:
         "Pipeline visibility, parent communication, and campaign analytics   built so the team runs enrolment without scattered tools.",
       features: ["Lead pipeline", "Parent CRM", "Campaign analytics", "Team workflows"],
+      compactMedia: true,
       media: [
-        m(educazenHero, "EducazenKids dashboard", "Dashboard"),
-        m(educazenkidsScroll1, "EducazenKids CRM", "CRM"),
+        m(educazenkidsDashboard, "EducazenKids administration dashboard", "Dashboard"),
+        m(educazenkidsCrm, "EducazenKids CRM on laptop", "CRM"),
       ],
     },
     {
@@ -600,31 +624,29 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
         "Performance-first build",
       ],
       precomposedDeviceMockups: true,
-      precomposedDesktopBg: "#0D1A18",
+      precomposedDesktopBg: "#050505",
       media: [
-        m(medicalBayWebDesktop, "Medical Bay website on desktop", "Desktop"),
+        m(medicalBayWebDesktop, "Medical Bay website on desktop monitor", "Desktop"),
         m(medicalBayWebMobile, "Medical Bay website on mobile", "Mobile"),
       ],
       links: [{ label: "Website", url: "https://medicalbay.vercel.app/" }],
     },
     {
-      id: "mb-crm",
+      id: "mb-dashboard",
       type: "crm-dashboard",
-      eyebrow: "CRM & operational systems",
-      title: "Appointments, follow-ups, and ops in one layer.",
+      eyebrow: "Dashboard",
+      title: "Pipeline, appointments, and ops in one console.",
       description:
-        "CRM built for clinical operations   booking pipelines, patient follow-up, and team visibility so excellence isn't held together in spreadsheets.",
+        "Operational dashboard for leads, bookings, follow-ups, and team visibility   built so clinical excellence isn't held together in spreadsheets.",
       features: [
+        "Lead pipeline",
         "Appointment scheduling",
         "Patient follow-up",
-        "Team workflows",
         "Operational reporting",
       ],
-      media: [
-        m(medicalBayReception, "Medical Bay CRM", "CRM"),
-        m(medicalBayOffice, "Medical Bay operations", "Operations", true),
-        m(medicalBayLobby, "Medical Bay patient records", "Records"),
-      ],
+      websiteScaleMedia: true,
+      websiteScaleBg: "#050505",
+      media: [m(medicalBayDashboard, "Medical Bay dashboard on laptop", "Dashboard")],
     },
     {
       id: "mb-marketing",

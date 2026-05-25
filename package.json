@@ -9,7 +9,8 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "brand-books:sync": "node scripts/extract-brand-books.mjs && node scripts/extract-medical-bay-brand.mjs"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",

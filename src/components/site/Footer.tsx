@@ -142,7 +142,7 @@ export function Footer() {
         </Link>
 
         {/* Columns */}
-        <div className="grid w-full grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2 lg:max-w-xl lg:grid-cols-3 lg:gap-x-16">
+        <div className="grid w-full grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2 lg:max-w-xl lg:gap-x-16">
           {/* Navigation */}
           <div>
             <p className="mb-6 font-mono text-[9px] uppercase tracking-[0.5em] text-white/28">
@@ -176,9 +176,9 @@ export function Footer() {
                 contact@eiden-group.com
               </a>
               <p className="mt-3 font-body text-[0.92rem] leading-relaxed text-white/28">
-                Agadir Bay, Morocco
+                Agadir Bay, Technopole 1 Bloc B,
                 <br />
-                Operating globally
+                Agadir 80000, Morocco
               </p>
             </div>
           </div>

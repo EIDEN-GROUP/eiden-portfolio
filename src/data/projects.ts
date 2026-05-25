@@ -35,6 +35,9 @@ import lunjaSocial4 from "@/assets/lunja-social-4.png";
 import lunjaSocial5 from "@/assets/lunja-social-5.png";
 import lunjaSocial6 from "@/assets/lunja-social-6.png";
 import lunjaSocial7 from "@/assets/lunja-social-7.png";
+import medicalBayCampaignImplant from "@/assets/medical-bay-campaign-implant.png";
+import medicalBayCampaignVeneer from "@/assets/medical-bay-campaign-veneer.png";
+import medicalBayCampaignZirconia from "@/assets/medical-bay-campaign-zirconia.png";
 import medicalBayLobby from "@/assets/medical-bay-lobby.png";
 import medicalBayOffice from "@/assets/medical-bay-office.png";
 import medicalBayReception from "@/assets/medical-bay-reception.png";
@@ -180,7 +183,7 @@ export const projects = [
       social: {
         linkedin: "https://www.linkedin.com/company/dmchm/",
       },
-      gallery: [dmcSocialExcellence, dmcSocialD, dmcSocialM, dmcSocialC, dmcHero, dmcCover],
+      gallery: [dmcSocialExcellence, dmcHero, dmcCover, dmcSocialD, dmcSocialM, dmcSocialC],
       resultGallery: [
         {
           src: dmcSocialExcellence,
@@ -188,6 +191,8 @@ export const projects = [
           caption: "Brand campaign",
           variant: "hero",
         },
+        { src: dmcHero, alt: "DMC Hospitality website", caption: "Website", variant: "tall" },
+        { src: dmcCover, alt: "DMC Hospitality collateral", caption: "Collateral", variant: "sm" },
         {
           src: dmcSocialD,
           alt: "DMC Hospitality   International expertise",
@@ -206,8 +211,6 @@ export const projects = [
           caption: "Consulting",
           variant: "wide",
         },
-        { src: dmcHero, alt: "DMC Hospitality website", caption: "Website", variant: "tall" },
-        { src: dmcCover, alt: "DMC Hospitality collateral", caption: "Collateral", variant: "sm" },
       ],
       challenge:
         "Three decades of hospitality know-how   but no brand, no website, no voice in the market. The expertise existed; the platform to deploy it didn't.",
@@ -526,10 +529,28 @@ export const projects = [
       gallery: [medicalBayLobby, medicalBayReception, medicalBayOffice, medicalBayLobby],
       resultGallery: [
         {
+          src: medicalBayCampaignImplant,
+          alt: "Medical Bay Pack Implant campaign",
+          caption: "Pack Implant",
+          variant: "hero",
+        },
+        {
+          src: medicalBayCampaignZirconia,
+          alt: "Medical Bay Pack Couronne Zircone campaign",
+          caption: "Pack Couronne Zircone",
+          variant: "tall",
+        },
+        {
+          src: medicalBayCampaignVeneer,
+          alt: "Medical Bay Pack Facette campaign",
+          caption: "Pack Facette",
+          variant: "wide",
+        },
+        {
           src: medicalBayReception,
           alt: "Medical Bay reception",
           caption: "Patient experience",
-          variant: "hero",
+          variant: "sm",
         },
         {
           src: medicalBayLobby,
@@ -541,24 +562,6 @@ export const projects = [
           src: medicalBayOffice,
           alt: "Medical Bay consultation office",
           caption: "Consultation",
-          variant: "sm",
-        },
-        {
-          src: medicalBayLobby,
-          alt: "Medical Bay identity in space",
-          caption: "Identity",
-          variant: "wide",
-        },
-        {
-          src: medicalBayReception,
-          alt: "Medical Bay front desk",
-          caption: "Operations",
-          variant: "tall",
-        },
-        {
-          src: medicalBayOffice,
-          alt: "Medical Bay clinical workspace",
-          caption: "Workspace",
           variant: "sm",
         },
       ],

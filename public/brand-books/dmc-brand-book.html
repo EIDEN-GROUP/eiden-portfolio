@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DMC Hospitality Morocco — Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:    #3D4F44;
+  --forest-dk: #2C3830;
+  --forest-lt: #4A6153;
+  --gold:      #D4B896;
+  --gold-lt:   #E8D5B5;
+  --gold-dk:   #B89B74;
+  --sand:      #F2E8D8;
+  --cream:     #FAF5EE;
+  --warm:      #FFF9F2;
+  --ink:       #1A1F1C;
+  --white:     #FFFFFF;
+  --taupe:     #8B7D6B;
+  --rose:      #C9A08A;
+  --olive:     #6B7D5E;
+
+  --fd: 'Playfair Display', serif;
+  --fs: 'Cormorant Garamond', serif;
+  --fb: 'Source Sans 3', sans-serif;
+  --fse: 'Libre Baskerville', serif;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--fb);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ═══════════ GRAIN TEXTURE ═══════════ */
+.grain::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ═══════════ MOROCCAN ARCH PATTERN ═══════════ */
+.arch-pattern {
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(90deg, transparent, transparent 120px, rgba(212,184,150,.3) 120px, rgba(212,184,150,.3) 121px),
+    repeating-linear-gradient(0deg, transparent, transparent 160px, rgba(212,184,150,.3) 160px, rgba(212,184,150,.3) 161px);
+}
+
+/* ═══════════ NAV DOTS ═══════════ */
+.nav-dots {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999;
+}
+.nav-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(212,184,150,.4);
+  background: transparent;
+  cursor: pointer;
+  transition: all .3s;
+}
+.nav-dot.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: scale(1.3);
+}
+
+/* ═══════════════════════════════════════
+   COVER PAGE
+═══════════════════════════════════════ */
+#cover {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--forest-dk);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+#cover .arch-pattern { opacity: 0.06; }
+
+.cover-left {
+  padding: 72px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.cover-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--fb);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.cover-badge::before {
+  content: '';
+  width: 32px; height: 1.5px;
+  background: var(--gold);
+}
+
+.cover-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.cover-brand {
+  font-family: var(--fd);
+  font-size: clamp(52px, 6.5vw, 88px);
+  font-weight: 500;
+  color: var(--gold-lt);
+  line-height: 0.95;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.cover-sub {
+  font-family: var(--fs);
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 4px;
+  margin-bottom: 48px;
+  opacity: 0.8;
+}
+
+.cover-tagline {
+  font-family: var(--fb);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  opacity: 0.6;
+}
+
+.cover-desc {
+  font-family: var(--fse);
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(232,213,181,.45);
+  line-height: 1.9;
+  max-width: 420px;
+  border-left: 2px solid var(--gold-dk);
+  padding-left: 24px;
+}
+
+.cover-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cover-meta span {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(232,213,181,.2);
+}
+
+/* Right side — color blocks */
+.cover-right {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.cr-block {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 28px;
+  overflow: hidden;
+  transition: flex .45s cubic-bezier(.22,1,.36,1);
+  cursor: default;
+}
+.cr-block:hover { flex: 2; }
+
+.cr-block:nth-child(1) { background: var(--forest); }
+.cr-block:nth-child(2) { background: var(--forest-lt); }
+.cr-block:nth-child(3) { background: var(--gold-dk); }
+.cr-block:nth-child(4) { background: var(--gold); }
+.cr-block:nth-child(5) { background: var(--gold-lt); }
+.cr-block:nth-child(6) { background: var(--sand); }
+
+.cr-hex {
+  font-family: var(--fb);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  opacity: .65;
+}
+.cr-name {
+  font-family: var(--fd);
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.cr-block:nth-child(1) .cr-hex, .cr-block:nth-child(1) .cr-name,
+.cr-block:nth-child(2) .cr-hex, .cr-block:nth-child(2) .cr-name,
+.cr-block:nth-child(3) .cr-hex, .cr-block:nth-child(3) .cr-name { color: var(--gold-lt); }
+.cr-block:nth-child(4) .cr-hex, .cr-block:nth-child(4) .cr-name,
+.cr-block:nth-child(5) .cr-hex, .cr-block:nth-child(5) .cr-name,
+.cr-block:nth-child(6) .cr-hex, .cr-block:nth-child(6) .cr-name { color: var(--forest-dk); }
+
+.cr-ghost {
+  position: absolute;
+  top: -20px; right: -10px;
+  font-family: var(--fd);
+  font-size: 100px;
+  line-height: 1;
+  color: rgba(255,255,255,.04);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ═══════════ SECTIONS WRAPPER ═══════════ */
+.section { padding: 100px 72px; }
+
+.section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 28px; height: 1.5px;
+  border-radius: 2px;
+}
+
+.section-label.gd { color: var(--gold-dk); }
+.section-label.gd::before { background: var(--gold-dk); }
+.section-label.fr { color: var(--forest); }
+.section-label.fr::before { background: var(--forest); }
+.section-label.wh { color: rgba(232,213,181,.5); }
+.section-label.wh::before { background: rgba(232,213,181,.3); }
+.section-label.dk { color: var(--taupe); }
+.section-label.dk::before { background: var(--taupe); }
+
+.section-title {
+  font-family: var(--fs);
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 300;
+  line-height: 0.95;
+  margin-bottom: 56px;
+}
+.section-title.light { color: var(--gold-lt); }
+.section-title.dark  { color: var(--forest-dk); }
+.section-title em    { font-style: italic; color: var(--gold-dk); }
+.section-title span  { color: var(--forest); }
+
+/* ═══════════════════════════════════════
+   01 — IDENTITÉ DE MARQUE
+═══════════════════════════════════════ */
+#identity {
+  background: var(--warm);
+}
+
+.identity-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.id-card {
+  padding: 48px 40px;
+  background: white;
+  border: 1px solid rgba(61,79,68,.06);
+  transition: border-color .3s;
+}
+.id-card:hover { border-color: var(--gold); }
+
+.id-icon {
+  font-size: 36px;
+  margin-bottom: 20px;
+  display: block;
+}
+.id-title {
+  font-family: var(--fd);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--forest-dk);
+  margin-bottom: 10px;
+}
+.id-desc {
+  font-family: var(--fb);
+  font-size: 14px;
+  color: var(--taupe);
+  line-height: 1.8;
+}
+
+/* Mission & Vision */
+.mv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin-top: 3px;
+}
+.mv-card {
+  padding: 48px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.mv-card:first-child { background: var(--forest-dk); }
+.mv-card:last-child { background: var(--forest); }
+
+.mv-label {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.mv-text {
+  font-family: var(--fs);
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold-lt);
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════
+   02 — PALETTE DE COULEURS
+═══════════════════════════════════════ */
+#palette { background: var(--warm); }
+
+.palette-hero {
+  display: flex;
+  height: 240px;
+  gap: 3px;
+  margin-bottom: 3px;
+  overflow: hidden;
+}
+.ph-swatch {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 22px;
+  cursor: default;
+  transition: flex .4s cubic-bezier(.22,1,.36,1);
+  overflow: hidden;
+}
+.ph-swatch:hover { flex: 2.4; }
+
+.ph-name {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.ph-hex {
+  font-family: var(--fb);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  opacity: .65;
+}
+.ph-role {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: .45;
+  margin-top: 4px;
+}
+.ph-swatch.lgt .ph-name, .ph-swatch.lgt .ph-hex, .ph-swatch.lgt .ph-role { color: var(--forest-dk); }
+.ph-swatch.drk .ph-name, .ph-swatch.drk .ph-hex, .ph-swatch.drk .ph-role { color: var(--gold-lt); }
+
+/* Usage grid */
+.palette-usage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  margin-top: 3px;
+}
+.pu {
+  padding: 32px 28px;
+  background: white;
+}
+.pu-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+.pu-role {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: 8px;
+}
+.pu-title {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--forest-dk);
+  margin-bottom: 8px;
+}
+.pu-desc {
+  font-size: 13px;
+  color: #999;
+  line-height: 1.7;
+}
+
+/* Combinaisons */
+.combo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  margin-top: 3px;
+}
+.combo {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.combo-top { flex: 1; display: flex; align-items: center; justify-content: center; }
+.combo-bot { flex: 1; display: flex; align-items: center; justify-content: center; }
+.combo-label {
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   03 — TYPOGRAPHIE
+═══════════════════════════════════════ */
+#typography {
+  background: var(--forest-dk);
+  position: relative;
+  overflow: hidden;
+}
+
+.typo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.font-block {
+  padding: 52px 48px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s;
+}
+.font-block:hover { border-color: rgba(212,184,150,.3); }
+
+.fb-role {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(232,213,181,.25);
+  margin-bottom: 24px;
+}
+
+.fb-specimen-display {
+  font-family: var(--fd);
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 500;
+  color: var(--gold-lt);
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+.fb-specimen-serif {
+  font-family: var(--fs);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(28px, 3.5vw, 44px);
+  color: var(--gold);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.fb-specimen-editorial {
+  font-family: var(--fse);
+  font-style: italic;
+  font-size: clamp(18px, 2.2vw, 26px);
+  color: rgba(232,213,181,.6);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.fb-specimen-body {
+  font-family: var(--fb);
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(232,213,181,.5);
+  line-height: 1.9;
+}
+
+.fb-meta {
+  margin-top: 20px;
+  font-size: 11px;
+  color: rgba(232,213,181,.22);
+  border-top: 1px solid rgba(255,255,255,.05);
+  padding-top: 14px;
+  line-height: 1.6;
+}
+
+/* Type scale */
+.type-scale {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255,255,255,.05);
+  margin-top: 3px;
+}
+.ts-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 18px 48px;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.ts-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(232,213,181,.18);
+  min-width: 120px;
+  flex-shrink: 0;
+}
+.ts-size {
+  font-size: 9px;
+  color: rgba(232,213,181,.12);
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+/* Marquee */
+.marquee-bar {
+  background: var(--gold-dk);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 16px 0;
+}
+.marquee-inner {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+.marquee-inner span {
+  font-family: var(--fs);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(28px, 4vw, 48px);
+  color: var(--forest-dk);
+  padding: 0 24px;
+}
+.marquee-inner .sep { color: rgba(44,56,48,.25); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ═══════════════════════════════════════
+   04 — SYSTÈME DE LOGO
+═══════════════════════════════════════ */
+#logo { background: var(--sand); }
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+.logo-cell {
+  padding: 52px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 220px;
+  position: relative;
+}
+.logo-cell-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: .4;
+}
+
+.logo-cell:nth-child(1) { background: var(--cream); }
+.logo-cell:nth-child(2) { background: var(--forest-dk); }
+.logo-cell:nth-child(3) { background: var(--gold); }
+.logo-cell:nth-child(4) { background: var(--forest); }
+
+.logo-cell:nth-child(1) .logo-cell-label { color: var(--forest-dk); }
+.logo-cell:nth-child(2) .logo-cell-label { color: var(--gold-lt); }
+.logo-cell:nth-child(3) .logo-cell-label { color: var(--forest-dk); }
+.logo-cell:nth-child(4) .logo-cell-label { color: var(--gold-lt); }
+
+/* Logo text representations */
+.lv-main {
+  font-family: var(--fd);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  line-height: 1;
+  text-align: center;
+}
+.lv-sub {
+  font-family: var(--fs);
+  font-size: 13px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 4px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.lv-1 .lv-main { color: var(--forest-dk); }
+.lv-1 .lv-sub { color: var(--gold-dk); }
+.lv-2 .lv-main { color: var(--gold); }
+.lv-2 .lv-sub { color: var(--gold-lt); }
+.lv-3 .lv-main { color: var(--forest-dk); }
+.lv-3 .lv-sub { color: var(--forest); }
+.lv-4 .lv-main { color: var(--gold-lt); }
+.lv-4 .lv-sub { color: var(--gold); }
+
+/* Clear space */
+.logo-clearspace {
+  margin-top: 3px;
+  background: white;
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+.cs-demo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 36px;
+  border: 1.5px dashed rgba(212,184,150,.4);
+}
+.cs-text {
+  font-family: var(--fd);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--forest-dk);
+  letter-spacing: 5px;
+  position: relative;
+  z-index: 2;
+}
+.cs-text-sub {
+  font-family: var(--fs);
+  font-size: 11px;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 3px;
+  color: var(--gold-dk);
+  text-align: center;
+  margin-top: 4px;
+}
+.cs-rule { flex: 1; }
+.cs-rule h4 {
+  font-family: var(--fd);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--forest-dk);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.cs-rule p {
+  font-size: 14px;
+  color: var(--taupe);
+  line-height: 1.8;
+}
+
+/* Logo Don'ts */
+.logo-dont {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  margin-top: 3px;
+}
+.dont-cell {
+  background: #F0EBE2;
+  padding: 36px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.dont-cell::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(184,155,116,.06) 8px, rgba(184,155,116,.06) 9px);
+  pointer-events: none;
+}
+.dont-x {
+  position: absolute;
+  top: 10px; right: 14px;
+  color: #C0785E;
+  font-size: 18px;
+  font-weight: 700;
+  z-index: 2;
+}
+.dont-visual {
+  font-family: var(--fd);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  position: relative;
+  z-index: 2;
+}
+.dont-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #bbb;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.dont-cell:nth-child(1) .dont-visual { color: #C0785E; transform: scaleX(1.5); display: inline-block; }
+.dont-cell:nth-child(2) .dont-visual { color: #aaa; }
+.dont-cell:nth-child(3) .dont-visual { color: var(--forest-dk); transform: rotate(-12deg); display: inline-block; }
+.dont-cell:nth-child(4) .dont-visual { color: #bbb; font-family: Arial, sans-serif; font-size: 16px; letter-spacing: 0; }
+
+/* ═══════════════════════════════════════
+   05 — VOIX & TON
+═══════════════════════════════════════ */
+#voice {
+  background: var(--forest);
+  position: relative;
+  overflow: hidden;
+}
+.voice-bg {
+  position: absolute;
+  bottom: -60px; right: -20px;
+  font-family: var(--fs);
+  font-size: 22vw;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(232,213,181,.03);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3px;
+  position: relative;
+  z-index: 2;
+}
+.vcard {
+  padding: 44px 36px;
+  background: rgba(255,255,255,.06);
+  transition: background .3s;
+}
+.vcard:hover { background: rgba(255,255,255,.1); }
+
+.vcard-ico { font-size: 32px; margin-bottom: 18px; display: block; }
+.vcard-name {
+  font-family: var(--fd);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--gold-lt);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.vcard-desc {
+  font-size: 14px;
+  color: rgba(232,213,181,.6);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+.vcard-ex {
+  font-family: var(--fse);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(232,213,181,.4);
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 14px;
+}
+
+/* Voice Do/Dont */
+.voice-copy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin-top: 3px;
+  position: relative;
+  z-index: 2;
+}
+.vc-panel { padding: 40px; }
+.vc-panel:nth-child(1) { background: rgba(255,255,255,.08); }
+.vc-panel:nth-child(2) { background: rgba(26,31,28,.25); }
+.vc-panel-title {
+  font-family: var(--fd);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--gold-lt);
+  margin-bottom: 20px;
+}
+.vc-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.vc-ico { font-size: 14px; min-width: 18px; margin-top: 2px; }
+.vc-t { font-size: 13px; color: rgba(232,213,181,.6); line-height: 1.6; }
+
+/* ═══════════════════════════════════════
+   06 — SIGNATURES & SLOGANS
+═══════════════════════════════════════ */
+#taglines {
+  background: var(--forest-dk);
+  position: relative;
+  overflow: hidden;
+}
+.taglines-bg {
+  position: absolute;
+  bottom: -40px; left: -10px;
+  font-family: var(--fd);
+  font-size: 26vw;
+  font-weight: 500;
+  color: rgba(212,184,150,.02);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.tagline-list {
+  list-style: none;
+  position: relative;
+  z-index: 2;
+}
+.tl-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: padding-left .3s;
+  cursor: default;
+}
+.tl-row:hover { padding-left: 14px; }
+.tl-idx {
+  font-family: var(--fb);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(232,213,181,.18);
+  min-width: 32px;
+}
+.tl-text {
+  font-family: var(--fs);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(16px, 2vw, 26px);
+  color: rgba(232,213,181,.7);
+  flex: 1;
+}
+.tl-row.hero .tl-text {
+  color: var(--gold);
+  font-size: clamp(20px, 2.5vw, 32px);
+}
+.tl-badge {
+  font-family: var(--fb);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--gold-dk);
+  color: var(--forest-dk);
+  padding: 5px 14px;
+  border-radius: 100px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.tl-row.hero .tl-badge { opacity: 1; }
+.tl-row:hover .tl-badge { opacity: .5; }
+
+/* Keyword cloud */
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 48px;
+  position: relative;
+  z-index: 2;
+}
+.kw {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  color: rgba(232,213,181,.5);
+  font-family: var(--fs);
+  font-style: italic;
+  font-size: 14px;
+  padding: 10px 20px;
+  transition: all .25s;
+  cursor: default;
+}
+.kw:hover {
+  background: var(--gold-dk);
+  color: var(--forest-dk);
+  border-color: var(--gold-dk);
+}
+
+/* ═══════════════════════════════════════
+   07 — DIRECTION VISUELLE
+═══════════════════════════════════════ */
+#imagery { background: var(--cream); }
+
+.img-rules {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  margin-top: 3px;
+}
+.ir {
+  padding: 28px 24px;
+  position: relative;
+}
+.ir.do { background: rgba(61,79,68,.06); border-top: 2px solid var(--forest); }
+.ir.dont { background: rgba(184,155,116,.08); border-top: 2px solid var(--gold-dk); }
+.ir-ico { font-size: 20px; margin-bottom: 12px; display: block; }
+.ir-label {
+  font-family: var(--fd);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.ir.do .ir-label { color: var(--forest); }
+.ir.dont .ir-label { color: var(--gold-dk); }
+.ir-desc { font-size: 12px; color: var(--taupe); line-height: 1.7; }
+
+/* Mood words */
+.mood-bar {
+  display: flex;
+  gap: 3px;
+  margin-top: 3px;
+}
+.mood-cell {
+  flex: 1;
+  padding: 32px 20px;
+  text-align: center;
+  transition: transform .3s;
+  cursor: default;
+}
+.mood-cell:hover { transform: translateY(-4px); }
+.mood-cell:nth-child(1) { background: var(--forest-dk); }
+.mood-cell:nth-child(2) { background: var(--forest); }
+.mood-cell:nth-child(3) { background: var(--gold-dk); }
+.mood-cell:nth-child(4) { background: var(--gold); }
+.mood-cell:nth-child(5) { background: var(--sand); }
+
+.mood-word {
+  font-family: var(--fs);
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+}
+.mood-cell:nth-child(1) .mood-word,
+.mood-cell:nth-child(2) .mood-word { color: var(--gold-lt); }
+.mood-cell:nth-child(3) .mood-word,
+.mood-cell:nth-child(4) .mood-word,
+.mood-cell:nth-child(5) .mood-word { color: var(--forest-dk); }
+
+/* ═══════════════════════════════════════
+   08 — ESPACEMENT & GRILLE
+═══════════════════════════════════════ */
+#spacing { background: var(--warm); }
+
+.spacing-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  margin-bottom: 48px;
+}
+.sp-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+.sp-bar {
+  background: var(--forest);
+  width: 100%;
+  border-radius: 2px;
+  transition: opacity .2s;
+}
+.sp-col:hover .sp-bar { opacity: .6; }
+.sp-val {
+  font-family: var(--fb);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--forest);
+}
+.sp-nm {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+.grid-demo {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 8px;
+  height: 80px;
+  margin-top: 48px;
+}
+.gc {
+  background: rgba(61,79,68,.06);
+  border: 1px solid rgba(61,79,68,.12);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(61,79,68,.35);
+  letter-spacing: 1px;
+}
+.gc.active {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: var(--gold-lt);
+}
+
+/* ═══════════════════════════════════════
+   09 — APPLICATIONS
+═══════════════════════════════════════ */
+#applications {
+  background: var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+.app-card {
+  background: rgba(255,255,255,.15);
+  padding: 44px 32px;
+  transition: background .25s;
+  cursor: default;
+}
+.app-card:hover { background: rgba(255,255,255,.25); }
+.app-ico { font-size: 36px; margin-bottom: 18px; display: block; }
+.app-title {
+  font-family: var(--fd);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--forest-dk);
+  margin-bottom: 10px;
+}
+.app-desc {
+  font-size: 13px;
+  color: rgba(44,56,48,.65);
+  line-height: 1.7;
+}
+
+/* ═══════════════════════════════════════
+   10 — CONTACT / CLÔTURE
+═══════════════════════════════════════ */
+#closing {
+  background: var(--forest-dk);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.closing-brand {
+  font-family: var(--fd);
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 500;
+  color: var(--gold-lt);
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+.closing-sub {
+  font-family: var(--fs);
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 6px;
+  margin-bottom: 48px;
+  opacity: .7;
+}
+.closing-tagline {
+  font-family: var(--fs);
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(232,213,181,.5);
+  line-height: 1.9;
+  max-width: 500px;
+  margin: 0 auto 48px;
+}
+.closing-contact {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.cc-item {
+  text-align: center;
+}
+.cc-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.cc-val {
+  font-family: var(--fs);
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(232,213,181,.55);
+}
+.cc-val a {
+  color: rgba(232,213,181,.55);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232,213,181,.15);
+  transition: color .2s, border-color .2s;
+}
+.cc-val a:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.closing-footer {
+  margin-top: 72px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(232,213,181,.15);
+}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width: 900px) {
+  .section { padding: 64px 28px; }
+  #cover { grid-template-columns: 1fr; min-height: auto; }
+  .cover-right { flex-direction: row; height: 120px; }
+  .cover-left { padding: 48px 28px; }
+  .identity-grid, .mv-grid, .typo-grid, .voice-grid, .voice-copy,
+  .logo-grid, .combo-grid, .img-rules, .app-grid { grid-template-columns: 1fr; }
+  .palette-hero { flex-direction: column; height: auto; }
+  .ph-swatch { min-height: 80px; }
+  .palette-usage { grid-template-columns: 1fr; }
+  .logo-dont { grid-template-columns: 1fr 1fr; }
+  .mood-bar { flex-wrap: wrap; }
+  .mood-cell { flex: 1 1 45%; }
+  .nav-dots { display: none; }
+  .spacing-row { flex-wrap: wrap; }
+  .sp-col { flex: 1 1 15%; }
+  .grid-demo { grid-template-columns: repeat(6, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- ═══════════════════════════════════════
+     COVER PAGE
+═══════════════════════════════════════ -->
+<section id="cover" class="grain">
+  <div class="arch-pattern"></div>
+  <div class="cover-left">
+    <div class="cover-badge">Brand Book 2025</div>
+    <div class="cover-main">
+      <div class="cover-brand">DMC</div>
+      <div class="cover-sub">Hospitality Morocco</div>
+      <div class="cover-tagline">Hôtellerie · Restauration · Conseil</div>
+      <p class="cover-desc">
+        Un guide complet de l'identité visuelle et verbale de DMC Hospitality Morocco — 
+        pour garantir cohérence, élégance et authenticité dans chaque point de contact.
+      </p>
+    </div>
+    <div class="cover-meta">
+      <span>Document confidentiel</span>
+      <span>Version 1.0 — 2025</span>
+    </div>
+  </div>
+  <div class="cover-right">
+    <div class="cr-block"><span class="cr-ghost">D</span><span class="cr-name">Forêt Profonde</span><span class="cr-hex">#2C3830</span></div>
+    <div class="cr-block"><span class="cr-ghost">M</span><span class="cr-name">Forêt</span><span class="cr-hex">#3D4F44</span></div>
+    <div class="cr-block"><span class="cr-ghost">C</span><span class="cr-name">Forêt Claire</span><span class="cr-hex">#4A6153</span></div>
+    <div class="cr-block"><span class="cr-name">Or Ancien</span><span class="cr-hex">#B89B74</span></div>
+    <div class="cr-block"><span class="cr-name">Or</span><span class="cr-hex">#D4B896</span></div>
+    <div class="cr-block"><span class="cr-name">Sable</span><span class="cr-hex">#E8D5B5</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     01 — IDENTITÉ DE MARQUE
+═══════════════════════════════════════ -->
+<section id="identity" class="section">
+  <div class="section-label gd">01 — Identité de Marque</div>
+  <h2 class="section-title dark">L'<em>Âme</em> de la Marque</h2>
+
+  <div class="identity-grid">
+    <div class="id-card"><span class="id-icon">🏛️</span><div class="id-title">Authenticité</div><p class="id-desc">Enracinée dans plus de 20 ans d'expérience au Maroc, DMC Hospitality puise sa force dans une compréhension profonde de la culture marocaine et de ses traditions hôtelières.</p></div>
+    <div class="id-card"><span class="id-icon">⭐</span><div class="id-title">Excellence</div><p class="id-desc">Un engagement inébranlable envers les standards internationaux les plus élevés, forgé par une collaboration avec les plus grandes chaînes : Hyatt, ACCOR, Kerzner, One&Only, Beachcomber.</p></div>
+    <div class="id-card"><span class="id-icon">🤝</span><div class="id-title">Proximité</div><p class="id-desc">Une approche humaine et accessible, du petit établissement au grand resort. L'écoute active et la fidélisation sont au cœur de chaque mission.</p></div>
+    <div class="id-card"><span class="id-icon">🌿</span><div class="id-title">Durabilité</div><p class="id-desc">La valorisation des talents marocains et une approche eco-luxe, respectueuse du patrimoine culturel et environnemental du Maroc.</p></div>
+  </div>
+
+  <div class="mv-grid">
+    <div class="mv-card">
+      <div class="mv-label">Notre Mission</div>
+      <p class="mv-text">Mettre notre passion et notre expertise internationale au service de chaque projet hôtelier marocain, avec authenticité, rigueur et bienveillance.</p>
+    </div>
+    <div class="mv-card">
+      <div class="mv-label">Notre Vision</div>
+      <p class="mv-text">Devenir la référence incontournable du conseil hôtelier au Maroc, en alliant savoir-faire international et sensibilité locale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     02 — PALETTE DE COULEURS
+═══════════════════════════════════════ -->
+<section id="palette" class="section">
+  <div class="section-label gd">02 — Palette de Couleurs</div>
+  <h2 class="section-title dark">Notre <em>Palette</em></h2>
+
+  <div class="palette-hero">
+    <div class="ph-swatch drk" style="background:var(--forest-dk)"><span class="ph-name">Forêt Profonde</span><span class="ph-hex">#2C3830</span><span class="ph-role">Fond principal</span></div>
+    <div class="ph-swatch drk" style="background:var(--forest)"><span class="ph-name">Forêt</span><span class="ph-hex">#3D4F44</span><span class="ph-role">Couleur signature</span></div>
+    <div class="ph-swatch drk" style="background:var(--forest-lt)"><span class="ph-name">Forêt Claire</span><span class="ph-hex">#4A6153</span><span class="ph-role">Accent secondaire</span></div>
+    <div class="ph-swatch lgt" style="background:var(--gold-dk)"><span class="ph-name">Or Ancien</span><span class="ph-hex">#B89B74</span><span class="ph-role">Accent chaud</span></div>
+    <div class="ph-swatch lgt" style="background:var(--gold)"><span class="ph-name">Or</span><span class="ph-hex">#D4B896</span><span class="ph-role">Couleur luxe</span></div>
+    <div class="ph-swatch lgt" style="background:var(--gold-lt)"><span class="ph-name">Sable Doré</span><span class="ph-hex">#E8D5B5</span><span class="ph-role">Fond clair</span></div>
+  </div>
+
+  <div class="palette-usage">
+    <div class="pu"><div class="pu-dot" style="background:var(--forest-dk)"></div><div class="pu-role">Couleur primaire</div><div class="pu-title">Forêt Profonde</div><p class="pu-desc">Utilisée pour les arrière-plans principaux, les en-têtes et les éléments dominants. Évoque le luxe discret et la sophistication.</p></div>
+    <div class="pu"><div class="pu-dot" style="background:var(--gold)"></div><div class="pu-role">Couleur secondaire</div><div class="pu-title">Or</div><p class="pu-desc">Réservée au logo, aux accents typographiques et aux détails décoratifs. Symbolise l'élégance et le prestige marocain.</p></div>
+    <div class="pu"><div class="pu-dot" style="background:var(--sand)"></div><div class="pu-role">Couleur tertiaire</div><div class="pu-title">Sable</div><p class="pu-desc">Pour les fonds clairs, les espaces de respiration et les supports imprimés. Apporte chaleur et luminosité.</p></div>
+    <div class="pu"><div class="pu-dot" style="background:var(--forest-lt)"></div><div class="pu-role">Accent</div><div class="pu-title">Forêt Claire</div><p class="pu-desc">Pour les éléments interactifs, les survols et les variations subtiles dans les compositions visuelles.</p></div>
+    <div class="pu"><div class="pu-dot" style="background:var(--gold-dk)"></div><div class="pu-role">Accent chaud</div><div class="pu-title">Or Ancien</div><p class="pu-desc">Pour les séparateurs, filets et éléments décoratifs. Renforce la dimension patrimoniale et artisanale.</p></div>
+    <div class="pu"><div class="pu-dot" style="background:var(--taupe)"></div><div class="pu-role">Texte secondaire</div><div class="pu-title">Taupe</div><p class="pu-desc">Pour le texte de corps secondaire, les légendes et les métadonnées. Assure une lisibilité douce.</p></div>
+  </div>
+
+  <div class="combo-grid">
+    <div class="combo"><div class="combo-top" style="background:var(--forest-dk)"><span class="combo-label" style="color:var(--gold-lt)">Aa</span></div><div class="combo-bot" style="background:var(--gold-lt)"><span class="combo-label" style="color:var(--forest-dk)">Aa</span></div></div>
+    <div class="combo"><div class="combo-top" style="background:var(--forest)"><span class="combo-label" style="color:var(--gold)">Aa</span></div><div class="combo-bot" style="background:var(--gold)"><span class="combo-label" style="color:var(--forest)">Aa</span></div></div>
+    <div class="combo"><div class="combo-top" style="background:var(--forest-dk)"><span class="combo-label" style="color:var(--sand)">Aa</span></div><div class="combo-bot" style="background:var(--sand)"><span class="combo-label" style="color:var(--forest-dk)">Aa</span></div></div>
+    <div class="combo"><div class="combo-top" style="background:var(--gold-dk)"><span class="combo-label" style="color:var(--cream)">Aa</span></div><div class="combo-bot" style="background:var(--cream)"><span class="combo-label" style="color:var(--gold-dk)">Aa</span></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     03 — TYPOGRAPHIE
+═══════════════════════════════════════ -->
+<section id="typography" class="section grain">
+  <div class="arch-pattern"></div>
+  <div class="section-label wh">03 — Typographie</div>
+  <h2 class="section-title light">L'Art des <em>Lettres</em></h2>
+
+  <div class="typo-grid">
+    <div class="font-block">
+      <div class="fb-role">Police Titre · Playfair Display</div>
+      <div class="fb-specimen-display">DMC Hospitality</div>
+      <p class="fb-meta">Utilisée pour les titres, le logo et les en-têtes de section.<br>Graisses : Medium (500), SemiBold (600), Bold (700)</p>
+    </div>
+    <div class="font-block">
+      <div class="fb-role">Police Élégante · Cormorant Garamond</div>
+      <div class="fb-specimen-serif">Authenticité & Excellence</div>
+      <p class="fb-meta">Utilisée pour les sous-titres, citations et accroches.<br>Graisses : Light (300), Regular (400), Italic</p>
+    </div>
+    <div class="font-block">
+      <div class="fb-role">Police Éditoriale · Libre Baskerville</div>
+      <div class="fb-specimen-editorial">« Notre passion au service de votre projet hôtelier »</div>
+      <p class="fb-meta">Utilisée pour les citations, témoignages et textes mis en valeur.<br>Graisses : Regular (400), Bold (700), Italic</p>
+    </div>
+    <div class="font-block">
+      <div class="fb-role">Police de Corps · Source Sans 3</div>
+      <p class="fb-specimen-body">DMC Hospitality Morocco est un cabinet de conseil spécialisé dans l'hôtellerie et la restauration au Maroc. Fondé par Didier Escartin et Marie Latsague-Escartin, notre expertise couvre la pré-ouverture, l'ouverture, l'optimisation opérationnelle et la formation du personnel.</p>
+      <p class="fb-meta">Utilisée pour le texte de corps, les descriptions et les contenus longs.<br>Graisses : Light (300), Regular (400), Medium (500), SemiBold (600)</p>
+    </div>
+  </div>
+
+  <div class="type-scale">
+    <div class="ts-row"><span class="ts-label">Titre Principal</span><span class="ts-size">48–72px</span><span style="font-family:var(--fd);font-size:48px;font-weight:500;color:var(--gold-lt)">DMC</span></div>
+    <div class="ts-row"><span class="ts-label">Titre Section</span><span class="ts-size">32–48px</span><span style="font-family:var(--fs);font-size:36px;font-weight:300;font-style:italic;color:var(--gold)">Notre Expertise</span></div>
+    <div class="ts-row"><span class="ts-label">Sous-titre</span><span class="ts-size">22–28px</span><span style="font-family:var(--fs);font-size:24px;font-weight:300;color:rgba(232,213,181,.6)">Hospitality Morocco</span></div>
+    <div class="ts-row"><span class="ts-label">Accroche</span><span class="ts-size">16–20px</span><span style="font-family:var(--fse);font-size:18px;font-style:italic;color:rgba(232,213,181,.5)">Authenticité & Excellence</span></div>
+    <div class="ts-row"><span class="ts-label">Corps</span><span class="ts-size">14–16px</span><span style="font-family:var(--fb);font-size:15px;font-weight:300;color:rgba(232,213,181,.45)">Une expertise hôtelière authentique et durable au Maroc</span></div>
+    <div class="ts-row"><span class="ts-label">Légende</span><span class="ts-size">10–12px</span><span style="font-family:var(--fb);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(232,213,181,.25)">Hôtellerie · Restauration · Conseil</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>Authenticité</span><span class="sep">✦</span>
+    <span>Excellence</span><span class="sep">✦</span>
+    <span>Hospitality</span><span class="sep">✦</span>
+    <span>Morocco</span><span class="sep">✦</span>
+    <span>Expertise</span><span class="sep">✦</span>
+    <span>Tradition</span><span class="sep">✦</span>
+    <span>Authenticité</span><span class="sep">✦</span>
+    <span>Excellence</span><span class="sep">✦</span>
+    <span>Hospitality</span><span class="sep">✦</span>
+    <span>Morocco</span><span class="sep">✦</span>
+    <span>Expertise</span><span class="sep">✦</span>
+    <span>Tradition</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     04 — SYSTÈME DE LOGO
+═══════════════════════════════════════ -->
+<section id="logo" class="section">
+  <div class="section-label fr">04 — Système de Logo</div>
+  <h2 class="section-title dark">Le <em>Logo</em></h2>
+
+  <div class="logo-grid">
+    <div class="logo-cell">
+      <div class="lv-1"><div class="lv-main">DMC</div><div class="lv-sub">Hospitality Morocco</div></div>
+      <span class="logo-cell-label">Sur fond clair</span>
+    </div>
+    <div class="logo-cell">
+      <div class="lv-2"><div class="lv-main">DMC</div><div class="lv-sub">Hospitality Morocco</div></div>
+      <span class="logo-cell-label">Sur fond sombre</span>
+    </div>
+    <div class="logo-cell">
+      <div class="lv-3"><div class="lv-main">DMC</div><div class="lv-sub">Hospitality Morocco</div></div>
+      <span class="logo-cell-label">Sur fond or</span>
+    </div>
+    <div class="logo-cell">
+      <div class="lv-4"><div class="lv-main">DMC</div><div class="lv-sub">Hospitality Morocco</div></div>
+      <span class="logo-cell-label">Variante claire</span>
+    </div>
+  </div>
+
+  <div class="logo-clearspace">
+    <div class="cs-demo">
+      <div>
+        <div class="cs-text">DMC</div>
+        <div class="cs-text-sub">Hospitality Morocco</div>
+      </div>
+    </div>
+    <div class="cs-rule">
+      <h4>Zone de Protection</h4>
+      <p>La zone de protection minimale autour du logo correspond à la hauteur du « D » de DMC. Aucun élément graphique ou textuel ne doit empiéter sur cette zone afin de préserver l'impact visuel et la lisibilité du logo en toutes circonstances.</p>
+    </div>
+  </div>
+
+  <div class="logo-dont">
+    <div class="dont-cell"><span class="dont-x">✕</span><span class="dont-visual">DMC</span><span class="dont-label">Ne pas étirer</span></div>
+    <div class="dont-cell"><span class="dont-x">✕</span><span class="dont-visual">DMC</span><span class="dont-label">Ne pas atténuer</span></div>
+    <div class="dont-cell"><span class="dont-x">✕</span><span class="dont-visual">DMC</span><span class="dont-label">Ne pas incliner</span></div>
+    <div class="dont-cell"><span class="dont-x">✕</span><span class="dont-visual">DMC</span><span class="dont-label">Ne pas changer la police</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     05 — VOIX & TON
+═══════════════════════════════════════ -->
+<section id="voice" class="section grain">
+  <div class="voice-bg">Voix</div>
+  <div class="section-label wh">05 — Voix & Ton</div>
+  <h2 class="section-title light">Notre <em>Voix</em></h2>
+
+  <div class="voice-grid">
+    <div class="vcard"><span class="vcard-ico">🎯</span><div class="vcard-name">Professionnelle</div><p class="vcard-desc">Un ton expert et rassurant, qui inspire confiance par la maîtrise des sujets hôteliers et la précision du vocabulaire métier.</p><p class="vcard-ex">« Notre accompagnement couvre l'ensemble des processus opérationnels. »</p></div>
+    <div class="vcard"><span class="vcard-ico">🌍</span><div class="vcard-name">Authentique</div><p class="vcard-desc">Une communication sincère, ancrée dans notre amour du Maroc et notre respect de sa culture. Pas de jargon inutile, mais de la substance.</p><p class="vcard-ex">« 20 ans au Maroc, une expertise forgée sur le terrain. »</p></div>
+    <div class="vcard"><span class="vcard-ico">💎</span><div class="vcard-name">Raffinée</div><p class="vcard-desc">Un langage soigné et élégant qui reflète le positionnement haut de gamme, sans être distant ni inaccessible.</p><p class="vcard-ex">« L'excellence hôtelière, inspirée par la richesse marocaine. »</p></div>
+    <div class="vcard"><span class="vcard-ico">🤝</span><div class="vcard-name">Bienveillante</div><p class="vcard-desc">Une posture d'écoute et d'accompagnement. Chaque client est un partenaire dont on comprend les défis uniques.</p><p class="vcard-ex">« Nous sommes à l'écoute de vos besoins spécifiques. »</p></div>
+    <div class="vcard"><span class="vcard-ico">📐</span><div class="vcard-name">Structurée</div><p class="vcard-desc">Une communication organisée et méthodique, reflétant notre approche rigoureuse du conseil en hôtellerie.</p><p class="vcard-ex">« Pré-ouverture, ouverture, optimisation : un accompagnement complet. »</p></div>
+    <div class="vcard"><span class="vcard-ico">🌱</span><div class="vcard-name">Engagée</div><p class="vcard-desc">Une voix qui valorise les collaborateurs, les talents locaux et l'approche durable dans l'industrie hôtelière.</p><p class="vcard-ex">« Valoriser les atouts et les talents des collaborateurs marocains. »</p></div>
+  </div>
+
+  <div class="voice-copy">
+    <div class="vc-panel">
+      <div class="vc-panel-title">✓ À Privilégier</div>
+      <div class="vc-row"><span class="vc-ico">✓</span><span class="vc-t">Utiliser le « nous » inclusif et engageant</span></div>
+      <div class="vc-row"><span class="vc-ico">✓</span><span class="vc-t">Vocabulaire métier précis et accessible</span></div>
+      <div class="vc-row"><span class="vc-ico">✓</span><span class="vc-t">Références concrètes à l'expérience terrain</span></div>
+      <div class="vc-row"><span class="vc-ico">✓</span><span class="vc-t">Ton chaleureux et professionnel</span></div>
+      <div class="vc-row"><span class="vc-ico">✓</span><span class="vc-t">Valorisation du patrimoine culturel marocain</span></div>
+    </div>
+    <div class="vc-panel">
+      <div class="vc-panel-title">✕ À Éviter</div>
+      <div class="vc-row"><span class="vc-ico">✕</span><span class="vc-t">Jargon technique excessif ou incompréhensible</span></div>
+      <div class="vc-row"><span class="vc-ico">✕</span><span class="vc-t">Ton condescendant ou trop familier</span></div>
+      <div class="vc-row"><span class="vc-ico">✕</span><span class="vc-t">Promesses vagues sans fondement concret</span></div>
+      <div class="vc-row"><span class="vc-ico">✕</span><span class="vc-t">Comparaisons négatives avec la concurrence</span></div>
+      <div class="vc-row"><span class="vc-ico">✕</span><span class="vc-t">Langage impersonnel ou bureaucratique</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     06 — SIGNATURES & SLOGANS
+═══════════════════════════════════════ -->
+<section id="taglines" class="section">
+  <div class="taglines-bg">DMC</div>
+  <div class="section-label wh">06 — Signatures & Slogans</div>
+  <h2 class="section-title light">Nos <em>Signatures</em></h2>
+
+  <ul class="tagline-list">
+    <li class="tl-row hero"><span class="tl-idx">01</span><span class="tl-text">Authenticité & Excellence</span><span class="tl-badge">Signature principale</span></li>
+    <li class="tl-row"><span class="tl-idx">02</span><span class="tl-text">Notre passion & notre expertise au service de votre projet hôtelier</span></li>
+    <li class="tl-row"><span class="tl-idx">03</span><span class="tl-text">Hôtellerie · Restauration · Conseil</span></li>
+    <li class="tl-row"><span class="tl-idx">04</span><span class="tl-text">Une expertise internationale à coût raisonnable</span></li>
+    <li class="tl-row"><span class="tl-idx">05</span><span class="tl-text">Au plaisir de vous rencontrer pour discuter de votre projet</span></li>
+    <li class="tl-row"><span class="tl-idx">06</span><span class="tl-text">Simplifier la complexité, offrir le meilleur</span></li>
+    <li class="tl-row"><span class="tl-idx">07</span><span class="tl-text">Du problème à la solution, de manière efficace, positive & pérenne</span></li>
+  </ul>
+
+  <div class="keywords">
+    <span class="kw">Expertise</span>
+    <span class="kw">Authenticité</span>
+    <span class="kw">Excellence</span>
+    <span class="kw">Eco-Luxe</span>
+    <span class="kw">Maroc</span>
+    <span class="kw">Hôtellerie</span>
+    <span class="kw">Restauration</span>
+    <span class="kw">Conseil</span>
+    <span class="kw">Pré-ouverture</span>
+    <span class="kw">Formation</span>
+    <span class="kw">Opérationnel</span>
+    <span class="kw">International</span>
+    <span class="kw">Culture Marocaine</span>
+    <span class="kw">Valorisation</span>
+    <span class="kw">Fidélisation</span>
+    <span class="kw">Innovation</span>
+    <span class="kw">Sur-mesure</span>
+    <span class="kw">Patrimoine</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     07 — DIRECTION VISUELLE
+═══════════════════════════════════════ -->
+<section id="imagery" class="section">
+  <div class="section-label gd">07 — Direction Visuelle</div>
+  <h2 class="section-title dark">Direction <em>Visuelle</em></h2>
+
+  <div class="mood-bar">
+    <div class="mood-cell"><span class="mood-word">Luxe Discret</span></div>
+    <div class="mood-cell"><span class="mood-word">Artisanat</span></div>
+    <div class="mood-cell"><span class="mood-word">Tradition</span></div>
+    <div class="mood-cell"><span class="mood-word">Luminosité</span></div>
+    <div class="mood-cell"><span class="mood-word">Sérénité</span></div>
+  </div>
+
+  <div class="img-rules">
+    <div class="ir do"><span class="ir-ico">✓</span><div class="ir-label">Lumière Naturelle</div><p class="ir-desc">Privilégier les photos en lumière naturelle, chaude et dorée, évoquant le Maroc.</p></div>
+    <div class="ir do"><span class="ir-ico">✓</span><div class="ir-label">Détails Artisanaux</div><p class="ir-desc">Montrer les textures, zellige, boiseries, tissages qui incarnent le savoir-faire local.</p></div>
+    <div class="ir dont"><span class="ir-ico">✕</span><div class="ir-label">Photos Génériques</div><p class="ir-desc">Éviter les images de banque sans identité, qui ne reflètent pas l'authenticité marocaine.</p></div>
+    <div class="ir dont"><span class="ir-ico">✕</span><div class="ir-label">Sur-saturation</div><p class="ir-desc">Ne pas utiliser de filtres excessifs ni de retouches qui dénaturent l'ambiance naturelle.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     08 — ESPACEMENT & GRILLE
+═══════════════════════════════════════ -->
+<section id="spacing" class="section">
+  <div class="section-label dk">08 — Espacement & Grille</div>
+  <h2 class="section-title dark">Espacement & <em>Grille</em></h2>
+
+  <div class="spacing-row">
+    <div class="sp-col"><div class="sp-bar" style="height:16px"></div><span class="sp-val">4</span><span class="sp-nm">XXXS</span></div>
+    <div class="sp-col"><div class="sp-bar" style="height:28px"></div><span class="sp-val">8</span><span class="sp-nm">XXS</span></div>
+    <div class="sp-col"><div class="sp-bar" style="height:44px"></div><span class="sp-val">12</span><span class="sp-nm">XS</span></div>
+    <div class="sp-col"><div class="sp-bar" style="height:56px"></div><span class="sp-val">16</span><span class="sp-nm">SM</span></div>
+    <div class="sp-col"><div class="sp-bar" style="height:72px"></div><span class="sp-val">24</span><span class="sp-nm">MD</span></div>
+    <div class="sp-col"><div class="sp-bar" style="height:100px"></div><span class="sp-val">32</span><span class="sp-nm">LG</span></div>
+    <div class="sp-col"><div class="sp-bar" style="height:128px"></div><span class="sp-val">48</span><span class="sp-nm">XL</span></div>
+    <div class="sp-col"><div class="sp-bar" style="height:160px"></div><span class="sp-val">64</span><span class="sp-nm">XXL</span></div>
+    <div class="sp-col"><div class="sp-bar" style="height:200px"></div><span class="sp-val">96</span><span class="sp-nm">XXXL</span></div>
+  </div>
+
+  <div class="grid-demo">
+    <div class="gc active">1</div><div class="gc active">2</div><div class="gc active">3</div><div class="gc active">4</div>
+    <div class="gc">5</div><div class="gc">6</div><div class="gc">7</div><div class="gc">8</div>
+    <div class="gc active">9</div><div class="gc active">10</div><div class="gc active">11</div><div class="gc active">12</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     09 — APPLICATIONS
+═══════════════════════════════════════ -->
+<section id="applications" class="section">
+  <div class="section-label fr">09 — Applications</div>
+  <h2 class="section-title dark">Applications de la <em>Marque</em></h2>
+
+  <div class="app-grid">
+    <div class="app-card"><span class="app-ico">📄</span><div class="app-title">Papeterie</div><p class="app-desc">Cartes de visite, papier à en-tête, enveloppes — fond forêt profonde avec logo or, ou fond crème avec logo forêt.</p></div>
+    <div class="app-card"><span class="app-ico">💻</span><div class="app-title">Digital</div><p class="app-desc">Site web, réseaux sociaux, signatures email — palette complète avec dominante forêt et accents or.</p></div>
+    <div class="app-card"><span class="app-ico">📊</span><div class="app-title">Présentations</div><p class="app-desc">Diaporamas commerciaux — fond forêt ou sable avec typographie Playfair Display pour les titres.</p></div>
+    <div class="app-card"><span class="app-ico">👕</span><div class="app-title">Textile</div><p class="app-desc">Uniformes, tenues de formation — broderie logo or sur textile forêt profonde ou blanc cassé.</p></div>
+    <div class="app-card"><span class="app-ico">📋</span><div class="app-title">Documents</div><p class="app-desc">Rapports, cahiers des charges, propositions — mise en page structurée avec filets or et titres Cormorant.</p></div>
+    <div class="app-card"><span class="app-ico">🏷️</span><div class="app-title">Signalétique</div><p class="app-desc">Plaques, totems, badges — gravure ou impression sur matériaux nobles, métal brossé ou bois.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     10 — CLÔTURE
+═══════════════════════════════════════ -->
+<section id="closing" class="section grain">
+  <div class="arch-pattern"></div>
+  <div class="closing-brand">DMC</div>
+  <div class="closing-sub">Hospitality Morocco</div>
+  <p class="closing-tagline">
+    Au plaisir de vous rencontrer<br>pour discuter de votre projet
+  </p>
+  <div class="closing-contact">
+    <div class="cc-item"><div class="cc-label">Site Web</div><div class="cc-val"><a href="https://dmchm.com">dmchm.com</a></div></div>
+    <div class="cc-item"><div class="cc-label">Email</div><div class="cc-val"><a href="mailto:contact@dmchm.com">contact@dmchm.com</a></div></div>
+    <div class="cc-item"><div class="cc-label">Téléphone</div><div class="cc-val">+212 6 64 80 23 02<br>+212 6 75 89 43 08</div></div>
+  </div>
+  <div class="closing-footer">© 2025 DMC Hospitality Morocco — Tous droits réservés<br><span style="margin-top:8px;display:inline-block;color:rgba(232,213,181,.3);letter-spacing:4px;">Made by EIDEN Group</span></div>
+</section>
+
+<script>
+// Navigation dots
+const sections = ['cover','identity','palette','typography','logo','voice','taglines','imagery','spacing','applications','closing'];
+const darkSections = new Set(['cover','typography','voice','taglines','closing']);
+const dotsContainer = document.getElementById('navDots');
+
+sections.forEach((id, i) => {
+  const d = document.createElement('div');
+  d.className = 'nav-dot';
+  d.addEventListener('click', () => document.getElementById(id).scrollIntoView({ behavior: 'smooth' }));
+  dotsContainer.appendChild(d);
+});
+
+const dots = dotsContainer.querySelectorAll('.nav-dot');
+const sectionObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = sections.indexOf(e.target.id);
+      dots.forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+        d.style.borderColor = i === idx ? 'var(--gold)' : (darkSections.has(e.target.id) ? 'rgba(232,213,181,.3)' : 'rgba(61,79,68,.25)');
+        if (i !== idx) d.style.background = 'transparent';
+      });
+    }
+  });
+}, { threshold: 0.35 });
+sections.forEach(id => { const el = document.getElementById(id); if (el) sectionObs.observe(el); });
+</script>
+</body>
+</html>

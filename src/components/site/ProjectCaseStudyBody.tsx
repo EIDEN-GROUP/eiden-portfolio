@@ -476,7 +476,7 @@ export function ProjectCaseStudyBody({ project }: { project: Project }) {
           <BandHeader
             dark
             left="Results"
-            center="Shipped touchpoints across web, dashboards, CRM, and mobile."
+            center="Social media excellence that strengthens brand loyalty."
             right="Artifacts"
             centerWide
             centerAlign="center"

@@ -10,6 +10,7 @@ import {
   MediaMasonry,
   MediaPanelGrid,
   SectionIntro,
+  WebsiteScaleFeatureMedia,
   type MediaItem,
 } from "./primitives";
 import { useProjectTheme } from "@/components/case-study/projectThemeContext";
@@ -21,6 +22,7 @@ function mediaFromSection(section: ServiceSection): MediaItem[] {
     alt: m.alt,
     caption: m.caption,
     tall: m.tall,
+    objectFit: m.objectFit,
   }));
 }
 
@@ -129,7 +131,16 @@ export function ServiceSectionView({
 
         {section.type === "crm-dashboard" && (
           <>
-            {media.length > 0 ? <MediaPanelGrid items={media} /> : null}
+            {media.length > 0 ? (
+              section.websiteScaleMedia && media.length === 1 ? (
+                <WebsiteScaleFeatureMedia
+                  item={media[0]!}
+                  background={section.websiteScaleBg}
+                />
+              ) : (
+                <MediaPanelGrid items={media} compact={section.compactMedia} />
+              )
+            ) : null}
             {section.features?.length ? <FeaturePills features={section.features} /> : null}
           </>
         )}

@@ -164,7 +164,7 @@ function BrandBookLink({
             View the full brand book
           </p>
           <p className="mt-3 max-w-[28ch] font-editorial text-sm italic leading-relaxed text-white/40">
-            Complete identity system on eiden-group.com
+            Full identity system — colors, type, logo, and usage rules
           </p>
         </div>
         <span className="mt-8 grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/15 transition-all duration-500 group-hover:border-gold group-hover:bg-gold">
@@ -190,7 +190,7 @@ function BrandBookLink({
           View the full brand book
         </p>
         <p className="mt-1 font-editorial text-sm italic text-white/40">
-          Complete identity system on eiden-group.com
+          Full identity system — colors, type, logo, and usage rules
         </p>
       </div>
       <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 transition-all duration-500 group-hover:border-gold group-hover:bg-gold sm:h-12 sm:w-12">
@@ -213,7 +213,10 @@ function BrandMediaFigure({
         <img
           src={item.src}
           alt={item.alt}
-          className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]"
+          className={cn(
+            "h-full w-full transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]",
+            item.objectFit === "contain" ? "object-contain" : "object-cover",
+          )}
           loading="lazy"
         />
       </div>
@@ -274,7 +277,10 @@ function BrandMediaGrid({
           <img
             src={hero.src}
             alt={hero.alt}
-            className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]"
+            className={cn(
+              "h-full w-full transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]",
+              hero.objectFit === "contain" ? "object-contain" : "object-cover",
+            )}
             loading="lazy"
           />
         </div>
@@ -353,6 +359,7 @@ export function BrandIdentityShowcase({
     alt: m.alt,
     caption: m.caption,
     tall: m.tall,
+    objectFit: m.objectFit,
   }));
 
   const hasPalette = (section.brandColors?.length ?? 0) > 0;
@@ -456,6 +463,7 @@ export function BrandBoardShowcase({
     alt: m.alt,
     caption: m.caption,
     tall: m.tall,
+    objectFit: m.objectFit,
   }));
 
   return (

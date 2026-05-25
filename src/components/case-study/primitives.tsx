@@ -200,10 +200,23 @@ function MetricCard({
   );
 }
 
-export type MediaItem = { src: string; alt: string; caption?: string; tall?: boolean };
+export type MediaItem = {
+  src: string;
+  alt: string;
+  caption?: string;
+  tall?: boolean;
+  objectFit?: "contain" | "cover";
+};
 
 /** Full-width editorial cells — matches brand identity / application cards. */
-export function MediaPanelGrid({ items }: { items: MediaItem[] }) {
+export function MediaPanelGrid({
+  items,
+  compact,
+}: {
+  items: MediaItem[];
+  /** UI screenshots — fixed 4:3 aspect with a sensible max height (not full-viewport). */
+  compact?: boolean;
+}) {
   const gridCols =
     items.length <= 1
       ? "sm:grid-cols-1"
@@ -228,20 +241,29 @@ export function MediaPanelGrid({ items }: { items: MediaItem[] }) {
           variants={fadeUp}
           className="group relative overflow-hidden bg-[#0a0a0a]"
         >
-          <div
-            className={cn(
-              "aspect-[4/3] sm:aspect-auto",
-              items.length <= 2 ? "sm:min-h-[min(48vh,28rem)]" : "sm:min-h-[min(40vh,22rem)]",
-              item.tall && "sm:min-h-[min(52vh,32rem)]",
-            )}
-          >
+          {compact ? (
             <img
               src={item.src}
               alt={item.alt}
-              className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]"
+              className="aspect-[16/10] w-full object-cover object-top transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03] sm:aspect-[4/3]"
               loading="lazy"
             />
-          </div>
+          ) : (
+            <div
+              className={cn(
+                "aspect-[4/3] sm:aspect-auto",
+                items.length <= 2 ? "sm:min-h-[min(48vh,28rem)]" : "sm:min-h-[min(40vh,22rem)]",
+                item.tall && "sm:min-h-[min(52vh,32rem)]",
+              )}
+            >
+              <img
+                src={item.src}
+                alt={item.alt}
+                className="h-full w-full object-cover transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]"
+                loading="lazy"
+              />
+            </div>
+          )}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
           {item.caption ? (
             <figcaption className="absolute bottom-0 left-0 right-0 border-t border-white/[0.08] bg-black/40 px-5 py-4 font-label text-[9px] uppercase tracking-[0.38em] text-white/75 backdrop-blur-sm">
@@ -481,6 +503,35 @@ export function LinksPills({ links }: { links: Array<{ label: string; url: strin
   );
 }
 
+/** Single feature image at the same scale as the website device mockup (desktop frame). */
+export function WebsiteScaleFeatureMedia({
+  item,
+  background = "#050505",
+}: {
+  item: MediaItem;
+  background?: string;
+}) {
+  return (
+    <Reveal className="relative mx-auto max-w-5xl px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 48 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-10%" }}
+        transition={{ duration: 1.1, ease }}
+        className="group relative aspect-[16/11] overflow-hidden shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]"
+        style={{ backgroundColor: background }}
+      >
+        <img
+          src={item.src}
+          alt={item.alt}
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+          loading="lazy"
+        />
+      </motion.div>
+    </Reveal>
+  );
+}
+
 export function DeviceMockupPair({
   desktopSrc,
   mobileSrc,
@@ -517,7 +568,9 @@ export function DeviceMockupPair({
         <img
           src={desktopSrc}
           alt={`${alt} desktop`}
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+          className={cn(
+            "h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.02] object-cover",
+          )}
         />
         {interactive ? (
           <div

@@ -54,16 +54,25 @@ for (const book of BOOKS) {
   if (book.copyRelative) {
     for (const file of book.copyRelative) {
       const src = path.join(htmlDir, file);
-      if (!fs.existsSync(src)) {
-        console.warn(`  missing relative asset: ${file}`);
+      const publicDest = path.join(PUBLIC, file);
+      if (fs.existsSync(src)) {
+        fs.copyFileSync(src, publicDest);
+        console.log(`  copied ${file} -> public/brand-books/${file}`);
+        const dest = path.join(
+          ASSETS,
+          `${book.assetPrefix}-${file.toLowerCase().replace(/\.png$/i, "")}.png`,
+        );
+        fs.copyFileSync(src, dest);
+        console.log(`  copied ${file} -> ${path.basename(dest)}`);
         continue;
       }
-      const dest = path.join(
-        ASSETS,
-        `${book.assetPrefix}-${file.toLowerCase().replace(/\.png$/i, "")}.png`,
-      );
-      fs.copyFileSync(src, dest);
-      console.log(`  copied ${file} -> ${path.basename(dest)}`);
+      const fallback = path.join(ASSETS, "educazenkids-logo.png");
+      if (file === "EDUCAZEN-1.png" && fs.existsSync(fallback)) {
+        fs.copyFileSync(fallback, publicDest);
+        console.log(`  fallback ${file} <- educazenkids-logo.png`);
+        continue;
+      }
+      console.warn(`  missing relative asset: ${file}`);
     }
   }
 
