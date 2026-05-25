@@ -18,14 +18,6 @@ Deno.serve(async (req) => {
     const smtpSecure = Deno.env.get("SMTP_SECURE") === "true";
     const smtpUser = Deno.env.get("SMTP_USER");
 
-    console.log("SMTP config", {
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpSecure,
-      user: smtpUser,
-      passSet: !!Deno.env.get("SMTP_PASS"),
-    });
-
     const transporter = createTransport({
       host: smtpHost,
       port: smtpPort,
@@ -129,8 +121,6 @@ Deno.serve(async (req) => {
       `,
     });
 
-    console.log("Email sent successfully to contact@eiden-group.com");
-
     await transporter.sendMail({
       from: `"Eiden Group" <${smtpUser}>`,
       to: email,
@@ -191,12 +181,10 @@ Deno.serve(async (req) => {
       `,
     });
 
-    console.log("Confirmation sent to", email);
     return new Response(JSON.stringify({ ok: true }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Failed to send email:", (error as Error).message);
     return new Response(JSON.stringify({ error: (error as Error).message }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
