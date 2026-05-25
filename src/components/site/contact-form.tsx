@@ -95,13 +95,7 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
     try {
       await sendContactEmail({ data });
     } catch {
-      const body = encodeURIComponent(
-        `Name: ${data.name}\nEmail: ${data.email}\nCompany: ${data.company ?? "N/A"}\nHeadcount: ${data.headcount}\n\n${data.idea}`,
-      );
-      window.open(
-        `mailto:contact@eiden-group.com?subject=Hydra Scan™ Inquiry   ${data.name}&body=${body}`,
-        "_blank",
-      );
+      // mailto fallback disabled
     } finally {
       setSubmitting(false);
       setFormStep("success");
