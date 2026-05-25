@@ -130,6 +130,68 @@ Deno.serve(async (req) => {
     });
 
     console.log("Email sent successfully to contact@eiden-group.com");
+
+    await transporter.sendMail({
+      from: `"Eiden Group" <${smtpUser}>`,
+      to: email,
+      subject: "We received your inquiry",
+      html: `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body style="margin:0;padding:0;background:#f5f4f0;font-family:'Georgia',serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f4f0;padding:48px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;">
+          <tr>
+            <td style="background:#1a2e1a;padding:36px 40px;text-align:center;">
+              <p style="margin:0;font-family:'Georgia',serif;font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:#c9a84c;">Eiden Group</p>
+              <p style="margin:8px 0 0;font-family:'Georgia',serif;font-size:22px;color:#fff;font-style:italic;font-weight:400;">Thank you</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#ffffff;padding:40px 40px;">
+              <p style="margin:0 0 20px;font-family:'Georgia',serif;font-size:16px;color:#1a2e1a;">Dear ${name},</p>
+              <p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#2d2d2d;">
+                Thank you for reaching out. We have received your inquiry and will review it shortly.
+              </p>
+              <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#2d2d2d;">
+                A member of our team will contact you within one business day to schedule your
+                <strong style="color:#1a2e1a;">Hydra Analysis™</strong> session.
+              </p>
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+                <tr>
+                  <td style="background:#f9f8f5;border-left:3px solid #c9a84c;padding:16px 20px;">
+                    <p style="margin:0 0 4px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:#a09a8e;font-family:Arial,sans-serif;">Your project brief</p>
+                    <p style="margin:0;font-size:13px;line-height:1.6;color:#2d2d2d;font-family:'Georgia',serif;font-style:italic;">${idea.replace(/\n/g, "<br/>")}</p>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:13px;color:#a09a8e;">
+                — The Eiden Group Team<br/>
+                <a href="mailto:contact@eiden-group.com" style="color:#c9a84c;text-decoration:none;">contact@eiden-group.com</a>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px 40px;text-align:center;">
+              <p style="margin:0;font-size:10px;color:#a09a8e;font-family:Arial,sans-serif;letter-spacing:0.1em;">© Eiden Group</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+      `,
+    });
+
+    console.log("Confirmation sent to", email);
     return new Response(JSON.stringify({ ok: true }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
