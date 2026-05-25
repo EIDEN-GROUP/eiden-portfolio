@@ -133,10 +133,7 @@ export function ServiceSectionView({
           <>
             {media.length > 0 ? (
               section.websiteScaleMedia && media.length === 1 ? (
-                <WebsiteScaleFeatureMedia
-                  item={media[0]!}
-                  background={section.websiteScaleBg}
-                />
+                <WebsiteScaleFeatureMedia item={media[0]!} background={section.websiteScaleBg} />
               ) : (
                 <MediaPanelGrid items={media} compact={section.compactMedia} />
               )
