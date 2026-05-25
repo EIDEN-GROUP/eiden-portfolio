@@ -95,7 +95,7 @@ export function ContactForm({ onClose }: { onClose?: () => void }) {
     setSubmitting(true);
     setError(null);
     try {
-      await sendContactEmail(data);
+      await sendContactEmail({ data });
       setFormStep("success");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
