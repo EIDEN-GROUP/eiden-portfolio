@@ -12,7 +12,7 @@ const contactSchema = z.object({
 type ContactData = z.infer<typeof contactSchema>;
 
 export const sendContactEmail = createServerFn({ method: "POST" })
-  .inputValidator((input: { data: ContactData }) => contactSchema.parse(input.data))
+  .inputValidator((input) => contactSchema.parse(input))
   .handler(async ({ data }) => {
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
