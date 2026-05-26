@@ -10,6 +10,7 @@ import dmcBrandLogo from "@/assets/dmc-brand-logo.png";
 import dmcGuidelines from "@/assets/dmc-guidelines.png";
 import dmcWebDesktop from "@/assets/dmc-web-desktop.png";
 import dmcWebMobile from "@/assets/dmc-web-mobile.png";
+import educazenkidsAfter from "@/assets/educazenkids-after.png";
 import educazenkidsBefore from "@/assets/educazenkids-before.png";
 import educazenkidsLogo from "@/assets/educazenkids-logo.png";
 import educazenkidsScroll1 from "@/assets/educazenkids-scroll-1.png";
@@ -18,7 +19,6 @@ import educazenkidsDashboard from "@/assets/educazenkids-dashboard.png";
 import educazenkidsCrm from "@/assets/educazenkids-crm.png";
 import educazenkidsWebDesktop from "@/assets/educazenkids-web-desktop.png";
 import educazenkidsWebMobile from "@/assets/educazenkids-web-mobile.png";
-import educazenHero from "@/assets/educazen-hero.png";
 import medicalBayBrandLogo1 from "@/assets/medical-bay-brand-logo-1.jpg";
 import medicalBayBrandLogo2 from "@/assets/medical-bay-brand-logo-2.png";
 import medicalBayBrandLogo3 from "@/assets/medical-bay-brand-logo-3.png";
@@ -433,9 +433,9 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
         "The previous site lacked clear programme paths, psychosocial positioning, and enrolment flows. We rebuilt educazenkids.com around the brand system   accessible UI, EducaBlog, and forms parents complete with confidence.",
       beforeAfter: {
         before: educazenkidsBefore,
-        after: educazenHero,
+        after: educazenkidsAfter,
         beforeLabel: "Previous website",
-        afterLabel: "educazenkids.eiden-group.workers.dev",
+        afterLabel: "New website",
       },
       features: [
         "Clear programme & psychosocial pole pages",
