@@ -39,81 +39,67 @@ Deno.serve(async (req) => {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
-  </style>
 </head>
-<body style="margin:0;padding:0;background:#FEFDFB;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#FEFDFB;padding:48px 16px;">
+<body style="margin:0;padding:0;background:#f5f4f0;font-family:'Georgia',serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f4f0;padding:48px 16px;">
     <tr>
       <td align="center">
-        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#FFFFFF;border-radius:0;">
-
-          <!-- Top Border Accent -->
-          <tr>
-            <td style="background:linear-gradient(90deg,#0C5752 0%,#0E7A73 50%,#CFC292 100%);height:3px;"></td>
-          </tr>
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;">
 
           <!-- Header -->
           <tr>
-            <td style="background:#FEFDFB;padding:48px 40px;text-align:center;border-bottom:1px solid #E8DCC8;">
-              <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#0C5752;font-weight:600;">New Project</p>
-              <p style="margin:0;font-family:'Outfit',sans-serif;font-size:32px;font-weight:800;color:#122620;letter-spacing:-0.02em;">Inquiry Received</p>
-              <p style="margin:12px 0 0;font-family:'DM Serif Display',serif;font-style:italic;font-size:16px;color:#0E7A73;">Where chaos becomes architecture</p>
+            <td style="background:#1a2e1a;padding:36px 40px;text-align:center;">
+              <p style="margin:0;font-family:'Georgia',serif;font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:#c9a84c;">Eiden Group</p>
+              <p style="margin:8px 0 0;font-family:'Georgia',serif;font-size:22px;color:#fff;font-style:italic;font-weight:400;">New Project Inquiry</p>
             </td>
           </tr>
 
-          <!-- Sender Section -->
+          <!-- Body -->
           <tr>
-            <td style="background:#FFFFFF;padding:40px;border-bottom:1px solid #E8DCC8;">
+            <td style="background:#ffffff;padding:40px 40px 32px;">
+
+              <!-- Sender info -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+                <tr>
+                  <td style="padding-bottom:16px;border-bottom:1px solid #ece9e2;">
+                    <p style="margin:0 0 4px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:#a09a8e;font-family:Arial,sans-serif;">From</p>
+                    <p style="margin:0;font-size:18px;color:#1a2e1a;font-family:'Georgia',serif;">${name}</p>
+                    <a href="mailto:${email}" style="font-size:13px;color:#c9a84c;text-decoration:none;font-family:Arial,sans-serif;">${email}</a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Details grid -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+                <tr>
+                  <td width="50%" style="padding:0 12px 0 0;vertical-align:top;">
+                    <p style="margin:0 0 4px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:#a09a8e;font-family:Arial,sans-serif;">Company</p>
+                    <p style="margin:0;font-size:14px;color:#2d2d2d;font-family:'Georgia',serif;">${company ?? "—"}</p>
+                  </td>
+                  <td width="50%" style="padding:0 0 0 12px;vertical-align:top;">
+                    <p style="margin:0 0 4px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:#a09a8e;font-family:Arial,sans-serif;">Headcount</p>
+                    <p style="margin:0;font-size:14px;color:#2d2d2d;font-family:'Georgia',serif;">${headcount} employees</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Brief -->
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td style="border-left:3px solid #0C5752;padding-left:20px;">
-                    <p style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#0C5752;font-weight:600;">From</p>
-                    <p style="margin:0 0 4px;font-family:'Outfit',sans-serif;font-size:20px;font-weight:700;color:#122620;">${name}</p>
-                    <a href="mailto:${email}" style="font-family:'Inter',sans-serif;font-size:13px;color:#0E7A73;text-decoration:none;font-weight:500;">${email}</a>
+                  <td style="background:#f9f8f5;border-left:3px solid #c9a84c;padding:20px 24px;">
+                    <p style="margin:0 0 8px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:#a09a8e;font-family:Arial,sans-serif;">Project Brief</p>
+                    <p style="margin:0;font-size:14px;line-height:1.75;color:#2d2d2d;font-family:'Georgia',serif;font-style:italic;">${idea.replace(/\n/g, "<br/>")}</p>
                   </td>
                 </tr>
               </table>
+
             </td>
           </tr>
 
-          <!-- Details Grid with Card System -->
+          <!-- Reply CTA -->
           <tr>
-            <td style="background:#FFFFFF;padding:40px;">
-              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:0;">
-                <tr>
-                  <td width="50%" style="padding-right:16px;padding-bottom:20px;">
-                    <div style="border-top:3px solid #CFC292;padding-top:16px;">
-                      <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#122620;font-weight:600;">Company</p>
-                      <p style="margin:0;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;color:#122620;">${company ?? "—"}</p>
-                    </div>
-                  </td>
-                  <td width="50%" style="padding-left:16px;padding-bottom:20px;">
-                    <div style="border-top:3px solid #34D399;padding-top:16px;">
-                      <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#122620;font-weight:600;">Team Size</p>
-                      <p style="margin:0;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;color:#122620;">${headcount} employees</p>
-                    </div>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Project Brief Card -->
-          <tr>
-            <td style="background:#FFFFFF;padding:0 40px 40px;">
-              <div style="background:#F4EBD0;border-left:4px solid #0C5752;padding:24px;border-radius:0;">
-                <p style="margin:0 0 12px;font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#122620;font-weight:600;">Project Brief</p>
-                <p style="margin:0;font-family:'Inter',sans-serif;font-size:14px;line-height:1.8;color:#122620;font-weight:400;">${idea.replace(/\n/g, "<br/>")}</p>
-              </div>
-            </td>
-          </tr>
-
-          <!-- CTA Section -->
-          <tr>
-            <td style="background:#FFFFFF;padding:40px;text-align:center;border-top:1px solid #E8DCC8;">
-              <a href="mailto:${email}" style="display:inline-block;padding:14px 40px;background:#CFC292;color:#122620;font-family:'Outfit',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:100px;">
+            <td style="background:#ffffff;padding:0 40px 40px;text-align:center;">
+              <a href="mailto:${email}" style="display:inline-block;margin-top:8px;padding:14px 36px;background:#1a2e1a;color:#c9a84c;font-family:Arial,sans-serif;font-size:10px;letter-spacing:0.35em;text-transform:uppercase;text-decoration:none;">
                 Reply to ${name}
               </a>
             </td>
@@ -121,11 +107,8 @@ Deno.serve(async (req) => {
 
           <!-- Footer -->
           <tr>
-            <td style="background:#122620;padding:32px 40px;text-align:center;">
-              <p style="margin:0 0 8px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#CFC292;font-weight:600;">Eiden Group</p>
-              <p style="margin:0;font-family:'Inter',sans-serif;font-size:11px;color:#E8DCC8;letter-spacing:0.5px;">
-                <a href="mailto:contact@eiden-group.com" style="color:#CFC292;text-decoration:none;">contact@eiden-group.com</a> · Agadir Bay, Morocco
-              </p>
+            <td style="padding:24px 40px;text-align:center;">
+              <p style="margin:0;font-size:10px;color:#a09a8e;font-family:Arial,sans-serif;letter-spacing:0.1em;">© Eiden Group · contact@eiden-group.com</p>
             </td>
           </tr>
 
@@ -141,83 +124,54 @@ Deno.serve(async (req) => {
     await transporter.sendMail({
       from: `"Eiden Group" <${smtpUser}>`,
       to: email,
-      subject: "We received your inquiry — Eiden Group",
+      subject: "We received your inquiry",
       html: `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
-  </style>
 </head>
-<body style="margin:0;padding:0;background:#FEFDFB;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#FEFDFB;padding:48px 16px;">
+<body style="margin:0;padding:0;background:#f5f4f0;font-family:'Georgia',serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f4f0;padding:48px 16px;">
     <tr>
       <td align="center">
-        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#FFFFFF;border-radius:0;">
-
-          <!-- Top Border Accent -->
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;">
           <tr>
-            <td style="background:linear-gradient(90deg,#0C5752 0%,#0E7A73 50%,#CFC292 100%);height:3px;"></td>
-          </tr>
-
-          <!-- Header -->
-          <tr>
-            <td style="background:#122620;padding:56px 40px;text-align:center;">
-              <p style="margin:0 0 12px;font-size:40px;">✓</p>
-              <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#CFC292;font-weight:600;">Thank You</p>
-              <p style="margin:0;font-family:'Outfit',sans-serif;font-size:36px;font-weight:800;color:#FFFFFF;letter-spacing:-0.02em;">We're on it</p>
+            <td style="background:#1a2e1a;padding:36px 40px;text-align:center;">
+              <p style="margin:0;font-family:'Georgia',serif;font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:#c9a84c;">Eiden Group</p>
+              <p style="margin:8px 0 0;font-family:'Georgia',serif;font-size:22px;color:#fff;font-style:italic;font-weight:400;">Thank you</p>
             </td>
           </tr>
-
-          <!-- Content -->
           <tr>
-            <td style="background:#FFFFFF;padding:48px 40px;">
-              <p style="margin:0 0 24px;font-family:'DM Serif Display',serif;font-size:18px;font-style:italic;color:#0C5752;">Hi ${name},</p>
-              
-              <p style="margin:0 0 20px;font-family:'Inter',sans-serif;font-size:14px;line-height:1.85;color:#122620;">
-                Thank you for reaching out to EIDEN Group. We've received your inquiry and our team is already reviewing your details.
+            <td style="background:#ffffff;padding:40px 40px;">
+              <p style="margin:0 0 20px;font-family:'Georgia',serif;font-size:16px;color:#1a2e1a;">Dear ${name},</p>
+              <p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#2d2d2d;">
+                Thank you for reaching out. We have received your inquiry and will review it shortly.
               </p>
-
-              <p style="margin:0 0 32px;font-family:'Inter',sans-serif;font-size:14px;line-height:1.85;color:#122620;">
-                A member of our team will contact you within <strong style="color:#0C5752;">one business day</strong> to discuss your project and schedule your <strong style="color:#0C5752;">Hydra Analysis™</strong> session.
+              <p style="margin:0 0 24px;font-family:Arial,sans-serif;font-size:14px;line-height:1.7;color:#2d2d2d;">
+                A member of our team will contact you within one business day to schedule your
+                <strong style="color:#1a2e1a;">Hydra Analysis™</strong> session.
               </p>
-
-              <!-- Brief Recap Card -->
-              <div style="background:#F4EBD0;border-left:4px solid #0E7A73;padding:24px;margin-bottom:32px;">
-                <p style="margin:0 0 12px;font-family:'Cormorant Garamond',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#122620;font-weight:600;">Your Project Brief</p>
-                <p style="margin:0;font-family:'Inter',sans-serif;font-size:13px;line-height:1.8;color:#122620;">${idea.replace(/\n/g, "<br/>")}</p>
-              </div>
-
-              <p style="margin:0;font-family:'Inter',sans-serif;font-size:13px;color:#122620;line-height:1.85;">
-                Questions in the meantime?<br/>
-                <a href="mailto:contact@eiden-group.com" style="color:#0E7A73;text-decoration:none;font-weight:600;">Get in touch with us</a>
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+                <tr>
+                  <td style="background:#f9f8f5;border-left:3px solid #c9a84c;padding:16px 20px;">
+                    <p style="margin:0 0 4px;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:#a09a8e;font-family:Arial,sans-serif;">Your project brief</p>
+                    <p style="margin:0;font-size:13px;line-height:1.6;color:#2d2d2d;font-family:'Georgia',serif;font-style:italic;">${idea.replace(/\n/g, "<br/>")}</p>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0;font-family:Arial,sans-serif;font-size:13px;color:#a09a8e;">
+                — The Eiden Group Team<br/>
+                <a href="mailto:contact@eiden-group.com" style="color:#c9a84c;text-decoration:none;">contact@eiden-group.com</a>
               </p>
             </td>
           </tr>
-
-          <!-- Signature -->
           <tr>
-            <td style="background:#F8F3E8;padding:32px 40px;border-top:1px solid #E8DCC8;">
-              <p style="margin:0 0 4px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:#122620;">The EIDEN Group Team</p>
-              <p style="margin:0 0 12px;font-family:'Inter',sans-serif;font-size:12px;color:#0C5752;">
-                <a href="mailto:contact@eiden-group.com" style="color:#0C5752;text-decoration:none;font-weight:600;">contact@eiden-group.com</a>
-              </p>
-              <p style="margin:0;font-family:'Inter',sans-serif;font-size:11px;color:#122620;">
-                Agadir Bay, Technopole 1<br/>Bloc B, Agadir 80000
-              </p>
+            <td style="padding:24px 40px;text-align:center;">
+              <p style="margin:0;font-size:10px;color:#a09a8e;font-family:Arial,sans-serif;letter-spacing:0.1em;">© Eiden Group</p>
             </td>
           </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="background:#122620;padding:28px 40px;text-align:center;">
-              <p style="margin:0;font-family:'Inter',sans-serif;font-size:10px;color:#CFC292;letter-spacing:1px;">© EIDEN Group · Where chaos becomes architecture</p>
-            </td>
-          </tr>
-
         </table>
       </td>
     </tr>
