@@ -4,11 +4,5 @@
   "rewrites": [
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/(.*)", "destination": "/api/index" }
-  ],
-  "functions": {
-    "api/index.ts": {
-      "runtime": "@vercel/node@3",
-      "includeFiles": "dist/server/**"
-    }
-  }
+  ]
 }
