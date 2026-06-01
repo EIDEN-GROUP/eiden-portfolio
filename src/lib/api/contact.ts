@@ -17,7 +17,15 @@ export const sendContactEmail = createServerFn({ method: "POST" })
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 
-    const res = await fetch(`${supabaseUrl}/functions/v1/send-contact-email`, {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error(
+        "Contact form is not configured. Please set SUPABASE_URL and SUPABASE_ANON_KEY environment variables.",
+      );
+    }
+
+    const url = new URL("/functions/v1/send-contact-email", supabaseUrl);
+
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
