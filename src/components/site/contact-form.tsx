@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
-import { sendContactEmail } from "@/routes/api/contact";
+import { sendContactEmail } from "@/lib/api/contact";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
