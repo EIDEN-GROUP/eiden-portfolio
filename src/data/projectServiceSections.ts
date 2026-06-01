@@ -178,7 +178,13 @@ const DMC_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [
-        m( dmcGuidelines, "DMC Hospitality logo construction and guidelines", "Logo", undefined, "contain",),
+        m(
+          dmcGuidelines,
+          "DMC Hospitality logo construction and guidelines",
+          "Logo",
+          undefined,
+          "contain",
+        ),
         m(dmcBrandCard, "DMC Hospitality Morocco brand guidelines overview", "Brand"),
         m(dmcBrandLogo, "DMC Hospitality Morocco logo on door hanger", "Application"),
       ],
