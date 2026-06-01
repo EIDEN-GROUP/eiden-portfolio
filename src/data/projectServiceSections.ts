@@ -1,8 +1,8 @@
 import type { ServiceMetric } from "@/components/case-study/primitives";
 import { getProjectTheme } from "@/data/projectThemes";
-import bopassageBrandPalette from "@/assets/bopassage-brand-palette.png";
-import bopassageCover from "@/assets/bopassage-cover.png";
-import bopassageHero from "@/assets/bopassage-hero.png";
+import bopassageApplication from "@/assets/bopassage-application.png";
+import bopassageBrandIdentity from "@/assets/bopassage-brand-identity.png";
+import bopassageLogo from "@/assets/bopassage-logo.png";
 import bopassageWebDesktop from "@/assets/bopassage-web-desktop.png";
 import bopassageWebMobile from "@/assets/bopassage-web-mobile.png";
 import dmcBrandCard from "@/assets/dmc-brand-card.png";
@@ -19,8 +19,8 @@ import educazenkidsDashboard from "@/assets/educazenkids-dashboard.png";
 import educazenkidsCrm from "@/assets/educazenkids-crm.png";
 import educazenkidsWebDesktop from "@/assets/educazenkids-web-desktop.png";
 import educazenkidsWebMobile from "@/assets/educazenkids-web-mobile.png";
+import medicalBayBrand from "@/assets/medical-bay-brand.png";
 import medicalBayBrandLogo1 from "@/assets/medical-bay-brand-logo-1.jpg";
-import medicalBayBrandLogo2 from "@/assets/medical-bay-brand-logo-2.png";
 import medicalBayBrandLogo3 from "@/assets/medical-bay-brand-logo-3.png";
 import medicalBayDashboard from "@/assets/medical-bay-dashboard.png";
 import medicalBayWebDesktop from "@/assets/medical-bay-web-desktop.png";
@@ -31,8 +31,8 @@ import eidenAcademySocialAiIntegration from "@/assets/eiden-academy-social-ai-in
 import eidenAcademySocialAiTools from "@/assets/eiden-academy-social-ai-tools.png";
 import eidenAcademySocialEcommerce from "@/assets/eiden-academy-social-ecommerce.png";
 import eidenHero from "@/assets/eiden-hero.png";
-import lunjaCover from "@/assets/lunja-cover.png";
-import lunjaHero from "@/assets/lunja-hero.png";
+import lunjaApplication from "@/assets/lunja-application.png";
+import lunjaBrand from "@/assets/lunja-brand.png";
 import lunjaLogo from "@/assets/lunja-logo.png";
 
 export type ServiceLink = {
@@ -263,11 +263,18 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
           size: "clamp(1rem, 2.5vw, 1.35rem)",
         },
       ],
-      brandMediaLayout: "featured-row",
       media: [
-        m(bopassageBrandPalette, "Bô Passage logo and palette", "Logo · Palette"),
-        m(bopassageHero, "Bô Passage brand", "Brand"),
-        m(bopassageCover, "Bô Passage application", "Application"),
+        m(bopassageLogo, "Bô Passage secondary logo on cream", "Logo", undefined, "contain"),
+        m(
+          bopassageBrandIdentity,
+          "Bô Passage primary and secondary logo with signage mockup",
+          "Brand",
+        ),
+        m(
+          bopassageApplication,
+          "Bô Passage gold logo signage in café interior with brunch table setting",
+          "Application",
+        ),
       ],
       links: [
         { label: "Bô Passage Brand Book", url: "/brand-books/bopassage-brand-book.html" },
@@ -346,8 +353,16 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
       ],
       media: [
         m(lunjaLogo, "Lunja Village logo", "Logo"),
-        m(lunjaCover, "Lunja Village brand", "Brand"),
-        m(lunjaHero, "Lunja Village application", "Application"),
+        m(
+          lunjaBrand,
+          "Lunja Village brand identity board with logo, palette, and messaging",
+          "Brand",
+        ),
+        m(
+          lunjaApplication,
+          "Lunja Village hotels and resorts brand stationery and amenities mockup",
+          "Application",
+        ),
       ],
       links: [
         { label: "Website", url: "https://www.lunjavillage.com/" },
@@ -599,7 +614,11 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
       ],
       media: [
         m(medicalBayBrandLogo1, "Medical Bay logo on teal", "Logo"),
-        m(medicalBayBrandLogo2, "Medical Bay logo on ink", "Brand"),
+        m(
+          medicalBayBrand,
+          "Medical Bay brand identity board with logo variations, palette, and mockups",
+          "Brand",
+        ),
         m(medicalBayBrandLogo3, "Medical Bay logo on mist", "Application"),
       ],
       links: [
