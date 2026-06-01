@@ -28,6 +28,7 @@ import lunjaHero from "@/assets/lunja-hero.png";
 import lunjaSocial2 from "@/assets/lunja-social-2.png";
 import lunjaSocial5 from "@/assets/lunja-social-5.png";
 import lunjaSocial6 from "@/assets/lunja-social-6.png";
+import medicalBayHeroFlatlay from "@/assets/medical-bay-hero-flatlay.png";
 import medicalBayLobby from "@/assets/medical-bay-lobby.png";
 import medicalBayOffice from "@/assets/medical-bay-office.png";
 import medicalBayReception from "@/assets/medical-bay-reception.png";
@@ -340,8 +341,8 @@ const STORIES: Record<string, CinematicGalleryStory> = {
     items: [
       {
         id: "mb-hero",
-        src: medicalBayLobby,
-        alt: "Medical Bay lobby",
+        src: medicalBayHeroFlatlay,
+        alt: "Medical Bay brand flatlay with tablet and clinical tools",
         category: "Healthcare",
         title: "Medical Bay",
         description:

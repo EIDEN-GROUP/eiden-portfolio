@@ -38,6 +38,7 @@ import lunjaSocial7 from "@/assets/lunja-social-7.png";
 import medicalBayCampaignImplant from "@/assets/medical-bay-campaign-implant.png";
 import medicalBayCampaignVeneer from "@/assets/medical-bay-campaign-veneer.png";
 import medicalBayCampaignZirconia from "@/assets/medical-bay-campaign-zirconia.png";
+import medicalBayHeroFlatlay from "@/assets/medical-bay-hero-flatlay.png";
 import medicalBayLobby from "@/assets/medical-bay-lobby.png";
 import medicalBayOffice from "@/assets/medical-bay-office.png";
 import medicalBayReception from "@/assets/medical-bay-reception.png";
@@ -503,7 +504,7 @@ export const projects = [
   {
     slug: "medical-bay",
     title: "Medical Bay",
-    cover: medicalBayReception,
+    cover: medicalBayHeroFlatlay,
     detailHero: medicalBayLobby,
     summary:
       "End-to-end build of a modern medical centre brand and operating system architecture, identity, digital infrastructure, marketing, and patient experience designed as one layered system.",
