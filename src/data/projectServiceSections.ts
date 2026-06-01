@@ -21,7 +21,7 @@ import educazenkidsWebDesktop from "@/assets/educazenkids-web-desktop.png";
 import educazenkidsWebMobile from "@/assets/educazenkids-web-mobile.png";
 import medicalBayBrand from "@/assets/medical-bay-brand.png";
 import medicalBayBrandLogo1 from "@/assets/medical-bay-brand-logo-1.jpg";
-import medicalBayBrandLogo3 from "@/assets/medical-bay-brand-logo-3.png";
+import medicalBayApplication from "@/assets/medical-bay-application.png";
 import medicalBayDashboard from "@/assets/medical-bay-dashboard.png";
 import medicalBayWebDesktop from "@/assets/medical-bay-web-desktop.png";
 import medicalBayWebMobile from "@/assets/medical-bay-web-mobile.png";
@@ -619,7 +619,11 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
           "Medical Bay brand identity board with logo variations, palette, and mockups",
           "Brand",
         ),
-        m(medicalBayBrandLogo3, "Medical Bay logo on mist", "Application"),
+        m(
+          medicalBayApplication,
+          "Medical Bay brand on scrubs, stethoscope, and ID badge",
+          "Application",
+        ),
       ],
       links: [
         {
