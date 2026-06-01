@@ -13,8 +13,8 @@ import dmcWebMobile from "@/assets/dmc-web-mobile.png";
 import educazenkidsAfter from "@/assets/educazenkids-after.png";
 import educazenkidsBefore from "@/assets/educazenkids-before.png";
 import educazenkidsLogo from "@/assets/educazenkids-logo.png";
-import educazenkidsScroll1 from "@/assets/educazenkids-scroll-1.png";
-import educazenkidsScroll2 from "@/assets/educazenkids-scroll-2.png";
+import educazenkidsBrandIdentity from "@/assets/educazenkids-brand-identity.png";
+import educazenkidsApplication from "@/assets/educazenkids-application.png";
 import educazenkidsDashboard from "@/assets/educazenkids-dashboard.png";
 import educazenkidsCrm from "@/assets/educazenkids-crm.png";
 import educazenkidsWebDesktop from "@/assets/educazenkids-web-desktop.png";
@@ -178,15 +178,9 @@ const DMC_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [
-        m(
-          dmcGuidelines,
-          "DMC Hospitality logo construction and guidelines",
-          "Guidelines",
-          undefined,
-          "contain",
-        ),
+        m( dmcGuidelines, "DMC Hospitality logo construction and guidelines", "Logo", undefined, "contain",),
         m(dmcBrandCard, "DMC Hospitality Morocco brand guidelines overview", "Brand"),
-        m(dmcBrandLogo, "DMC Hospitality Morocco logo on door hanger", "Logo"),
+        m(dmcBrandLogo, "DMC Hospitality Morocco logo on door hanger", "Application"),
       ],
       links: [
         { label: "DMC Brand Book", url: "/brand-books/dmc-brand-book.html" },
@@ -267,7 +261,7 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
       media: [
         m(bopassageBrandPalette, "Bô Passage logo and palette", "Logo · Palette"),
         m(bopassageHero, "Bô Passage brand", "Brand"),
-        m(bopassageCover, "Bô Passage identity", "Identity"),
+        m(bopassageCover, "Bô Passage application", "Application"),
       ],
       links: [
         { label: "Bô Passage Brand Book", url: "/brand-books/bopassage-brand-book.html" },
@@ -347,7 +341,7 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
       media: [
         m(lunjaLogo, "Lunja Village logo", "Logo"),
         m(lunjaCover, "Lunja Village brand", "Brand"),
-        m(lunjaHero, "Lunja Village identity", "Identity"),
+        m(lunjaHero, "Lunja Village application", "Application"),
       ],
       links: [
         { label: "Website", url: "https://www.lunjavillage.com/" },
@@ -400,8 +394,8 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
       ],
       media: [
         m(educazenkidsLogo, "EducazenKids logo", "Logo"),
-        m(educazenkidsScroll1, "EducazenKids brand", "Brand"),
-        m(educazenkidsScroll2, "EducazenKids application", "Application"),
+        m(educazenkidsBrandIdentity, "EducazenKids brand identity and merchandise", "Brand"),
+        m(educazenkidsApplication, "EducazenKids outdoor banner application", "Application"),
       ],
       links: [
         { label: "EducazenKids Brand Book", url: "/brand-books/educazenkids-brand-book.html" },
@@ -507,7 +501,7 @@ const EIDEN_ACADEMY_CONFIG: ProjectServiceConfig = {
       colorLabels: ["Dark Green", "Teal", "Gold", "Cream"],
       media: [
         m(eidenAcademyBrandCarousel, "Eiden Academy crest", "Brand"),
-        m(eidenHero, "Eiden Academy brand", "Identity"),
+        m(eidenHero, "Eiden Academy brand", "Application"),
         m(eidenAcademyCover, "Eiden guidelines", "Guidelines"),
       ],
       links: [
@@ -598,9 +592,9 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [
-        m(medicalBayBrandLogo1, "Medical Bay logo on teal", "Logo · Teal"),
-        m(medicalBayBrandLogo2, "Medical Bay logo on ink", "Logo · Ink"),
-        m(medicalBayBrandLogo3, "Medical Bay logo on mist", "Logo · Mist"),
+        m(medicalBayBrandLogo1, "Medical Bay logo on teal", "Logo"),
+        m(medicalBayBrandLogo2, "Medical Bay logo on ink", "Brand"),
+        m(medicalBayBrandLogo3, "Medical Bay logo on mist", "Application"),
       ],
       links: [
         {
