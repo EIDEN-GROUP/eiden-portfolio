@@ -235,7 +235,7 @@ function BrandMediaGrid({
   layout = "mosaic",
 }: {
   items: MediaItem[];
-  layout?: "mosaic" | "featured-row";
+  layout?: "mosaic" | "featured-row" | "badge-grid";
 }) {
   if (!items.length) return null;
 
@@ -259,6 +259,61 @@ function BrandMediaGrid({
     );
   }
 
+  if (layout === "badge-grid") {
+    const centerBadge = items[0];
+    const gridItems = items.length > 4 ? items.slice(1, 5) : items.slice(0, 4);
+    const slots = Array.from(
+      { length: 4 },
+      (_, i) => gridItems[i] ?? gridItems[i % gridItems.length],
+    );
+
+    return (
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-8%" }}
+        variants={stagger}
+        className="w-full"
+      >
+        <div className="relative sm:h-[100vh] w-full overflow-hidden border border-black/10 bg-black/[0.04] ">
+          <div className="grid h-full w-full grid-cols-2 gap-px bg-black/15">
+            {slots.map((item, i) => (
+              <motion.figure
+                key={`${item.src}-${i}`}
+                variants={fadeUp}
+                className="group relative overflow-hidden bg-[#f1f1f1]"
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className={cn(
+                    "h-full w-full transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]",
+                    item.objectFit === "contain" ? "object-contain" : "object-cover",
+                  )}
+                  loading="lazy"
+                />
+              </motion.figure>
+            ))}
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <motion.div
+              variants={fadeUp}
+              className="h-20 w-20 sm:h-52 sm:w-52"
+            >
+              <img
+                src={centerBadge.src}
+                alt={centerBadge.alt}
+                className="h-full w-full rounded-full border border-black/20 object-cover shadow-lg"
+                loading="lazy"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
   const [hero, ...rest] = items;
 
   return (
@@ -275,17 +330,17 @@ function BrandMediaGrid({
       >
         <div className="aspect-[4/3] sm:aspect-auto sm:min-h-[min(52vh,28rem)]">
           <img
-            src={hero.src}
-            alt={hero.alt}
+            src={hero?.src}
+            alt={hero?.alt}
             className={cn(
               "h-full w-full transition-transform duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]",
-              hero.objectFit === "contain" ? "object-contain" : "object-cover",
+              hero?.objectFit === "contain" ? "object-contain" : "object-cover",
             )}
             loading="lazy"
           />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
-        {hero.caption ? (
+        {hero?.caption ? (
           <figcaption className="absolute bottom-0 left-0 right-0 border-t border-white/[0.08] bg-black/40 px-5 py-4 font-label text-[9px] uppercase tracking-[0.38em] text-white/75 backdrop-blur-sm">
             {hero.caption}
           </figcaption>

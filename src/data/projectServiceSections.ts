@@ -1,19 +1,25 @@
 import type { ServiceMetric } from "@/components/case-study/primitives";
 import { getProjectTheme } from "@/data/projectThemes";
-import bopassageApplication from "@/assets/bopassage-application.png";
-import bopassageBrandIdentity from "@/assets/bopassage-brand-identity.png";
-import bopassageLogo from "@/assets/bopassage-logo.png";
+import bopassageBrandBoard from "@/assets/bopassage-brand-board.png";
+import bopassageBrandCup from "@/assets/bopassage-brand-cup.png";
+import bopassageBrandLogoGreen from "@/assets/bopassage-brand-logo-green.png";
+import bopassageBrandLogoMark from "@/assets/bopassage-brand-logo-mark.png";
+import bopassageBrandSignage from "@/assets/bopassage-brand-signage.png";
 import bopassageWebDesktop from "@/assets/bopassage-web-desktop.png";
 import bopassageWebMobile from "@/assets/bopassage-web-mobile.png";
 import dmcBrandCard from "@/assets/dmc-brand-card.png";
 import dmcBrandLogo from "@/assets/dmc-brand-logo.png";
+import dmcBrandPosters from "@/assets/dmc-brand-posters.png";
+import dmcBrandUniform from "@/assets/dmc-brand-uniform.png";
 import dmcGuidelines from "@/assets/dmc-guidelines.png";
 import dmcWebDesktop from "@/assets/dmc-web-desktop.png";
 import dmcWebMobile from "@/assets/dmc-web-mobile.png";
 import educazenkidsAfter from "@/assets/educazenkids-after.png";
 import educazenkidsBefore from "@/assets/educazenkids-before.png";
 import educazenkidsLogo from "@/assets/educazenkids-logo.png";
+import educazenkidsBrandBook from "@/assets/educazenkids-brand-book.png";
 import educazenkidsBrandIdentity from "@/assets/educazenkids-brand-identity.png";
+import educazenkidsBrandLogoSite from "@/assets/educazenkids-brand-logo-site.png";
 import educazenkidsApplication from "@/assets/educazenkids-application.png";
 import educazenkidsDashboard from "@/assets/educazenkids-dashboard.png";
 import educazenkidsCrm from "@/assets/educazenkids-crm.png";
@@ -21,6 +27,8 @@ import educazenkidsWebDesktop from "@/assets/educazenkids-web-desktop.png";
 import educazenkidsWebMobile from "@/assets/educazenkids-web-mobile.png";
 import medicalBayBrand from "@/assets/medical-bay-brand.png";
 import medicalBayBrandLogo1 from "@/assets/medical-bay-brand-logo-1.jpg";
+import medicalBayBrandLogoSite from "@/assets/medical-bay-brand-logo-site.png";
+import medicalBayBrandReceptionMockup from "@/assets/medical-bay-brand-reception-mockup.png";
 import medicalBayApplication from "@/assets/medical-bay-application.png";
 import medicalBayDashboard from "@/assets/medical-bay-dashboard.png";
 import medicalBayWebDesktop from "@/assets/medical-bay-web-desktop.png";
@@ -31,8 +39,10 @@ import eidenAcademySocialAiIntegration from "@/assets/eiden-academy-social-ai-in
 import eidenAcademySocialAiTools from "@/assets/eiden-academy-social-ai-tools.png";
 import eidenAcademySocialEcommerce from "@/assets/eiden-academy-social-ecommerce.png";
 import eidenHero from "@/assets/eiden-hero.png";
-import lunjaApplication from "@/assets/lunja-application.png";
-import lunjaBrand from "@/assets/lunja-brand.png";
+import lunjaBrandBoard from "@/assets/lunja-brand-board.png";
+import lunjaBrandLogoSite from "@/assets/lunja-brand-logo-site.png";
+import lunjaBrandMockup from "@/assets/lunja-brand-mockup.png";
+import lunjaBrandTote from "@/assets/lunja-brand-tote.png";
 import lunjaLogo from "@/assets/lunja-logo.png";
 
 export type ServiceLink = {
@@ -95,7 +105,7 @@ export type ServiceSection = {
   };
   achievements?: string[];
   /** Brand identity media grid only — default is mosaic (tall left + stacked right). */
-  brandMediaLayout?: "mosaic" | "featured-row";
+  brandMediaLayout?: "mosaic" | "featured-row" | "badge-grid";
   /** CRM / dashboard panels — fixed aspect instead of tall viewport min-heights. */
   compactMedia?: boolean;
   /** Single deliverable at website mockup scale (max-w-5xl, 16/11). */
@@ -181,13 +191,32 @@ const DMC_CONFIG: ProjectServiceConfig = {
         m(
           dmcGuidelines,
           "DMC Hospitality logo construction and guidelines",
-          "Logo",
+          "Logo mark",
           undefined,
-          "contain",
+          "cover",
         ),
-        m(dmcBrandCard, "DMC Hospitality Morocco brand guidelines overview", "Brand"),
-        m(dmcBrandLogo, "DMC Hospitality Morocco logo on door hanger", "Application"),
+        m(
+          dmcBrandCard,
+          "DMC Hospitality Morocco brand guidelines overview",
+          "Brand board",
+        ),
+        m(
+          dmcBrandUniform,
+          "DMC Hospitality Morocco branded staff uniform in bar setting",
+          "Uniform",
+        ),
+        m(
+          dmcBrandLogo,
+          "DMC Hospitality Morocco logo on door hanger",
+          "Application",
+        ),
+        m(
+          dmcBrandPosters,
+          "DMC Hospitality Morocco framed poster mockups on textured wall",
+          "Collateral",
+        ),
       ],
+      brandMediaLayout: "badge-grid",
       links: [
         { label: "DMC Brand Book", url: "/brand-books/dmc-brand-book.html" },
         { label: "Website", url: "https://dmchm.com/" },
@@ -264,18 +293,35 @@ const BOPASSAGE_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [
-        m(bopassageLogo, "Bô Passage secondary logo on cream", "Logo", undefined, "contain"),
         m(
-          bopassageBrandIdentity,
-          "Bô Passage primary and secondary logo with signage mockup",
-          "Brand",
+          bopassageBrandLogoMark,
+          "Bô Passage script logo on creamy ivory background",
+          "Logo mark",
+          undefined,
+          "cover",
         ),
         m(
-          bopassageApplication,
-          "Bô Passage gold logo signage in café interior with brunch table setting",
-          "Application",
+          bopassageBrandLogoGreen,
+          "Bô Passage gold script logo on forest green",
+          "Logo",
+        ),
+        m(
+          bopassageBrandSignage,
+          "Bô Passage illuminated circular storefront signage at night",
+          "Signage",
+        ),
+        m(
+          bopassageBrandCup,
+          "Bô Passage branded takeaway cup with latte art",
+          "Packaging",
+        ),
+        m(
+          bopassageBrandBoard,
+          "Bô Passage brand mood board with palette, photography, and typography",
+          "Brand board",
         ),
       ],
+      brandMediaLayout: "badge-grid",
       links: [
         { label: "Bô Passage Brand Book", url: "/brand-books/bopassage-brand-book.html" },
         { label: "Website", url: "https://bopassage.com/" },
@@ -352,18 +398,35 @@ const LUNJA_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [
-        m(lunjaLogo, "Lunja Village logo", "Logo"),
         m(
-          lunjaBrand,
-          "Lunja Village brand identity board with logo, palette, and messaging",
-          "Brand",
+          lunjaLogo,
+          "Lunja Village logo on Keppel teal background",
+          "Logo mark",
+          undefined,
+          "cover",
         ),
         m(
-          lunjaApplication,
+          lunjaBrandBoard,
+          "Lunja Village brand identity board with logo, palette, and messaging",
+          "Brand board",
+        ),
+        m(
+          lunjaBrandMockup,
           "Lunja Village hotels and resorts brand stationery and amenities mockup",
           "Application",
         ),
+        m(
+          lunjaBrandLogoSite,
+          "Lunja Village wordmark on creamy vanilla background",
+          "Logo",
+        ),
+        m(
+          lunjaBrandTote,
+          "Lunja Village branded tote bag over pool water",
+          "Merchandise",
+        ),
       ],
+      brandMediaLayout: "badge-grid",
       links: [
         { label: "Website", url: "https://www.lunjavillage.com/" },
         { label: "Lunja Village Brand Book", url: "/brand-books/lunja-brand-book.html" },
@@ -414,10 +477,35 @@ const EDUCAZEN_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [
-        m(educazenkidsLogo, "EducazenKids logo", "Logo"),
-        m(educazenkidsBrandIdentity, "EducazenKids brand identity and merchandise", "Brand"),
-        m(educazenkidsApplication, "EducazenKids outdoor banner application", "Application"),
+        m(
+          educazenkidsLogo,
+          "EducazenKids logo with puzzle heart icon on magenta",
+          "Logo mark",
+          undefined,
+          "cover",
+        ),
+        m(
+          educazenkidsBrandLogoSite,
+          "EducazenKids primary logo lockup on magenta background",
+          "Logo",
+        ),
+        m(
+          educazenkidsBrandBook,
+          "EducazenKids brand book mockup on textured surface",
+          "Brand book",
+        ),
+        m(
+          educazenkidsBrandIdentity,
+          "EducazenKids brand identity and merchandise applications",
+          "Brand",
+        ),
+        m(
+          educazenkidsApplication,
+          "EducazenKids outdoor banner application",
+          "Signage",
+        ),
       ],
+      brandMediaLayout: "badge-grid",
       links: [
         { label: "EducazenKids Brand Book", url: "/brand-books/educazenkids-brand-book.html" },
         { label: "Website", url: "https://educazenkids.eiden-group.workers.dev/" },
@@ -525,6 +613,7 @@ const EIDEN_ACADEMY_CONFIG: ProjectServiceConfig = {
         m(eidenHero, "Eiden Academy brand", "Application"),
         m(eidenAcademyCover, "Eiden guidelines", "Guidelines"),
       ],
+      brandMediaLayout: "badge-grid",
       links: [
         { label: "Branding", url: "https://eiden-group.com/" },
         {
@@ -613,18 +702,35 @@ const MEDICAL_BAY_CONFIG: ProjectServiceConfig = {
         },
       ],
       media: [
-        m(medicalBayBrandLogo1, "Medical Bay logo on teal", "Logo"),
+        m(
+          medicalBayBrandLogo1,
+          "Medical Bay logo on teal background",
+          "Logo mark",
+          undefined,
+          "cover",
+        ),
+        m(
+          medicalBayBrandLogoSite,
+          "Medical Bay M icon logo on white background",
+          "Logo",
+        ),
         m(
           medicalBayBrand,
           "Medical Bay brand identity board with logo variations, palette, and mockups",
-          "Brand",
+          "Brand board",
         ),
         m(
           medicalBayApplication,
           "Medical Bay brand on scrubs, stethoscope, and ID badge",
           "Application",
         ),
+        m(
+          medicalBayBrandReceptionMockup,
+          "Medical Bay reception interior with marble desk and directory signage",
+          "Interior",
+        ),
       ],
+      brandMediaLayout: "badge-grid",
       links: [
         {
           label: "Medical Bay Brand Guidelines",

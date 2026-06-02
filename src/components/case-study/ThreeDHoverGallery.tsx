@@ -1,15 +1,19 @@
 import type { CinematicGalleryItem } from "@/data/projectCinematicGallery";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion, useReducedMotion, type Transition } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type Transition,
+} from "framer-motion";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Globe } from "lucide-react";
 import {
   useCallback,
   useEffect,
   useRef,
   useState,
-  type CSSProperties,
-  type KeyboardEvent,
   type ReactElement,
+  type KeyboardEvent,
 } from "react";
 
 export type ThreeDHoverGalleryTheme = {
@@ -29,6 +33,8 @@ type ThreeDHoverGalleryProps = {
   autoplayMs?: number;
   className?: string;
 };
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const springTransition = (spring: ThreeDHoverGalleryTheme["spring"]): Transition => ({
   type: "spring",
@@ -133,11 +139,13 @@ function GalleryCardOverlay({
   item,
   theme,
   visible,
+  index,
   layout = "overlay",
 }: {
   item: CinematicGalleryItem;
   theme: ThreeDHoverGalleryTheme;
   visible: boolean;
+  index: number;
   layout?: "overlay" | "inline";
 }) {
   const isOverlay = layout === "overlay";
@@ -154,92 +162,139 @@ function GalleryCardOverlay({
       {visible ? (
         <motion.div
           key={item.id}
-          initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: 16, filter: "blur(6px)" }}
-          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.06, delayChildren: 0.04 },
+            },
+          }}
           className={cn(
             "z-20 flex flex-col",
             isOverlay
-              ? "pointer-events-none absolute inset-0 justify-end p-5 sm:p-7 md:p-8"
+              ? "pointer-events-none absolute inset-0 justify-end"
               : "relative justify-start py-2 pointer-events-auto",
           )}
         >
           <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/72 to-black/35"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent"
             aria-hidden
           />
-          <p
-            className="relative font-label text-[9px] uppercase tracking-[0.48em]"
-            style={{ color: theme.accent }}
+
+          <div
+            className={cn(
+              "relative mt-auto border-t border-white/[0.1] bg-black/50 backdrop-blur-md",
+              socialCard ? "px-5 py-6 sm:px-7 sm:py-8" : "px-5 py-5 sm:px-7 sm:py-6",
+            )}
           >
-            {item.category}
-          </p>
-          <h3
-            className="relative mt-2 font-display text-xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-2xl md:text-[1.65rem]"
-            style={{ color: theme.text }}
-          >
-            {item.title}
-          </h3>
-          <p
-            className="relative mt-2 max-w-md font-editorial text-sm leading-relaxed sm:text-[14px]"
-            style={{ color: theme.text }}
-          >
-            {compactDescription}
-          </p>
-          {socialEntries.length ? (
-            <div
-              className={cn(
-                "relative mt-4 flex flex-wrap gap-2",
-                socialCard && "mt-5 justify-center gap-3 sm:gap-4",
-              )}
-            >
-              {socialEntries.map(({ id, href, label, Icon }) => (
-                <a
-                  key={id}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${label}  ${item.title}`}
-                  className={cn(
-                    "pointer-events-auto transition-opacity hover:opacity-90",
-                    socialCard
-                      ? "grid h-11 w-11 place-items-center rounded-full border sm:h-12 sm:w-12"
-                      : "inline-flex items-center gap-1.5 border px-3 py-1.5 font-label text-[8px] uppercase tracking-[0.24em]",
-                  )}
-                  style={{
-                    borderColor: theme.accent,
-                    color: theme.text,
-                    borderRadius: socialCard ? "9999px" : "2px",
-                  }}
-                >
-                  <Icon
-                    className={socialCard ? "h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" : "h-3 w-3"}
-                  />
-                  {!socialCard ? label : null}
-                </a>
-              ))}
-            </div>
-          ) : null}
-          {item.cta && !hideCta ? (
-            <motion.a
-              href={item.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.12, duration: 0.35 }}
-              className="pointer-events-auto relative mt-5 inline-flex w-fit items-center gap-2 border px-4 py-2.5 font-label text-[9px] uppercase tracking-[0.36em] transition-opacity hover:opacity-90"
-              style={{
-                borderColor: theme.accent,
-                color: theme.text,
-                borderRadius: "2px",
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 16 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease } },
               }}
+              className="flex items-center justify-between gap-3"
             >
-              {item.cta.label}
-              <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
-            </motion.a>
-          ) : null}
+              <span
+                className="inline-flex items-center gap-2 border px-2.5 py-1 font-label text-[8px] uppercase tracking-[0.42em]"
+                style={{ borderColor: theme.accent, color: theme.accent }}
+              >
+                {item.category}
+              </span>
+              <span
+                className="font-mono text-[10px] tabular-nums tracking-[0.2em]"
+                style={{ color: theme.textMuted }}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </motion.div>
+
+            <motion.h3
+              variants={{
+                hidden: { opacity: 0, y: 12 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
+              }}
+              className="mt-3 font-display text-xl font-semibold leading-[1.08] tracking-[-0.04em] sm:text-2xl"
+              style={{ color: theme.text }}
+            >
+              {item.title}
+            </motion.h3>
+
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease, delay: 0.04 } },
+              }}
+              className="mt-2 max-w-md font-editorial text-sm leading-relaxed sm:text-[15px]"
+              style={{ color: theme.textMuted }}
+            >
+              {compactDescription}
+            </motion.p>
+
+            {socialEntries.length ? (
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 8 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease } },
+                }}
+                className={cn(
+                  "mt-4 flex flex-wrap gap-2",
+                  socialCard && "mt-5 justify-center gap-3 sm:gap-4",
+                )}
+              >
+                {socialEntries.map(({ id, href, label, Icon }) => (
+                  <a
+                    key={id}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${label} — ${item.title}`}
+                    className={cn(
+                      "pointer-events-auto transition-all duration-500 hover:scale-105",
+                      socialCard
+                        ? "grid h-11 w-11 place-items-center rounded-full border sm:h-12 sm:w-12"
+                        : "inline-flex items-center gap-1.5 border px-3 py-1.5 font-label text-[8px] uppercase tracking-[0.24em]",
+                    )}
+                    style={{
+                      borderColor: theme.accent,
+                      color: theme.text,
+                      borderRadius: socialCard ? "9999px" : "2px",
+                    }}
+                  >
+                    <Icon
+                      className={
+                        socialCard ? "h-5 w-5 sm:h-[1.35rem] sm:w-[1.35rem]" : "h-3 w-3"
+                      }
+                    />
+                    {!socialCard ? label : null}
+                  </a>
+                ))}
+              </motion.div>
+            ) : null}
+
+            {item.cta && !hideCta ? (
+              <motion.a
+                href={item.cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={{
+                  hidden: { opacity: 0, y: 8 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease } },
+                }}
+                className="pointer-events-auto mt-5 inline-flex w-fit items-center gap-2 border px-4 py-2.5 font-label text-[9px] uppercase tracking-[0.36em] transition-all duration-500 hover:gap-3"
+                style={{
+                  borderColor: theme.accent,
+                  color: theme.text,
+                  borderRadius: "2px",
+                }}
+              >
+                {item.cta.label}
+                <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
+              </motion.a>
+            ) : null}
+          </div>
         </motion.div>
       ) : null}
     </AnimatePresence>
@@ -272,101 +327,198 @@ function DesktopGalleryCard({
   return (
     <motion.button
       type="button"
-      aria-label={`${item.title} â€” ${item.category}`}
+      aria-label={`${item.title} — ${item.category}`}
       aria-pressed={isActive}
       onMouseEnter={() => onActivate(index)}
       onFocus={() => onActivate(index)}
       transition={springTransition(theme.spring)}
       className={cn(
-        "group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center overflow-hidden rounded-lg shadow-[0_32px_80px_-24px_rgba(0,0,0,0.85)] outline-none [transform-style:preserve-3d]",
+        "group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center outline-none [transform-style:preserve-3d]",
         "ring-offset-2 ring-offset-black focus-visible:ring-2 focus-visible:ring-[var(--gallery-ring)]",
         isActive ? "cursor-default" : "cursor-pointer",
       )}
       style={
         {
-          width: isActive ? "min(26rem, 40vw)" : "min(19rem, 30vw)",
-          height: isActive ? "min(33rem, 68vh)" : "min(25rem, 54vh)",
-          zIndex: 30 - abs,
-          filter: isActive
-            ? "brightness(1.05) saturate(1.08)"
-            : `grayscale(${Math.min(0.65, 0.25 + abs * 0.2)}) brightness(${Math.max(0.45, 0.72 - abs * 0.12)})`,
+          width: isActive ? "min(28rem, 42vw)" : "min(20rem, 31vw)",
+          height: isActive ? "min(36rem, 72vh)" : "min(26rem, 56vh)",
+          zIndex: 40 - abs,
           "--gallery-ring": theme.accent,
         } as React.CSSProperties
       }
       animate={
         reduceMotion
-          ? { x: spread * 140, scale: isActive ? 1 : 0.94, opacity: isActive ? 1 : 0.65 }
+          ? {
+              x: spread * 140,
+              scale: isActive ? 1 : 0.94,
+              opacity: isActive ? 1 : 0.75,
+            }
           : {
-              x: offset * 118,
-              scale: isActive ? 1.06 : 0.9 - abs * 0.04,
-              rotateY: offset * -14,
-              z: isActive ? 80 : 40 - abs * 8,
+              x: offset * 124,
+              scale: isActive ? 1.04 : 0.92 - abs * 0.03,
+              rotateY: offset * -12,
+              z: isActive ? 100 : 50 - abs * 10,
+              opacity: isActive ? 1 : Math.max(0.55, 0.88 - abs * 0.14),
             }
       }
+      whileHover={!isActive ? { scale: 0.94 - abs * 0.03 + 0.02 } : undefined}
     >
-      <img
-        src={item.src}
-        alt={item.alt}
-        className="h-full w-full object-cover object-center"
-        loading="lazy"
-        decoding="async"
-        draggable={false}
-      />
+      {/* Accent glow behind active card */}
       <motion.div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/92 via-black/56 to-black/18"
-        animate={{ opacity: isActive ? 1 : 0.86 }}
+        className="pointer-events-none absolute -inset-3 rounded-xl opacity-0 blur-2xl"
+        animate={{
+          opacity: isActive ? 0.45 : 0,
+          scale: isActive ? 1 : 0.9,
+        }}
+        transition={{ duration: 0.6, ease }}
+        style={{ background: theme.accent }}
+        aria-hidden
       />
-      <GalleryCardOverlay item={item} theme={theme} visible={isActive} layout="overlay" />
+
+      <div
+        className={cn(
+          "relative h-full w-full overflow-hidden border bg-[#0a0a0a] transition-[border-color,box-shadow] duration-700",
+          isActive
+            ? "border-white/25 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.06)_inset]"
+            : "border-white/[0.12] shadow-[0_24px_60px_-28px_rgba(0,0,0,0.85)]",
+        )}
+        style={
+          isActive
+            ? { boxShadow: `0 40px 100px -30px rgba(0,0,0,0.9), 0 0 48px -12px color-mix(in srgb, ${theme.accent} 35%, transparent)` }
+            : undefined
+        }
+      >
+        <motion.img
+          src={item.src}
+          alt={item.alt}
+          className="h-full w-full object-cover object-center"
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+          animate={{ scale: isActive ? 1.03 : 1 }}
+          transition={{ duration: 1.2, ease }}
+        />
+
+        {/* Top index strip */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-center justify-between border-b border-white/[0.08] bg-black/40 px-4 py-2.5 backdrop-blur-sm sm:px-5">
+          <span
+            className="font-label text-[8px] uppercase tracking-[0.4em]"
+            style={{ color: theme.accent }}
+          >
+            {item.category}
+          </span>
+          <span
+            className="font-mono text-[10px] tabular-nums tracking-[0.18em]"
+            style={{ color: theme.textMuted }}
+          >
+            {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </span>
+        </div>
+
+        <motion.div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/20"
+          animate={{ opacity: isActive ? 0.5 : 0.75 }}
+          transition={{ duration: 0.5 }}
+        />
+
+        <GalleryCardOverlay
+          item={item}
+          theme={theme}
+          visible={isActive}
+          index={index}
+          layout="overlay"
+        />
+
+        {!isActive ? (
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 border-t border-white/[0.08] bg-black/55 px-4 py-3 backdrop-blur-sm sm:px-5 sm:py-4">
+            <p
+              className="font-display text-base font-semibold tracking-[-0.03em] sm:text-lg"
+              style={{ color: theme.text }}
+            >
+              {item.title}
+            </p>
+          </div>
+        ) : null}
+      </div>
     </motion.button>
   );
 }
 
 function MobileGalleryCard({
   item,
+  index,
+  total,
   isActive,
   theme,
 }: {
   item: CinematicGalleryItem;
+  index: number;
+  total: number;
   isActive: boolean;
   theme: ThreeDHoverGalleryTheme;
 }) {
   return (
-    <article
+    <motion.article
+      layout
+      animate={{
+        scale: isActive ? 1 : 0.96,
+        opacity: isActive ? 1 : 0.72,
+      }}
+      transition={springTransition(theme.spring)}
       className={cn(
-        "snap-center shrink-0 overflow-hidden rounded-lg shadow-[0_24px_60px_-20px_rgba(0,0,0,0.9)] transition-[filter,transform] duration-500 [touch-action:pan-x]",
-        isActive ? "scale-100" : "scale-[0.97] opacity-80",
+        "snap-center shrink-0 overflow-hidden border bg-[#0a0a0a] transition-shadow duration-500",
+        isActive
+          ? "border-white/25 shadow-[0_28px_70px_-24px_rgba(0,0,0,0.9)]"
+          : "border-white/[0.1] shadow-[0_16px_40px_-20px_rgba(0,0,0,0.8)]",
       )}
       style={{
-        width: "min(85vw, 22rem)",
-        filter: isActive ? "brightness(1.02)" : "grayscale(0.5) brightness(0.7)",
+        width: "min(84vw, 22.5rem)",
+        ...(isActive
+          ? {
+              boxShadow: `0 28px 70px -24px rgba(0,0,0,0.9), 0 0 40px -14px color-mix(in srgb, ${theme.accent} 30%, transparent)`,
+            }
+          : {}),
       }}
     >
       <div className="relative block w-full text-left">
         <div className="relative aspect-[4/5] w-full overflow-hidden">
-          <img
+          <motion.img
             src={item.src}
             alt={item.alt}
             className="h-full w-full object-cover"
             loading="lazy"
             decoding="async"
             draggable={false}
+            animate={{ scale: isActive ? 1.04 : 1 }}
+            transition={{ duration: 0.9, ease }}
           />
-          <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"
-            aria-hidden
-          />
+
+          <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between border-b border-white/[0.08] bg-black/45 px-4 py-2 backdrop-blur-sm">
+            <span
+              className="font-label text-[8px] uppercase tracking-[0.38em]"
+              style={{ color: theme.accent }}
+            >
+              {item.category}
+            </span>
+            <span
+              className="font-mono text-[9px] tabular-nums tracking-[0.16em]"
+              style={{ color: theme.textMuted }}
+            >
+              {String(index + 1).padStart(2, "0")}/{String(total).padStart(2, "0")}
+            </span>
+          </div>
+
           {isActive ? (
-            <GalleryCardOverlay item={item} theme={theme} visible layout="overlay" />
+            <GalleryCardOverlay
+              item={item}
+              theme={theme}
+              visible
+              index={index}
+              layout="overlay"
+            />
           ) : (
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 border-t border-white/[0.08] bg-black/50 px-4 py-3 backdrop-blur-sm">
               <p
-                className="font-label text-[8px] uppercase tracking-[0.4em]"
-                style={{ color: theme.accent }}
-              >
-                {item.category}
-              </p>
-              <p
-                className="mt-1 font-display text-lg font-semibold tracking-[-0.03em]"
+                className="font-display text-base font-semibold tracking-[-0.03em]"
                 style={{ color: theme.text }}
               >
                 {item.title}
@@ -375,7 +527,7 @@ function MobileGalleryCard({
           )}
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -390,10 +542,36 @@ export function ThreeDHoverGallery({
   const isMobile = useMediaQuery("(max-width: 1023px)");
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [swipeHintDismissed, setSwipeHintDismissed] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const mobileScrollerRef = useRef<HTMLDivElement>(null);
 
   const count = items.length;
+
+  const dismissSwipeHint = useCallback(() => {
+    setSwipeHintDismissed(true);
+  }, []);
+
+  const scrollToIndex = useCallback(
+    (idx: number) => {
+      const el = mobileScrollerRef.current;
+      if (!el) {
+        setActiveIndex(idx);
+        return;
+      }
+      const card = el.querySelector<HTMLElement>("[data-cinematic-card]");
+      if (!card) {
+        setActiveIndex(idx);
+        return;
+      }
+      const gap = 16;
+      const w = card.offsetWidth + gap;
+      el.scrollTo({ left: idx * w, behavior: reduceMotion ? "auto" : "smooth" });
+      setActiveIndex(idx);
+      dismissSwipeHint();
+    },
+    [dismissSwipeHint, reduceMotion],
+  );
 
   const syncActiveFromScroll = useCallback(() => {
     const el = mobileScrollerRef.current;
@@ -404,13 +582,18 @@ export function ThreeDHoverGallery({
     const w = card.offsetWidth + gap;
     const idx = Math.round(el.scrollLeft / w);
     if (idx >= 0 && idx < count) setActiveIndex(idx);
-  }, [count]);
+    dismissSwipeHint();
+  }, [count, dismissSwipeHint]);
 
   const go = useCallback(
     (dir: -1 | 1) => {
+      if (isMobile) {
+        scrollToIndex((activeIndex + dir + count) % count);
+        return;
+      }
       setActiveIndex((i) => (i + dir + count) % count);
     },
-    [count],
+    [activeIndex, count, isMobile, scrollToIndex],
   );
 
   useEffect(() => {
@@ -447,19 +630,32 @@ export function ThreeDHoverGallery({
       className={cn("relative outline-none", className)}
     >
       <motion.div
-        className="relative z-10 flex flex-col justify-start px-[max(1rem,env(safe-area-inset-left))] py-8 pr-[max(1rem,env(safe-area-inset-right))] sm:py-10 lg:min-h-[min(92svh,56rem)] lg:justify-center lg:px-12 lg:py-24"
+        className="relative z-10 flex flex-col justify-start px-[max(1rem,env(safe-area-inset-left))] py-8 pr-[max(1rem,env(safe-area-inset-right))] sm:py-10 lg:min-h-[min(92svh,58rem)] lg:justify-center lg:px-12 lg:py-20"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.9, ease }}
       >
         {!isMobile ? (
           <>
             <motion.div
-              className="relative mx-auto w-full max-w-6xl [perspective:1400px]"
+              className="relative mx-auto w-full max-w-6xl [perspective:1600px]"
               style={{ transformStyle: "preserve-3d" }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.1, ease }}
             >
-              <div className="relative mx-auto h-[min(72vh,42rem)] w-full max-w-6xl">
+              {/* Ambient backdrop */}
+              <div
+                className="pointer-events-none absolute left-1/2 top-1/2 h-[min(50vh,24rem)] w-[min(90%,42rem)] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-3xl"
+                style={{
+                  background: `radial-gradient(ellipse at center, color-mix(in srgb, ${theme.accent} 40%, transparent), transparent 70%)`,
+                }}
+                aria-hidden
+              />
+
+              <div className="relative mx-auto h-[min(76vh,44rem)] w-full max-w-6xl">
                 {items.map((item, i) => (
                   <DesktopGalleryCard
                     key={item.id}
@@ -475,69 +671,198 @@ export function ThreeDHoverGallery({
               </div>
             </motion.div>
 
-            <div className="mx-auto mt-10 flex max-w-5xl items-center justify-between gap-4">
+            <motion.div
+              className="mx-auto mt-10 flex max-w-5xl items-center justify-between gap-4"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2, ease }}
+            >
               <div className="flex items-center gap-2">
                 {items.map((_, i) => (
-                  <button
+                  <motion.button
                     key={i}
                     type="button"
                     aria-label={`Slide ${i + 1}`}
                     onClick={() => setActiveIndex(i)}
-                    className="h-1.5 rounded-full transition-all duration-500"
+                    animate={{
+                      width: i === activeIndex ? 32 : 8,
+                      opacity: i === activeIndex ? 1 : 0.45,
+                    }}
+                    transition={{ duration: 0.45, ease }}
+                    className="h-1.5 rounded-full"
                     style={{
-                      width: i === activeIndex ? 28 : 8,
                       background: i === activeIndex ? theme.accent : theme.border,
-                      opacity: i === activeIndex ? 1 : 0.5,
                     }}
                   />
                 ))}
               </div>
               <div className="flex items-center gap-2">
-                <button
+                <motion.button
                   type="button"
                   aria-label="Previous slide"
                   onClick={() => go(-1)}
-                  className="grid h-10 w-10 place-items-center rounded-full border transition-opacity hover:opacity-100"
-                  style={{ borderColor: theme.border, color: theme.textMuted, opacity: 0.7 }}
+                  whileHover={{ scale: 1.06 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={springTransition(theme.spring)}
+                  className="grid h-11 w-11 place-items-center rounded-full border bg-white/[0.03] transition-colors hover:bg-white/[0.06]"
+                  style={{ borderColor: theme.border, color: theme.text }}
                 >
                   <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                   type="button"
                   aria-label="Next slide"
                   onClick={() => go(1)}
-                  className="grid h-10 w-10 place-items-center rounded-full border transition-opacity hover:opacity-100"
-                  style={{ borderColor: theme.border, color: theme.textMuted, opacity: 0.7 }}
+                  whileHover={{ scale: 1.06 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={springTransition(theme.spring)}
+                  className="grid h-11 w-11 place-items-center rounded-full border bg-white/[0.03] transition-colors hover:bg-white/[0.06]"
+                  style={{ borderColor: theme.border, color: theme.text }}
                 >
                   <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
-                </button>
-                <span
-                  className="hidden font-label text-[8px] uppercase tracking-[0.42em] sm:inline"
-                  style={{ color: theme.textMuted }}
-                >
-                  <ArrowLeft className="mr-1 inline h-3 w-3 opacity-50" strokeWidth={1.5} />
-                  Arrow keys
-                  <ArrowRight className="ml-1 inline h-3 w-3 opacity-50" strokeWidth={1.5} />
-                </span>
+                </motion.button>
+               
               </div>
-            </div>
+            </motion.div>
           </>
         ) : (
-          <>
+          <div className="relative">
+            {count > 1 ? (
+              <>
+                {activeIndex > 0 ? (
+                  <div
+                    className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6= from-black/55 to-transparent sm:w-8"
+                    aria-hidden
+                  />
+                ) : null}
+                {activeIndex < count - 1 ? (
+                  <div
+                    className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 from-black/65 to-transparent sm:w-12"
+                    aria-hidden
+                  />
+                ) : null}
+
+                <AnimatePresence>
+                  {!swipeHintDismissed && activeIndex < count - 1 ? (
+                    <motion.div
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -4 }}
+                      transition={{ duration: 0.45, ease }}
+                      className="pointer-events-none absolute inset-x-0 top-[42%] z-20 flex justify-end px-5 sm:px-6"
+                      aria-hidden
+                    >
+                      <motion.div
+                        animate={reduceMotion ? undefined : { x: [0, 7, 0] }}
+                        transition={
+                          reduceMotion
+                            ? undefined
+                            : { repeat: Infinity, duration: 1.6, ease: "easeInOut" }
+                        }
+                        className="flex items-center gap-1.5 rounded-full border border-white/15 bg-black/75 px-3 py-1.5 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.8)] backdrop-blur-md"
+                      >
+                        <span
+                          className="font-label text-[8px] uppercase tracking-[0.34em]"
+                          style={{ color: theme.textMuted }}
+                        >
+                          Swipe
+                        </span>
+                        <ChevronRight className="h-3 w-3" style={{ color: theme.accent }} />
+                      </motion.div>
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
+              </>
+            ) : null}
+
             <div
               ref={mobileScrollerRef}
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Visual story slides — swipe horizontally to browse"
               data-lenis-prevent
               data-lenis-prevent-touch
               onScroll={syncActiveFromScroll}
-              className="-mx-[max(1rem,env(safe-area-inset-left))] flex cursor-grab gap-4 overflow-x-auto overscroll-x-contain px-[max(1rem,env(safe-area-inset-left))] pb-4 pr-[max(1rem,env(safe-area-inset-right))] scroll-px-[max(1rem,env(safe-area-inset-left))] snap-x snap-proximity scrollbar-none [-webkit-overflow-scrolling:touch] [touch-action:pan-x] active:cursor-grabbing"
+              onTouchStart={dismissSwipeHint}
+              className="-mx-[max(1rem,env(safe-area-inset-left))] flex cursor-grab gap-4 overflow-x-auto overscroll-x-contain px-[max(1rem,env(safe-area-inset-left))] pb-2 pr-[max(1rem,env(safe-area-inset-right))] scroll-px-[max(1rem,env(safe-area-inset-left))] snap-x snap-mandatory scrollbar-none [-webkit-overflow-scrolling:touch] [touch-action:pan-x] active:cursor-grabbing"
             >
               {items.map((item, i) => (
                 <div key={item.id} data-cinematic-card className="snap-center shrink-0">
-                  <MobileGalleryCard item={item} isActive={i === activeIndex} theme={theme} />
+                  <MobileGalleryCard
+                    item={item}
+                    index={i}
+                    total={count}
+                    isActive={i === activeIndex}
+                    theme={theme}
+                  />
                 </div>
               ))}
             </div>
-          </>
+
+            {count > 1 ? (
+              <motion.div
+                className="mt-5 flex items-center justify-between gap-4 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease }}
+              >
+                <div className="flex items-center gap-2">
+                  {items.map((_, i) => (
+                    <motion.button
+                      key={i}
+                      type="button"
+                      aria-label={`Go to slide ${i + 1} of ${count}`}
+                      aria-current={i === activeIndex ? "true" : undefined}
+                      onClick={() => scrollToIndex(i)}
+                      animate={{
+                        width: i === activeIndex ? 28 : 8,
+                        opacity: i === activeIndex ? 1 : 0.45,
+                      }}
+                      transition={{ duration: 0.45, ease }}
+                      className="h-1.5 rounded-full"
+                      style={{
+                        background: i === activeIndex ? theme.accent : theme.border,
+                      }}
+                    />
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <motion.button
+                    type="button"
+                    aria-label="Previous slide"
+                    onClick={() => go(-1)}
+                    whileTap={{ scale: 0.96 }}
+                    transition={springTransition(theme.spring)}
+                    className="grid h-10 w-10 place-items-center rounded-full border bg-white/[0.03] transition-colors active:bg-white/[0.08]"
+                    style={{ borderColor: theme.border, color: theme.text }}
+                  >
+                    <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
+                  </motion.button>
+                  <span
+                    className="min-w-[3.25rem] text-center font-mono text-[10px] tabular-nums tracking-[0.18em]"
+                    style={{ color: theme.textMuted }}
+                    aria-live="polite"
+                  >
+                    {String(activeIndex + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
+                  </span>
+                  <motion.button
+                    type="button"
+                    aria-label="Next slide"
+                    onClick={() => go(1)}
+                    whileTap={{ scale: 0.96 }}
+                    transition={springTransition(theme.spring)}
+                    className="grid h-10 w-10 place-items-center rounded-full border bg-white/[0.03] transition-colors active:bg-white/[0.08]"
+                    style={{ borderColor: theme.border, color: theme.text }}
+                  >
+                    <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
+                  </motion.button>
+                </div>
+              </motion.div>
+            ) : null}
+          </div>
         )}
       </motion.div>
     </section>

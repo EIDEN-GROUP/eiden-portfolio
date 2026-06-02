@@ -154,12 +154,20 @@ export function ProjectCinematicGallerySection({ project }: { project: Project }
     >
       <div className="mx-auto max-w-7xl px-[max(1rem,env(safe-area-inset-left))] pb-4 pt-10 pr-[max(1rem,env(safe-area-inset-right))] sm:pb-6 sm:pt-14 lg:px-12 lg:pt-20">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-8%" }}
-          transition={{ duration: 0.85, ease: theme.motion.ease }}
+          transition={{ duration: 0.9, ease: theme.motion.ease }}
           className="max-w-3xl"
         >
+          <motion.div
+            className="mb-6 h-px max-w-[4rem] origin-left"
+            style={{ background: theme.colors.accent }}
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: theme.motion.ease }}
+          />
           <p
             className="font-label text-[9px] uppercase tracking-[0.52em]"
             style={{ color: theme.colors.accent }}

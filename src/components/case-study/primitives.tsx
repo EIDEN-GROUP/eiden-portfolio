@@ -593,7 +593,7 @@ export function DeviceMockupPair({
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 1, delay: 0.2, ease }}
         className={cn(
-          "pointer-events-none absolute z-10 shadow-2xl",
+          "pointer-events-none absolute z-10",
           precomposed
             ? "-bottom-4 right-[max(1rem,env(safe-area-inset-right))] w-[32%] max-w-[9.5rem] sm:-bottom-8 sm:right-10 sm:max-w-[11rem]"
             : "-bottom-6 right-[max(1.5rem,env(safe-area-inset-right))] w-[28%] max-w-[11rem] overflow-hidden border border-white/15 sm:-bottom-10 sm:right-12 sm:max-w-[13rem]",
