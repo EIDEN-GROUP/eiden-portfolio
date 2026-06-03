@@ -9,7 +9,7 @@ import bopassageWebDesktop from "@/assets/bopassage-web-desktop.png";
 import bopassageWebMobile from "@/assets/bopassage-web-mobile.png";
 import dmcBrandCard from "@/assets/dmc-brand-card.png";
 import dmcBrandLogo from "@/assets/dmc-brand-logo.png";
-import dmcBrandPosters from "@/assets/dmc-brand-posters.png";
+import dmcBrandLogoMark from "@/assets/dmc-brand-logo-mark.png";
 import dmcBrandUniform from "@/assets/dmc-brand-uniform.png";
 import dmcGuidelines from "@/assets/dmc-guidelines.png";
 import dmcWebDesktop from "@/assets/dmc-web-desktop.png";
@@ -189,8 +189,8 @@ const DMC_CONFIG: ProjectServiceConfig = {
       ],
       media: [
         m(
-          dmcGuidelines,
-          "DMC Hospitality logo construction and guidelines",
+          dmcBrandLogoMark,
+          "DMC Hospitality Morocco logo on forest green background",
           "Logo mark",
           undefined,
           "cover",
@@ -202,7 +202,7 @@ const DMC_CONFIG: ProjectServiceConfig = {
         ),
         m(
           dmcBrandUniform,
-          "DMC Hospitality Morocco branded staff uniform in bar setting",
+          "DMC Hospitality Morocco logo embroidered on hospitality uniform",
           "Uniform",
         ),
         m(
@@ -211,9 +211,11 @@ const DMC_CONFIG: ProjectServiceConfig = {
           "Application",
         ),
         m(
-          dmcBrandPosters,
-          "DMC Hospitality Morocco framed poster mockups on textured wall",
-          "Collateral",
+          dmcGuidelines,
+          "DMC Hospitality logo construction grid on black",
+          "Logo",
+          undefined,
+          "cover",
         ),
       ],
       brandMediaLayout: "badge-grid",

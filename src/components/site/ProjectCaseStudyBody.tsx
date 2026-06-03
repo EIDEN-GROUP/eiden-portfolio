@@ -1,4 +1,5 @@
 import type { CaseStudyGalleryFace, CaseStudyReview } from "@/data/projectCaseStudy";
+import { caseStudyContainer } from "@/components/case-study/primitives";
 import { useProjectTheme } from "@/components/case-study/projectThemeContext";
 import { ProjectCinematicGallerySection } from "@/components/case-study/ProjectCinematicGallerySection";
 import { ProjectServicesShowcase } from "@/components/case-study/ProjectServicesShowcase";
@@ -62,41 +63,48 @@ function BandHeader({
 
   return (
     <div
-      className="flex w-full flex-col gap-6 border-b px-[max(1rem,env(safe-area-inset-left))] py-7 sm:flex-row sm:items-end sm:gap-0 sm:px-8 sm:py-8"
+      className="w-full border-b"
       style={{
         borderColor,
         ...(dark ? { background: "#050505" } : {}),
       }}
     >
-      <p
+      <div
         className={cn(
-          "font-display text-xs font-normal leading-[150%] tracking-[-0.03em]",
-          centerAlign === "center" && "flex-1",
+          caseStudyContainer,
+          "flex flex-col gap-6 py-7 sm:flex-row sm:items-end sm:gap-0 sm:py-8",
         )}
-        style={{ color: mutedColor }}
       >
-        {left}
-      </p>
-      <p
-        className={cn(
-          "font-display font-normal tracking-[-0.03em]",
-          centerAlign === "center"
-            ? "mx-auto max-w-[min(100%,44rem)] flex-[2] text-center text-pretty"
-            : "mx-auto text-center",
-          centerWide
-            ? "text-[15px] leading-[1.45] sm:max-w-[min(100%,44rem)] sm:text-[17px] sm:leading-[1.5]"
-            : "text-xl leading-none tracking-[-0.05em] sm:text-2xl",
-        )}
-        style={{ color: textColor, textAlign: centerAlign }}
-      >
-        {center}
-      </p>
-      <p
-        className="flex-1 text-left font-display text-xs font-normal leading-[150%] tracking-[-0.03em] sm:text-right"
-        style={{ color: mutedColor }}
-      >
-        {right}
-      </p>
+        <p
+          className={cn(
+            "font-display text-xs font-normal leading-[150%] tracking-[-0.03em]",
+            centerAlign === "center" && "flex-1",
+          )}
+          style={{ color: mutedColor }}
+        >
+          {left}
+        </p>
+        <p
+          className={cn(
+            "font-display font-normal tracking-[-0.03em]",
+            centerAlign === "center"
+              ? "mx-auto max-w-[min(100%,44rem)] flex-[2] text-center text-pretty"
+              : "flex-[2] text-pretty",
+            centerWide
+              ? "text-[15px] leading-[1.45] sm:max-w-none sm:text-[17px] sm:leading-[1.5]"
+              : "text-xl leading-none tracking-[-0.05em] sm:text-2xl",
+          )}
+          style={{ color: textColor, textAlign: centerAlign }}
+        >
+          {center}
+        </p>
+        <p
+          className="shrink-0 text-left font-display text-xs font-normal leading-[150%] tracking-[-0.03em] sm:min-w-[5.5rem] sm:text-right"
+          style={{ color: mutedColor }}
+        >
+          {right}
+        </p>
+      </div>
     </div>
   );
 }

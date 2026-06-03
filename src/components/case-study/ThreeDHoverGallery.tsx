@@ -41,6 +41,34 @@ const springTransition = (spring: ThreeDHoverGalleryTheme["spring"]): Transition
   ...spring,
 });
 
+/** Narrow ellipse under the card — shadow reads at the bottom only, not on the sides. */
+function GalleryCardBottomShadow({
+  isActive,
+  accent,
+}: {
+  isActive: boolean;
+  accent: string;
+}) {
+  return (
+    <>
+      <div
+        aria-hidden
+        className={cn(
+          "pointer-events-none absolute -bottom-1.5 left-[18%] right-[18%] z-0 h-1.5 rounded-[100%] blur-[3px] transition-opacity duration-500",
+          isActive ? "bg-black/50" : "bg-black/40",
+        )}
+      />
+      {isActive ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-1 left-[30%] right-[30%] z-0 h-1 rounded-[100%] blur-[5px] opacity-30"
+          style={{ background: accent }}
+        />
+      ) : null}
+    </>
+  );
+}
+
 type SocialEntry = {
   id: string;
   href: string;
@@ -333,7 +361,7 @@ function DesktopGalleryCard({
       onFocus={() => onActivate(index)}
       transition={springTransition(theme.spring)}
       className={cn(
-        "group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center outline-none [transform-style:preserve-3d]",
+        "group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center overflow-visible outline-none [transform-style:preserve-3d]",
         "ring-offset-2 ring-offset-black focus-visible:ring-2 focus-visible:ring-[var(--gallery-ring)]",
         isActive ? "cursor-default" : "cursor-pointer",
       )}
@@ -362,31 +390,13 @@ function DesktopGalleryCard({
       }
       whileHover={!isActive ? { scale: 0.94 - abs * 0.03 + 0.02 } : undefined}
     >
-      {/* Accent glow behind active card */}
-      <motion.div
-        className="pointer-events-none absolute -inset-3 rounded-xl opacity-0 blur-2xl"
-        animate={{
-          opacity: isActive ? 0.45 : 0,
-          scale: isActive ? 1 : 0.9,
-        }}
-        transition={{ duration: 0.6, ease }}
-        style={{ background: theme.accent }}
-        aria-hidden
-      />
-
-      <div
-        className={cn(
-          "relative h-full w-full overflow-hidden border bg-[#0a0a0a] transition-[border-color,box-shadow] duration-700",
-          isActive
-            ? "border-white/25 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9),0_0_0_1px_rgba(255,255,255,0.06)_inset]"
-            : "border-white/[0.12] shadow-[0_24px_60px_-28px_rgba(0,0,0,0.85)]",
-        )}
-        style={
-          isActive
-            ? { boxShadow: `0 40px 100px -30px rgba(0,0,0,0.9), 0 0 48px -12px color-mix(in srgb, ${theme.accent} 35%, transparent)` }
-            : undefined
-        }
-      >
+      <div className="relative h-full w-full">
+        <div
+          className={cn(
+            "relative z-[1] h-full w-full overflow-hidden border bg-[#0a0a0a] transition-[border-color] duration-700",
+            isActive ? "border-white/25" : "border-white/[0.12]",
+          )}
+        >
         <motion.img
           src={item.src}
           alt={item.alt}
@@ -438,6 +448,8 @@ function DesktopGalleryCard({
             </p>
           </div>
         ) : null}
+        </div>
+        <GalleryCardBottomShadow isActive={isActive} accent={theme.accent} />
       </div>
     </motion.button>
   );
@@ -464,22 +476,16 @@ function MobileGalleryCard({
         opacity: isActive ? 1 : 0.72,
       }}
       transition={springTransition(theme.spring)}
-      className={cn(
-        "snap-center shrink-0 overflow-hidden border bg-[#0a0a0a] transition-shadow duration-500",
-        isActive
-          ? "border-white/25 shadow-[0_28px_70px_-24px_rgba(0,0,0,0.9)]"
-          : "border-white/[0.1] shadow-[0_16px_40px_-20px_rgba(0,0,0,0.8)]",
-      )}
-      style={{
-        width: "min(84vw, 22.5rem)",
-        ...(isActive
-          ? {
-              boxShadow: `0 28px 70px -24px rgba(0,0,0,0.9), 0 0 40px -14px color-mix(in srgb, ${theme.accent} 30%, transparent)`,
-            }
-          : {}),
-      }}
+      className="relative snap-center shrink-0 overflow-visible"
+      style={{ width: "min(84vw, 22.5rem)" }}
     >
-      <div className="relative block w-full text-left">
+      <div className="relative w-full">
+        <div
+          className={cn(
+            "relative z-[1] block w-full overflow-hidden border bg-[#0a0a0a] text-left transition-[border-color] duration-500",
+            isActive ? "border-white/25" : "border-white/[0.1]",
+          )}
+        >
         <div className="relative aspect-[4/5] w-full overflow-hidden">
           <motion.img
             src={item.src}
@@ -526,6 +532,8 @@ function MobileGalleryCard({
             </div>
           )}
         </div>
+        </div>
+        <GalleryCardBottomShadow isActive={isActive} accent={theme.accent} />
       </div>
     </motion.article>
   );

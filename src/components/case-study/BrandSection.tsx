@@ -1,11 +1,19 @@
 import type { ServiceSection } from "@/data/projectServiceSections";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
+import { ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useCallback, useEffect, useId, useState, type MouseEvent } from "react";
+import { A11y, Keyboard, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { fadeUp, stagger } from "./motion";
-import { Reveal, type MediaItem } from "./primitives";
+import { caseStudyContainer, Reveal, type MediaItem } from "./primitives";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+const BRAND_MEDIA_SLOT_LABELS = ["Brand", "Application", "Application", "Guideline"] as const;
 
 function BrandPaletteGrid({
   colors,
@@ -200,6 +208,298 @@ function BrandBookLink({
   );
 }
 
+function BrandMediaBadgeGridLightbox({
+  items,
+  initialIndex,
+  onClose,
+}: {
+  items: MediaItem[];
+  initialIndex: number;
+  onClose: () => void;
+}) {
+  const titleId = useId();
+  const uid = useId().replace(/:/g, "");
+  const prevClass = `brand-media-prev-${uid}`;
+  const nextClass = `brand-media-next-${uid}`;
+  const paginationClass = `brand-media-pagination-${uid}`;
+
+  useEffect(() => {
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose]);
+
+  return (
+    <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
+      className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35, ease }}
+    >
+      <button
+        type="button"
+        aria-label="Close gallery"
+        className="absolute inset-0 bg-black/88 backdrop-blur-md"
+        onClick={onClose}
+      />
+
+      <motion.div
+        className="relative z-10 flex w-full max-w-6xl flex-col"
+        initial={{ opacity: 0, y: 16, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 12, scale: 0.98 }}
+        transition={{ duration: 0.4, ease }}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="mb-4 flex items-center justify-between gap-4 px-1">
+          <p
+            id={titleId}
+            className="font-label text-[9px] uppercase tracking-[0.42em] text-white/55"
+          >
+            Brand applications
+          </p>
+          <button
+            type="button"
+            aria-label="Close gallery"
+            onClick={onClose}
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 text-white/80 transition-colors duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="relative overflow-hidden rounded-sm border border-white/10 bg-[#0a0a0a]/95 shadow-2xl">
+          <Swiper
+            modules={[Navigation, Pagination, Keyboard, A11y]}
+            initialSlide={initialIndex}
+            loop
+            slidesPerView={1}
+            spaceBetween={0}
+            speed={520}
+            resistanceRatio={0.82}
+            touchRatio={1}
+            threshold={8}
+            longSwipesRatio={0.35}
+            keyboard={{ enabled: true }}
+            navigation={{
+              prevEl: `.${prevClass}`,
+              nextEl: `.${nextClass}`,
+            }}
+            pagination={{
+              clickable: true,
+              el: `.${paginationClass}`,
+              bulletClass:
+                "brand-media-bullet !inline-block !h-1.5 !w-1.5 !rounded-full !bg-white/25 !opacity-100 !mx-1 !transition-all !duration-300",
+              bulletActiveClass: "!w-6 !bg-white/90",
+            }}
+            className="brand-media-lightbox-swiper w-full"
+          >
+            {items.map((item) => (
+              <SwiperSlide key={item.src}>
+                <div className="flex min-h-[min(72vh,36rem)] flex-col items-center justify-center px-4 py-8 sm:min-h-[min(78vh,40rem)] sm:px-10 sm:py-10">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className={cn(
+                      "max-h-[min(62vh,32rem)] w-full max-w-full select-none",
+                      item.objectFit === "contain" ? "object-contain" : "object-contain",
+                    )}
+                    draggable={false}
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <button
+            type="button"
+            aria-label="Previous image"
+            className={cn(
+              prevClass,
+              "absolute left-3 top-1/2 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-black/50 text-white/80 backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-black/70 hover:text-white sm:left-5 sm:h-11 sm:w-11",
+            )}
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next image"
+            className={cn(
+              nextClass,
+              "absolute right-3 top-1/2 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-black/50 text-white/80 backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-black/70 hover:text-white sm:right-5 sm:h-11 sm:w-11",
+            )}
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+
+          <div
+            className={cn(
+              paginationClass,
+              "absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-1 sm:bottom-5",
+            )}
+          />
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function BrandMediaZoomCursor({
+  x,
+  y,
+  visible,
+}: {
+  x: ReturnType<typeof useSpring>;
+  y: ReturnType<typeof useSpring>;
+  visible: boolean;
+}) {
+  return (
+    <AnimatePresence>
+      {visible ? (
+        <motion.div
+          className="pointer-events-none fixed top-0 left-0 z-[80] hidden h-20 w-20 items-center justify-center rounded-full border border-gold/55 bg-gold/28 glow-gold backdrop-blur-md [@media(hover:hover)_and_(pointer:fine)]:flex"
+          style={{ x, y, translateX: "-50%", translateY: "-50%" }}
+          initial={{ opacity: 0, scale: 0.55 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.55 }}
+          transition={{ duration: 0.22, ease }}
+        >
+          <span className="font-semibold text-[12px] uppercase tracking-[0.34em] text-gold/85">
+            ZOOM
+          </span>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
+  );
+}
+
+function BrandMediaBadgeGrid({
+  centerBadge,
+  slots,
+}: {
+  centerBadge: MediaItem;
+  slots: MediaItem[];
+}) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [zoomCursorVisible, setZoomCursorVisible] = useState(false);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  const smoothCursorX = useSpring(cursorX, { stiffness: 420, damping: 38, mass: 0.35 });
+  const smoothCursorY = useSpring(cursorY, { stiffness: 420, damping: 38, mass: 0.35 });
+
+  const handleGridMouseMove = useCallback(
+    (event: MouseEvent<HTMLDivElement>) => {
+      const slot = (event.target as HTMLElement).closest("[data-brand-zoom-slot]");
+      if (!slot) {
+        setZoomCursorVisible(false);
+        return;
+      }
+      setZoomCursorVisible(true);
+      cursorX.set(event.clientX);
+      cursorY.set(event.clientY);
+    },
+    [cursorX, cursorY],
+  );
+
+  const hideZoomCursor = useCallback(() => setZoomCursorVisible(false), []);
+
+  return (
+    <>
+      <BrandMediaZoomCursor
+        x={smoothCursorX}
+        y={smoothCursorY}
+        visible={zoomCursorVisible && lightboxIndex === null}
+      />
+
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-8%" }}
+        variants={stagger}
+        className="w-full"
+      >
+        <div className="relative w-full overflow-hidden border border-black/10 bg-black/[0.04] sm:h-[100vh]">
+          <div
+            className="grid h-full w-full grid-cols-2 gap-px bg-black/15"
+            onMouseMove={handleGridMouseMove}
+            onMouseLeave={hideZoomCursor}
+          >
+            {slots.map((item, i) => {
+              const slotLabel = BRAND_MEDIA_SLOT_LABELS[i] ?? BRAND_MEDIA_SLOT_LABELS[0];
+              const labelAlignRight = i === 1 || i === 3;
+
+              return (
+                <motion.button
+                  key={`${item.src}-${i}`}
+                  type="button"
+                  data-brand-zoom-slot
+                  variants={fadeUp}
+                  aria-label={`View ${slotLabel} in gallery`}
+                  onClick={() => setLightboxIndex(i)}
+                  className="group relative cursor-pointer overflow-hidden bg-[#f1f1f1] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black/40 [@media(hover:hover)_and_(pointer:fine)]:cursor-none"
+                >
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03] group-focus-visible:scale-[1.03]"
+                    loading="lazy"
+                  />
+                  <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20 group-focus-visible:bg-black/20" />
+                  <span
+                    className={cn(
+                      "pointer-events-none absolute inset-x-0 bottom-0 flex bg-gradient-to-t from-black/80 via-black/50 to-transparent px-4 py-3 sm:px-5 sm:py-4",
+                      labelAlignRight ? "justify-end" : "justify-start",
+                    )}
+                  >
+                    <span className="font-label text-[9px] uppercase tracking-[0.38em] text-white/80">
+                      {slotLabel}
+                    </span>
+                  </span>
+                </motion.button>
+              );
+            })}
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <motion.div variants={fadeUp} className="h-20 w-20 sm:h-52 sm:w-52">
+              <img
+                src={centerBadge.src}
+                alt={centerBadge.alt}
+                className="h-full w-full rounded-full border border-black/20 object-cover shadow-lg"
+                loading="lazy"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+
+      <AnimatePresence>
+        {lightboxIndex !== null ? (
+          <BrandMediaBadgeGridLightbox
+            items={slots}
+            initialIndex={lightboxIndex}
+            onClose={closeLightbox}
+          />
+        ) : null}
+      </AnimatePresence>
+    </>
+  );
+}
+
 function BrandMediaFigure({
   item,
   aspectClass = "aspect-[4/3]",
@@ -267,51 +567,7 @@ function BrandMediaGrid({
       (_, i) => gridItems[i] ?? gridItems[i % gridItems.length],
     );
 
-    return (
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-8%" }}
-        variants={stagger}
-        className="w-full"
-      >
-        <div className="relative sm:h-[100vh] w-full overflow-hidden border border-black/10 bg-black/[0.04] ">
-          <div className="grid h-full w-full grid-cols-2 gap-px bg-black/15">
-            {slots.map((item, i) => (
-              <motion.figure
-                key={`${item.src}-${i}`}
-                variants={fadeUp}
-                className="group relative overflow-hidden bg-[#f1f1f1]"
-              >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className={cn(
-                    "h-full w-full transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]",
-                    item.objectFit === "contain" ? "object-contain" : "object-cover",
-                  )}
-                  loading="lazy"
-                />
-              </motion.figure>
-            ))}
-          </div>
-
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <motion.div
-              variants={fadeUp}
-              className="h-20 w-20 sm:h-52 sm:w-52"
-            >
-              <img
-                src={centerBadge.src}
-                alt={centerBadge.alt}
-                className="h-full w-full rounded-full border border-black/20 object-cover shadow-lg"
-                loading="lazy"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
-    );
+    return <BrandMediaBadgeGrid centerBadge={centerBadge} slots={slots} />;
   }
 
   const [hero, ...rest] = items;
@@ -423,7 +679,8 @@ export function BrandIdentityShowcase({
   const balancedColumns = hasPalette && hasType;
 
   return (
-    <div className="mx-[max(1rem,env(safe-area-inset-left))] mr-[max(1rem,env(safe-area-inset-right))] space-y-px bg-white/[0.08] sm:mx-8 sm:mr-8">
+    <div className={caseStudyContainer}>
+      <div className="space-y-px bg-white/[0.08]">
       {(hasPalette || hasType) && (
         <div className="grid grid-cols-1 gap-px bg-white/[0.08] lg:grid-cols-12 lg:items-stretch">
           {hasPalette ? (
@@ -502,6 +759,7 @@ export function BrandIdentityShowcase({
           <BrandMediaGrid items={media} layout={section.brandMediaLayout ?? "mosaic"} />
         </Reveal>
       ) : null}
+      </div>
     </div>
   );
 }
@@ -522,12 +780,13 @@ export function BrandBoardShowcase({
   }));
 
   return (
+    <div className={caseStudyContainer}>
     <motion.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-8%" }}
       variants={stagger}
-      className="mx-[max(1rem,env(safe-area-inset-left))] mr-[max(1rem,env(safe-area-inset-right))] space-y-px bg-white/[0.08] sm:mx-8 sm:mr-8"
+      className="space-y-px bg-white/[0.08]"
     >
       {section.brandBookUrl ? (
         <div className="bg-[#060606] px-6 py-6 sm:px-8 sm:py-8">
@@ -579,5 +838,6 @@ export function BrandBoardShowcase({
         ))}
       </div>
     </motion.div>
+    </div>
   );
 }
