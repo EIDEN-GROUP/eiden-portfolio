@@ -164,10 +164,10 @@ function BrandBookLink({
         className="group flex h-full min-h-[18rem] flex-col justify-between border border-white/[0.12] bg-white/[0.03] px-6 py-7 transition-colors duration-500 hover:border-white/20 hover:bg-white/[0.05] sm:min-h-0 sm:flex-1 sm:px-8 sm:py-9"
       >
         <div className="min-w-0">
-          <span className="font-mono text-[10px] tabular-nums tracking-[0.24em] text-white/30">
+          <span className="hidden font-mono text-[10px] tabular-nums tracking-[0.24em] text-white/30 sm:block">
             00
           </span>
-          <p className={cn("mt-6", labelCls)}>Brand guidelines</p>
+          <p className={cn("sm:mt-6", labelCls)}>Brand guidelines</p>
           <p className="mt-3 font-display text-xl font-semibold leading-[1.1] tracking-[-0.04em] text-white transition-colors group-hover:text-gold/90 sm:text-2xl">
             View the full brand book
           </p>
@@ -187,22 +187,22 @@ function BrandBookLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group grid grid-cols-[1fr_auto] items-center gap-6 border border-white/[0.12] bg-white/[0.03] px-6 py-5 transition-colors duration-500 hover:border-white/20 hover:bg-white/[0.05] sm:grid-cols-[auto_1fr_auto] sm:px-8 sm:py-6"
+      className="group flex min-h-[18rem] flex-col justify-between border border-white/[0.12] bg-white/[0.03] px-6 py-7 transition-colors duration-500 hover:border-white/20 hover:bg-white/[0.05] sm:min-h-0 sm:grid sm:grid-cols-[auto_1fr_auto] sm:items-center sm:gap-6 sm:px-8 sm:py-6"
     >
       <span className="hidden font-mono text-[10px] tabular-nums tracking-[0.24em] text-white/30 sm:block">
         00
       </span>
       <div className="min-w-0">
         <p className={labelCls}>Brand guidelines</p>
-        <p className="mt-1 font-display text-lg font-semibold tracking-[-0.04em] text-white transition-colors group-hover:text-gold/90 sm:text-xl">
+        <p className="mt-3 font-display text-xl font-semibold leading-[1.1] tracking-[-0.04em] text-white transition-colors group-hover:text-gold/90 sm:mt-1 sm:text-xl">
           View the full brand book
         </p>
-        <p className="mt-1 font-editorial text-sm italic text-white/40">
+        <p className="mt-3 max-w-[28ch] font-editorial text-sm italic leading-relaxed text-white/40 sm:mt-1 sm:max-w-none">
           Full identity system — colors, type, logo, and usage rules
         </p>
       </div>
-      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/15 transition-all duration-500 group-hover:border-gold group-hover:bg-gold sm:h-12 sm:w-12">
-        <ArrowUpRight className="h-4 w-4 text-white transition-colors group-hover:text-forest-deep sm:h-5 sm:w-5" />
+      <span className="mt-8 grid h-12 w-12 shrink-0 place-items-center rounded-full border border-white/15 transition-all duration-500 group-hover:border-gold group-hover:bg-gold sm:mt-0">
+        <ArrowUpRight className="h-5 w-5 text-white transition-colors group-hover:text-forest-deep" />
       </span>
     </a>
   );
@@ -222,6 +222,8 @@ function BrandMediaBadgeGridLightbox({
   const prevClass = `brand-media-prev-${uid}`;
   const nextClass = `brand-media-next-${uid}`;
   const paginationClass = `brand-media-pagination-${uid}`;
+  const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const count = items.length;
 
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
@@ -282,75 +284,84 @@ function BrandMediaBadgeGridLightbox({
         </div>
 
         <div className="relative overflow-hidden rounded-sm border border-white/10 bg-[#0a0a0a]/95 shadow-2xl">
-          <Swiper
-            modules={[Navigation, Pagination, Keyboard, A11y]}
-            initialSlide={initialIndex}
-            loop
-            slidesPerView={1}
-            spaceBetween={0}
-            speed={520}
-            resistanceRatio={0.82}
-            touchRatio={1}
-            threshold={8}
-            longSwipesRatio={0.35}
-            keyboard={{ enabled: true }}
-            navigation={{
-              prevEl: `.${prevClass}`,
-              nextEl: `.${nextClass}`,
-            }}
-            pagination={{
-              clickable: true,
-              el: `.${paginationClass}`,
-              bulletClass:
-                "brand-media-bullet !inline-block !h-1.5 !w-1.5 !rounded-full !bg-white/25 !opacity-100 !mx-1 !transition-all !duration-300",
-              bulletActiveClass: "!w-6 !bg-white/90",
-            }}
-            className="brand-media-lightbox-swiper w-full"
-          >
-            {items.map((item) => (
-              <SwiperSlide key={item.src}>
-                <div className="flex min-h-[min(72vh,36rem)] flex-col items-center justify-center px-4 py-8 sm:min-h-[min(78vh,40rem)] sm:px-10 sm:py-10">
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className={cn(
-                      "max-h-[min(62vh,32rem)] w-full max-w-full select-none",
-                      item.objectFit === "contain" ? "object-contain" : "object-contain",
-                    )}
-                    draggable={false}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <div className="relative">
+            <Swiper
+              modules={[Navigation, Pagination, Keyboard, A11y]}
+              initialSlide={initialIndex}
+              loop
+              slidesPerView={1}
+              spaceBetween={0}
+              speed={520}
+              resistanceRatio={0.82}
+              touchRatio={1}
+              threshold={8}
+              longSwipesRatio={0.35}
+              keyboard={{ enabled: true }}
+              onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+              navigation={{
+                prevEl: `.${prevClass}`,
+                nextEl: `.${nextClass}`,
+              }}
+              pagination={{
+                clickable: true,
+                el: `.${paginationClass}`,
+                bulletClass:
+                  "brand-media-bullet !inline-block !h-1.5 !w-2 !rounded-full !bg-white/20 !opacity-100 !mx-0.5 !transition-all !duration-300",
+                bulletActiveClass: "!w-7 !bg-gold",
+              }}
+              className="brand-media-lightbox-swiper w-full"
+            >
+              {items.map((item) => (
+                <SwiperSlide key={item.src}>
+                  <div className="flex min-h-[min(72vh,36rem)] flex-col items-center justify-center px-4 py-8 sm:min-h-[min(78vh,40rem)] sm:px-10 sm:py-10">
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className={cn(
+                        "max-h-[min(62vh,32rem)] w-full max-w-full select-none",
+                        item.objectFit === "contain" ? "object-contain" : "object-contain",
+                      )}
+                      draggable={false}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
 
-          <button
-            type="button"
-            aria-label="Previous image"
-            className={cn(
-              prevClass,
-              "absolute left-3 top-1/2 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-black/50 text-white/80 backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-black/70 hover:text-white sm:left-5 sm:h-11 sm:w-11",
-            )}
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next image"
-            className={cn(
-              nextClass,
-              "absolute right-3 top-1/2 z-20 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-black/50 text-white/80 backdrop-blur-sm transition-all duration-300 hover:border-white/30 hover:bg-black/70 hover:text-white sm:right-5 sm:h-11 sm:w-11",
-            )}
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-
-          <div
-            className={cn(
-              paginationClass,
-              "absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-1 sm:bottom-5",
-            )}
-          />
+          {count > 1 ? (
+            <div className="flex flex-col items-center gap-5 border-t border-white/[0.08] px-6 py-6">
+              <div className={cn(paginationClass, "flex w-full justify-center gap-1.5")} />
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  type="button"
+                  aria-label="Previous image"
+                  className={cn(
+                    prevClass,
+                    "grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/[0.03] text-white/80 transition-colors duration-300 hover:border-white/30 hover:bg-white/[0.06] hover:text-white",
+                  )}
+                >
+                  <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
+                </button>
+                <span
+                  className="min-w-[3.5rem] text-center font-mono text-[10px] tabular-nums tracking-[0.18em] text-white/45"
+                  aria-live="polite"
+                >
+                  {String(activeIndex + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
+                </span>
+                <button
+                  type="button"
+                  aria-label="Next image"
+                  className={cn(
+                    nextClass,
+                    "grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/[0.03] text-white/80 transition-colors duration-300 hover:border-white/30 hover:bg-white/[0.06] hover:text-white",
+                  )}
+                >
+                  <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
+                </button>
+              </div>
+            </div>
+          ) : null}
         </div>
       </motion.div>
     </motion.div>

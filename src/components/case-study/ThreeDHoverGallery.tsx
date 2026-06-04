@@ -810,13 +810,13 @@ export function ThreeDHoverGallery({
 
             {count > 1 ? (
               <motion.div
-                className="mt-5 flex items-center justify-between gap-4 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]"
+                className="mt-5 flex flex-col items-center gap-5 px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease }}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-2">
                   {items.map((_, i) => (
                     <motion.button
                       key={i}
@@ -837,20 +837,20 @@ export function ThreeDHoverGallery({
                   ))}
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center gap-3">
                   <motion.button
                     type="button"
                     aria-label="Previous slide"
                     onClick={() => go(-1)}
                     whileTap={{ scale: 0.96 }}
                     transition={springTransition(theme.spring)}
-                    className="grid h-10 w-10 place-items-center rounded-full border bg-white/[0.03] transition-colors active:bg-white/[0.08]"
+                    className="grid h-11 w-11 place-items-center rounded-full border bg-white/[0.03] transition-colors active:bg-white/[0.08]"
                     style={{ borderColor: theme.border, color: theme.text }}
                   >
                     <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
                   </motion.button>
                   <span
-                    className="min-w-[3.25rem] text-center font-mono text-[10px] tabular-nums tracking-[0.18em]"
+                    className="min-w-[3.5rem] text-center font-mono text-[10px] tabular-nums tracking-[0.18em]"
                     style={{ color: theme.textMuted }}
                     aria-live="polite"
                   >
@@ -862,7 +862,7 @@ export function ThreeDHoverGallery({
                     onClick={() => go(1)}
                     whileTap={{ scale: 0.96 }}
                     transition={springTransition(theme.spring)}
-                    className="grid h-10 w-10 place-items-center rounded-full border bg-white/[0.03] transition-colors active:bg-white/[0.08]"
+                    className="grid h-11 w-11 place-items-center rounded-full border bg-white/[0.03] transition-colors active:bg-white/[0.08]"
                     style={{ borderColor: theme.border, color: theme.text }}
                   >
                     <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
