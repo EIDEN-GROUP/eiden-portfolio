@@ -61,10 +61,10 @@ function BrandPaletteGrid({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           </motion.div>
-          <div className="flex flex-col gap-1 px-4 py-4 sm:px-5 sm:py-5">
+          <div className="flex h-[5.25rem] shrink-0 flex-col justify-center gap-1 px-4 sm:h-[5.75rem] sm:px-5">
             <span
               className={cn(
-                "font-label text-[9px] uppercase tracking-[0.38em]",
+                "line-clamp-2 font-label text-[9px] uppercase leading-snug tracking-[0.38em]",
                 accentClass ?? "text-white/50",
               )}
             >
