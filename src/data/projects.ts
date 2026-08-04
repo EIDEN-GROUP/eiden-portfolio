@@ -42,6 +42,20 @@ import medicalBayHeroFlatlay from "@/assets/medical-bay-hero-flatlay.png";
 import medicalBayLobby from "@/assets/medical-bay-lobby.png";
 import medicalBayOffice from "@/assets/medical-bay-office.png";
 import medicalBayReception from "@/assets/medical-bay-reception.png";
+import webChilloutCover from "@/assets/web-chillout-cover.jpg";
+import webChilloutDesktop from "@/assets/web-chillout-desktop.jpg";
+import webLithosCover from "@/assets/web-lithos-cover.jpg";
+import webLunjaVibesCover from "@/assets/web-lunja-vibes-cover.jpg";
+import webOrsenCover from "@/assets/web-orsen-cover.jpg";
+import webRihabCover from "@/assets/web-rihab-cover.jpg";
+import webSereneCover from "@/assets/web-serene-cover.jpg";
+import webVibescapeCover from "@/assets/web-vibescape-cover.jpg";
+import webLithosDesktop from "@/assets/web-lithos-desktop.jpg";
+import webLunjaVibesDesktop from "@/assets/web-lunja-vibes-desktop.jpg";
+import webOrsenDesktop from "@/assets/web-orsen-desktop.jpg";
+import webRihabDesktop from "@/assets/web-rihab-desktop.jpg";
+import webSereneDesktop from "@/assets/web-serene-desktop.jpg";
+import webVibescapeDesktop from "@/assets/web-vibescape-desktop.jpg";
 
 /** Optional overrides for the project detail case study body. */
 export type ProjectCaseStudyOverride = {
@@ -586,6 +600,148 @@ export const projects = [
         role: "Direction",
       },
     },
+  },
+  {
+    slug: "orsen",
+    title: "ORSEN",
+    cover: webOrsenCover,
+    detailHero: webOrsenDesktop,
+    summary:
+      "A materials house for architects — 24 matières browsable by effect and by family, a devis path never more than one click away, and a full espace pro behind it.",
+    tagline: "La matière avant le décor.",
+    category: "Web design",
+    year: "2026",
+    index: "07",
+    services: [
+      "Art direction",
+      "Design system",
+      "Web design & development",
+      "B2B portal & quoting",
+      "Motion design",
+      "Responsive engineering",
+    ],
+    website: "https://orsen.vercel.app/",
+  },
+  {
+    slug: "lithos-materiaux",
+    title: "LITHOS",
+    cover: webLithosCover,
+    detailHero: webLithosDesktop,
+    summary:
+      "Limestone, travertine, concrete and marble, catalogued three ways — by effect, by space, by moodboard — for a bureau d'études in Aix-en-Provence.",
+    tagline: "La matière, racontée avec soin.",
+    category: "Web design",
+    year: "2026",
+    index: "08",
+    services: [
+      "Art direction",
+      "Design system",
+      "Web design & development",
+      "Motion design",
+      "Responsive engineering",
+    ],
+    website: "https://lithos-materiaux.vercel.app/",
+  },
+  {
+    slug: "rihab-residence",
+    title: "Résidence Rihab",
+    cover: webRihabCover,
+    detailHero: webRihabDesktop,
+    summary:
+      "A boutique aparthotel in Cité Founty, Agadir — 49 apartments, sold honestly, with an availability bar that never leaves the viewport.",
+    tagline: "A quiet Moroccan address, five minutes from the Atlantic.",
+    category: "Web design",
+    year: "2026",
+    index: "09",
+    services: [
+      "Art direction",
+      "Design system",
+      "Web design & development",
+      "Booking experience",
+      "Bilingual EN/FR build",
+      "Responsive engineering",
+    ],
+    website: "https://rihab-hotel.vercel.app/",
+  },
+  {
+    slug: "lunja-village-vibes",
+    title: "Lunja Village Vibes",
+    cover: webLunjaVibesCover,
+    detailHero: webLunjaVibesDesktop,
+    summary:
+      "The loudest expression of the Lunja identity — coral, teal and chillout yellow on linen, for the vibe village at Imi Ouaddar.",
+    tagline: "Ta parenthèse ensoleillée à Imi Ouaddar.",
+    category: "Web design",
+    year: "2026",
+    index: "10",
+    services: [
+      "Art direction",
+      "Design system",
+      "Web design & development",
+      "Motion design",
+      "Responsive engineering",
+    ],
+    website: "https://lunja-village-vibes.vercel.app/",
+  },
+  {
+    slug: "lunja-taghazout-bay",
+    title: "Lunja Taghazout Bay",
+    cover: webSereneCover,
+    detailHero: webSereneDesktop,
+    summary:
+      "The same identity at golden hour — surf, pools and bungalows on the Atlantic, proving the system holds a quieter register.",
+    tagline: "Le village qui vit au rythme de l'océan.",
+    category: "Web design",
+    year: "2026",
+    index: "11",
+    services: [
+      "Art direction",
+      "Design system",
+      "Web design & development",
+      "Motion design",
+      "Responsive engineering",
+    ],
+    website: "https://serene-ui-studio.vercel.app/",
+  },
+  {
+    slug: "chillout-lounge",
+    title: "CHILLOUT Lounge",
+    cover: webChilloutCover,
+    detailHero: webChilloutDesktop,
+    summary:
+      "A lounge bar with one job — fill tonight. Golden-hour garden palette, CSS-only grunge type, and a live programme that pins to the header.",
+    tagline: "Live music, cocktails and sunset sessions facing the Atlantic.",
+    category: "Web design",
+    year: "2026",
+    index: "12",
+    services: [
+      "Art direction",
+      "Design system",
+      "Web design & development",
+      "Motion design",
+      "Responsive engineering",
+    ],
+    website: "https://chill-vibes-studio.vercel.app/",
+  },
+  {
+    slug: "chillout-social-club",
+    title: "CHILLOUT Social Club",
+    cover: webVibescapeCover,
+    detailHero: webVibescapeDesktop,
+    summary:
+      "Four venues — surf hostel, beer garden, foodcourt and day café — told as a single scroll structured as one day on the sand.",
+    tagline: "Sunrise surf to sunset sets.",
+    category: "Web design",
+    year: "2026",
+    index: "13",
+    services: [
+      "Art direction",
+      "Design system",
+      "Web design & development",
+      "Motion design",
+      "Responsive engineering",
+    ],
+    website: "https://vibescape-hub.vercel.app/",
   },
 ] as const;
 

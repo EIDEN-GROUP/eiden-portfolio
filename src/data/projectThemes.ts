@@ -413,6 +413,251 @@ export const EIDEN_ACADEMY_THEME: ProjectTheme = {
   },
 };
 
+/**
+ * Web-design projects share one gradient/motion grammar and differ only by the
+ * tokens lifted from each shipped site's own stylesheet, so they are built from
+ * a factory instead of seven near-identical literals.
+ */
+type WebThemeInput = {
+  slug: string;
+  mood: ProjectTheme["mood"];
+  /** `r, g, b` triples, used to derive the scrims and gradients. */
+  rgb: { background: string; accent: string; secondary: string };
+  colors: Pick<
+    ProjectTheme["colors"],
+    | "primary"
+    | "secondary"
+    | "accent"
+    | "accentAlt"
+    | "background"
+    | "canvas"
+    | "surface"
+    | "surfaceAlt"
+    | "text"
+  >;
+  fonts: ProjectTheme["fonts"];
+  motion?: Partial<ProjectMotionPreset>;
+  cardRadius?: string;
+};
+
+function makeWebTheme(input: WebThemeInput): ProjectTheme {
+  const { rgb, colors } = input;
+  const bg = rgb.background;
+  const ac = rgb.accent;
+  const sc = rgb.secondary;
+
+  return {
+    slug: input.slug,
+    mood: input.mood,
+    brandBookUrl: "",
+    colors: {
+      ...colors,
+      text: colors.text,
+      textMuted: `color-mix(in srgb, ${colors.text} 54%, transparent)`,
+      border: `rgba(${ac}, 0.2)`,
+      heroOverlay: `linear-gradient(to top, rgba(${bg},0.94) 0%, rgba(${bg},0.42) 52%, rgba(${ac},0.1) 100%)`,
+      heroEyebrow: colors.accent,
+      heroAccent: colors.accent,
+    },
+    fonts: input.fonts,
+    gradients: {
+      page: `radial-gradient(ellipse 90% 55% at 72% 0%, rgba(${ac},0.12), transparent 52%)`,
+      hero: `radial-gradient(ellipse 80% 50% at 22% 78%, rgba(${sc},0.1), transparent 55%)`,
+      heroScrim: `linear-gradient(108deg, rgba(${bg},0.82) 0%, transparent 56%), linear-gradient(to top, rgba(${bg},0.94), transparent 42%)`,
+      section: `radial-gradient(ellipse 100% 65% at 50% -8%, rgba(${ac},0.09), transparent 55%)`,
+      progressBar: `linear-gradient(90deg, rgba(${ac},0.7), rgba(${sc},0.55), rgba(${bg},0.4))`,
+      divider: `linear-gradient(90deg, transparent, rgba(${ac},0.4), rgba(${sc},0.3), transparent)`,
+      stats: `radial-gradient(ellipse 120% 80% at 50% -20%, rgba(${ac},0.08), transparent 55%)`,
+    },
+    motion: {
+      ease: easeLuxury,
+      revealDuration: 0.85,
+      heroParallax: ["0%", "17%"],
+      stagger: 0.065,
+      spring: { stiffness: 78, damping: 30, mass: 0.4 },
+      ...input.motion,
+    },
+    ui: {
+      cardRadius: input.cardRadius ?? "0.25rem",
+      cardBorder: `rgba(${ac}, 0.24)`,
+      cardBackground: `rgba(${sc}, 0.14)`,
+      sectionTint: `rgba(${ac}, 0.04)`,
+      grainOpacity: 0.022,
+      heroFilmGrain: false,
+    },
+  };
+}
+
+/** ORSEN — architectural materials. Anthracite plates, rouge signal, Satoshi only. */
+export const ORSEN_THEME = makeWebTheme({
+  slug: "orsen",
+  mood: "corporate",
+  rgb: { background: "24, 24, 24", accent: "200, 30, 44", secondary: "185, 184, 180" },
+  colors: {
+    primary: "#232323",
+    secondary: "#B9B8B4",
+    accent: "#C81E2C",
+    accentAlt: "#F6F5F3",
+    background: "#181818",
+    canvas: "#1d1d1d",
+    surface: "#232323",
+    surfaceAlt: "#2c2c2c",
+    text: "#F6F5F3",
+  },
+  fonts: {
+    display: '"Satoshi", "Archivo", system-ui, sans-serif',
+    editorial: '"Satoshi", "Archivo", system-ui, sans-serif',
+    body: '"Satoshi", "Archivo", system-ui, sans-serif',
+    label: '"Satoshi", "Archivo", system-ui, sans-serif',
+    googleUrl: "family=Archivo:wght@400;500;600;700;800;900&display=swap",
+  },
+  motion: { ease: easeCrisp, revealDuration: 0.7, stagger: 0.05 },
+  cardRadius: "2px",
+});
+
+/** LITHOS — la matière, racontée avec soin. Calcaire, laiton, terracotta, espresso. */
+export const LITHOS_THEME = makeWebTheme({
+  slug: "lithos-materiaux",
+  mood: "luxury",
+  rgb: { background: "34, 30, 24", accent: "183, 98, 63", secondary: "168, 133, 71" },
+  colors: {
+    primary: "#302b22",
+    secondary: "#A88547",
+    accent: "#B7623F",
+    accentAlt: "#dcd2c2",
+    background: "#221e18",
+    canvas: "#28231c",
+    surface: "#302b22",
+    surfaceAlt: "#3a3329",
+    text: "#e9e4dc",
+  },
+  fonts: {
+    display: '"Britney", "Archivo Narrow", "Archivo", system-ui, sans-serif',
+    editorial: '"Archivo Narrow", system-ui, sans-serif',
+    body: '"Archivo Narrow", system-ui, sans-serif',
+    label: '"Archivo Narrow", system-ui, sans-serif',
+    googleUrl: "family=Archivo+Narrow:wght@400;500;600;700&display=swap",
+  },
+  cardRadius: "2px",
+});
+
+/** Résidence Rihab — boutique aparthotel. Forest, sage, cream, Fraunces. */
+export const RIHAB_THEME = makeWebTheme({
+  slug: "rihab-residence",
+  mood: "luxury",
+  rgb: { background: "13, 32, 51", accent: "129, 161, 188", secondary: "213, 213, 213" },
+  colors: {
+    primary: "#153149",
+    secondary: "#d5d5d5",
+    accent: "#81A1BC",
+    accentAlt: "#f7f6f0",
+    background: "#0d2033",
+    canvas: "#112a41",
+    surface: "#153149",
+    surfaceAlt: "#1c3f5c",
+    text: "#f7f6f0",
+  },
+  fonts: {
+    display: '"Fraunces", Georgia, serif',
+    editorial: '"Fraunces", Georgia, serif',
+    body: '"Excon", "Archivo", system-ui, sans-serif',
+    label: '"Excon", "Archivo", system-ui, sans-serif',
+    googleUrl:
+      "family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Archivo:wght@400;500;600&display=swap",
+  },
+  motion: { revealDuration: 0.95, stagger: 0.075 },
+  cardRadius: "0.75rem",
+});
+
+const LUNJA_FAMILY_FONTS: ProjectTheme["fonts"] = {
+  display: '"Barlow Condensed", system-ui, sans-serif',
+  editorial: '"Caveat Brush", cursive',
+  body: '"DM Sans", system-ui, sans-serif',
+  label: '"Barlow Condensed", system-ui, sans-serif',
+  googleUrl:
+    "family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Caveat+Brush&family=DM+Sans:wght@400;500;700&display=swap",
+};
+
+/** Lunja Village Vibes — coral, teal, chillout yellow. */
+export const LUNJA_VIBES_THEME = makeWebTheme({
+  slug: "lunja-village-vibes",
+  mood: "lifestyle",
+  rgb: { background: "12, 22, 20", accent: "242, 92, 42", secondary: "30, 158, 138" },
+  colors: {
+    primary: "#1E9E8A",
+    secondary: "#0F4A42",
+    accent: "#F25C2A",
+    accentAlt: "#FBF304",
+    background: "#0c1614",
+    canvas: "#0f1d1a",
+    surface: "#0F4A42",
+    surfaceAlt: "#155e54",
+    text: "#F4EFE4",
+  },
+  fonts: LUNJA_FAMILY_FONTS,
+  motion: { ease: easeEnergetic, revealDuration: 0.72, stagger: 0.055 },
+});
+
+/** Lunja Village Taghazout Bay — golden-hour linen, sun yellow, terracotta, olive. */
+export const SERENE_THEME = makeWebTheme({
+  slug: "lunja-taghazout-bay",
+  mood: "lifestyle",
+  rgb: { background: "18, 16, 12", accent: "255, 230, 0", secondary: "196, 106, 69" },
+  colors: {
+    primary: "#FFE600",
+    secondary: "#C46A45",
+    accent: "#FFE600",
+    accentAlt: "#6E7248",
+    background: "#12100c",
+    canvas: "#171410",
+    surface: "#1f1a14",
+    surfaceAlt: "#2a231a",
+    text: "#F7F3E8",
+  },
+  fonts: LUNJA_FAMILY_FONTS,
+  motion: { ease: easeSoft, revealDuration: 0.85, stagger: 0.07 },
+});
+
+/** CHILLOUT Taghazout lounge bar — linen, chillout yellow, market-umbrella terracotta. */
+export const CHILLOUT_THEME = makeWebTheme({
+  slug: "chillout-lounge",
+  mood: "lifestyle",
+  rgb: { background: "20, 16, 16", accent: "255, 230, 0", secondary: "212, 75, 42" },
+  colors: {
+    primary: "#FFE600",
+    secondary: "#D44B2A",
+    accent: "#FFE600",
+    accentAlt: "#D44B2A",
+    background: "#141010",
+    canvas: "#1a1410",
+    surface: "#221a16",
+    surfaceAlt: "#2e231c",
+    text: "#F4EFE4",
+  },
+  fonts: LUNJA_FAMILY_FONTS,
+  motion: { ease: easeEnergetic, revealDuration: 0.68, stagger: 0.05 },
+});
+
+/** CHILLOUT surf hostel & beer garden — sunrise-to-sunset social club. */
+export const VIBESCAPE_THEME = makeWebTheme({
+  slug: "chillout-social-club",
+  mood: "lifestyle",
+  rgb: { background: "28, 21, 18", accent: "240, 224, 0", secondary: "216, 204, 185" },
+  colors: {
+    primary: "#F0E000",
+    secondary: "#d8ccb9",
+    accent: "#F0E000",
+    accentAlt: "#6b5f52",
+    background: "#1c1512",
+    canvas: "#221a16",
+    surface: "#2a211b",
+    surfaceAlt: "#372c23",
+    text: "#f7f1e4",
+  },
+  fonts: LUNJA_FAMILY_FONTS,
+  motion: { ease: easeEnergetic, revealDuration: 0.7, stagger: 0.06 },
+});
+
 const THEME_BY_SLUG: Record<string, ProjectTheme> = {
   "lunja-village": LUNJA_THEME,
   "educazen-kids": EDUCAZEN_THEME,
@@ -420,6 +665,13 @@ const THEME_BY_SLUG: Record<string, ProjectTheme> = {
   "dmc-morocco": DMC_THEME,
   "eiden-academy": EIDEN_ACADEMY_THEME,
   "medical-bay": MEDICAL_BAY_THEME,
+  orsen: ORSEN_THEME,
+  "lithos-materiaux": LITHOS_THEME,
+  "rihab-residence": RIHAB_THEME,
+  "lunja-village-vibes": LUNJA_VIBES_THEME,
+  "lunja-taghazout-bay": SERENE_THEME,
+  "chillout-lounge": CHILLOUT_THEME,
+  "chillout-social-club": VIBESCAPE_THEME,
 };
 
 /** Fallback when slug has no dedicated theme (should not happen for portfolio projects). */

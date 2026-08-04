@@ -111,6 +111,12 @@ export function SiteNav() {
                 className="font-label text-[12px] uppercase tracking-[0.25em] text-white/90 font-bold transition-colors hover:text-white"
               />
             ))}
+            <Link
+              to="/projects"
+              className="font-label text-[12px] font-bold uppercase tracking-[0.25em] text-white/90 transition-colors hover:text-white"
+            >
+              Index
+            </Link>
           </nav>
 
           {/* Right */}
@@ -196,6 +202,26 @@ export function SiteNav() {
                   />
                 </motion.div>
               ))}
+
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, x: -28 },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    transition: { duration: 0.52, ease: [0.22, 1, 0.36, 1] },
+                  },
+                }}
+                className="border-b border-white/[0.07] py-5"
+              >
+                <Link
+                  to="/projects"
+                  onClick={close}
+                  className="block w-full text-left font-display text-[clamp(1.75rem,8vw,2.2rem)] font-semibold leading-none text-white/85 transition-colors hover:text-gold"
+                >
+                  Index
+                </Link>
+              </motion.div>
 
               {/* Contact CTA */}
               <motion.div

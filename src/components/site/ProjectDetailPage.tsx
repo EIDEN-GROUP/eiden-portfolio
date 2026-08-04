@@ -6,6 +6,7 @@ import { lazy, Suspense, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ProjectThemeProvider } from "@/components/case-study/ProjectThemeProvider";
 import { useProjectTheme } from "@/components/case-study/projectThemeContext";
+import { useFontshare } from "@/components/case-study/useFontshare";
 import { Footer } from "@/components/site/Footer";
 
 const ProjectCaseStudyBody = lazy(() =>
@@ -13,8 +14,14 @@ const ProjectCaseStudyBody = lazy(() =>
     default: m.ProjectCaseStudyBody,
   })),
 );
+const WebDesignCaseStudyBody = lazy(() =>
+  import("@/components/site/WebDesignCaseStudyBody").then((m) => ({
+    default: m.WebDesignCaseStudyBody,
+  })),
+);
 import type { Project } from "@/data/projects";
 import { visibleProjects } from "@/data/projects";
+import { getWebDesignProject } from "@/data/webDesignProjects";
 import { cn } from "@/lib/utils";
 import "swiper/css";
 
@@ -293,6 +300,7 @@ function ProjectDetailHero({ project: p }: { project: Project }) {
 
 function ProjectDetailContent({ project: p }: { project: Project }) {
   const theme = useProjectTheme();
+  const web = getWebDesignProject(p.slug);
   const idx = visibleProjects.findIndex((x) => x.slug === p.slug);
   const len = visibleProjects.length;
   const nextProjects = [
@@ -304,7 +312,11 @@ function ProjectDetailContent({ project: p }: { project: Project }) {
     <>
       <ProjectDetailHero project={p} />
       <Suspense fallback={null}>
-        <ProjectCaseStudyBody project={p} />
+        {web ? (
+          <WebDesignCaseStudyBody project={p} web={web} />
+        ) : (
+          <ProjectCaseStudyBody project={p} />
+        )}
       </Suspense>
 
       <section className="border-t bg-black" style={{ borderColor: theme.colors.border }}>
@@ -362,6 +374,7 @@ function ProjectDetailContent({ project: p }: { project: Project }) {
 
 export function ProjectDetailPage({ project: p }: { project: Project }) {
   const lenis = useLenis();
+  useFontshare(getWebDesignProject(p.slug)?.fontshareUrl);
 
   useEffect(() => {
     scrollPageToTop(lenis);
