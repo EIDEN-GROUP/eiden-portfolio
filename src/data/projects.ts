@@ -44,10 +44,18 @@ import medicalBayOffice from "@/assets/medical-bay-office.png";
 import medicalBayReception from "@/assets/medical-bay-reception.png";
 import webChilloutCover from "@/assets/web-chillout-cover.jpg";
 import webChilloutDesktop from "@/assets/web-chillout-desktop.jpg";
+import chilloutCard from "@/assets/chilout card.png";
+import chilloutHero from "@/assets/chilout hero.png";
 import webLithosCover from "@/assets/web-lithos-cover.jpg";
+import lithosHero from "@/assets/luthos hero.png";
+import lithosCard from "@/assets/lotus card.png";
 import webLunjaVibesCover from "@/assets/web-lunja-vibes-cover.jpg";
 import webOrsenCover from "@/assets/web-orsen-cover.jpg";
+import orsenCard from "@/assets/orsen card.png";
+import orsenHero from "@/assets/orsen hero.png";
 import webRihabCover from "@/assets/web-rihab-cover.jpg";
+import rihabCard from "@/assets/card rihab.png";
+import rihabHero from "@/assets/HERO PAGE RIHAB.png";
 import webSereneCover from "@/assets/web-serene-cover.jpg";
 import webVibescapeCover from "@/assets/web-vibescape-cover.jpg";
 import webLithosDesktop from "@/assets/web-lithos-desktop.jpg";
@@ -58,6 +66,8 @@ import webSereneDesktop from "@/assets/web-serene-desktop.jpg";
 import webVibescapeDesktop from "@/assets/web-vibescape-desktop.jpg";
 import webOneRetailCover from "@/assets/web-one-retail-cover.jpg";
 import webOneRetailDesktop from "@/assets/web-one-retail-desktop.jpg";
+import oneRetailCard from "@/assets/one reail card.png";
+import oneRetailHero from "@/assets/one retail hero.png";
 import webDroguerieSoussCover from "@/assets/web-droguerie-souss-cover.jpg";
 import webDroguerieSoussDesktop from "@/assets/web-droguerie-souss-desktop.jpg";
 import droguerieSoussCard from "@/assets/drogurie souss card.png";
@@ -610,8 +620,8 @@ export const projects = [
   {
     slug: "orsen",
     title: "ORSEN",
-    cover: webOrsenCover,
-    detailHero: webOrsenDesktop,
+    cover: orsenCard,
+    detailHero: orsenHero,
     summary:
       "A materials house for architects — 24 matières browsable by effect and by family, a devis path never more than one click away, and a full espace pro behind it.",
     tagline: "La matière avant le décor.",
@@ -631,8 +641,8 @@ export const projects = [
   {
     slug: "lithos-materiaux",
     title: "LITHOS",
-    cover: webLithosCover,
-    detailHero: webLithosDesktop,
+    cover: lithosCard,
+    detailHero: lithosHero,
     summary:
       "Limestone, travertine, concrete and marble, catalogued three ways — by effect, by space, by moodboard — for a bureau d'études in Aix-en-Provence.",
     tagline: "La matière, racontée avec soin.",
@@ -651,8 +661,8 @@ export const projects = [
   {
     slug: "rihab-residence",
     title: "Résidence Rihab",
-    cover: webRihabCover,
-    detailHero: webRihabDesktop,
+    cover: rihabCard,
+    detailHero: rihabHero,
     summary:
       "A boutique aparthotel in Cité Founty, Agadir — 49 apartments, sold honestly, with an availability bar that never leaves the viewport.",
     tagline: "A quiet Moroccan address, five minutes from the Atlantic.",
@@ -712,8 +722,8 @@ export const projects = [
   {
     slug: "chillout-lounge",
     title: "CHILLOUT Lounge",
-    cover: webChilloutCover,
-    detailHero: webChilloutDesktop,
+    cover: chilloutCard,
+    detailHero: chilloutHero,
     summary:
       "A lounge bar with one job — fill tonight. Golden-hour garden palette, CSS-only grunge type, and a live programme that pins to the header.",
     tagline: "Live music, cocktails and sunset sessions facing the Atlantic.",
@@ -752,8 +762,8 @@ export const projects = [
   {
     slug: "one-retail",
     title: "One Retail",
-    cover: webOneRetailCover,
-    detailHero: webOneRetailDesktop,
+    cover: oneRetailCard,
+    detailHero: oneRetailHero,
     summary:
       "The retail arm of H&S Group told as a single maison — brick and pearl editorial system, an interactive ecosystem explorer, and a newsroom for Morocco's modern retail.",
     tagline: "Au cœur du commerce marocain moderne.",
