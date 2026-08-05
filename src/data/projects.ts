@@ -60,6 +60,8 @@ import webOneRetailCover from "@/assets/web-one-retail-cover.jpg";
 import webOneRetailDesktop from "@/assets/web-one-retail-desktop.jpg";
 import webDroguerieSoussCover from "@/assets/web-droguerie-souss-cover.jpg";
 import webDroguerieSoussDesktop from "@/assets/web-droguerie-souss-desktop.jpg";
+import droguerieSoussCard from "@/assets/drogurie souss card.png";
+import droguerieSoussHero from "@/assets/hero drougure.png";
 
 /** Optional overrides for the project detail case study body. */
 export type ProjectCaseStudyOverride = {
@@ -771,8 +773,8 @@ export const projects = [
   {
     slug: "droguerie-souss",
     title: "Souss Droguerie",
-    cover: webDroguerieSoussCover,
-    detailHero: webDroguerieSoussDesktop,
+    cover: droguerieSoussCard,
+    detailHero: droguerieSoussHero,
     summary:
       "A twenty-year Agadir materials house rebuilt as a working shop — indigo, ink and crimson, a video hero of the yard, and a devis funnel that answers in 24 hours.",
     tagline: "Bâtissez avec les meilleurs matériaux.",
