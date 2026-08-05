@@ -17,6 +17,10 @@ import sereneDesktop from "@/assets/web-serene-desktop.jpg";
 import sereneMobile from "@/assets/web-serene-mobile.jpg";
 import vibescapeDesktop from "@/assets/web-vibescape-desktop.jpg";
 import vibescapeMobile from "@/assets/web-vibescape-mobile.jpg";
+import oneRetailDesktop from "@/assets/web-one-retail-desktop.jpg";
+import oneRetailMobile from "@/assets/web-one-retail-mobile.jpg";
+import droguerieSoussDesktop from "@/assets/web-droguerie-souss-desktop.jpg";
+import droguerieSoussMobile from "@/assets/web-droguerie-souss-mobile.jpg";
 
 export type Swatch = {
   name: string;
@@ -621,6 +625,181 @@ const VIBESCAPE: WebDesignProject = {
   stack: ["React", "TanStack Start", "Tailwind v4", "CSS animation", "Vercel"],
 };
 
+const ONE_RETAIL: WebDesignProject = {
+  slug: "one-retail",
+  liveUrl: "https://one--retail.vercel.app/",
+  shots: { desktop: oneRetailDesktop, mobile: oneRetailMobile },
+  intent: [
+    "One Retail is the retail arm of Morocco's H&S Group, bringing Franprix, Monopoly, Venezia-Ice, BeautyForYou, Mr.Le Bricolage, Flormar and Dahab under one maison. The brief was to make a holding feel like a destination, not a portfolio of logos.",
+    "The system runs on a warm editorial pairing that reads comme un grand magasin: brick and wine-deep reds against pearl cream, with Averia Serif Libre carrying the headlines and Righteous handling the labels. The cream is the page ground, the red is the action, and near-black ink keeps the institutional weight.",
+    "The centrepiece is a living ecosystem explorer, hover and tap through the group's entities and sectors, so the architecture itself tells the consolidation story. A president's word, four activity pillars, five values and the newsroom complete a page that sells the group as a single sensory experience.",
+  ],
+  designNotes:
+    "Brick, pearl and wine on cream, an editorial retail maison for Morocco's H&S Group.",
+  palette: [
+    { name: "Brick", value: "#AB2D26", role: "Primary / action" },
+    { name: "Wine deep", value: "#640705", role: "Deep CTAs" },
+    { name: "Wine", value: "#8B1A1A", role: "Focus / scrollbar" },
+    { name: "Ember", value: "#C93A30", role: "Borders / highlights" },
+    { name: "Pearl", value: "#F5F0E6", role: "Page ground" },
+    { name: "Pearl deep", value: "#ECE4D3", role: "Soft surfaces" },
+    { name: "Ink", value: "#1A1A1A", role: "Type" },
+    { name: "Ink soft", value: "#3B3431", role: "Muted type" },
+  ],
+  type: [
+    {
+      role: "Display",
+      family: "Averia Serif Libre",
+      note: "A warm, softly-rounded serif for headlines, set tight with ss01 features on. The maison speaks in print.",
+      stack: '"Averia Serif Libre", Georgia, serif',
+      weight: 700,
+    },
+    {
+      role: "Label",
+      family: "Righteous",
+      note: "A chunky display grotesk reserved for eyebrows and marquee bands, wide-tracked and always uppercase.",
+      stack: '"Righteous", "Inter", system-ui, sans-serif',
+      weight: 400,
+    },
+    {
+      role: "Body",
+      family: "Inter",
+      note: "The workhorse for copy, nav and cards, quiet enough to let the serif own the page.",
+      stack: '"Inter", system-ui, sans-serif',
+      weight: 400,
+    },
+  ],
+  motion: [
+    {
+      title: "Sensory marquee",
+      detail:
+        "A 32-second linear marquee of the group's brand logos runs across the ecosystem band, paused on hover — the one continuous gesture that says the whole is bigger than any single enseigne.",
+    },
+    {
+      title: "Scroll reveal",
+      detail:
+        "Every section enters on a shared IntersectionObserver reveal with spring easing (cubic-bezier(0.22, 1, 0.36, 1)), so the page assembles itself as it is read.",
+    },
+    {
+      title: "Slow hero settle",
+      detail:
+        "The hero imagery drifts from scale 1.15 down to rest under a vignette scrim, keeping the headline legible over any photography.",
+    },
+    {
+      title: "Group hover",
+      detail:
+        "Cards lift, arrows translate, images scale to 1.05 and links warm to brick on group-hover — motion that answers the cursor without ever upstaging the cream.",
+    },
+  ],
+  architecture: [
+    "Hero — Au cœur du commerce marocain moderne, with Découvrir",
+    "Qui sommes-nous ? — One Retail, filiale de H&S Group",
+    "L'écosystème — hover-to-explore entity map of the group",
+    "Mot du Président — Moncef Belkhayat on a modern Moroccan retail",
+    "Nos Domaines d'Activité — Lifestyle, Beauty, Restauration, Bricolage",
+    "Nos Valeurs — Ownership, Agility, Simplicity, Integrity, Sustainability",
+    "Ambitions & Missions — the four growth pillars",
+    "Actualités — the group newsroom",
+    "Contact — Parlons de votre projet retail",
+  ],
+  responsive: [
+    "Desktop runs the full-bleed hero and a four-column domain grid, with the ecosystem explorer on a 12-column hover map.",
+    "Tablet collapses the ecosystem explorer to a simpler grid and the domains to two-up.",
+    "Mobile swaps hover for tap-to-explore on the ecosystem, stacks the domains, and shrinks the logo marquee heights.",
+  ],
+  stack: ["React 19", "React Router", "Vite", "Tailwind v4", "Framer Motion", "Vercel"],
+};
+
+const DROGUERIE_SOUSS: WebDesignProject = {
+  slug: "droguerie-souss",
+  liveUrl: "https://droguerie-souss.vercel.app/",
+  shots: { desktop: droguerieSoussDesktop, mobile: droguerieSoussMobile },
+  intent: [
+    "Souss Droguerie is a twenty-year-old building-materials house in Agadir: carrelage, marbre, peinture, ciment, plâtre, électricité, plomberie and quincaillerie, delivered fast across the Souss. The brief was a shop that feels like a builder's merchant — competent, quick, and honest about stock.",
+    "The palette answers the trade: deep indigo for the brand and CTAs, near-black ink for hero and footer, white and cool lavender surfaces for the shop, and a single crimson reserved for every action. Fraunces sets the headings in uppercase like painted signage, Inter carries the catalogue, and IBM Plex Mono handles prices and specs.",
+    "A hero running real footage of the yard leads into eight category cards, best-sellers, and a partner marquee of LAFARGE, Holcim, Schneider, Legrand, Grohe and KNAUF. A devis banner and a floating WhatsApp button complete a funnel aimed at one outcome: a phone call within 24 hours.",
+  ],
+  designNotes: "Indigo, ink and crimson on white, a builder's merchant that means business.",
+  palette: [
+    { name: "Paper", value: "#FFFFFF", role: "Page ground" },
+    { name: "Ink", value: "#30313D", role: "Type / hero / footer" },
+    { name: "Brand", value: "#2F378D", role: "Primary / CTAs" },
+    { name: "Brand secondary", value: "#202560", role: "Deep brand shade" },
+    { name: "Cream", value: "#F3F3F8", role: "Alt section ground" },
+    { name: "Mint", value: "#DDDFEC", role: "Secondary surfaces" },
+    { name: "Sky", value: "#8E93C3", role: "Eyebrows on dark" },
+    { name: "Accent red", value: "#B8001F", role: "Action only" },
+    { name: "WhatsApp", value: "#25D366", role: "Contact FAB" },
+  ],
+  type: [
+    {
+      role: "Display",
+      family: "Fraunces",
+      note: "Uppercase serif headings with tight leading, like painted merchant signage over the yard.",
+      stack: '"Fraunces", "Iowan Old Style", Georgia, serif',
+      weight: 700,
+    },
+    {
+      role: "Body",
+      family: "Inter",
+      note: "The catalogue workhorse for categories, products and nav, bold and wide-tracked on buttons.",
+      stack: '"Inter", system-ui, sans-serif',
+      weight: 500,
+    },
+    {
+      role: "Data",
+      family: "IBM Plex Mono",
+      note: "Mono accents for prices, references and specifications — the parts of the page a buyer reads like an invoice.",
+      stack: '"IBM Plex Mono", "SFMono-Regular", Menlo, monospace',
+      weight: 400,
+    },
+  ],
+  motion: [
+    {
+      title: "Preloader stamp",
+      detail:
+        "A paper preloader with the logo scales in from 0.6 under a pinging red frame, so the store declares itself before a single tile renders.",
+    },
+    {
+      title: "Ken Burns hero",
+      detail:
+        "Real footage of the yard drifts from scale 1.08 down to rest under a left-to-right ink gradient, keeping the headline legible over the video.",
+    },
+    {
+      title: "Partner marquee",
+      detail:
+        "An infinite LAFARGE-to-KNAUF logo strip runs at 4s on mobile and 10s on desktop, grayscale until hover, paused under the cursor.",
+    },
+    {
+      title: "Hide-on-scroll header",
+      detail:
+        "The sticky header slides up 80px on scroll and returns on scroll-up, so the catalogue gets the full viewport while the cart stays one tap away.",
+    },
+    {
+      title: "WhatsApp FAB",
+      detail:
+        "A green chat button with a pinging halo and an expanding Discuter sur WhatsApp label pins to the bottom-right safe area on every page.",
+    },
+  ],
+  architecture: [
+    "Utility bar — Livraison rapide dans tout le Souss · Devis gratuit sous 24h",
+    "Sticky header — logo, nav, phone, cart",
+    "Hero — video, Bâtissez avec les meilleurs matériaux, two CTAs",
+    "Nos rayons — Toutes les catégories, eight trade cards",
+    "Best-sellers — Nos produits populaires",
+    "Nos fournisseurs partenaires — infinite partner marquee",
+    "Notre catalogue — Découvrez nos produits",
+    "CTA banner — Recevez votre devis gratuit en 24h",
+    "Footer + WhatsApp FAB",
+  ],
+  responsive: [
+    "Desktop runs the full-width hero video, a four-up category grid and the 10-second partner marquee.",
+    "Tablet drops the categories to two-up and collapses the utility bar into the header.",
+    "Mobile swaps nav for a hamburger, speeds the marquee to 4s, and pins the WhatsApp FAB into the bottom safe area.",
+  ],
+  stack: ["React 19", "TanStack Start", "Vite", "Tailwind v4", "Lucide", "Supabase", "Vercel"],
+};
+
 const WEB_DESIGN_BY_SLUG: Record<string, WebDesignProject> = {
   orsen: ORSEN,
   "lithos-materiaux": LITHOS,
@@ -629,6 +808,8 @@ const WEB_DESIGN_BY_SLUG: Record<string, WebDesignProject> = {
   "lunja-taghazout-bay": SERENE,
   "chillout-lounge": CHILLOUT,
   "chillout-social-club": VIBESCAPE,
+  "one-retail": ONE_RETAIL,
+  "droguerie-souss": DROGUERIE_SOUSS,
 };
 
 export function getWebDesignProject(slug: string): WebDesignProject | undefined {

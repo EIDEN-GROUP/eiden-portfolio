@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, LayoutGrid, List, Search, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Footer } from "@/components/site/Footer";
-import { visibleProjects, type Project } from "@/data/projects";
+import { visibleProjects, ADDITIONAL_WEB_DESIGN_SLUGS, type Project } from "@/data/projects";
 import { getProjectTheme } from "@/data/projectThemes";
 import { cn } from "@/lib/utils";
 
@@ -18,14 +18,29 @@ function haystack(p: Project) {
 
 const SEARCH_INDEX = new Map(visibleProjects.map((p) => [p.slug, haystack(p)]));
 
+/** A project is Web design if it's categorised as such or ships a website via the secondary mapping. */
+function isWebDesign(p: Project): boolean {
+  return p.category === "Web design" || ADDITIONAL_WEB_DESIGN_SLUGS.has(p.slug);
+}
+
+/** Category membership — includes the secondary "Web design" grouping. */
+function matchesCategory(p: Project, cat: string): boolean {
+  if (cat === "all") return true;
+  if (p.category === cat) return true;
+  return cat === "Web design" && isWebDesign(p);
+}
+
 const CATEGORIES = (() => {
-  const counts = new Map<string, number>();
-  for (const p of visibleProjects) counts.set(p.category, (counts.get(p.category) ?? 0) + 1);
+  const allCats = Array.from(new Set([...visibleProjects.map((p) => p.category), "Web design"]));
   return [
     { label: "All work", value: "all", count: visibleProjects.length },
-    ...[...counts.entries()]
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-      .map(([label, count]) => ({ label, value: label, count })),
+    ...allCats
+      .map((label) => ({
+        label,
+        value: label,
+        count: visibleProjects.filter((p) => matchesCategory(p, label)).length,
+      }))
+      .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label)),
   ];
 })();
 
@@ -198,7 +213,7 @@ export function ProjectsIndex() {
   const results = useMemo(() => {
     const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
     return visibleProjects.filter((p) => {
-      if (category !== "all" && p.category !== category) return false;
+      if (!matchesCategory(p, category)) return false;
       if (!terms.length) return true;
       const hay = SEARCH_INDEX.get(p.slug) ?? "";
       return terms.every((t) => hay.includes(t));

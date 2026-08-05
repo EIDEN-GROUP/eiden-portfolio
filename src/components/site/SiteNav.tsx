@@ -115,7 +115,7 @@ export function SiteNav() {
               to="/projects"
               className="font-label text-[12px] font-bold uppercase tracking-[0.25em] text-white/90 transition-colors hover:text-white"
             >
-              Index
+              Projects
             </Link>
           </nav>
 
@@ -219,7 +219,7 @@ export function SiteNav() {
                   onClick={close}
                   className="block w-full text-left font-display text-[clamp(1.75rem,8vw,2.2rem)] font-semibold leading-none text-white/85 transition-colors hover:text-gold"
                 >
-                  Index
+                  Projects
                 </Link>
               </motion.div>
 

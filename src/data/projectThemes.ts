@@ -658,6 +658,61 @@ export const VIBESCAPE_THEME = makeWebTheme({
   motion: { ease: easeEnergetic, revealDuration: 0.7, stagger: 0.06 },
 });
 
+/** One Retail — brick, wine and pearl. Editorial retail maison for H&S Group. */
+export const ONE_RETAIL_THEME = makeWebTheme({
+  slug: "one-retail",
+  mood: "luxury",
+  rgb: { background: "23, 22, 20", accent: "171, 45, 38", secondary: "245, 240, 230" },
+  colors: {
+    primary: "#AB2D26",
+    secondary: "#8B1A1A",
+    accent: "#AB2D26",
+    accentAlt: "#C93A30",
+    background: "#171614",
+    canvas: "#1c1a18",
+    surface: "#232120",
+    surfaceAlt: "#2d2a28",
+    text: "#F5F0E6",
+  },
+  fonts: {
+    display: '"Averia Serif Libre", Georgia, serif',
+    editorial: '"Averia Serif Libre", Georgia, serif',
+    body: '"Inter", system-ui, sans-serif',
+    label: '"Righteous", "Inter", system-ui, sans-serif',
+    googleUrl:
+      "family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Righteous&display=swap",
+  },
+  cardRadius: "0.375rem",
+});
+
+/** Souss Droguerie — indigo, ink and crimson. Builder's merchant for the Souss. */
+export const DROGUERIE_SOUSS_THEME = makeWebTheme({
+  slug: "droguerie-souss",
+  mood: "corporate",
+  rgb: { background: "32, 33, 41", accent: "184, 0, 31", secondary: "47, 55, 141" },
+  colors: {
+    primary: "#2F378D",
+    secondary: "#202560",
+    accent: "#B8001F",
+    accentAlt: "#8E93C3",
+    background: "#202129",
+    canvas: "#25262f",
+    surface: "#30313d",
+    surfaceAlt: "#3a3b48",
+    text: "#FFFFFF",
+  },
+  fonts: {
+    display: '"Fraunces", "Iowan Old Style", Georgia, serif',
+    editorial: '"Fraunces", Georgia, serif',
+    body: '"Inter", system-ui, sans-serif',
+    label: '"IBM Plex Mono", "SFMono-Regular", Menlo, monospace',
+    googleUrl:
+      "family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap",
+  },
+  motion: { ease: easeCrisp, revealDuration: 0.72, stagger: 0.055 },
+  cardRadius: "0.5rem",
+});
+
 const THEME_BY_SLUG: Record<string, ProjectTheme> = {
   "lunja-village": LUNJA_THEME,
   "educazen-kids": EDUCAZEN_THEME,
@@ -672,6 +727,8 @@ const THEME_BY_SLUG: Record<string, ProjectTheme> = {
   "lunja-taghazout-bay": SERENE_THEME,
   "chillout-lounge": CHILLOUT_THEME,
   "chillout-social-club": VIBESCAPE_THEME,
+  "one-retail": ONE_RETAIL_THEME,
+  "droguerie-souss": DROGUERIE_SOUSS_THEME,
 };
 
 /** Fallback when slug has no dedicated theme (should not happen for portfolio projects). */

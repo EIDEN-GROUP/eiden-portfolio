@@ -56,6 +56,10 @@ import webOrsenDesktop from "@/assets/web-orsen-desktop.jpg";
 import webRihabDesktop from "@/assets/web-rihab-desktop.jpg";
 import webSereneDesktop from "@/assets/web-serene-desktop.jpg";
 import webVibescapeDesktop from "@/assets/web-vibescape-desktop.jpg";
+import webOneRetailCover from "@/assets/web-one-retail-cover.jpg";
+import webOneRetailDesktop from "@/assets/web-one-retail-desktop.jpg";
+import webDroguerieSoussCover from "@/assets/web-droguerie-souss-cover.jpg";
+import webDroguerieSoussDesktop from "@/assets/web-droguerie-souss-desktop.jpg";
 
 /** Optional overrides for the project detail case study body. */
 export type ProjectCaseStudyOverride = {
@@ -743,10 +747,68 @@ export const projects = [
     ],
     website: "https://vibescape-hub.vercel.app/",
   },
+  {
+    slug: "one-retail",
+    title: "One Retail",
+    cover: webOneRetailCover,
+    detailHero: webOneRetailDesktop,
+    summary:
+      "The retail arm of H&S Group told as a single maison — brick and pearl editorial system, an interactive ecosystem explorer, and a newsroom for Morocco's modern retail.",
+    tagline: "Au cœur du commerce marocain moderne.",
+    category: "Web design",
+    year: "2026",
+    index: "14",
+    services: [
+      "Art direction",
+      "Design system",
+      "Web design & development",
+      "Ecosystem architecture",
+      "Editorial system",
+      "Responsive engineering",
+    ],
+    website: "https://one--retail.vercel.app/",
+  },
+  {
+    slug: "droguerie-souss",
+    title: "Souss Droguerie",
+    cover: webDroguerieSoussCover,
+    detailHero: webDroguerieSoussDesktop,
+    summary:
+      "A twenty-year Agadir materials house rebuilt as a working shop — indigo, ink and crimson, a video hero of the yard, and a devis funnel that answers in 24 hours.",
+    tagline: "Bâtissez avec les meilleurs matériaux.",
+    category: "Web design",
+    year: "2026",
+    index: "15",
+    services: [
+      "Art direction",
+      "Design system",
+      "Web design & development",
+      "E-commerce build",
+      "Motion design",
+      "Responsive engineering",
+    ],
+    website: "https://droguerie-souss.vercel.app/",
+  },
 ] as const;
 
 /** Slugs excluded from the public portfolio (gallery, hero, next-project nav). */
-export const HIDDEN_PROJECT_SLUGS = new Set<string>(["eiden-academy"]);
+export const HIDDEN_PROJECT_SLUGS = new Set<string>([
+  "eiden-academy",
+  "lunja-taghazout-bay",
+  "chillout-social-club",
+]);
+
+/**
+ * Projects whose primary category is a discipline (Hospitality, Education…)
+ * but that also shipped a website, so they belong under the "Web design"
+ * filter too. Their primary category is untouched.
+ */
+export const ADDITIONAL_WEB_DESIGN_SLUGS = new Set<string>([
+  "bopassage",
+  "educazen-kids",
+  "dmc-morocco",
+  "medical-bay",
+]);
 
 export const visibleProjects = projects.filter((p) => !HIDDEN_PROJECT_SLUGS.has(p.slug));
 

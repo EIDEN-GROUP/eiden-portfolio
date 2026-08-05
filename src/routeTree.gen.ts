@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsRihabResidenceRouteImport } from './routes/projects.rihab-residence'
 import { Route as ProjectsOrsenRouteImport } from './routes/projects.orsen'
+import { Route as ProjectsOneRetailRouteImport } from './routes/projects.one-retail'
 import { Route as ProjectsMedicalBayRouteImport } from './routes/projects.medical-bay'
 import { Route as ProjectsLunjaVillageVibesRouteImport } from './routes/projects.lunja-village-vibes'
 import { Route as ProjectsLunjaVillageRouteImport } from './routes/projects.lunja-village'
@@ -22,6 +23,7 @@ import { Route as ProjectsLunjaTaghazoutBayRouteImport } from './routes/projects
 import { Route as ProjectsLithosMateriauxRouteImport } from './routes/projects.lithos-materiaux'
 import { Route as ProjectsEidenAcademyRouteImport } from './routes/projects.eiden-academy'
 import { Route as ProjectsEducazenKidsRouteImport } from './routes/projects.educazen-kids'
+import { Route as ProjectsDroguerieSoussRouteImport } from './routes/projects.droguerie-souss'
 import { Route as ProjectsDmcMoroccoRouteImport } from './routes/projects.dmc-morocco'
 import { Route as ProjectsChilloutSocialClubRouteImport } from './routes/projects.chillout-social-club'
 import { Route as ProjectsChilloutLoungeRouteImport } from './routes/projects.chillout-lounge'
@@ -55,6 +57,11 @@ const ProjectsRihabResidenceRoute = ProjectsRihabResidenceRouteImport.update({
 const ProjectsOrsenRoute = ProjectsOrsenRouteImport.update({
   id: '/projects/orsen',
   path: '/projects/orsen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsOneRetailRoute = ProjectsOneRetailRouteImport.update({
+  id: '/projects/one-retail',
+  path: '/projects/one-retail',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsMedicalBayRoute = ProjectsMedicalBayRouteImport.update({
@@ -94,6 +101,11 @@ const ProjectsEducazenKidsRoute = ProjectsEducazenKidsRouteImport.update({
   path: '/projects/educazen-kids',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsDroguerieSoussRoute = ProjectsDroguerieSoussRouteImport.update({
+  id: '/projects/droguerie-souss',
+  path: '/projects/droguerie-souss',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsDmcMoroccoRoute = ProjectsDmcMoroccoRouteImport.update({
   id: '/projects/dmc-morocco',
   path: '/projects/dmc-morocco',
@@ -124,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/projects/chillout-lounge': typeof ProjectsChilloutLoungeRoute
   '/projects/chillout-social-club': typeof ProjectsChilloutSocialClubRoute
   '/projects/dmc-morocco': typeof ProjectsDmcMoroccoRoute
+  '/projects/droguerie-souss': typeof ProjectsDroguerieSoussRoute
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
   '/projects/eiden-academy': typeof ProjectsEidenAcademyRoute
   '/projects/lithos-materiaux': typeof ProjectsLithosMateriauxRoute
@@ -131,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/projects/lunja-village': typeof ProjectsLunjaVillageRoute
   '/projects/lunja-village-vibes': typeof ProjectsLunjaVillageVibesRoute
   '/projects/medical-bay': typeof ProjectsMedicalBayRoute
+  '/projects/one-retail': typeof ProjectsOneRetailRoute
   '/projects/orsen': typeof ProjectsOrsenRoute
   '/projects/rihab-residence': typeof ProjectsRihabResidenceRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -143,6 +157,7 @@ export interface FileRoutesByTo {
   '/projects/chillout-lounge': typeof ProjectsChilloutLoungeRoute
   '/projects/chillout-social-club': typeof ProjectsChilloutSocialClubRoute
   '/projects/dmc-morocco': typeof ProjectsDmcMoroccoRoute
+  '/projects/droguerie-souss': typeof ProjectsDroguerieSoussRoute
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
   '/projects/eiden-academy': typeof ProjectsEidenAcademyRoute
   '/projects/lithos-materiaux': typeof ProjectsLithosMateriauxRoute
@@ -150,6 +165,7 @@ export interface FileRoutesByTo {
   '/projects/lunja-village': typeof ProjectsLunjaVillageRoute
   '/projects/lunja-village-vibes': typeof ProjectsLunjaVillageVibesRoute
   '/projects/medical-bay': typeof ProjectsMedicalBayRoute
+  '/projects/one-retail': typeof ProjectsOneRetailRoute
   '/projects/orsen': typeof ProjectsOrsenRoute
   '/projects/rihab-residence': typeof ProjectsRihabResidenceRoute
   '/projects': typeof ProjectsIndexRoute
@@ -163,6 +179,7 @@ export interface FileRoutesById {
   '/projects/chillout-lounge': typeof ProjectsChilloutLoungeRoute
   '/projects/chillout-social-club': typeof ProjectsChilloutSocialClubRoute
   '/projects/dmc-morocco': typeof ProjectsDmcMoroccoRoute
+  '/projects/droguerie-souss': typeof ProjectsDroguerieSoussRoute
   '/projects/educazen-kids': typeof ProjectsEducazenKidsRoute
   '/projects/eiden-academy': typeof ProjectsEidenAcademyRoute
   '/projects/lithos-materiaux': typeof ProjectsLithosMateriauxRoute
@@ -170,6 +187,7 @@ export interface FileRoutesById {
   '/projects/lunja-village': typeof ProjectsLunjaVillageRoute
   '/projects/lunja-village-vibes': typeof ProjectsLunjaVillageVibesRoute
   '/projects/medical-bay': typeof ProjectsMedicalBayRoute
+  '/projects/one-retail': typeof ProjectsOneRetailRoute
   '/projects/orsen': typeof ProjectsOrsenRoute
   '/projects/rihab-residence': typeof ProjectsRihabResidenceRoute
   '/projects/': typeof ProjectsIndexRoute
@@ -184,6 +202,7 @@ export interface FileRouteTypes {
     | '/projects/chillout-lounge'
     | '/projects/chillout-social-club'
     | '/projects/dmc-morocco'
+    | '/projects/droguerie-souss'
     | '/projects/educazen-kids'
     | '/projects/eiden-academy'
     | '/projects/lithos-materiaux'
@@ -191,6 +210,7 @@ export interface FileRouteTypes {
     | '/projects/lunja-village'
     | '/projects/lunja-village-vibes'
     | '/projects/medical-bay'
+    | '/projects/one-retail'
     | '/projects/orsen'
     | '/projects/rihab-residence'
     | '/projects/'
@@ -203,6 +223,7 @@ export interface FileRouteTypes {
     | '/projects/chillout-lounge'
     | '/projects/chillout-social-club'
     | '/projects/dmc-morocco'
+    | '/projects/droguerie-souss'
     | '/projects/educazen-kids'
     | '/projects/eiden-academy'
     | '/projects/lithos-materiaux'
@@ -210,6 +231,7 @@ export interface FileRouteTypes {
     | '/projects/lunja-village'
     | '/projects/lunja-village-vibes'
     | '/projects/medical-bay'
+    | '/projects/one-retail'
     | '/projects/orsen'
     | '/projects/rihab-residence'
     | '/projects'
@@ -222,6 +244,7 @@ export interface FileRouteTypes {
     | '/projects/chillout-lounge'
     | '/projects/chillout-social-club'
     | '/projects/dmc-morocco'
+    | '/projects/droguerie-souss'
     | '/projects/educazen-kids'
     | '/projects/eiden-academy'
     | '/projects/lithos-materiaux'
@@ -229,6 +252,7 @@ export interface FileRouteTypes {
     | '/projects/lunja-village'
     | '/projects/lunja-village-vibes'
     | '/projects/medical-bay'
+    | '/projects/one-retail'
     | '/projects/orsen'
     | '/projects/rihab-residence'
     | '/projects/'
@@ -242,6 +266,7 @@ export interface RootRouteChildren {
   ProjectsChilloutLoungeRoute: typeof ProjectsChilloutLoungeRoute
   ProjectsChilloutSocialClubRoute: typeof ProjectsChilloutSocialClubRoute
   ProjectsDmcMoroccoRoute: typeof ProjectsDmcMoroccoRoute
+  ProjectsDroguerieSoussRoute: typeof ProjectsDroguerieSoussRoute
   ProjectsEducazenKidsRoute: typeof ProjectsEducazenKidsRoute
   ProjectsEidenAcademyRoute: typeof ProjectsEidenAcademyRoute
   ProjectsLithosMateriauxRoute: typeof ProjectsLithosMateriauxRoute
@@ -249,6 +274,7 @@ export interface RootRouteChildren {
   ProjectsLunjaVillageRoute: typeof ProjectsLunjaVillageRoute
   ProjectsLunjaVillageVibesRoute: typeof ProjectsLunjaVillageVibesRoute
   ProjectsMedicalBayRoute: typeof ProjectsMedicalBayRoute
+  ProjectsOneRetailRoute: typeof ProjectsOneRetailRoute
   ProjectsOrsenRoute: typeof ProjectsOrsenRoute
   ProjectsRihabResidenceRoute: typeof ProjectsRihabResidenceRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -296,6 +322,13 @@ declare module '@tanstack/react-router' {
       path: '/projects/orsen'
       fullPath: '/projects/orsen'
       preLoaderRoute: typeof ProjectsOrsenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/one-retail': {
+      id: '/projects/one-retail'
+      path: '/projects/one-retail'
+      fullPath: '/projects/one-retail'
+      preLoaderRoute: typeof ProjectsOneRetailRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/medical-bay': {
@@ -347,6 +380,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsEducazenKidsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/droguerie-souss': {
+      id: '/projects/droguerie-souss'
+      path: '/projects/droguerie-souss'
+      fullPath: '/projects/droguerie-souss'
+      preLoaderRoute: typeof ProjectsDroguerieSoussRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/dmc-morocco': {
       id: '/projects/dmc-morocco'
       path: '/projects/dmc-morocco'
@@ -386,6 +426,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsChilloutLoungeRoute: ProjectsChilloutLoungeRoute,
   ProjectsChilloutSocialClubRoute: ProjectsChilloutSocialClubRoute,
   ProjectsDmcMoroccoRoute: ProjectsDmcMoroccoRoute,
+  ProjectsDroguerieSoussRoute: ProjectsDroguerieSoussRoute,
   ProjectsEducazenKidsRoute: ProjectsEducazenKidsRoute,
   ProjectsEidenAcademyRoute: ProjectsEidenAcademyRoute,
   ProjectsLithosMateriauxRoute: ProjectsLithosMateriauxRoute,
@@ -393,6 +434,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsLunjaVillageRoute: ProjectsLunjaVillageRoute,
   ProjectsLunjaVillageVibesRoute: ProjectsLunjaVillageVibesRoute,
   ProjectsMedicalBayRoute: ProjectsMedicalBayRoute,
+  ProjectsOneRetailRoute: ProjectsOneRetailRoute,
   ProjectsOrsenRoute: ProjectsOrsenRoute,
   ProjectsRihabResidenceRoute: ProjectsRihabResidenceRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,

@@ -1,4 +1,4 @@
 export const siteNavLinks: { hash: string; label: string }[] = [
-  { hash: "projects", label: "Projects" },
+  { hash: "home", label: "Home" },
   { hash: "testimonials", label: "Signals" },
 ];
